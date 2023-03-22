@@ -14,4 +14,13 @@ export default defineConfig({
       "@modules": fileURLToPath(new URL("./src/modules", import.meta.url)),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          survey: ["survey-knockout-ui"],
+        },
+      },
+    },
+  },
 });

@@ -14,6 +14,16 @@ import PToast from "primevue/toast";
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 
+body {
+  --primary: #2196f3;
+  --background: #ffffff;
+  --background-dim: #f3f3f3;
+  --background-dim-light: #f9f9f9;
+  --primary-foreground: #ffffff;
+  --foreground: #161616;
+  --base-unit: 8px;
+}
+
 * {
   margin: 0;
   padding: 0;
