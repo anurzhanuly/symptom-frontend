@@ -1,10 +1,6 @@
 import { error } from "./toast";
 
-export function validateClinic(
-  name: string,
-  city: string,
-  address: string,
-): boolean {
+export function validateClinic(name: string, city: string, address: string): boolean {
   if (!name) {
     error("Ошибка", "Поле 'Название клиники' должно быть заполнено");
     return false;
@@ -23,12 +19,7 @@ export function validateClinic(
   return true;
 }
 
-export function validateDoctor(
-  firstName: string,
-  lastName: string,
-  exp: string,
-  spec: string,
-): boolean {
+export function validateDoctor(firstName: string, lastName: string, exp: string, spec: string): boolean {
   if (!firstName) {
     error("Ошибка", "Поле 'Фамилия' должно быть заполнено");
     return false;

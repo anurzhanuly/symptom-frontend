@@ -119,10 +119,10 @@ const goToSurvey = (): void => {
 
 const goToPatientCab = (): void => {
   if (validateLoginForm()) {
-    router.push({
-      path: "/patientcab/main",
-    });
   }
+  router.push({
+    path: "/patientcab/main",
+  });
 };
 
 const validateRegisterForm = (): boolean => {
@@ -145,10 +145,7 @@ const validateRegisterForm = (): boolean => {
   }
 
   if (lastName.value.length > 2 && !cyrillicPattern.test(lastName.value)) {
-    warn(
-      "Внимание",
-      "Поле 'Фамилия' должно быть на кириллице и больше 2 символов",
-    );
+    warn("Внимание", "Поле 'Фамилия' должно быть на кириллице и больше 2 символов");
     return false;
   }
 
@@ -158,19 +155,14 @@ const validateRegisterForm = (): boolean => {
   }
 
   if (!phonePattern.test(phone.value)) {
-    warn(
-      "Внимание",
-      "Номер телефона' должен начинаеться с 8 и иметь 11 символов",
-    );
+    warn("Внимание", "Поле 'Номер телефона' должен начинаеться с 8 и иметь 11 символов");
     return false;
   }
 
   if (middleName.value) {
     middleName.value = middleName.value
       .split(" ")
-      .map(
-        (word: string) => word[0].toUpperCase() + word.slice(1).toLowerCase(),
-      )
+      .map((word: string) => word[0].toUpperCase() + word.slice(1).toLowerCase())
       .join(" ");
   }
 
@@ -200,10 +192,7 @@ const validateLoginForm = (): boolean => {
   const phonePattern = /^8[0-9]{10}$/;
 
   if (!phonePattern.test(phone.value)) {
-    warn(
-      "Внимание",
-      "Номер телефона' должен начинаеться с 8 и иметь 11 символов",
-    );
+    warn("Внимание", "Номер телефона' должен начинаеться с 8 и иметь 11 символов");
     return false;
   }
 
@@ -216,6 +205,4 @@ const validateLoginForm = (): boolean => {
 };
 </script>
 
-<style>
-@import "./styles/authorization.css";
-</style>
+<style src="@/styles/authorization.css"></style>

@@ -11,16 +11,12 @@
         <form class="authorization-form">
           <img src="@/assets/main/logo-auth.png" alt="Symptom logo" />
           <div>
-            <h4>Имя <span>*</span></h4>
-            <input-text v-model="login" />
+            <h4>Почта <span>*</span></h4>
+            <input-text type="mail" v-model="email" />
           </div>
           <div>
-            <h4>Фамилия <span>*</span></h4>
-            <input-text v-model="password" />
-          </div>
-          <div>
-            <h4>Номер телефона <span>*</span></h4>
-            <input-text />
+            <h4>Пароль <span>*</span></h4>
+            <input-text type="password" v-model="password" />
           </div>
           <p-button label="Вход" @click="checkDoctor" />
         </form>
@@ -31,25 +27,25 @@
 
 <script setup lang="ts">
 import BaseSwiper from "@/components/BaseSwiper.vue";
-import { useRouter } from "vue-router";
-import { error } from "@/utils/toast";
+import { useAuthorizationStore } from "./store/authorization.store";
+import { warn } from "@/utils/toast";
 import { ref } from "vue";
 
 import PButton from "primevue/button";
 import InputText from "primevue/inputtext";
 
-const router = useRouter();
-const login = ref<string>("");
+const authorizationStore = useAuthorizationStore();
 const password = ref<string>("");
+const email = ref<string>("");
 
 const validation = (): boolean => {
-  if (login.value !== "symptom") {
-    error("Ошибка", "Неверный логин или пароль");
+  if (!email.value) {
+    warn("Ошибка", "Поле 'почта' не заполнено");
     return false;
   }
 
-  if (password.value !== "adam") {
-    error("Ошибка", "Неверный логин или пароль");
+  if (!password.value) {
+    warn("Ошибка", "Поле 'пароль' не заполнено");
     return false;
   }
 
@@ -57,10 +53,10 @@ const validation = (): boolean => {
 };
 
 const checkDoctor = (): void => {
-  if (validation()) router.push("/cabinet");
+  if (validation()) {
+    authorizationStore.postLoginData(email.value, password.value);
+  }
 };
 </script>
 
-<style>
-@import "./styles/authorization.css";
-</style>
+<style src="@/styles/authorization.css"></style>

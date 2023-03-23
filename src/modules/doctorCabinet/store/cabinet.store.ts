@@ -1,88 +1,39 @@
+import { getDoctorsConsultations, getResult } from "../services/cabinet.refbooks";
+import type { Consultation, ConsultationResult } from "../types/doctorCabinet";
 import { defineStore } from "pinia";
+import { ref } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
 
 export const useCabinetStore = defineStore("cabinet", () => {
-  const mainColumns = [
-    {
-      header: "Пациент",
-      field: "patient",
-      hasButton: false,
-    },
-    {
-      header: "Дата опроса",
-      field: "surveyDate",
-      hasButton: false,
-    },
-    {
-      header: "Жалобы",
-      field: "complaints",
-      hasButton: false,
-    },
-    {
-      header: "",
-      field: "",
-      hasButton: true,
-    },
-  ];
+  const myConsultation = ref<Consultation[]>([]);
+  const consultationResult = ref<ConsultationResult>();
+  const router = useRouter();
 
-  const myPatientsColumns = [
-    {
-      header: "Пациент",
-      field: "patient",
-      hasButton: false,
-    },
-    {
-      header: "Дата опроса",
-      field: "surveyDate",
-      hasButton: false,
-    },
-    {
-      header: "Жалобы",
-      field: "complaints",
-      hasButton: false,
-    },
-    {
-      header: "Номер телефона",
-      field: "phone",
-      hasButton: false,
-    },
-    {
-      header: "",
-      field: "",
-      hasButton: true,
-    },
-  ];
+  async function getDoctorsConsultationsData(): Promise<void> {
+    const res = await getDoctorsConsultations();
+    console.log("getDoctorsConsultationsData  res:", res);
+    if (!axios.isAxiosError(res)) {
+      myConsultation.value = res.data.included;
+    } else {
+      router.push("/doctorSignin");
+    }
+  }
 
-  // TODO убрать как будет REST
-  const myConsultation = [
-    {
-      patient: "Имя Фамилия",
-      surveyDate: "21/01/2023 12:56:06",
-      complaints: "Текст...",
-      phone: "+7 777 567 54 67",
-    },
-    {
-      patient: "Имя Фамилия",
-      surveyDate: "21/01/2023 12:56:06",
-      complaints: "Текст...",
-      phone: "+7 777 567 54 67",
-    },
-    {
-      patient: "Имя Фамилия",
-      surveyDate: "21/01/2023 12:56:06",
-      complaints: "Текст...",
-      phone: "+7 777 567 54 67",
-    },
-    {
-      patient: "Имя Фамилия",
-      surveyDate: "21/01/2023 12:56:06",
-      complaints: "Текст...",
-      phone: "+7 777 567 54 67",
-    },
-  ];
+  async function getResultData(Id: string): Promise<void> {
+    const res = await getResult(Id);
+    if (!axios.isAxiosError(res)) {
+      consultationResult.value = res.data.included.filter((item: { type: string }) => item.type === "patient")[0];
+      router.push("/cabinet/result");
+    } else {
+      router.push("/doctorSignin");
+    }
+  }
 
   return {
-    mainColumns,
     myConsultation,
-    myPatientsColumns,
+    consultationResult,
+    getDoctorsConsultationsData,
+    getResultData,
   };
 });

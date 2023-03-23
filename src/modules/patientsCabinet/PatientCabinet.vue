@@ -1,28 +1,44 @@
 <template>
-  <div class="section-patient">
-    <div class="section-sidebar">
-      <patient-sidebar />
-    </div>
-    <div class="section-content">
+  <base-header />
+  <div class="patient-cabinet">
+    <base-side-bar :views="patientViews" />
+    <div class="patient-view">
       <router-view />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import PatientSidebar from "@/modules/patientsCabinet/components/PatientSidebar.vue";
+import BaseHeader from "@/components/BaseHeader.vue";
+import BaseSideBar from "@/components/BaseSideBar.vue";
+
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+
+onMounted(() => {
+  const router = useRouter();
+  router.push("/patientcab/main");
+});
+
+const patientViews = ref([
+  {
+    label: "Главная",
+    icon: "pi pi-fw pi-home",
+    to: "/patientcab/main",
+  },
+  {
+    label: "Настройки",
+    icon: "pi pi-fw pi-pencil",
+    to: "/patientcab/settings",
+  },
+]);
 </script>
 
-<style scoped>
-.section-patient {
+<style>
+.patient-cabinet {
   display: flex;
 }
-.section-sidebar {
+.patient-view {
   flex: 1;
-}
-
-.section-content {
-  flex: 3;
-  margin-left: 40px;
 }
 </style>

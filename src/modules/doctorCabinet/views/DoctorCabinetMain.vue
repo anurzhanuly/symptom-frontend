@@ -2,26 +2,18 @@
   <data-table
     selection-mode="single"
     :value="myConsultation"
-    responsive-layout="scroll"
-    scrollable
     class="p-datatable-sm"
-    striped-rows
     reorderable-columns
-    resizable-columns
     column-resize-mode="expand"
   >
     <template #header>
       <h2>Назначенные консультации</h2>
     </template>
-    <column
-      v-for="(column, idx) in mainColumns"
-      :key="idx"
-      :header="column.header"
-      :field="column.field"
-    >
-      <template #editor="{ data, field }">
-        <p-button v-if="column.hasButton" style="width: 250px" label="qwe" />
-        <input-text v-model="data[field]" style="width: 100%" />
+    <column header="Дата опроса" field="attributes.date" />
+    <column header="Жалобы" field="attributes.diagnose" />
+    <column style="width: 7%">
+      <template #body="slotProps">
+        <p-button icon="pi pi-credit-card" class="p-button-text" @click="checkResult(slotProps.data.id)" />
       </template>
     </column>
   </data-table>
@@ -29,14 +21,22 @@
 
 <script setup lang="ts">
 import { useCabinetStore } from "@/modules/doctorCabinet/store/cabinet.store";
-import { computed } from "vue";
+import { onMounted } from "vue";
 
+import PButton from "primevue/button";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import InputText from "primevue/inputtext";
+import { storeToRefs } from "pinia";
 
 const cabinetStore = useCabinetStore();
 
-const mainColumns = computed(() => cabinetStore.mainColumns);
-const myConsultation = computed(() => cabinetStore.myConsultation);
+onMounted(() => {
+  cabinetStore.getDoctorsConsultationsData();
+});
+
+const { myConsultation } = storeToRefs(cabinetStore);
+
+const checkResult = (Id: string) => {
+  cabinetStore.getResultData(Id);
+};
 </script>

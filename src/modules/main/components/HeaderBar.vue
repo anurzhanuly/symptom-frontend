@@ -3,9 +3,7 @@
     <RouterLink to="/">
       <img src="@/assets/logo.png" class="header-image" alt="logo" />
     </RouterLink>
-    <p class="header-button" @click="$router.push('/doctorSignin')">
-      Кабинет врача
-    </p>
+    <p class="header-button" @click="$router.push('/doctorSignin')">Кабинет врача</p>
   </header>
 </template>
 

@@ -14,12 +14,7 @@
     <template #header>
       <h2>Мои пациенты</h2>
     </template>
-    <column
-      v-for="(column, idx) in myPatientsColumns"
-      :key="idx"
-      :header="column.header"
-      :field="column.field"
-    >
+    <column v-for="(column, idx) in myPatientsColumns" :key="idx" :header="column.header" :field="column.field">
       <template #editor="{ data, field }">
         <p-button v-if="column.hasButton" style="width: 250px" label="qwe" />
         <input-text v-else v-model="data[field]" style="width: 100%" />
@@ -38,7 +33,33 @@ import InputText from "primevue/inputtext";
 import PButton from "primevue/button";
 
 const cabinetStore = useCabinetStore();
-
-const myPatientsColumns = computed(() => cabinetStore.myPatientsColumns);
 const myConsultation = computed(() => cabinetStore.myConsultation);
+
+const myPatientsColumns = [
+  {
+    header: "Пациент",
+    field: "patient",
+    hasButton: false,
+  },
+  {
+    header: "Дата опроса",
+    field: "surveyDate",
+    hasButton: false,
+  },
+  {
+    header: "Жалобы",
+    field: "complaints",
+    hasButton: false,
+  },
+  {
+    header: "Номер телефона",
+    field: "phone",
+    hasButton: false,
+  },
+  {
+    header: "",
+    field: "",
+    hasButton: true,
+  },
+];
 </script>
