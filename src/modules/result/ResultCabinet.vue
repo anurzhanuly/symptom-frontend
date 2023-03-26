@@ -43,6 +43,8 @@ import PButton from "primevue/button";
 
 const surveyStore = useSurveyStore();
 const result = computed(() => surveyStore.recommendations || []);
+const resultChatGPT = computed(() => surveyStore.recommendationsChatGPT || {});
+console.log(resultChatGPT.value);
 
 const isButtonsVisible = ref<boolean>(true);
 const isResultVisible = ref<boolean>(true);

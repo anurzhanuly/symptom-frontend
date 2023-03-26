@@ -61,18 +61,18 @@ const postPatientResultData = () => {
   console.log(patientData);
 };
 
-if (answers.value["Есть ли у вас сейчас жалобы?"].includes("Да")) {
-  complaints.value = `${
-    answers.value["Какие у Вас основные жалобы?"]?.join(",") || ""
-  }`;
-  complaintsAnamnesis.value = `На протяжении ${
-    answers.value[
-      "На протяжении какого времени Вы испытываете подобные симптомы?"
-    ]?.join(",") || ""
-  } становится ${answers.value["Становится ли Вам лучше?"]?.join(",") || ""}`;
-} else {
-  complaints.value = "Жалобы не указал";
-}
+// if (answers.value["Есть ли у вас сейчас жалобы?"].includes("Да")) {
+//   complaints.value = `${
+//     answers.value["Какие у Вас основные жалобы?"]?.join(",") || ""
+//   }`;
+//   complaintsAnamnesis.value = `На протяжении ${
+//     answers.value[
+//       "На протяжении какого времени Вы испытываете подобные симптомы?"
+//     ]?.join(",") || ""
+//   } становится ${answers.value["Становится ли Вам лучше?"]?.join(",") || ""}`;
+// } else {
+//   complaints.value = "Жалобы не указал";
+// }
 
 lifeAnamnesis.value = `Хронические заболевания: ${
   answers.value[
