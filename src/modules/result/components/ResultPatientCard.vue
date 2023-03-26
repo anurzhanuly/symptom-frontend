@@ -1,0 +1,37 @@
+<template>
+  <div v-if="isResultVisible">
+    <card>
+      <template #title>Карточка пациента</template>
+      <template #content>
+        <p-panel v-for="(info, title) in pationsCard" :key="info" :header="surveyStore.stringTitle(title)" toggleable>
+          <p v-for="(value, key) in info" :key="key">{{ key }} {{ value }}</p>
+        </p-panel>
+      </template>
+    </card>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { useSurveyStore } from "../../survey/store/survey.store";
+import { useResultStore } from "../store/result.store";
+import { storeToRefs } from "pinia";
+
+import Card from "primevue/card";
+import PPanel from "primevue/panel";
+
+const resultStore = useResultStore();
+const surveyStore = useSurveyStore();
+const { isResultVisible } = storeToRefs(resultStore);
+const { pationsCard } = storeToRefs(surveyStore);
+</script>
+
+<style scoped>
+.p-inputtext {
+  border: none;
+  width: -webkit-fill-available;
+}
+
+.p-panel {
+  margin-bottom: 10px;
+}
+</style>

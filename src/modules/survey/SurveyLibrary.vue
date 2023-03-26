@@ -24,7 +24,7 @@ onMounted(() => {
       newData[key] = newData[key].includes("none") ? ["Без особенностей"] : newData[key];
     }
 
-    surveyStore.postAnswersData({ answers: newData });
+    surveyStore.postAnswersDataChatGPT({ answers: newData });
     router.push({
       path: "/result",
     });

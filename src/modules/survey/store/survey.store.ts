@@ -1,21 +1,16 @@
 import { getQuestionsJson } from "@/modules/admin/services/admin.refbooks";
 import type { QuestionsContent } from "@/modules/admin/types/questions";
-import { postAnswers } from "../services/survey.refbooks";
+import { postAnswersToChatGPT } from "../services/survey.refbooks";
 import { defineStore } from "pinia";
 import axios from "axios";
 import { ref } from "vue";
 
 export const useSurveyStore = defineStore("survey", () => {
-  const resultAnswers = ref<Record<string, string[]>>();
+  const resultAnswersChatGPT = ref<Record<string, string[]>>();
   const questions = ref<QuestionsContent>();
-  const recommendations = ref([
-    {
-      name: "Короче, нет ничего",
-      tests: ["Вы здоровы"],
-      recommendations: ["Вы здоровы"],
-      importance: "",
-    },
-  ]);
+  const pationsCard = ref<any>();
+  const recommendationsChatGPT = ref();
+  const recommendations = ref();
 
   async function getQuestionsData() {
     const res = await getQuestionsJson();
@@ -26,23 +21,38 @@ export const useSurveyStore = defineStore("survey", () => {
     return res;
   }
 
-  async function postAnswersData(data: { answers: Record<string, string[]> }) {
-    resultAnswers.value = data.answers;
-    const res = await postAnswers(data);
+  async function postAnswersDataChatGPT(data: { answers: Record<string, string[]> }) {
+    resultAnswersChatGPT.value = data.answers;
+    try {
+      const res = await postAnswersToChatGPT(data);
+      console.log("postAnswersDataChatGPT  res:", res);
 
-    if (!axios.isAxiosError(res)) {
-      if (res.data.recommendations) {
-        recommendations.value = res.data.recommendations;
+      if (!axios.isAxiosError(res)) {
+        pationsCard.value = res.data.patientCard;
+        const JSONstring = JSON.parse(res.data.symptomAi);
+        recommendationsChatGPT.value = JSON.parse(JSONstring);
       }
+    } catch (e) {
+      console.error(e);
+      recommendationsChatGPT.value = null;
     }
-    return res;
+  }
+
+  function stringTitle(title: any): string {
+    if (typeof title === "number") {
+      return title.toString();
+    }
+
+    return title;
   }
 
   return {
-    resultAnswers,
     questions,
+    pationsCard,
     recommendations,
-    postAnswersData,
+    recommendationsChatGPT,
+    postAnswersDataChatGPT,
     getQuestionsData,
+    stringTitle,
   };
 });
