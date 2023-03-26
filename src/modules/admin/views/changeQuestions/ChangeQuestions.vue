@@ -2,11 +2,7 @@
   <section class="section-questions__add">
     <h2 style="margin: 8px 0">Вставьте сюда json с вопросами из survey</h2>
     <p-textarea v-model="surveyStr" rows="25" />
-    <p-button
-      label="Сохранить"
-      class="p-button-lg"
-      @click="changeSurveyQuestions"
-    />
+    <p-button label="Сохранить" class="p-button-lg" @click="changeSurveyQuestions" />
   </section>
 </template>
 
@@ -22,9 +18,7 @@ const questionStore = useQuestionsStore();
 const surveyStr = ref<string>("");
 
 const changeSurveyQuestions = async (): Promise<void> => {
-  const surveyJSON: QuestionsContent = JSON.parse(
-    surveyStr.value.split("\n").join(""),
-  );
+  const surveyJSON: QuestionsContent = JSON.parse(surveyStr.value.split("\n").join(""));
 
   const questionsJson = surveyJSON.pages.filter(el => {
     return el.elements[0].type !== "expression";

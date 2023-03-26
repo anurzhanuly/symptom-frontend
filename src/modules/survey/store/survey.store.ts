@@ -2,8 +2,8 @@ import { getQuestionsJson } from "@/modules/admin/services/admin.refbooks";
 import type { QuestionsContent } from "@/modules/admin/types/questions";
 import { postAnswersToChatGPT } from "../services/survey.refbooks";
 import { defineStore } from "pinia";
-import axios from "axios";
 import { ref } from "vue";
+import axios from "axios";
 
 export const useSurveyStore = defineStore("survey", () => {
   const resultAnswersChatGPT = ref<Record<string, string[]>>();
@@ -12,20 +12,17 @@ export const useSurveyStore = defineStore("survey", () => {
   const recommendationsChatGPT = ref();
   const recommendations = ref();
 
-  async function getQuestionsData() {
+  async function getQuestionsData(): Promise<void> {
     const res = await getQuestionsJson();
     if (!axios.isAxiosError(res)) {
-      questions.value = res.data.content;
+      questions.value = res.data.data.attributes.questionnaire;
     }
-
-    return res;
   }
 
   async function postAnswersDataChatGPT(data: { answers: Record<string, string[]> }) {
     resultAnswersChatGPT.value = data.answers;
     try {
       const res = await postAnswersToChatGPT(data);
-      console.log("postAnswersDataChatGPT  res:", res);
 
       if (!axios.isAxiosError(res)) {
         pationsCard.value = res.data.patientCard;
