@@ -64,7 +64,7 @@ export const useAdminStore = defineStore("admin", () => {
     const res = await getQuestionsJson();
 
     if (!axios.isAxiosError(res)) {
-      questions.value = res.data.content.pages.map(el => el.elements).flat(1);
+      questions.value = res.data.content.pages.map((el: { elements: any; }) => el.elements).flat(1);
       questionsNames.value = questions.value.map(el => {
         return { value: el.name };
       });
