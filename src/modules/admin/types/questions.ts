@@ -38,6 +38,5 @@ export interface QuestionsContent {
 }
 
 export interface ResQuestions {
-  id: string;
   content: QuestionsContent;
 }

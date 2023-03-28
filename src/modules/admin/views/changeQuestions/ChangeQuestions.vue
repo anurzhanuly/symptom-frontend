@@ -25,7 +25,6 @@ const changeSurveyQuestions = async (): Promise<void> => {
   });
 
   const questions = {
-    id: "114",
     content: { pages: questionsJson },
   };
 

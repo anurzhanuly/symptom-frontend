@@ -1,10 +1,10 @@
 import type { ResQuestions } from "@/modules/admin/types/questions";
-import { useApi } from "@/services/api";
+import { useSymptomApi } from "@/services/api";
 import type { AxiosError, AxiosResponse } from "axios";
 
 export const changeQuestionsJson = async (questions: ResQuestions): Promise<AxiosError | AxiosResponse> => {
   try {
-    const res = useApi.put("/questionnaires/update", questions);
+    const res = useSymptomApi.post("/questionnaires/new", questions);
 
     return res;
   } catch (error) {
