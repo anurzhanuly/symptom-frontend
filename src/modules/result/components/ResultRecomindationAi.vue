@@ -42,7 +42,6 @@ const resultStore = useResultStore();
 const surveyStore = useSurveyStore();
 const { recommendationsChatGPT } = storeToRefs(surveyStore);
 const { isButtonsVisible } = storeToRefs(resultStore);
-console.log(recommendationsChatGPT.value);
 </script>
 
 <style scoped>

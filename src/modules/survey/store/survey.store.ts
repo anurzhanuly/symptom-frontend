@@ -27,7 +27,8 @@ export const useSurveyStore = defineStore("survey", () => {
       if (!axios.isAxiosError(res)) {
         pationsCard.value = res.data.patientCard;
         const JSONstring = JSON.parse(res.data.symptomAi);
-        recommendationsChatGPT.value = JSON.parse(JSONstring);
+        const JSONstring2 = JSONstring.replace(/«|»/g, '"');
+        recommendationsChatGPT.value = JSON.parse(JSONstring2);
       }
     } catch (e) {
       console.error(e);
