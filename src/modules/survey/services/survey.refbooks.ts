@@ -1,9 +1,9 @@
 import type { AxiosError } from "axios";
-import axios from "axios";
+import { useSymptomApi } from "@/services/api";
 
 export const postAnswersToChatGPT = async (answers: { answers: Record<string, string[]> }): Promise<any> => {
   try {
-    return await axios.post("http://www.symptom.kz:8080/recommendations", answers, {
+    return await useSymptomApi.post("/recommendations", answers, {
       params: {
         key: "SymptomAlgaBas",
       },

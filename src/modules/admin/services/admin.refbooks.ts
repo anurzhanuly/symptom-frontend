@@ -2,12 +2,11 @@ import type { ResQuestions } from "@/modules/admin/types/questions";
 import type { Recommendation, ResRecommendation } from "@/modules/admin/types/recommendations";
 import type { Error } from "@/types/response";
 import type { AxiosError } from "axios";
-import { useApi } from "@/services/api";
-import axios from "axios";
+import { useApi, useSymptomApi } from "@/services/api";
 
 export const getQuestionsJson = async (): Promise<any> => {
   try {
-    const res = await axios.get<ResQuestions>("http://www.symptom.kz:8080/questionnaires/latest");
+    const res = await useSymptomApi.get<ResQuestions>("/questionnaires/latest");
     return res;
   } catch (error) {
     const err = error as AxiosError<Error>;
