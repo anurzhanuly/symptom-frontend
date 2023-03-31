@@ -1,5 +1,4 @@
 <template>
-  <p-button v-if="!isButtonsVisible" label="На главную" class="p-button-outlined" @click="$router.push('/')" />
   <div class="recomindation-result">
     <card>
       <template #title>Рекомендации</template>
