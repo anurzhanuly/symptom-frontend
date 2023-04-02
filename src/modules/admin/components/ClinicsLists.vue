@@ -78,7 +78,6 @@
       </column>
     </data-table>
   </div>
-  <confirm-popup />
 </template>
 
 <script lang="ts" setup>
@@ -94,7 +93,6 @@ import { onMounted } from "vue";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import PButton from "primevue/button";
-import ConfirmPopup from "primevue/confirmpopup";
 // import { useConfirm } from "primevue/useconfirm";
 import { useDialog } from "primevue/usedialog";
 

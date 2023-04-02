@@ -168,7 +168,7 @@ onMounted(() => (checkedRecommendationName.value = null));
  */
 watch(checkedRecommendationName, newRecommendationName => {
   if (checkedRecommendationName.value) {
-    checkedRecommendationObj.value = allRecommendations.value.filter(el => el.name === newRecommendationName.name)[0];
+    checkedRecommendationObj.value = allRecommendations.value.filter(el => el.name === newRecommendationName!.name)[0];
   }
 });
 
@@ -203,7 +203,7 @@ const createCondition = () => {
 };
 
 const saveConditions = async () => {
-  const res = await adminStore.saveConditionsData(checkedRecommendationName.value);
+  const res = await adminStore.saveConditionsData(checkedRecommendationName.value!);
 
   if (res.status === 200) {
     success("Успешно", "Изменения внесены");

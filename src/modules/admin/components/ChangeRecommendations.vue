@@ -1,5 +1,4 @@
 <template>
-  <confirm-popup />
   <panel header="Изменить рекомендации">
     <div class="recommendations">
       <div class="recommendations-list">
@@ -45,7 +44,6 @@ import axios from "axios";
 
 import { useConfirm } from "primevue/useconfirm";
 import PButton from "primevue/button";
-import ConfirmPopup from "primevue/confirmpopup";
 import PTextarea from "primevue/textarea";
 import InputNumber from "primevue/inputnumber";
 import Listbox from "primevue/listbox";
@@ -65,7 +63,7 @@ onMounted(() => (checkedRecommendationName.value = null));
 watch(checkedRecommendationName, newRecommendationName => {
   if (checkedRecommendationName.value) {
     const testRecommendations: Record<string, string[]> = allRecommendations.value.filter(
-      el => el.name === newRecommendationName.name,
+      el => el.name === newRecommendationName!.name,
     )[0].tests;
 
     copiedTests.value = {};
@@ -109,7 +107,7 @@ const saveRecommendationTests = async () => {
   for (let key in copiedTests.value) {
     newTests[key] = copiedTests.value[key].split(".,");
   }
-  const res = await adminStore.saveRecommendationsData(checkedRecommendationName.value, newTests);
+  const res = await adminStore.saveRecommendationsData(checkedRecommendationName.value!.name, newTests);
 
   if (res.status === 200) {
     success("Успешно", "Изменения внесены");

@@ -15,7 +15,7 @@ export const useAdminStore = defineStore("admin", () => {
   const questions = ref<Questions[]>([]);
   const questionsNames = ref<{ value: string }[]>([]);
   const conditionIndex = ref<number>(0);
-  const checkedRecommendationName = ref<any>();
+  const checkedRecommendationName = ref<Recommendation | null>();
 
   const conditionColumns = [
     {
@@ -92,11 +92,11 @@ export const useAdminStore = defineStore("admin", () => {
     return res;
   }
 
-  async function saveConditionsData(conditionName: string) {
+  async function saveConditionsData(conditionName: Recommendation) {
     const newRecommendation = JSON.parse(
       JSON.stringify(
         allRecommendations.value.filter(el => {
-          return el.name === conditionName;
+          return el.name === conditionName.name;
         })[0],
       ),
     );
@@ -108,7 +108,7 @@ export const useAdminStore = defineStore("admin", () => {
 
   function editLocalConditionsByIndex(tableIndex: number, updateTo: Condition) {
     const rec = allRecommendations.value.filter(el => {
-      return el.name === checkedRecommendationName.value;
+      return el.name === checkedRecommendationName.value!.name;
     })[0];
     const recIndex: number = allRecommendations.value.indexOf(rec);
 
@@ -117,7 +117,7 @@ export const useAdminStore = defineStore("admin", () => {
 
   function createConditionInRec(newRecord: Condition) {
     const rec = allRecommendations.value.filter(el => {
-      return el.name === checkedRecommendationName.value;
+      return el.name === checkedRecommendationName.value!.name;
     })[0];
     const recIndex: number = allRecommendations.value.indexOf(rec);
     allRecommendations.value[recIndex].conditions[conditionIndex.value].push({
@@ -127,7 +127,7 @@ export const useAdminStore = defineStore("admin", () => {
 
   function deleteConditionByIndex(condition: Condition) {
     const rec = allRecommendations.value.filter(el => {
-      return el.name === checkedRecommendationName.value;
+      return el.name === checkedRecommendationName.value!.name;
     })[0];
     const recIndex = allRecommendations.value.indexOf(rec);
     const condIndex = allRecommendations.value[recIndex].conditions[conditionIndex.value].indexOf(condition);

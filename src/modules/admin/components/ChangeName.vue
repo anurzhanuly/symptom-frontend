@@ -1,5 +1,4 @@
 <template>
-  <confirm-popup />
   <panel header="Наименование вопроса в рекомендациях">
     <input-text v-model="beforeQuestName" placeholder="До" />
     <dropdown
@@ -23,7 +22,6 @@ import { ref, computed } from "vue";
 import { useAdminStore } from "@/modules/admin/stores/admin.store";
 import { useConfirm } from "primevue/useconfirm";
 
-import ConfirmPopup from "primevue/confirmpopup";
 import InputText from "primevue/inputtext";
 import Dropdown from "primevue/dropdown";
 import PButton from "primevue/button";
