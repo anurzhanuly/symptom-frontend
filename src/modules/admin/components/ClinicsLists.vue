@@ -16,11 +16,7 @@
             <h2>Все клиники</h2>
           </div>
           <div>
-            <p-button
-              label="Добавить клинику"
-              class="p-button-success"
-              @click="createClinic"
-            />
+            <p-button label="Добавить клинику" class="p-button-success" @click="createClinic" />
           </div>
         </div>
       </template>
@@ -56,11 +52,7 @@
             <h2>Все врачи</h2>
           </div>
           <div>
-            <p-button
-              label="Добавить врача"
-              class="p-button-success"
-              @click="createDoctor"
-            />
+            <p-button label="Добавить врача" class="p-button-success" @click="createDoctor" />
           </div>
         </div>
       </template>
@@ -94,8 +86,8 @@ import CreateClinic from "./popup/CreateClinic.vue";
 import ChangeClinic from "./popup/ChangeClinic.vue";
 import CreateDoctor from "./popup/CreateDoctor.vue";
 import ChangeDoctor from "./popup/ChangeDoctor.vue";
-import type { Clinics, Doctors } from "./types/clinics";
-import { useClinicsStore } from "./store/clinics.store";
+import type { Clinics, Doctors } from "../types/clinics";
+import { useClinicsStore } from "../stores/clinics.store";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 
@@ -110,8 +102,7 @@ const clinicsStore = useClinicsStore();
 const dialog = useDialog();
 // const confirm = useConfirm();
 
-const { clinics, doctors, selectedClinic, selectedDoctor } =
-  storeToRefs(clinicsStore);
+const { clinics, doctors, selectedClinic, selectedDoctor } = storeToRefs(clinicsStore);
 
 onMounted(() => {
   clinicsStore.getCitiesData();
@@ -169,11 +160,7 @@ function changeDoctor(data: Doctors): void {
 }
 </script>
 
-<style>
-.clinic-list .p-datatable {
-  margin-top: 20px;
-}
-
+<style scoped>
 .clinics-list-table-header {
   display: flex;
   justify-content: space-between;
@@ -181,29 +168,5 @@ function changeDoctor(data: Doctors): void {
 
 .clinics-list-table-header .p-button {
   margin-left: 5px;
-}
-
-/* popup */
-.clinic-list-popup {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 25px;
-}
-
-.clinic-list-popup-form {
-  width: 60%;
-}
-
-.clinic-list-popup-form > div {
-  margin: 15px 0;
-}
-
-.clinic-list-popup-action {
-  display: flex;
-  justify-content: center;
-}
-
-.clinic-list-popup-action .p-button {
-  width: 315px;
 }
 </style>

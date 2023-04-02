@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useClinicsStore } from "@/modules/admin/views/clinics/store/clinics.store";
+import { useClinicsStore } from "@/modules/admin/stores/clinics.store";
 import { useAdminStore } from "@/modules/admin/stores/admin.store";
 import { onMounted, ref } from "vue";
 import TabMenu from "primevue/tabmenu";

@@ -32,17 +32,13 @@
     </div>
 
     <div class="clinic-list-popup-action">
-      <p-button
-        label="Сохранить"
-        class="p-button-success"
-        @click="changeDoctor"
-      />
+      <p-button label="Сохранить" class="p-button-success" @click="changeDoctor" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useClinicsStore } from "../store/clinics.store";
+import { useClinicsStore } from "../../stores/clinics.store";
 import { validateDoctor } from "@/utils/validation";
 import { success } from "@/utils/toast";
 import { ref, inject } from "vue";
@@ -57,15 +53,9 @@ const dialogRef = inject<any>("dialogRef");
 
 const { specializations, selectedDoctor } = storeToRefs(clinicStore);
 
-const changeDoctorFirstName = ref<string>(
-  selectedDoctor.value?.attributes.firstName!,
-);
-const changeDoctorLastName = ref<string>(
-  selectedDoctor.value?.attributes.firstName!,
-);
-const changeDoctorMidName = ref<string>(
-  selectedDoctor.value?.attributes.midName!,
-);
+const changeDoctorFirstName = ref<string>(selectedDoctor.value?.attributes.firstName!);
+const changeDoctorLastName = ref<string>(selectedDoctor.value?.attributes.firstName!);
+const changeDoctorMidName = ref<string>(selectedDoctor.value?.attributes.midName!);
 const changeDoctorspecId = ref<string>("");
 const changeDoctorExp = ref<string>("");
 

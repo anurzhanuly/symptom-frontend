@@ -60,13 +60,7 @@
         <input-text v-model="newRecord[column.field]" style="width: 100%" />
       </div>
     </div>
-    <p-button
-      label="Создать"
-      icon="pi pi-check"
-      class="p-button-success"
-      autofocus
-      @click="createRecCondition()"
-    />
+    <p-button label="Создать" icon="pi pi-check" class="p-button-success" autofocus @click="createRecCondition()" />
   </div>
 </template>
 
@@ -90,11 +84,7 @@ const valueOptions = ref<Record<string, string>[]>([]);
 
 const conditionColumns = computed(() => adminStore.conditionColumns);
 
-const newRecord = ref(
-  createPopupFields(
-    conditionColumns.value.filter(el => el.header !== "Удаление"),
-  ),
-);
+const newRecord = ref(createPopupFields(conditionColumns.value.filter(el => el.header !== "Удаление")));
 
 const checkConditionRecValidation = (): boolean => {
   if (!newRecord.value.questionName.length) {
@@ -128,14 +118,10 @@ const checkConditionRecValidation = (): boolean => {
 const createRecCondition = () => {
   if (checkConditionRecValidation()) {
     const res = { ...newRecord.value } as unknown as Condition;
-    const question = adminStore.questions.filter(
-      el => el.name === newRecord.value.questionName,
-    )[0];
+    const question = adminStore.questions.filter(el => el.name === newRecord.value.questionName)[0];
     res.multiple = !!(question?.maxSelectedChoices > 1);
     res.type = question.type;
-    res.value = isValueHasChoices.value
-      ? res.value
-      : conditionValue.value.split(",");
+    res.value = isValueHasChoices.value ? res.value : conditionValue.value.split(",");
 
     adminStore.createConditionInRec(res);
     success("Успешно", "Условие создано, не забудьте сохранить");
@@ -144,9 +130,7 @@ const createRecCondition = () => {
 };
 
 const addValueOptions = () => {
-  const question = adminStore.questions.filter(
-    el => el.name === newRecord.value.questionName,
-  )[0];
+  const question = adminStore.questions.filter(el => el.name === newRecord.value.questionName)[0];
 
   if (question?.choices) {
     isValueHasChoices.value = true;

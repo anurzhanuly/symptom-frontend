@@ -63,27 +63,27 @@ const router = createRouter({
     {
       path: "/admin",
       name: "admin",
-      component: (): Component => import("@/modules/admin/AdminCabinet.vue"),
+      component: (): Component => import("@/modules/admin/AdminView.vue"),
       children: [
         {
           path: "quest",
-          component: (): Component => import("@/modules/admin/views/changeQuestions/ChangeQuestions.vue"),
+          component: (): Component => import("@/modules/admin/components/ChangeJSONQuestions.vue"),
         },
         {
           path: "cond",
-          component: (): Component => import("@/modules/admin/views/conditions/AdminConditions.vue"),
+          component: (): Component => import("@/modules/admin/components/ChangeConditions.vue"),
         },
         {
           path: "recom",
-          component: (): Component => import("@/modules/admin/views/recomindations/ChangeRecommendations.vue"),
+          component: (): Component => import("@/modules/admin/components/ChangeRecommendations.vue"),
         },
         {
           path: "magic",
-          component: (): Component => import("@/modules/admin/views/changeQuestionsName/ChangeConditionsName.vue"),
+          component: (): Component => import("@/modules/admin/components/ChangeName.vue"),
         },
         {
           path: "clinics",
-          component: (): Component => import("@/modules/admin/views/clinics/ClinicsLists.vue"),
+          component: (): Component => import("@/modules/admin/components/ClinicsLists.vue"),
         },
       ],
     },

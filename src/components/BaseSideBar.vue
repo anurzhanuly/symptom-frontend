@@ -24,7 +24,7 @@ const props = defineProps({
 });
 </script>
 
-<style>
+<style scoped>
 .pages-nav {
   height: max-content;
   width: 280px;

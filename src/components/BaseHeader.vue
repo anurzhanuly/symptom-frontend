@@ -1,26 +1,22 @@
 <template>
   <div class="base-header">
     <div class="base-header-content">
-      <img
-        src="@/assets/main/logo-auth.png"
-        alt="Symptom logo"
-        class="base-header-img"
-        @click="$router.push('/')"
-      />
+      <img src="@/assets/main/logo-auth.png" alt="Symptom logo" />
 
-      <span class="p-input-icon-left">
-        <i class="pi pi-search" />
-        <input-text type="text" placeholder="Поиск" />
-      </span>
+      <p-button
+        icon="pi pi-sign-out"
+        class="p-button-raised p-button-outlined p-button-text"
+        @click="$router.push('/')"
+      ></p-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import InputText from "primevue/inputtext";
+import PButton from "primevue/button";
 </script>
 
-<style>
+<style scoped>
 .base-header {
   border-bottom: 1px solid #cacaca;
 }
@@ -29,9 +25,5 @@ import InputText from "primevue/inputtext";
   display: flex;
   justify-content: space-between;
   margin: 15px 15px;
-}
-
-.base-header-img {
-  cursor: pointer;
 }
 </style>

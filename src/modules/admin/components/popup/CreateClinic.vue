@@ -24,17 +24,13 @@
     </div>
 
     <div class="clinic-list-popup-action">
-      <p-button
-        label="Сохранить"
-        class="p-button-success"
-        @click="createClinic"
-      />
+      <p-button label="Сохранить" class="p-button-success" @click="createClinic" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useClinicsStore } from "../store/clinics.store";
+import { useClinicsStore } from "../../stores/clinics.store";
 import { validateClinic } from "@/utils/validation";
 import { success } from "@/utils/toast";
 import { ref, inject } from "vue";
@@ -54,13 +50,7 @@ const newClinicAddress = ref<string>("");
 const { cities } = storeToRefs(clinicStore);
 
 async function createClinic(): Promise<void> {
-  if (
-    validateClinic(
-      newClinicName.value,
-      newClinicCityId.value,
-      newClinicAddress.value,
-    )
-  ) {
+  if (validateClinic(newClinicName.value, newClinicCityId.value, newClinicAddress.value)) {
     const res = await clinicStore.createClinicData({
       name: newClinicName.value,
       address: newClinicAddress.value,

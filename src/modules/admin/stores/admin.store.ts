@@ -7,10 +7,7 @@ import {
   putRecommendationsObj,
   deleteDisease,
 } from "../services/admin.refbooks.js";
-import type {
-  Condition,
-  Recommendation,
-} from "@/modules/admin/types/recommendations.js";
+import type { Condition, Recommendation } from "@/modules/admin/types/recommendations.js";
 import type { Questions } from "@/modules/admin/types/questions.js";
 
 export const useAdminStore = defineStore("admin", () => {
@@ -64,13 +61,13 @@ export const useAdminStore = defineStore("admin", () => {
     const res = await getQuestionsJson();
 
     if (!axios.isAxiosError(res)) {
-      questions.value = res.data.content.pages.map((el: { elements: any; }) => el.elements).flat(1);
+      questions.value = res.data.data.attributes.questionnaire.pages
+        .map((el: { elements: any }) => el.elements)
+        .flat(1);
       questionsNames.value = questions.value.map(el => {
         return { value: el.name };
       });
     }
-
-    return res;
   }
 
   async function getRecommendationsData() {
@@ -83,10 +80,7 @@ export const useAdminStore = defineStore("admin", () => {
     return res;
   }
 
-  async function saveRecommendationsData(
-    recName: string,
-    recomm: Record<string, string[]>,
-  ) {
+  async function saveRecommendationsData(recName: string, recomm: Record<string, string[]>) {
     const newRecommendation = allRecommendations.value.filter(el => {
       return el.name === recName;
     })[0];
@@ -118,9 +112,7 @@ export const useAdminStore = defineStore("admin", () => {
     })[0];
     const recIndex: number = allRecommendations.value.indexOf(rec);
 
-    allRecommendations.value[recIndex].conditions[conditionIndex.value][
-      tableIndex
-    ] = { ...updateTo };
+    allRecommendations.value[recIndex].conditions[conditionIndex.value][tableIndex] = { ...updateTo };
   }
 
   function createConditionInRec(newRecord: Condition) {
@@ -138,18 +130,14 @@ export const useAdminStore = defineStore("admin", () => {
       return el.name === checkedRecommendationName.value;
     })[0];
     const recIndex = allRecommendations.value.indexOf(rec);
-    const condIndex =
-      allRecommendations.value[recIndex].conditions[
-        conditionIndex.value
-      ].indexOf(condition);
-    allRecommendations.value[recIndex].conditions[conditionIndex.value] =
-      allRecommendations.value[recIndex].conditions[
-        conditionIndex.value
-      ].filter((el, index) => {
-        if (index !== condIndex) {
-          return el;
-        }
-      });
+    const condIndex = allRecommendations.value[recIndex].conditions[conditionIndex.value].indexOf(condition);
+    allRecommendations.value[recIndex].conditions[conditionIndex.value] = allRecommendations.value[recIndex].conditions[
+      conditionIndex.value
+    ].filter((el, index) => {
+      if (index !== condIndex) {
+        return el;
+      }
+    });
   }
 
   async function deleteDiseaseById(disease: string) {
