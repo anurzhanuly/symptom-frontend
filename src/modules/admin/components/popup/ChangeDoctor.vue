@@ -83,3 +83,5 @@ async function changeDoctor(): Promise<void> {
   }
 }
 </script>
+
+<style src="@/styles/clinics.css"></style>

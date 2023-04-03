@@ -64,3 +64,5 @@ async function changeClinic(): Promise<void> {
   }
 }
 </script>
+
+<style src="@/styles/clinics.css"></style>
