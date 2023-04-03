@@ -13,16 +13,13 @@
 
 <script lang="ts" setup>
 import { useSurveyStore } from "../../survey/store/survey.store";
-import { useResultStore } from "../store/result.store";
 import { storeToRefs } from "pinia";
 
 import Card from "primevue/card";
 import PPanel from "primevue/panel";
 
-const resultStore = useResultStore();
 const surveyStore = useSurveyStore();
-const { isResultVisible } = storeToRefs(resultStore);
-const { pationsCard } = storeToRefs(surveyStore);
+const { pationsCard, isResultVisible } = storeToRefs(surveyStore);
 </script>
 
 <style scoped>

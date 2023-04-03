@@ -1,5 +1,4 @@
 <template>
-  <confirm-popup />
   <panel header="Изменить условия рекомендаций">
     <div class="conditions">
       <div class="conditions-list">
@@ -137,7 +136,6 @@ import { useConfirm } from "primevue/useconfirm";
 import { useDialog } from "primevue/usedialog";
 import Column from "primevue/column";
 import PButton from "primevue/button";
-import ConfirmPopup from "primevue/confirmpopup";
 import PMultiSelect from "primevue/multiselect";
 import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";

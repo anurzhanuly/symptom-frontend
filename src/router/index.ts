@@ -38,12 +38,12 @@ const router = createRouter({
     {
       path: "/result",
       name: "result",
-      component: (): Component => import("@/modules/result/ResultView.vue"),
+      component: (): Component => import("@/modules/survey/ResultView.vue"),
     },
     {
       path: "/survey",
       name: "survey",
-      component: (): Component => import("@/modules/survey/SurveyLibrary.vue"),
+      component: (): Component => import("@/modules/survey/SurveyView.vue"),
     },
     {
       path: "/patientcab",

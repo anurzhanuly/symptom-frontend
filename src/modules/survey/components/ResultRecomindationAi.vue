@@ -23,7 +23,7 @@
       </template>
 
       <template #footer v-if="isButtonsVisible">
-        <p-button label="Открыть в PDF" class="p-button-raised" @click="resultStore.resultPDF" />
+        <p-button label="Открыть в PDF" class="p-button-raised" @click="surveyStore.resultPDF" />
       </template>
     </card>
   </div>
@@ -31,17 +31,14 @@
 
 <script setup lang="ts">
 import { useSurveyStore } from "@/modules/survey/store/survey.store";
-import { useResultStore } from "../store/result.store";
 import { storeToRefs } from "pinia";
 
 import Card from "primevue/card";
 import PPanel from "primevue/panel";
 import PButton from "primevue/button";
 
-const resultStore = useResultStore();
 const surveyStore = useSurveyStore();
-const { recommendationsChatGPT } = storeToRefs(surveyStore);
-const { isButtonsVisible } = storeToRefs(resultStore);
+const { recommendationsChatGPT, isButtonsVisible } = storeToRefs(surveyStore);
 </script>
 
 <style scoped>

@@ -12,6 +12,9 @@ export const useSurveyStore = defineStore("survey", () => {
   const recommendationsChatGPT = ref();
   const recommendations = ref();
 
+  const isButtonsVisible = ref<boolean>(true);
+  const isResultVisible = ref<boolean>(true);
+
   async function getQuestionsData(): Promise<void> {
     const res = await getQuestionsJson();
     if (!axios.isAxiosError(res)) {
@@ -23,6 +26,7 @@ export const useSurveyStore = defineStore("survey", () => {
     resultAnswersChatGPT.value = data.answers;
     try {
       const res = await postAnswersToChatGPT(data);
+      console.log("postAnswersDataChatGPT  res:", res);
 
       if (!axios.isAxiosError(res)) {
         pationsCard.value = res.data.patientCard;
@@ -44,13 +48,28 @@ export const useSurveyStore = defineStore("survey", () => {
     return title;
   }
 
+  function resultPDF() {
+    isButtonsVisible.value = false;
+    isResultVisible.value = false;
+    setTimeout(() => {
+      window.print();
+    });
+    setTimeout(() => {
+      isButtonsVisible.value = true;
+      isResultVisible.value = true;
+    }, 2000);
+  }
+
   return {
     questions,
     pationsCard,
     recommendations,
     recommendationsChatGPT,
+    isButtonsVisible,
+    isResultVisible,
     postAnswersDataChatGPT,
     getQuestionsData,
     stringTitle,
+    resultPDF,
   };
 });
