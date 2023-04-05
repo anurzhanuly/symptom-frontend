@@ -9,7 +9,7 @@
       </div>
       <div class="authorization-wrapper p-fluid">
         <form class="authorization-form">
-          <img src="@/assets/main/logo-auth.png" alt="Symptom logo" />
+          <img src="@/assets/logo-auth.png" alt="Symptom logo" />
           <div>
             <h4>Почта <span>*</span></h4>
             <input-text type="mail" v-model="email" />

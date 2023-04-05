@@ -9,7 +9,7 @@
       </div>
       <div class="authorization-wrapper p-fluid">
         <form v-if="isSignupRoute" class="authorization-form">
-          <img src="@/assets/main/logo-auth.png" alt="Symptom logo" />
+          <img src="@/assets/logo-auth.png" alt="Symptom logo" />
           <div>
             <h4>Имя <span>*</span></h4>
             <input-text v-model="firstName" />
@@ -57,7 +57,7 @@
           <p-button label="Пройти тест" @click="goToSurvey" />
         </form>
         <form v-if="!isSignupRoute" class="authorization-form">
-          <img src="@/assets/main/logo-auth.png" alt="Symptom logo" />
+          <img src="@/assets/logo-auth.png" alt="Symptom logo" />
           <div>
             <h4>Номер телефона <span>*</span></h4>
             <input-text v-model="loginPhone" />
@@ -74,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import { useClinicsStore } from "@/modules/admin/views/clinics/store/clinics.store";
+import { useClinicsStore } from "@/modules/admin/stores/clinics.store";
 import { ref, onMounted, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { warn } from "@/utils/toast";

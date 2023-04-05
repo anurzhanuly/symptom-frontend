@@ -28,32 +28,27 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Autoplay } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
 
 const items = [
   {
     photo: "onboard1.png",
     heading: "Узнайте причины жалоб",
-    innerText:
-      "Результаты опросника помогут определиться с нужным специалистом и записаться на приём",
+    innerText: "Результаты опросника помогут определиться с нужным специалистом и записаться на приём",
   },
   {
     photo: "onboard2.png",
     heading: "Получите список необходимых анализов",
-    innerText:
-      "Экономьте время и приходите на первый прием уже с результатами анализов",
+    innerText: "Экономьте время и приходите на первый прием уже с результатами анализов",
   },
   {
     photo: "onboard3.png",
     heading: "Пройдите опросник и получите первичные рекомендации",
-    innerText:
-      "Вопросы составлены профессиональными врачами, ответы помогут определить твое состояние",
+    innerText: "Вопросы составлены профессиональными врачами, ответы помогут определить твое состояние",
   },
 ];
 </script>
 
-<style>
+<style scoped>
 .swiper {
   min-height: 100vh;
 }

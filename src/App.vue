@@ -49,16 +49,6 @@ li {
 }
 
 .wrapper {
-  height: 88vh;
-}
-
-body {
-  --primary: #2196f3;
-  --background: #ffffff;
-  --background-dim: #f3f3f3;
-  --background-dim-light: #f9f9f9;
-  --primary-foreground: #ffffff;
-  --foreground: #161616;
-  --base-unit: 8px;
+  height: 100vh;
 }
 </style>

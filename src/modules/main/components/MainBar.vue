@@ -1,13 +1,22 @@
 <template>
-  <div class="main-content">
-    <h1>Что Вас беспокоит?</h1>
-    <h3>
-      Пройдите опрос, узнайте <br />о состоянии вашего здоровья<br />
-      и начните приём с нами
-    </h3>
-    <div class="main-content-buttons">
-      <p-button label="Пройти тест" @click="goToAuthorization" />
-      <p-button label="Войти в личный кабинет" class="p-button-outlined" @click="$router.push('/clientSignin')" />
+  <div class="main-container">
+    <div class="main-information">
+      <h1>Что Вас беспокоит?</h1>
+      <h3>
+        Пройдите опрос, узнайте о состоянии <br />
+        вашего здоровья и начните приём <br />
+        с нами
+      </h3>
+      <div v-if="isDoctor" class="main-container-button">
+        <p-button label="Войти в кабинет врача" @click="$router.push('doctorSignin')" />
+      </div>
+      <div v-else class="main-container-buttons">
+        <p-button label="Пройти опрос" @click="$router.push('agreement')" />
+        <p-button label="Войти в личный кабинет" class="p-button-outlined" @click="$router.push('clientSignup')" />
+      </div>
+    </div>
+    <div class="main-image">
+      <img src="@/assets/main.png" alt="logo" />
     </div>
   </div>
 </template>
@@ -15,12 +24,15 @@
 <script lang="ts" setup>
 import { onMounted, computed } from "vue";
 import { useSurveyStore } from "../../survey/store/survey.store.js";
-import { useRouter } from "vue-router";
+import { useMainStore } from "../store/main.store";
 
 import PButton from "primevue/button";
+import { storeToRefs } from "pinia";
 
-const router = useRouter();
 const surveyStore = useSurveyStore();
+const mainStore = useMainStore();
+
+const { isDoctor } = storeToRefs(mainStore);
 
 onMounted(() => {
   surveyStore.getQuestionsData();
@@ -28,138 +40,57 @@ onMounted(() => {
 
 const isMobileDevice = computed(() => /Mobi/.test(navigator.userAgent) && !/iPad/.test(navigator.userAgent));
 console.log(isMobileDevice.value);
-
-const goToAuthorization = (): void => {
-  // isMobileDevice.value
-  //   ? router.push({
-  //       path: "/onboarding",
-  //     })
-  //   : router.push({
-  //       path: "/clientSignup",
-  //     });
-
-  router.push({
-    path: "/agreement",
-  });
-};
 </script>
 
-<style>
-.main-content {
-  padding-top: 200px;
+<style scoped>
+.main-container {
+  padding: 0 190px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90vh;
 }
 
-.main-content h3 {
-  font-size: 40px;
+.main-information {
+  width: 50%;
+}
+
+.main-image,
+img {
+  width: 100%;
+}
+
+.main-container h3 {
+  font-size: 20px;
   font-weight: 600;
-  line-height: 37px;
+  line-height: 25px;
   letter-spacing: 0px;
   margin-top: 15px;
 }
 
-.main-content h1 {
-  font-size: 80px;
+.main-container h1 {
+  font-size: 45px;
   font-weight: 700;
   line-height: 61px;
   letter-spacing: 0px;
 }
 
-.main-content-buttons {
+.main-container-buttons,
+.main-container-button {
   display: flex;
   flex-direction: column;
 }
 
-.main-content-buttons .p-button {
-  width: 520px;
+.main-container-button .p-button,
+.main-container-buttons .p-button {
+  width: 365px;
   font-size: 22px;
   background: #276ef1;
   border-radius: 10px;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
-.main-content-buttons .p-button:last-child {
+.main-container-buttons .p-button:last-child {
   background-color: #ffffff;
-}
-
-@media (max-width: 1500px) {
-  .main-content h1 {
-    font-size: 40px;
-  }
-
-  .main-content h3 {
-    font-size: 25px;
-  }
-
-  .main-content {
-    padding-top: 250px;
-  }
-
-  .main-content-buttons .p-button {
-    width: 329px;
-  }
-}
-
-@media (max-width: 1100px) {
-  .main-content h1 {
-    font-size: 40px;
-  }
-
-  .main-content h3 {
-    font-size: 25px;
-  }
-
-  .main-content {
-    padding-top: 280px;
-  }
-}
-
-@media (max-width: 800px) {
-  .main-content h1 {
-    font-size: 40px;
-  }
-
-  .main-content h3 {
-    font-size: 30px;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-content h1 {
-    font-size: 32px;
-    line-height: 15px;
-  }
-
-  .main-content h3 {
-    font-size: 20px;
-    line-height: 25px;
-  }
-
-  .main-content-buttons .p-button {
-    width: 100%;
-    margin-top: 20px;
-  }
-
-  .main-content {
-    padding-top: 320px;
-  }
-
-  .main-content-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-@media (max-width: 365px) {
-  .main-content h1 {
-    font-size: 30px;
-  }
-}
-
-@media (max-width: 342px) {
-  .main-content h1 {
-    font-size: 25px;
-  }
 }
 </style>
