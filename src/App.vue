@@ -1,10 +1,8 @@
 <template>
-  <div class="wrapper">
-    <router-view />
-    <dynamic-dialog />
-    <confirm-popup />
-    <p-toast />
-  </div>
+  <router-view />
+  <dynamic-dialog />
+  <confirm-popup />
+  <p-toast />
 </template>
 
 <script setup lang="ts">
@@ -32,6 +30,14 @@ body {
   box-sizing: border-box;
 }
 
+#app {
+  font-family: "Montserrat";
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
 a {
   text-decoration: none;
   color: #2c3e50;
@@ -39,16 +45,5 @@ a {
 
 li {
   list-style: none;
-}
-
-#app {
-  font-family: "Montserrat";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-
-.wrapper {
-  height: 100vh;
 }
 </style>

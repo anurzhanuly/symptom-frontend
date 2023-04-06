@@ -4,9 +4,7 @@
       <RouterLink to="/">
         <img src="@/assets/logo.png" class="header-image" alt="logo" />
       </RouterLink>
-      <div class="static-buttons">
-        <p v-for="link in links" @click="mainStore.scroll(link.top)">{{ link.name }}</p>
-      </div>
+      <p v-for="link in links" class="static-buttons" @click="mainStore.scroll(link.top)">{{ link.name }}</p>
       <div>
         <p class="dynamic-button" @click="isDoctor = !isDoctor">{{ label }}</p>
       </div>
@@ -38,29 +36,17 @@ const label = computed(() => {
 }
 
 .dynamic-button {
-  float: right;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 22px;
+  font-size: 18px;
   color: #276ef1;
   border-bottom: 1px solid #276ef1;
   cursor: pointer;
 }
 
 .static-buttons {
-  display: flex;
-}
-
-.static-buttons p {
   color: #1f1534;
   cursor: pointer;
-  margin: 0 55px;
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 16px;
   opacity: 0.5;
 }
 
@@ -68,19 +54,39 @@ const label = computed(() => {
   width: 250px;
 }
 
-@media (max-width: 480px) {
-  .header-image {
-    width: 150px;
+@media (max-width: 1350px) {
+  .static-buttons {
+    display: none;
   }
 
-  .dynamic-button {
-    font-size: 15px;
+  .header-image {
+    width: 200px;
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 860px) {
+  .header-container {
+    padding: 20px 60px;
+  }
+}
+
+@media (max-width: 490px) {
+  .header-container {
+    padding: 20px 15px;
+  }
+
   .header-image {
-    width: 120px;
+    width: 180px;
+  }
+
+  .dynamic-button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-image {
+    width: 150px;
   }
 }
 </style>

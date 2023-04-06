@@ -46,12 +46,12 @@ const advantagesInfoSecond = computed(() => {
   display: flex;
   background: #eef5fb;
   justify-content: space-between;
+  align-items: center;
 }
 
 .advantages-info {
   display: flex;
   flex-direction: column;
-  margin-top: 120px;
 }
 
 .advantages-info div {
@@ -75,6 +75,7 @@ h3 {
   line-height: 44px;
   color: #111111;
   margin-left: 75px;
+  padding-top: 15px;
 }
 
 p {
@@ -82,5 +83,77 @@ p {
   font-size: 20px;
   line-height: 28px;
   color: #000000;
+}
+
+img {
+  width: 100%;
+}
+
+@media (max-width: 1350px) {
+  img {
+    width: 100%;
+  }
+
+  .advantages-info div {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .image {
+    display: none;
+  }
+
+  .advantages-info div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 860px) {
+  h3 {
+    font-size: 30px;
+  }
+
+  .advantages-container {
+    padding: 10px 100px;
+  }
+}
+
+@media (max-width: 595px) {
+  h3 {
+    font-size: 25px;
+  }
+
+  h1 {
+    font-size: 45px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .advantages-container {
+    padding: 10px 45px;
+  }
+}
+
+@media (max-width: 490px) {
+  .advantages-container {
+    padding: 10px 25px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 330px) {
+  h3 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
 }
 </style>

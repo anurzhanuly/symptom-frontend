@@ -2,11 +2,7 @@
   <div class="main-container">
     <div class="main-information">
       <h1>Что Вас беспокоит?</h1>
-      <h3>
-        Пройдите опрос, узнайте о состоянии <br />
-        вашего здоровья и начните приём <br />
-        с нами
-      </h3>
+      <h3>Пройдите опрос, узнайте о состоянии вашего здоровья и начните приём с нами</h3>
       <div v-if="isDoctor" class="main-container-button">
         <p-button label="Войти в кабинет врача" @click="$router.push('doctorSignin')" />
       </div>
@@ -60,19 +56,16 @@ img {
   width: 100%;
 }
 
-.main-container h3 {
+h3 {
   font-size: 20px;
   font-weight: 600;
-  line-height: 25px;
-  letter-spacing: 0px;
+  line-height: 35px;
   margin-top: 15px;
 }
 
-.main-container h1 {
-  font-size: 45px;
+h1 {
+  font-size: 48px;
   font-weight: 700;
-  line-height: 61px;
-  letter-spacing: 0px;
 }
 
 .main-container-buttons,
@@ -92,5 +85,117 @@ img {
 
 .main-container-buttons .p-button:last-child {
   background-color: #ffffff;
+}
+
+@media (max-width: 1900px) {
+  h1 {
+    font-size: 45px;
+  }
+}
+
+@media (max-width: 1800px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1650px) {
+  h1 {
+    font-size: 35px;
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 25px;
+  }
+
+  .main-container-button .p-button,
+  .main-container-buttons .p-button {
+    width: 290px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1480px) {
+  h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 1350px) {
+  h1 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .main-container-button .p-button,
+  .main-container-buttons .p-button {
+    width: 265px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .main-container {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-information {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 37px;
+  }
+
+  h3 {
+    font-size: 17px;
+  }
+
+  .main-container-button .p-button,
+  .main-container-buttons .p-button {
+    width: 385px;
+  }
+}
+
+@media (max-width: 865px) {
+  .main-container {
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 595px) {
+  .main-information {
+    width: 83%;
+  }
+}
+
+@media (max-width: 490px) {
+  .main-container {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 430px) {
+  .main-information {
+    width: 95%;
+  }
+}
+
+@media (max-width: 400px) {
+  .main-container-button .p-button,
+  .main-container-buttons .p-button {
+    width: 100%;
+  }
 }
 </style>

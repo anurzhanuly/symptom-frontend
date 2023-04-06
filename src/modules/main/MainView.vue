@@ -17,11 +17,3 @@ import Advantages from "./components/Advantages.vue";
 import Team from "./components/Team.vue";
 import FooterBar from "./components/FooterBar.vue";
 </script>
-
-<style>
-.main-screen-image {
-  background-image: url("@/assets/main/main.png");
-  background-repeat: no-repeat;
-  background-position: 93% 50%;
-}
-</style>

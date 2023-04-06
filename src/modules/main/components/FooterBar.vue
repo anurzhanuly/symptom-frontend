@@ -66,16 +66,19 @@ function openAdminLoginPopup(): void {
 .footer-info {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 650px;
-  margin: 25px 0;
+  justify-content: center;
+  margin-top: 25px;
 }
 
 .footer-info p {
   font-weight: 500;
   font-size: 18px;
-  line-height: 24px;
   color: #000000;
+  padding: 0 15px;
+}
+
+.footer-icons {
+  margin-top: 15px;
 }
 
 .footer-icons i {
@@ -96,15 +99,15 @@ function openAdminLoginPopup(): void {
   margin-top: 15px;
 }
 
-@media (max-width: 770px) {
-  .footer {
-    margin: 0 60px;
+@media (max-width: 550px) {
+  .footer-info {
+    display: none;
   }
 }
 
-@media (max-width: 480px) {
-  .footer {
-    margin: 0 15px;
+@media (max-width: 400px) {
+  .footer-reserved h2 {
+    font-size: 14px;
   }
 }
 </style>

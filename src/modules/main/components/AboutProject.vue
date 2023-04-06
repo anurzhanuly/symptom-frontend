@@ -70,7 +70,6 @@ function direct(): void {
 h4 {
   font-weight: 600;
   font-size: 36px;
-  line-height: 44px;
   color: #212121;
 }
 
@@ -108,7 +107,6 @@ p {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
-  width: 650px;
 }
 
 .about {
@@ -139,5 +137,95 @@ img {
   font-size: 22px;
   background: #276ef1;
   border-radius: 10px;
+}
+
+@media (max-width: 1350px) {
+  h1 {
+    font-size: 50px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .p-button {
+    width: 265px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .image {
+    display: none;
+  }
+}
+
+@media (max-width: 865px) {
+  h4 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 595px) {
+  h4 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 30px;
+    margin-left: 55px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .project-info {
+    margin-top: 5px;
+  }
+
+  .about-container {
+    padding: 20px 45px;
+  }
+}
+
+@media (max-width: 490px) {
+  .about-container {
+    padding: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 400px) {
+  h4 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  h4 {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 330px) {
+  h4 {
+    font-size: 13px;
+  }
+
+  p {
+    font-size: 14px;
+  }
 }
 </style>
