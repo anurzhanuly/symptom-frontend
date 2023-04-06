@@ -199,7 +199,7 @@ img {
   }
 
   h4 {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   h3 {
@@ -208,12 +208,6 @@ img {
 }
 
 @media (max-width: 400px) {
-  h4 {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 365px) {
   h4 {
     font-size: 14px;
   }
