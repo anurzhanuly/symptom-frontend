@@ -213,7 +213,7 @@ img {
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 365px) {
   h4 {
     font-size: 14px;
   }
