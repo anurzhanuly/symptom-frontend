@@ -48,7 +48,10 @@ onMounted(() => {
       }
 
       if (newData[key].includes("other")) {
-        newData[key] = newData[key + "-Comment"];
+        // Если выбрали Другое
+        const commentKey = `${key}-Comment`;
+        const value = sender.data[commentKey];
+        newData[key] = [`${value}`];
       }
     }
 

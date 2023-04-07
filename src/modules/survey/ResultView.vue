@@ -1,21 +1,21 @@
 <template>
-  <section class="section-result">
+  <section>
+    <base-header />
     <result-patient-card />
     <!-- <result-recomindation /> -->
     <result-recomindation-ai />
-    <p-button label="На главную" class="p-button-outlined" style="margin-top: 16px" @click="$router.push('/')" />
   </section>
 </template>
 
 <script lang="ts" setup>
+import BaseHeader from "@/components/BaseHeader.vue";
 import ResultPatientCard from "./components/ResultPatientCard.vue";
 // import ResultRecomindation from "./components/ResultRecomindation.vue";
 import ResultRecomindationAi from "./components/ResultRecomindationAi.vue";
-import PButton from "primevue/button";
 </script>
 
 <style scoped>
-.section-result {
+section {
   background-color: #fff;
   border-radius: 5px;
   width: 100%;
