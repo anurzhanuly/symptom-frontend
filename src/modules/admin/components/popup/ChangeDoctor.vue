@@ -60,27 +60,26 @@ const changeDoctorspecId = ref<string>("");
 const changeDoctorExp = ref<string>("");
 
 async function changeDoctor(): Promise<void> {
-  if (
-    validateDoctor(
-      changeDoctorFirstName.value,
-      changeDoctorLastName.value,
-      changeDoctorExp.value,
-      changeDoctorspecId.value,
-    )
-  ) {
-    const res = await clinicStore.changeDoctorData(selectedDoctor.value?.id!, {
-      first_name: changeDoctorFirstName.value,
-      last_name: changeDoctorLastName.value,
-      middle_name: changeDoctorMidName.value,
-      experience: changeDoctorExp.value,
-      specialization_id: changeDoctorspecId.value,
-    });
-
-    if (res === 200) {
-      success("Успешно", `Врач изменен`);
-      dialogRef.value.close();
-    }
-  }
+  // if (
+  //   validateDoctor(
+  //     changeDoctorFirstName.value,
+  //     changeDoctorLastName.value,
+  //     changeDoctorExp.value,
+  //     changeDoctorspecId.value,
+  //   )
+  // ) {
+  //   const res = await clinicStore.changeDoctorData(selectedDoctor.value?.id!, {
+  //     first_name: changeDoctorFirstName.value,
+  //     last_name: changeDoctorLastName.value,
+  //     middle_name: changeDoctorMidName.value,
+  //     experience: changeDoctorExp.value,
+  //     specialization_id: changeDoctorspecId.value,
+  //   });
+  //   if (res === 200) {
+  //     success("Успешно", `Врач изменен`);
+  //     dialogRef.value.close();
+  //   }
+  // }
 }
 </script>
 

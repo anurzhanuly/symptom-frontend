@@ -45,11 +45,9 @@ function changeQuestName(): void {
   console.log(newRecommendation);
 }
 
-function confirmChange(event: Event): void {
-  const target = <HTMLInputElement>event.currentTarget;
-
+function confirmChange(event: any): void {
   confirm.require({
-    target: target,
+    target: event.currentTarget,
     message: "Вы уверены?",
     acceptLabel: "Да",
     rejectLabel: "Нет",
