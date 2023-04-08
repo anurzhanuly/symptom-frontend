@@ -19,24 +19,14 @@ export function validateClinic(name: string, city: string, address: string): boo
   return true;
 }
 
-export function validateDoctor(firstName: string, lastName: string, exp: string, spec: string): boolean {
-  if (!firstName) {
-    error("Ошибка", "Поле 'Фамилия' должно быть заполнено");
+export function validateDoctor(email: string, password: string): boolean {
+  if (!email) {
+    error("Ошибка", "Поле 'Почта' должно быть заполнено");
     return false;
   }
 
-  if (!lastName) {
-    error("Ошибка", "Поле 'Поле 'Имя' должно быть заполнено");
-    return false;
-  }
-
-  if (!exp) {
-    error("Ошибка", "Поле 'Опыт' должно быть заполнено");
-    return false;
-  }
-
-  if (!spec) {
-    error("Ошибка", "Поле 'Специализация' должно быть заполнено");
+  if (!password) {
+    error("Ошибка", "Поле 'Поле 'Пароль' должно быть заполнено");
     return false;
   }
 

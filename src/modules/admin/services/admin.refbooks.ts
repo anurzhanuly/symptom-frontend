@@ -1,63 +1,50 @@
-import type { ResQuestions } from "@/modules/admin/types/questions";
-import type { Recommendation, ResRecommendation } from "@/modules/admin/types/recommendations";
+import type { Recommendation, ResRecommendation } from "../types/recommendations";
+import type { ResQuestions } from "../types/questions";
+import { useApi, useSymptomApi } from "@/services/api";
 import type { Error } from "@/types/response";
 import type { AxiosError } from "axios";
-import { useApi, useSymptomApi } from "@/services/api";
 
-export const getQuestionsJson = async (): Promise<any> => {
+export async function getQuestionsJson(): Promise<any> {
   try {
-    const res = await useSymptomApi.get<ResQuestions>("/questionnaires/latest");
-    return res;
+    return await useSymptomApi.get<ResQuestions>("/questionnaires/latest");
   } catch (error) {
-    const err = error as AxiosError<Error>;
     console.log(error);
-    return err;
+    return error as AxiosError<Error>;
   }
-};
+}
 
-export const postQuestionsJson = async (questions: ResQuestions) => {
+export async function postQuestionsJson(questions: ResQuestions) {
   try {
-    const res = useApi.post("/questionnaires/add", questions);
-
-    return res;
+    return await useApi.post("/questionnaires/add", questions);
   } catch (error) {
-    const err = error as AxiosError<Error>;
     console.log(error);
-    return err;
+    return error as AxiosError<Error>;
   }
-};
+}
 
-export const getRecommendationsJson = async () => {
+export async function getRecommendationsJson() {
   try {
-    const res = useApi.get<ResRecommendation>("/admin/v1/recommendations");
-
-    return res;
+    return await useApi.get<ResRecommendation>("/admin/v1/recommendations");
   } catch (error) {
-    const err = error as AxiosError<Error>;
     console.log(error);
-    return err;
+    return error as AxiosError<Error>;
   }
-};
+}
 
-export const putRecommendationsObj = async (newRec: Recommendation) => {
+export async function putRecommendationsObj(newRec: Recommendation) {
   try {
-    const res = useApi.post("/admin/v1/diseases/add", newRec);
-
-    return res;
+    return await useApi.post("/admin/v1/diseases/add", newRec);
   } catch (error) {
-    const err = error as AxiosError<Error>;
     console.log(error);
-    return err;
+    return error as AxiosError<Error>;
   }
-};
+}
 
-export const deleteDisease = async (deleteRec: Recommendation) => {
+export async function deleteDisease(deleteRec: Recommendation) {
   try {
-    const res = useApi.post<ResRecommendation>("/admin/v1/diseases/delete", deleteRec);
-    return res;
+    return await useApi.post<ResRecommendation>("/admin/v1/diseases/delete", deleteRec);
   } catch (error) {
-    const err = error as AxiosError<Error>;
     console.log(error);
-    return err;
+    return error as AxiosError<Error>;
   }
-};
+}

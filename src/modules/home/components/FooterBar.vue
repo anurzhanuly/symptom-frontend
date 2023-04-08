@@ -5,7 +5,7 @@
         <h2 @click="openAdminLoginPopup">Symptom</h2>
       </div>
       <div class="footer-info">
-        <p v-for="link in links" @click="mainStore.scroll(link.top)">{{ link.name }}</p>
+        <p v-for="link in links" @click="homeStore.scroll(link.top)">{{ link.name }}</p>
       </div>
       <div class="footer-icons">
         <i class="pi pi-instagram" />
@@ -22,13 +22,13 @@
 <script lang="ts" setup>
 import AdminLogin from "../popup/AdminLogin.vue";
 import { useDialog } from "primevue/usedialog";
-import { useMainStore } from "../store/main.store";
+import { useHomeStore } from "../store/main.store";
 import { storeToRefs } from "pinia";
 
 const dialog = useDialog();
-const mainStore = useMainStore();
+const homeStore = useHomeStore();
 
-const { links } = storeToRefs(mainStore);
+const { links } = storeToRefs(homeStore);
 
 function openAdminLoginPopup(): void {
   dialog.open(AdminLogin, {

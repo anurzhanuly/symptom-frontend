@@ -21,11 +21,11 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { useMainStore } from "../store/main.store";
+import { useHomeStore } from "../store/main.store";
 import { computed } from "vue";
 
-const mainStore = useMainStore();
-const { isDoctor } = storeToRefs(mainStore);
+const homeStore = useHomeStore();
+const { isDoctor } = storeToRefs(homeStore);
 
 const advantagesInfoFirst = computed(() => {
   return isDoctor.value

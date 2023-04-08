@@ -13,7 +13,7 @@
       :empty-filter-message="'Ничего не найдено'"
       :empty-message="'Ничего не найдено'"
     />
-    <p-button label="Изменить" :disabled="!isReadyToChange" @click="confitmChangeQuestName($event)" />
+    <p-button label="Изменить" :disabled="!isReadyToChange" @click="confirmChange($event)" />
   </panel>
 </template>
 
@@ -36,18 +36,20 @@ const afterQuestName = ref("");
 const isReadyToChange = computed(() => {
   return beforeQuestName.value && afterQuestName.value ? true : false;
 });
-const recommendationsJSON = computed(() => adminStore.allRecommendations);
-const questionNameOptions = computed(() => adminStore.conditionColumns[0].options);
+const recommendationsJSON = computed(() => adminStore.allRecommendations || []);
+const questionNameOptions = computed(() => adminStore.conditionColumns[0].options || {});
 
-const changeQuestName = (): void => {
+function changeQuestName(): void {
   const recommendationStr = JSON.stringify(recommendationsJSON.value);
   const newRecommendation = recommendationStr.split(beforeQuestName.value).join(afterQuestName.value);
   console.log(newRecommendation);
-};
+}
 
-const confitmChangeQuestName = (event: any) => {
+function confirmChange(event: Event): void {
+  const target = <HTMLInputElement>event.currentTarget;
+
   confirm.require({
-    target: event.currentTarget,
+    target: target,
     message: "Вы уверены?",
     acceptLabel: "Да",
     rejectLabel: "Нет",
@@ -55,7 +57,7 @@ const confitmChangeQuestName = (event: any) => {
     acceptClass: "p-button-danger",
     accept: changeQuestName,
   });
-};
+}
 </script>
 
 <style scoped>

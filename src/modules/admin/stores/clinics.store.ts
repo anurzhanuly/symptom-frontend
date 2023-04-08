@@ -1,12 +1,4 @@
-import type {
-  Clinics,
-  Doctors,
-  City,
-  NewClinic,
-  Specialization,
-  NewDoctor,
-} from "../types/clinics";
-
+import type { Clinics, Doctors, City, NewClinic, Specialization, NewDoctor } from "../types/clinics";
 import {
   getCities,
   getClinics,
@@ -17,9 +9,8 @@ import {
   postChangeClinic,
   postChangeDoctor,
 } from "../services/clinics.refbooks";
-
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
 
 export const useClinicsStore = defineStore("clinics", () => {
@@ -30,6 +21,13 @@ export const useClinicsStore = defineStore("clinics", () => {
   const specializations = ref<Specialization[]>([]);
   const selectedClinic = ref<Clinics>();
   const selectedDoctor = ref<Doctors>();
+
+  onMounted(() => {
+    if (!clinics.value.length) {
+      getClinicsData();
+      getDoctorsData();
+    }
+  });
 
   async function getClinicsData(): Promise<void> {
     const res = await getClinics();
@@ -49,10 +47,7 @@ export const useClinicsStore = defineStore("clinics", () => {
     return 0;
   }
 
-  async function changeClinicData(
-    id: string,
-    newClinic: NewClinic,
-  ): Promise<number> {
+  async function changeClinicData(id: string, newClinic: NewClinic): Promise<number> {
     const res = await postChangeClinic(id, newClinic);
     console.log("changeClinicData  res:", res);
     if (!axios.isAxiosError(res)) {
@@ -64,10 +59,7 @@ export const useClinicsStore = defineStore("clinics", () => {
     return 0;
   }
 
-  async function changeDoctorData(
-    id: string,
-    newClinic: NewDoctor,
-  ): Promise<number> {
+  async function changeDoctorData(id: string, newClinic: NewDoctor): Promise<number> {
     const res = await postChangeDoctor(id, newClinic);
     console.log("changeDoctorData  res:", res);
     if (!axios.isAxiosError(res)) {

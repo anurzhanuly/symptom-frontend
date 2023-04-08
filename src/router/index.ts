@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import MainView from "@/modules/main/MainView.vue";
+import HomeView from "@/modules/home/HomeView.vue";
 import type { Component } from "vue";
 
 const router = createRouter({
@@ -7,8 +7,8 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "main",
-      component: MainView,
+      name: "home",
+      component: HomeView,
     },
     {
       path: "/clientSignup",
@@ -28,7 +28,7 @@ const router = createRouter({
     {
       path: "/agreement",
       name: "agreement",
-      component: (): Component => import("@/modules/authorization/AuthorizationAgreement.vue"),
+      component: (): Component => import("@/modules/authorization/AuthorizationAgreementView.vue"),
     },
     {
       path: "/onboarding",

@@ -4,28 +4,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useClinicsStore } from "@/modules/admin/stores/clinics.store";
-import { useAdminStore } from "@/modules/admin/stores/admin.store";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
+
 import TabMenu from "primevue/tabmenu";
-
-const adminStore = useAdminStore();
-const clinicsStore = useClinicsStore();
-
-onMounted(() => {
-  if (!adminStore.allRecommendations.length) {
-    adminStore.getRecommendationsData();
-  }
-
-  if (!adminStore.questions.length) {
-    adminStore.getQuestionsData();
-  }
-
-  if (!clinicsStore.clinics.length) {
-    clinicsStore.getClinicsData();
-    clinicsStore.getDoctorsData();
-  }
-});
 
 const adminPages = ref([
   {

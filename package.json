@@ -17,7 +17,7 @@
     "axios": "^0.27.2",
     "pinia": "^2.0.23",
     "primeicons": "^5.0.0",
-    "primevue": "^3.23.0",
+    "primevue": "^3.26.1",
     "survey-knockout-ui": "latest",
     "swiper": "^9.0.5",
     "vue": "^3.2.40",

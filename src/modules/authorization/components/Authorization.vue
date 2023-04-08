@@ -1,3 +1,24 @@
+<template>
+  <div class="authorization-section">
+    <div class="onboarding-main">
+      <base-swiper />
+    </div>
+    <div class="authorization-main">
+      <div class="link-back" @click="$router.push('/')">
+        <span>&lt; Назад</span>
+      </div>
+      <div class="authorization-wrapper p-fluid">
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import BaseSwiper from "@/components/BaseSwiper.vue";
+</script>
+
+<style scoped>
 .authorization-section {
   display: flex;
   min-height: 100vh;
@@ -47,25 +68,11 @@
   color: #d0312d;
 }
 
-.authorization-form {
-  width: 50%;
-}
-
-.authorization-form img {
-  margin-bottom: 20px;
-}
-
-.authorization-form .p-button {
-  margin: 20px 0;
-  height: 56px;
-  font-weight: 600;
-  border-radius: 10px;
-}
-
 @media only screen and (max-width: 375px) {
   .authorization-section {
     min-height: 120vh;
   }
+
   .onboarding-main {
     display: none;
   }
@@ -75,8 +82,8 @@
     left: 20px;
     margin: 0;
   }
-  .authorization-main,
-  .authorization-form {
+
+  .authorization-main {
     width: 95%;
   }
 }
@@ -94,13 +101,14 @@
     left: 20px;
     margin: 0;
   }
-  .authorization-main,
-  .authorization-form {
+  .authorization-main {
     width: 95%;
   }
 }
+
 @media (min-width: 601px) and (max-width: 1024px) {
   .authorization-main {
     margin: 50px 0;
   }
 }
+</style>

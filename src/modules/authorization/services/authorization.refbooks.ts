@@ -1,7 +1,7 @@
-import { useSymptomApi } from "@/services/api";
 import type { AxiosError, AxiosResponse } from "axios";
+import { useSymptomApi } from "@/services/api";
 
-export const postLogin = async (email: string, password: string): Promise<AxiosResponse | AxiosError> => {
+export async function postLoginDoctor(email: string, password: string): Promise<AxiosResponse | AxiosError> {
   const bodyFormData = new FormData();
   bodyFormData.append("email", email);
   bodyFormData.append("password", password);
@@ -9,8 +9,6 @@ export const postLogin = async (email: string, password: string): Promise<AxiosR
   try {
     return await useSymptomApi.post("/login", bodyFormData);
   } catch (error) {
-    const err = error as AxiosError<Error>;
-    console.log(error);
-    return err;
+    return error as AxiosError<Error>;
   }
-};
+}

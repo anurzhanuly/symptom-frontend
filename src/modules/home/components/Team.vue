@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { useMainStore } from "../store/main.store";
+import { useHomeStore } from "../store/main.store";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Autoplay } from "swiper";
 import { storeToRefs } from "pinia";
@@ -51,8 +51,8 @@ import { onMounted, onUnmounted, ref } from "vue";
 import InputText from "primevue/inputtext";
 import PButton from "primevue/button";
 
-const mainStore = useMainStore();
-const { isDoctor } = storeToRefs(mainStore);
+const homeStore = useHomeStore();
+const { isDoctor } = storeToRefs(homeStore);
 
 const name = ref("");
 const place = ref("");

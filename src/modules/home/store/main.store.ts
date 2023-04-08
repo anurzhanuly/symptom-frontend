@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-export const useMainStore = defineStore("main", () => {
+export const useHomeStore = defineStore("home", () => {
   const isDoctor = ref(false);
   const links = ref([
     {

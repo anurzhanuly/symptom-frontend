@@ -4,7 +4,7 @@
       <RouterLink to="/">
         <img src="@/assets/logo.png" class="header-image" alt="logo" />
       </RouterLink>
-      <p v-for="link in links" class="static-buttons" @click="mainStore.scroll(link.top)">{{ link.name }}</p>
+      <p v-for="link in links" class="static-buttons" @click="homeStore.scroll(link.top)">{{ link.name }}</p>
       <div>
         <p class="dynamic-button" @click="isDoctor = !isDoctor">{{ label }}</p>
       </div>
@@ -14,12 +14,12 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useMainStore } from "../store/main.store";
+import { useHomeStore } from "../store/main.store";
 import { storeToRefs } from "pinia";
 
-const mainStore = useMainStore();
+const homeStore = useHomeStore();
 
-const { isDoctor, links } = storeToRefs(mainStore);
+const { isDoctor, links } = storeToRefs(homeStore);
 
 const label = computed(() => {
   return isDoctor.value ? "Для пациента" : "Для врача";

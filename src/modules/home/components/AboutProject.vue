@@ -27,14 +27,14 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { useMainStore } from "../store/main.store";
+import { useHomeStore } from "../store/main.store";
 import { useRouter } from "vue-router";
 import { computed } from "vue";
 
 import PButton from "primevue/button";
 
-const mainStore = useMainStore();
-const { isDoctor } = storeToRefs(mainStore);
+const homeStore = useHomeStore();
+const { isDoctor } = storeToRefs(homeStore);
 const router = useRouter();
 
 const actionInfo = computed(() => {

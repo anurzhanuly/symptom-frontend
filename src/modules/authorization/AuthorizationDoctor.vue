@@ -1,62 +1,66 @@
 <template>
-  <div class="authorization-section">
-    <div class="onboarding-main">
-      <base-swiper />
-    </div>
-    <div class="authorization-main">
-      <div class="link-back" @click="$router.push('/')">
-        <span>&lt; Назад</span>
-      </div>
-      <div class="authorization-wrapper p-fluid">
-        <form class="authorization-form">
-          <img src="@/assets/logo-auth.png" alt="Symptom logo" />
-          <div>
-            <h4>Почта <span>*</span></h4>
-            <input-text type="mail" v-model="email" />
-          </div>
-          <div>
-            <h4>Пароль <span>*</span></h4>
-            <input-text type="password" v-model="password" />
-          </div>
-          <p-button label="Вход" @click="checkDoctor" />
-        </form>
-      </div>
-    </div>
-  </div>
+  <authorization>
+    <form class="authorization-form">
+      <img src="@/assets/logo-auth.png" alt="Symptom logo" />
+
+      <h4>Почта <span>*</span></h4>
+      <input-text type="mail" v-model="email" />
+
+      <h4>Пароль <span>*</span></h4>
+      <input-text type="password" v-model="password" />
+
+      <p-button label="Вход" @click="checkDoctor" />
+    </form>
+  </authorization>
 </template>
 
 <script setup lang="ts">
-import BaseSwiper from "@/components/BaseSwiper.vue";
+import Authorization from "./components/Authorization.vue";
 import { useAuthorizationStore } from "./store/authorization.store";
-import { warn } from "@/utils/toast";
+import { validateDoctor } from "@/utils/validation";
 import { ref } from "vue";
 
 import PButton from "primevue/button";
 import InputText from "primevue/inputtext";
 
 const authorizationStore = useAuthorizationStore();
-const password = ref<string>("");
-const email = ref<string>("");
+const password = ref("");
+const email = ref("");
 
-const validation = (): boolean => {
-  if (!email.value) {
-    warn("Ошибка", "Поле 'почта' не заполнено");
-    return false;
+function checkDoctor(): void {
+  if (validateDoctor(email.value, password.value)) {
+    authorizationStore.postLoginDoctorData(email.value, password.value);
   }
-
-  if (!password.value) {
-    warn("Ошибка", "Поле 'пароль' не заполнено");
-    return false;
-  }
-
-  return true;
-};
-
-const checkDoctor = (): void => {
-  if (validation()) {
-    authorizationStore.postLoginData(email.value, password.value);
-  }
-};
+}
 </script>
 
-<style src="@/styles/authorization.css"></style>
+<style scoped>
+.authorization-form {
+  width: 50%;
+}
+
+.authorization-form span {
+  color: #d0312d;
+}
+
+.authorization-form img {
+  margin-bottom: 20px;
+}
+
+.authorization-form h4 {
+  color: #3f3f3f;
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+.authorization-form .p-inputtext {
+  margin-top: 8px;
+}
+
+.authorization-form .p-button {
+  margin-top: 8px;
+  height: 45px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+</style>

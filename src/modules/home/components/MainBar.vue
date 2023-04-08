@@ -20,15 +20,15 @@
 <script lang="ts" setup>
 import { onMounted, computed } from "vue";
 import { useSurveyStore } from "../../survey/store/survey.store.js";
-import { useMainStore } from "../store/main.store";
+import { useHomeStore } from "../store/main.store";
 
 import PButton from "primevue/button";
 import { storeToRefs } from "pinia";
 
 const surveyStore = useSurveyStore();
-const mainStore = useMainStore();
+const homeStore = useHomeStore();
 
-const { isDoctor } = storeToRefs(mainStore);
+const { isDoctor } = storeToRefs(homeStore);
 
 onMounted(() => {
   surveyStore.getQuestionsData();

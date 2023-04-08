@@ -20,13 +20,7 @@
             />
           </template>
         </toolbar>
-        <panel
-          v-for="(testKey, _) in Object.keys(copiedTests)"
-          :key="_"
-          :header="testKey"
-          :toggleable="true"
-          :collapsed="true"
-        >
+        <panel v-for="(testKey, _) in Object.keys(copiedTests)" :key="_" :header="testKey" toggleable collapsed>
           <p-textarea v-model="copiedTests[testKey]" style="width: 100%; height: 100%" />
         </panel>
       </div>
@@ -36,11 +30,8 @@
 
 <script lang="ts" setup>
 import { useAdminStore } from "@/modules/admin/stores/admin.store";
-import { error, success } from "@/utils/toast";
-import type { Error } from "@/types/response";
 import { ref, watch, onMounted } from "vue";
 import { storeToRefs } from "pinia";
-import axios from "axios";
 
 import { useConfirm } from "primevue/useconfirm";
 import PButton from "primevue/button";
@@ -102,21 +93,13 @@ const confirmDeleteRecommendation = (event: any) => {
   });
 };
 
-const saveRecommendationTests = async () => {
-  const newTests = {} as Record<string, string[]>;
+const saveRecommendationTests = () => {
+  const newTests: Record<string, string[]> = {};
   for (let key in copiedTests.value) {
     newTests[key] = copiedTests.value[key].split(".,");
   }
-  const res = await adminStore.saveRecommendationsData(checkedRecommendationName.value!.name, newTests);
 
-  if (res.status === 200) {
-    success("Успешно", "Изменения внесены");
-  } else {
-    if (axios.isAxiosError(res)) {
-      const err = res.response?.data as Error;
-      error("Ошибка", err.ERROR);
-    }
-  }
+  adminStore.saveRecommendationsData(checkedRecommendationName.value!.name, newTests);
 };
 </script>
 

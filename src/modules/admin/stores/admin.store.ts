@@ -1,14 +1,16 @@
+import type { Condition, Recommendation } from "@/modules/admin/types/recommendations.js";
+import type { Questions } from "@/modules/admin/types/questions.js";
+import type { Error } from "@/types/response";
+import { computed, onMounted, ref } from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
-import { computed, ref } from "vue";
 import {
   getRecommendationsJson,
   getQuestionsJson,
   putRecommendationsObj,
   deleteDisease,
 } from "../services/admin.refbooks.js";
-import type { Condition, Recommendation } from "@/modules/admin/types/recommendations.js";
-import type { Questions } from "@/modules/admin/types/questions.js";
+import { error, success } from "@/utils/toast.js";
 
 export const useAdminStore = defineStore("admin", () => {
   const allRecommendations = ref<Recommendation[]>([]);
@@ -16,6 +18,16 @@ export const useAdminStore = defineStore("admin", () => {
   const questionsNames = ref<{ value: string }[]>([]);
   const conditionIndex = ref<number>(0);
   const checkedRecommendationName = ref<Recommendation | null>();
+
+  onMounted(() => {
+    if (!allRecommendations.value.length) {
+      getRecommendationsData();
+    }
+
+    if (!questions.value.length) {
+      getQuestionsData();
+    }
+  });
 
   const conditionColumns = [
     {
@@ -88,8 +100,12 @@ export const useAdminStore = defineStore("admin", () => {
     newRecommendation.tests = recomm; // по ссылке изменяю так же allRecommendations
 
     const res = await putRecommendationsObj(newRecommendation);
-
-    return res;
+    if (!axios.isAxiosError(res)) {
+      success("Успешно", "Изменения внесены");
+    } else {
+      const err = res.response?.data as Error;
+      error("Ошибка", err.ERROR);
+    }
   }
 
   async function saveConditionsData(conditionName: Recommendation) {
