@@ -15,7 +15,7 @@
           <i class="pi pi-phone" />
         </a>
         <a href="https://api.whatsapp.com/send/?phone=77779613377" target="_blank">
-          <i class="pi pi-mobile" />
+          <i class="pi pi-whatsapp" />
         </a>
       </div>
       <div class="footer-reserved">
