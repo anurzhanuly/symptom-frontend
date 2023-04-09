@@ -8,9 +8,15 @@
         <p v-for="link in links" @click="homeStore.scroll(link.top)">{{ link.name }}</p>
       </div>
       <div class="footer-icons">
-        <i class="pi pi-instagram" />
-        <i class="pi pi-phone" />
-        <i class="pi pi-mobile" />
+        <a href="https://www.instagram.com/symptom.kz/?igshid=YmMyMTA2M2Y%3D" target="_blank">
+          <i class="pi pi-instagram" />
+        </a>
+        <a href="tel:+77779613377">
+          <i class="pi pi-phone" />
+        </a>
+        <a href="https://api.whatsapp.com/send/?phone=77779613377" target="_blank">
+          <i class="pi pi-mobile" />
+        </a>
       </div>
       <div class="footer-reserved">
         <h2>Все права защищены «Symptom» 2023</h2>
