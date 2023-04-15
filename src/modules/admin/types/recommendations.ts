@@ -8,13 +8,11 @@ export interface Condition {
 }
 
 export interface Recommendation {
-  conditions: Array<Array<Condition>>;
+  type: string;
   id: string;
-  name: string;
-  tests: Record<string, string[]>;
+  attributes: Attributes;
 }
 
-export interface ResRecommendation {
-  result: string;
-  status: number;
+export interface Attributes {
+  name: string;
 }

@@ -1,10 +1,10 @@
-import type { Recommendation, ResRecommendation } from "../types/recommendations";
+import type { Recommendation } from "../types/recommendations";
 import type { ResQuestions } from "../types/questions";
-import { useApi, useSymptomApi } from "@/services/api";
 import type { Error } from "@/types/response";
-import type { AxiosError } from "axios";
+import type { AxiosError, AxiosResponse } from "axios";
+import { useSymptomApi } from "@/services/api";
 
-export async function getQuestionsJson(): Promise<any> {
+export async function getQuestionsJson(): Promise<AxiosResponse | AxiosError> {
   try {
     return await useSymptomApi.get<ResQuestions>("/questionnaires/latest");
   } catch (error) {
@@ -13,36 +13,62 @@ export async function getQuestionsJson(): Promise<any> {
   }
 }
 
-export async function postQuestionsJson(questions: ResQuestions) {
+export async function getRecommendations(): Promise<AxiosResponse | AxiosError> {
   try {
-    return await useApi.post("/questionnaires/add", questions);
+    return await useSymptomApi.get<Recommendation[]>("/admin/recommendations/");
   } catch (error) {
     console.log(error);
     return error as AxiosError<Error>;
   }
 }
 
-export async function getRecommendationsJson() {
+export async function getRecommendationDetail(id: string): Promise<AxiosResponse | AxiosError> {
   try {
-    return await useApi.get<ResRecommendation>("/admin/v1/recommendations");
+    return await useSymptomApi.get<any>(`/admin/recommendations/${id}`);
   } catch (error) {
     console.log(error);
     return error as AxiosError<Error>;
   }
 }
 
-export async function putRecommendationsObj(newRec: Recommendation) {
+export async function deleteRecommendation(id: string): Promise<AxiosResponse | AxiosError> {
   try {
-    return await useApi.post("/admin/v1/diseases/add", newRec);
+    return await useSymptomApi.post(`/admin/recommendations/${id}/delete`);
   } catch (error) {
     console.log(error);
     return error as AxiosError<Error>;
   }
 }
 
-export async function deleteDisease(deleteRec: Recommendation) {
+export async function createRecommendation(name: string): Promise<AxiosResponse | AxiosError> {
   try {
-    return await useApi.post<ResRecommendation>("/admin/v1/diseases/delete", deleteRec);
+    return await useSymptomApi.post(`/admin/recommendations/create`, {
+      data: {
+        name: name,
+        tests: {},
+        conditions: [],
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return error as AxiosError<Error>;
+  }
+}
+
+export async function updateRecommendation(
+  id: string,
+  name: string,
+  tests: any,
+  conditions: any,
+): Promise<AxiosResponse | AxiosError> {
+  try {
+    return await useSymptomApi.post(`/admin/recommendations/${id}/update`, {
+      data: {
+        name: name,
+        tests: tests,
+        conditions: conditions,
+      },
+    });
   } catch (error) {
     console.log(error);
     return error as AxiosError<Error>;

@@ -1,23 +1,37 @@
 import type { Condition, Recommendation } from "@/modules/admin/types/recommendations.js";
-import type { Questions } from "@/modules/admin/types/questions.js";
-import type { Error } from "@/types/response";
-import { computed, onMounted, ref } from "vue";
+import type { DataTableCellEditCompleteEvent } from "primevue/datatable";
+import type { Questions } from "../types/questions.js";
+import { computed, onMounted, ref, watch } from "vue";
 import { defineStore } from "pinia";
-import axios from "axios";
 import {
-  getRecommendationsJson,
+  getRecommendations,
   getQuestionsJson,
-  putRecommendationsObj,
-  deleteDisease,
+  deleteRecommendation,
+  createRecommendation,
+  getRecommendationDetail,
+  updateRecommendation,
 } from "../services/admin.refbooks.js";
-import { error, success } from "@/utils/toast.js";
+import axios from "axios";
+import { success } from "@/utils/toast.js";
+import { useDialog } from "primevue/usedialog";
+
+import CreateConditions from "../components/popup/CreateConditions.vue";
 
 export const useAdminStore = defineStore("admin", () => {
   const allRecommendations = ref<Recommendation[]>([]);
+  const selectedRecommendation = ref<Recommendation | null>();
   const questions = ref<Questions[]>([]);
+  const selectedCondition = ref<Condition>();
   const questionsNames = ref<{ value: string }[]>([]);
-  const conditionIndex = ref<number>(0);
-  const checkedRecommendationName = ref<Recommendation | null>();
+  const conditionIndex = ref(0);
+
+  const tests = ref();
+  const lastTestKey = ref(1);
+  const conditions = ref();
+  const recomindationDeleteName = ref("");
+  const recomindationNewName = ref("");
+
+  const dialog = useDialog();
 
   onMounted(() => {
     if (!allRecommendations.value.length) {
@@ -26,6 +40,17 @@ export const useAdminStore = defineStore("admin", () => {
 
     if (!questions.value.length) {
       getQuestionsData();
+    }
+  });
+
+  watch(selectedRecommendation, async newRecommendationName => {
+    const res = await getRecommendationDetail(newRecommendationName?.id!);
+    if (!axios.isAxiosError(res)) {
+      tests.value = res.data.data.attributes.tests;
+      const keys = Object.keys(tests.value);
+      lastTestKey.value = keys[keys.length - 1] ? Number(keys[keys.length - 1]) + 1 : 1;
+
+      conditions.value = res.data.data.attributes.conditions;
     }
   });
 
@@ -69,120 +94,147 @@ export const useAdminStore = defineStore("admin", () => {
     },
   ];
 
-  async function getQuestionsData() {
+  async function getQuestionsData(): Promise<void> {
     const res = await getQuestionsJson();
-
     if (!axios.isAxiosError(res)) {
-      questions.value = res.data.data.attributes.questionnaire.pages
-        .map((el: { elements: any }) => el.elements)
-        .flat(1);
+      questions.value = res.data.data.attributes.questionnaire.pages.map((el: { elements: any }) => el.elements[0]);
       questionsNames.value = questions.value.map(el => {
         return { value: el.name };
       });
     }
   }
 
-  async function getRecommendationsData() {
-    const res = await getRecommendationsJson();
-
+  async function getRecommendationsData(): Promise<void> {
+    const res = await getRecommendations();
     if (!axios.isAxiosError(res)) {
-      allRecommendations.value = JSON.parse(res.data.result);
-    }
-
-    return res;
-  }
-
-  async function saveRecommendationsData(recName: string, recomm: Record<string, string[]>) {
-    const newRecommendation = allRecommendations.value.filter(el => {
-      return el.name === recName;
-    })[0];
-
-    newRecommendation.tests = recomm; // по ссылке изменяю так же allRecommendations
-
-    const res = await putRecommendationsObj(newRecommendation);
-    if (!axios.isAxiosError(res)) {
-      success("Успешно", "Изменения внесены");
-    } else {
-      const err = res.response?.data as Error;
-      error("Ошибка", err.ERROR);
+      allRecommendations.value = res.data.data;
     }
   }
 
-  async function saveConditionsData(conditionName: Recommendation) {
-    const newRecommendation = JSON.parse(
-      JSON.stringify(
-        allRecommendations.value.filter(el => {
-          return el.name === conditionName.name;
-        })[0],
-      ),
-    );
+  function updateCondition(event: DataTableCellEditCompleteEvent, tableIndex: number): void {
+    const updated = { ...event.newData };
 
-    const res = await putRecommendationsObj(newRecommendation);
+    if (typeof updated.value === "string") {
+      updated.value = updated.value.split(",");
+    }
 
-    return res;
+    if (event.newValue && event.value !== event.newValue) {
+      conditions.value[tableIndex][event.index] = { ...updated };
+    }
   }
 
-  function editLocalConditionsByIndex(tableIndex: number, updateTo: Condition) {
-    const rec = allRecommendations.value.filter(el => {
-      return el.name === checkedRecommendationName.value!.name;
-    })[0];
-    const recIndex: number = allRecommendations.value.indexOf(rec);
+  function deleteCondition(indexToDelete: number): void {
+    conditions.value = conditions.value.filter((_: never, index: number) => index !== indexToDelete);
 
-    allRecommendations.value[recIndex].conditions[conditionIndex.value][tableIndex] = { ...updateTo };
+    success("Удаление блока условии", "Блок условии удален, не забудьте сохранить");
   }
 
-  function createConditionInRec(newRecord: Condition) {
-    const rec = allRecommendations.value.filter(el => {
-      return el.name === checkedRecommendationName.value!.name;
-    })[0];
-    const recIndex: number = allRecommendations.value.indexOf(rec);
-    allRecommendations.value[recIndex].conditions[conditionIndex.value].push({
-      ...newRecord,
+  function createCondition() {
+    conditions.value.push([]);
+  }
+
+  function createConditionItem(index: number): void {
+    conditionIndex.value = index;
+    dialog.open(CreateConditions, {
+      props: {
+        header: "Создание нового условия для блока",
+        style: {
+          width: "60%",
+        },
+        modal: true,
+      },
     });
   }
 
-  function deleteConditionByIndex(condition: Condition) {
-    const rec = allRecommendations.value.filter(el => {
-      return el.name === checkedRecommendationName.value!.name;
-    })[0];
-    const recIndex = allRecommendations.value.indexOf(rec);
-    const condIndex = allRecommendations.value[recIndex].conditions[conditionIndex.value].indexOf(condition);
-    allRecommendations.value[recIndex].conditions[conditionIndex.value] = allRecommendations.value[recIndex].conditions[
-      conditionIndex.value
-    ].filter((el, index) => {
-      if (index !== condIndex) {
-        return el;
-      }
-    });
-  }
-
-  async function deleteDiseaseById(disease: string) {
-    const deleteRecommendationObj = JSON.parse(
-      JSON.stringify(
-        allRecommendations.value.filter(el => {
-          return el.name === disease;
-        })[0],
-      ),
+  function deleteConditionItem(tableIndex: number): void {
+    conditions.value[tableIndex] = conditions.value[tableIndex].filter(
+      (item: Condition | undefined) => item !== selectedCondition.value,
     );
 
-    const res = await deleteDisease(deleteRecommendationObj);
-    return res;
+    success("Удаление условия", "Условие удалено, не забудьте сохранить");
+  }
+
+  async function createRecommendationData(): Promise<void> {
+    const res = await createRecommendation(recomindationNewName.value);
+    if (!axios.isAxiosError(res)) {
+      allRecommendations.value.push(res.data.data);
+      recomindationNewName.value = "";
+    }
+  }
+
+  async function deleteRecommendationData(): Promise<void> {
+    const foundedObject = allRecommendations.value.find(item => item.attributes.name === recomindationDeleteName.value);
+    const res = await deleteRecommendation(foundedObject?.id!);
+    if (!axios.isAxiosError(res)) {
+      allRecommendations.value = allRecommendations.value.filter(item => item.id !== foundedObject?.id);
+
+      success("Удаление рекоминдации", res.data.message);
+      recomindationDeleteName.value = "";
+      selectedRecommendation.value = null;
+    }
+  }
+
+  async function updateRecommendationData(): Promise<void> {
+    const res = await updateRecommendation(
+      selectedRecommendation.value?.id!,
+      selectedRecommendation.value?.attributes.name!,
+      tests.value,
+      conditions.value,
+    );
+
+    if (!axios.isAxiosError(res)) {
+      success("Изменения рекоминдации", "Все изменения сохранены");
+    }
+  }
+
+  function deleteTest(deleteKey: string): void {
+    delete tests.value[deleteKey];
+
+    const keys = Object.keys(tests.value);
+    const sortedKeys = keys.sort((a: any, b: any) => a - b);
+    const newObj: Record<string, string[]> = {};
+
+    for (let i = 0; i < sortedKeys.length; i++) {
+      newObj[i + 1] = tests.value[sortedKeys[i]];
+    }
+
+    tests.value = newObj;
+    const newKeys = Object.keys(tests.value);
+    lastTestKey.value = newKeys[newKeys.length - 1] ? Number(newKeys[newKeys.length - 1]) + 1 : 1;
+
+    success("Удаление теста", "Тест удален, не забудьте сохранить");
+  }
+
+  function createTest(): void {
+    tests.value[lastTestKey.value.toString()] = "";
+
+    lastTestKey.value++;
   }
 
   return {
     allRecommendations,
+    selectedRecommendation,
+    tests,
+    conditions,
+    selectedCondition,
     questions,
+    lastTestKey,
+    recomindationDeleteName,
+    recomindationNewName,
     questionsNames,
     conditionColumns,
-    checkedRecommendationName,
     conditionIndex,
-    editLocalConditionsByIndex,
-    getRecommendationsData,
     getQuestionsData,
-    deleteConditionByIndex,
-    createConditionInRec,
-    saveConditionsData,
-    saveRecommendationsData,
-    deleteDiseaseById,
+    updateCondition,
+    deleteCondition,
+    createCondition,
+    deleteConditionItem,
+    createConditionItem,
+    getRecommendationsData,
+    createRecommendationData,
+    deleteRecommendationData,
+    updateRecommendationData,
+    deleteTest,
+    createTest,
   };
 });

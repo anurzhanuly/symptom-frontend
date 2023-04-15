@@ -1,5 +1,5 @@
 <template>
-  <div class="popup">
+  <div>
     <div v-for="(column, idx) in conditionColumns" :key="idx">
       <div v-if="column.field === 'questionName'">
         <h3>{{ column.header }}</h3>
@@ -12,34 +12,12 @@
           filter-placeholder="Поиск"
           filter
           lazy
-          style="width: 250px"
           :empty-filter-message="'Ничего не найдено'"
           :empty-message="'Ничего не найдено'"
           @change="addValueOptions"
         />
       </div>
-      <div v-else-if="column.field === 'value'">
-        <div v-if="!isValueHasChoices">
-          <h3>{{ column.header }}</h3>
-          <input-text v-model="conditionValue" style="width: 100%" />
-        </div>
-        <div v-if="isValueHasChoices">
-          <h3>{{ column.header }}</h3>
-          <p-multi-select
-            v-model="newRecord[column.field]"
-            :options="valueOptions"
-            option-value="value"
-            option-label="value"
-            placeholder="Выберите..."
-            filter-placeholder="Поиск"
-            filter
-            lazy
-            style="width: 250px"
-            :empty-filter-message="'Ничего не найдено'"
-            :empty-message="'Ничего не найдено'"
-          />
-        </div>
-      </div>
+
       <div v-else-if="column.hasDropdown">
         <h3>{{ column.header }}</h3>
         <dropdown
@@ -55,12 +33,32 @@
           :empty-message="'Ничего не найдено'"
         />
       </div>
+
+      <div v-else-if="column.field === 'value'">
+        <div v-if="!isValueHasChoices">
+          <h3>{{ column.header }}</h3>
+          <input-text v-model="conditionValue" />
+        </div>
+        <div v-if="isValueHasChoices">
+          <h3>{{ column.header }}</h3>
+          <p-multi-select
+            v-model="newRecord[column.field]"
+            :options="valueOptions"
+            option-value="value"
+            option-label="value"
+            placeholder="Выберите..."
+            filter-placeholder="Поиск"
+            filter
+          />
+        </div>
+      </div>
+
       <div v-else-if="column.field === 'testCase'">
         <h3>{{ column.header }}</h3>
-        <input-text v-model="newRecord[column.field]" style="width: 100%" />
+        <input-text v-model="newRecord[column.field]" />
       </div>
     </div>
-    <p-button label="Создать" icon="pi pi-check" class="p-button-success" autofocus @click="createRecCondition()" />
+    <p-button label="Создать" severity="success" autofocus @click="createCondition()" />
   </div>
 </template>
 
@@ -70,6 +68,7 @@ import { useAdminStore } from "@/modules/admin/stores/admin.store";
 import { createPopupFields } from "@/utils/popUp";
 import { error, success } from "@/utils/toast";
 import { computed, ref, inject } from "vue";
+import { storeToRefs } from "pinia";
 
 import PMultiSelect from "primevue/multiselect";
 import PButton from "primevue/button";
@@ -78,15 +77,17 @@ import InputText from "primevue/inputtext";
 
 const adminStore = useAdminStore();
 const dialogRef = inject<any>("dialogRef");
-const conditionValue = ref<string>("");
-const isValueHasChoices = ref<boolean>(false);
+
 const valueOptions = ref<Record<string, string>[]>([]);
+const isValueHasChoices = ref(false);
+const conditionValue = ref("");
+
+const { conditions, conditionIndex, questions } = storeToRefs(adminStore);
 
 const conditionColumns = computed(() => adminStore.conditionColumns);
-
 const newRecord = ref(createPopupFields(conditionColumns.value.filter(el => el.header !== "Удаление")));
 
-const checkConditionRecValidation = (): boolean => {
+const conditionValidation = (): boolean => {
   if (!newRecord.value.questionName.length) {
     error("Ошибка", "Поле 'Наименование вопроса' должно быть заполнено");
     return false;
@@ -115,52 +116,45 @@ const checkConditionRecValidation = (): boolean => {
   return true;
 };
 
-const createRecCondition = () => {
-  if (checkConditionRecValidation()) {
+const createCondition = () => {
+  if (conditionValidation()) {
     const res = { ...newRecord.value } as unknown as Condition;
-    const question = adminStore.questions.filter(el => el.name === newRecord.value.questionName)[0];
-    res.multiple = !!(question?.maxSelectedChoices > 1);
+    const question = questions.value.filter(el => el.name === newRecord.value.questionName)[0];
+    res.multiple = question?.maxSelectedChoices > 1 ? true : false;
     res.type = question.type;
     res.value = isValueHasChoices.value ? res.value : conditionValue.value.split(",");
 
-    adminStore.createConditionInRec(res);
+    conditions.value[conditionIndex.value].push(res);
     success("Успешно", "Условие создано, не забудьте сохранить");
-    hidePopup();
+    dialogRef.value.close();
   }
 };
 
 const addValueOptions = () => {
-  const question = adminStore.questions.filter(el => el.name === newRecord.value.questionName)[0];
-
+  const question = questions.value.filter(el => el.name === newRecord.value.questionName)[0];
   if (question?.choices) {
     isValueHasChoices.value = true;
     valueOptions.value = question.choices.map(el => {
       return { value: el };
     });
+
     return;
   }
-  isValueHasChoices.value = false;
-};
 
-const hidePopup = () => {
-  newRecord.value = createPopupFields(conditionColumns.value);
   isValueHasChoices.value = false;
-  dialogRef.value.close();
 };
 </script>
 
 <style scoped>
-.popup {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 30px;
+.p-dropdown,
+.p-button,
+.p-inputtext,
+.p-multiselect {
+  width: 100%;
+  margin-top: 10px;
 }
 
-.popup h3 {
-  margin-bottom: 10px;
-}
-
-.p-dropdown-items-wrapper {
-  max-width: 200px !important;
+h3 {
+  margin-top: 10px;
 }
 </style>
