@@ -24,7 +24,6 @@ onMounted(() => {
 
   const surveyComplete = (sender: { data: Record<string, string[]> }): void => {
     const newData: Record<string, string[]> = {};
-    console.log("before  sender.data:", sender.data);
     for (let key in sender.data) {
       if (Array.isArray(sender.data[key])) {
         // Если ответ массив
@@ -60,6 +59,7 @@ onMounted(() => {
       path: "/result",
     });
   };
+
   survey.onComplete.add(surveyComplete);
   survey.render("survey");
 });

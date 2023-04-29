@@ -11,6 +11,7 @@ export const useSurveyStore = defineStore("survey", () => {
   const pationsCard = ref<any>();
   const recommendationsChatGPT = ref();
   const recommendations = ref();
+  const isLoading = ref(false);
 
   const isButtonsVisible = ref<boolean>(true);
   const isResultVisible = ref<boolean>(true);
@@ -23,11 +24,10 @@ export const useSurveyStore = defineStore("survey", () => {
   }
 
   async function postAnswersDataChatGPT(data: { answers: Record<string, string[]> }) {
+    isLoading.value = true;
     resultAnswersChatGPT.value = data.answers;
     try {
       const res = await postAnswersToChatGPT(data);
-      console.log("postAnswersDataChatGPT  res:", res);
-
       if (!axios.isAxiosError(res)) {
         pationsCard.value = res.data.patientCard;
         const JSONstring = JSON.parse(res.data.symptomAi);
@@ -37,6 +37,8 @@ export const useSurveyStore = defineStore("survey", () => {
     } catch (e) {
       console.error(e);
       recommendationsChatGPT.value = null;
+    } finally {
+      isLoading.value = false;
     }
   }
 
@@ -62,6 +64,7 @@ export const useSurveyStore = defineStore("survey", () => {
 
   return {
     questions,
+    isLoading,
     pationsCard,
     recommendations,
     recommendationsChatGPT,

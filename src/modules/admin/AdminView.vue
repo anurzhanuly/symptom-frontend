@@ -1,4 +1,5 @@
 <template>
+  <base-header />
   <tab-menu :model="adminPages" />
   <router-view />
 </template>
@@ -6,6 +7,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
+import BaseHeader from "@/components/BaseHeader.vue";
 import TabMenu from "primevue/tabmenu";
 
 const adminPages = ref([

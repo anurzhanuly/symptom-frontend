@@ -1,26 +1,26 @@
 <template>
   <div class="team-container">
-    <div>
-      <h1>Наша команда</h1>
-    </div>
-    <div class="team-swiper">
-      <swiper
-        :modules="[Pagination, Autoplay]"
-        :slides-per-view="slidesPerGroup"
-        :slides-per-group="slidesPerGroup"
-        :autoplay="{
-          delay: 5000,
-          disableOnInteraction: false,
-        }"
+    <div class="team-carousel">
+      <carousel
+        :value="team"
+        :num-visible="4"
+        :num-scroll="4"
+        :responsive-options="responsiveOptions"
+        :autoplay-interval="3000"
       >
-        <swiper-slide v-for="(item, index) in team" :key="index">
-          <div class="images">
-            <img :src="getImageUrl(item.photo)" alt="logo" />
-            <strong>{{ item.name }}</strong>
-            <p>{{ item.info }}</p>
+        <template #header>
+          <div class="team-carousel-header">
+            <h1>Наша команда</h1>
           </div>
-        </swiper-slide>
-      </swiper>
+        </template>
+        <template #item="slotProps">
+          <div class="team-carousel-info">
+            <img :src="getImageUrl(slotProps.data.photo)" alt="logo" />
+            <h3>{{ slotProps.data.name }}</h3>
+            <p>{{ slotProps.data.info }}</p>
+          </div>
+        </template>
+      </carousel>
     </div>
   </div>
 
@@ -43,11 +43,10 @@
 
 <script setup lang="ts">
 import { useHomeStore } from "../store/main.store";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Pagination, Autoplay } from "swiper";
 import { storeToRefs } from "pinia";
-import { onMounted, onUnmounted, ref } from "vue";
+import { ref } from "vue";
 
+import Carousel from "primevue/carousel";
 import InputText from "primevue/inputtext";
 import PButton from "primevue/button";
 
@@ -58,9 +57,25 @@ const name = ref("");
 const place = ref("");
 const phone = ref("");
 
-const slidesPerGroup = ref(4);
+const responsiveOptions = ref([
+  {
+    breakpoint: "1250px",
+    numVisible: 3,
+    numScroll: 3,
+  },
+  {
+    breakpoint: "1163px",
+    numVisible: 2,
+    numScroll: 2,
+  },
+  {
+    breakpoint: "750px",
+    numVisible: 1,
+    numScroll: 1,
+  },
+]);
 
-const team = [
+const team = ref([
   {
     photo: "Temirlan.png",
     name: "Темирлан Кайназаров",
@@ -121,57 +136,37 @@ const team = [
     name: "Шынара Аянбек",
     info: "Front-end, Vostok",
   },
-];
+]);
 
-onMounted(() => {
-  window.addEventListener("resize", updateSlidesPerGroup);
-});
-
-// onUnmounted(() => {
-//   window.removeEventListener("resize", updateSlidesPerGroup);
-// });
-
-function getImageUrl(name: string) {
+function getImageUrl(name: string): string {
   return new URL(`../../../assets/team/${name}`, import.meta.url).href;
-}
-
-function updateSlidesPerGroup() {
-  if (window.innerWidth < 490) {
-    slidesPerGroup.value = 1;
-  } else if (window.innerWidth < 666) {
-    slidesPerGroup.value = 2;
-  } else if (window.innerWidth < 860) {
-    slidesPerGroup.value = 3;
-  }
 }
 </script>
 
 <style scoped>
 .team-container {
   padding: 20px 150px;
+  font-family: "Montserrat";
+  font-style: normal;
 }
 
-.team-container div:first-child {
+.team-carousel {
+  margin-top: 25px;
+}
+
+.team-carousel-header {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.team-swiper {
-  margin-top: 25px;
-}
-
-.images {
+.team-carousel-info {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-}
-
-.images img {
-  margin-bottom: 7px;
-}
-
-.images p {
-  margin: 5px 0;
+  width: 100%;
+  margin: 25px 0;
 }
 
 .questions {
@@ -211,8 +206,6 @@ function updateSlidesPerGroup() {
 }
 
 .questions .p-inputtext {
-  font-family: "Montserrat";
-  font-style: normal;
   margin: 15px 0;
   padding: 15px;
   border-radius: 10px;
@@ -220,8 +213,6 @@ function updateSlidesPerGroup() {
 }
 
 .questions .p-button {
-  font-family: "Montserrat";
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   height: 45px;

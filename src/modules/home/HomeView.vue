@@ -6,6 +6,8 @@
   <advantages />
   <team />
   <footer-bar />
+
+  <scroll-top />
 </template>
 
 <script setup lang="ts">
@@ -16,4 +18,6 @@ import Solutions from "./components/Solutions.vue";
 import Advantages from "./components/Advantages.vue";
 import Team from "./components/Team.vue";
 import FooterBar from "./components/FooterBar.vue";
+
+import ScrollTop from "primevue/scrolltop";
 </script>

@@ -1,6 +1,7 @@
 <template>
   <section>
     <base-header />
+    <progress-bar v-if="isLoading" mode="indeterminate" style="height: 6px"></progress-bar>
     <result-patient-card />
     <!-- <result-recomindation /> -->
     <result-recomindation-ai />
@@ -8,10 +9,18 @@
 </template>
 
 <script lang="ts" setup>
+import { useSurveyStore } from "./store/survey.store";
+import { storeToRefs } from "pinia";
+
 import BaseHeader from "@/components/BaseHeader.vue";
 import ResultPatientCard from "./components/ResultPatientCard.vue";
 // import ResultRecomindation from "./components/ResultRecomindation.vue";
 import ResultRecomindationAi from "./components/ResultRecomindationAi.vue";
+
+import ProgressBar from "primevue/progressbar";
+
+const surveyStore = useSurveyStore();
+const { isLoading } = storeToRefs(surveyStore);
 </script>
 
 <style scoped>
