@@ -1,7 +1,7 @@
 <template>
   <section>
+    <progress-bar v-if="isLoading" mode="indeterminate"></progress-bar>
     <base-header />
-    <progress-bar v-if="isLoading" mode="indeterminate" style="height: 6px"></progress-bar>
     <result-patient-card />
     <!-- <result-recomindation /> -->
     <result-recomindation-ai />
@@ -28,7 +28,6 @@ section {
   background-color: #fff;
   border-radius: 5px;
   width: 100%;
-  padding: 10px;
   margin: 0 auto 40px;
   -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);

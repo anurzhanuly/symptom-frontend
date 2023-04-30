@@ -1,8 +1,6 @@
 <template>
-  <div v-if="isLoading" class="survey-loader">
-    <progress-spinner strokeWidth="4" style="width: 80px; height: 80px" />
-  </div>
-  <div v-else id="survey" />
+  <progress-bar :value="progress" />
+  <div id="survey" />
 </template>
 
 <script setup lang="ts">
@@ -11,18 +9,20 @@ import { computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useSurveyStore } from "./store/survey.store.js";
 import { ref } from "vue";
-import ProgressSpinner from "primevue/progressspinner";
+
+import ProgressBar from "primevue/progressbar";
 
 const router = useRouter();
 const surveyStore = useSurveyStore();
-const isLoading = ref(false);
+const progress = ref(0);
+const progressLastValue = ref(0);
 const surveyJson = computed(() => surveyStore.questions);
 
 onMounted(() => {
   const survey = new Survey(surveyJson.value);
   survey.locale = "ru";
 
-  const surveyComplete = (sender: { data: Record<string, string[]> }): void => {
+  function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
     const newData: Record<string, string[]> = {};
     for (let key in sender.data) {
       if (Array.isArray(sender.data[key])) {
@@ -54,22 +54,31 @@ onMounted(() => {
       }
     }
 
+    progress.value = 0;
     surveyStore.postAnswersDataChatGPT({ answers: newData });
     router.push({
       path: "/result",
     });
-  };
+  }
 
-  survey.onComplete.add(surveyComplete);
+  function onPageChange(_: any, options: any): void {
+    if (options.isNextPage) {
+      progress.value += 3;
+      progressLastValue.value += 3;
+
+      if (survey.isLastPage) {
+        progress.value = 100;
+      } else {
+        progress.value = progressLastValue.value;
+      }
+    } else {
+      progress.value -= 3;
+      progressLastValue.value -= 3;
+    }
+  }
+
+  survey.onCurrentPageChanged.add(onPageChange);
+  survey.onComplete.add(onSurveyComplete);
   survey.render("survey");
 });
 </script>
-
-<style scoped>
-.survey-loader {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>
