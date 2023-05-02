@@ -30,6 +30,7 @@ export const useSurveyStore = defineStore("survey", () => {
       const res = await postAnswersToChatGPT(data);
       if (!axios.isAxiosError(res)) {
         pationsCard.value = res.data.patientCard;
+        recommendations.value = res.data.recommendations;
         const JSONstring = JSON.parse(res.data.symptomAi);
         const JSONstring2 = JSONstring.replace(/«|»/g, '"');
         recommendationsChatGPT.value = JSON.parse(JSONstring2);

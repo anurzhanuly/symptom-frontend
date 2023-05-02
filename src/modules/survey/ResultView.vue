@@ -1,9 +1,9 @@
 <template>
   <section>
     <progress-bar v-if="isLoading" mode="indeterminate"></progress-bar>
-    <base-header />
+    <base-header v-if="isButtonsVisible" />
     <result-patient-card />
-    <!-- <result-recomindation /> -->
+    <result-recomindation />
     <result-recomindation-ai />
   </section>
 </template>
@@ -14,13 +14,13 @@ import { storeToRefs } from "pinia";
 
 import BaseHeader from "@/components/BaseHeader.vue";
 import ResultPatientCard from "./components/ResultPatientCard.vue";
-// import ResultRecomindation from "./components/ResultRecomindation.vue";
+import ResultRecomindation from "./components/ResultRecomindation.vue";
 import ResultRecomindationAi from "./components/ResultRecomindationAi.vue";
 
 import ProgressBar from "primevue/progressbar";
 
 const surveyStore = useSurveyStore();
-const { isLoading } = storeToRefs(surveyStore);
+const { isLoading, isButtonsVisible } = storeToRefs(surveyStore);
 </script>
 
 <style scoped>

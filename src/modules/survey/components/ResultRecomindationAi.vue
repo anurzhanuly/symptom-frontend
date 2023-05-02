@@ -3,7 +3,7 @@
     <card>
       <template #title>Рекомендации от SymptomAi</template>
       <template #content>
-        <p-panel
+        <panel
           v-for="(value, title) in recommendationsChatGPT"
           :key="title"
           :header="surveyStore.stringTitle(title)"
@@ -19,7 +19,7 @@
               <li v-for="(item, index) in value" :key="index">{{ index }}: {{ item }}</li>
             </ul>
           </div>
-        </p-panel>
+        </panel>
       </template>
 
       <template #footer v-if="isButtonsVisible">
@@ -34,7 +34,7 @@ import { useSurveyStore } from "@/modules/survey/store/survey.store";
 import { storeToRefs } from "pinia";
 
 import Card from "primevue/card";
-import PPanel from "primevue/panel";
+import Panel from "primevue/panel";
 import PButton from "primevue/button";
 
 const surveyStore = useSurveyStore();
