@@ -28,7 +28,7 @@
 <script lang="ts" setup>
 import AdminLogin from "../popup/AdminLogin.vue";
 import { useDialog } from "primevue/usedialog";
-import { useHomeStore } from "../store/main.store";
+import { useHomeStore } from "../store/home.store";
 import { storeToRefs } from "pinia";
 
 const dialog = useDialog();

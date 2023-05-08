@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { useHomeStore } from "../store/main.store";
+import { useHomeStore } from "../store/home.store";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
 

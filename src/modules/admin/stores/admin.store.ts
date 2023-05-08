@@ -27,7 +27,7 @@ export const useAdminStore = defineStore("admin", () => {
 
   const tests = ref();
   const lastTestKey = ref(1);
-  const conditions = ref();
+  const conditions = ref<any>();
   const recomindationDeleteName = ref("");
   const recomindationNewName = ref("");
 

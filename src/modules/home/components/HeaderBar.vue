@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useHomeStore } from "../store/main.store";
+import { useHomeStore } from "../store/home.store";
 import { storeToRefs } from "pinia";
 
 const homeStore = useHomeStore();

@@ -4,11 +4,11 @@
       <h1>Что Вас беспокоит?</h1>
       <h3>Пройдите опрос, узнайте о состоянии вашего здоровья и начните приём с нами</h3>
       <div v-if="isDoctor" class="main-container-button">
-        <p-button label="Войти в кабинет врача" @click="$router.push('doctorSignin')" />
+        <p-button label="Войти в кабинет врача" @click="$router.push('doctor-sign-in')" />
       </div>
       <div v-else class="main-container-buttons">
         <p-button label="Пройти опрос" @click="$router.push('agreement')" />
-        <p-button label="Войти в личный кабинет" class="p-button-outlined" @click="$router.push('clientSignup')" />
+        <p-button label="Войти в личный кабинет" class="p-button-outlined" @click="$router.push('client-sign-in')" />
       </div>
     </div>
     <div class="main-image">
@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import { onMounted, computed } from "vue";
 import { useSurveyStore } from "../../survey/store/survey.store.js";
-import { useHomeStore } from "../store/main.store";
+import { useHomeStore } from "../store/home.store.js";
 
 import PButton from "primevue/button";
 import { storeToRefs } from "pinia";

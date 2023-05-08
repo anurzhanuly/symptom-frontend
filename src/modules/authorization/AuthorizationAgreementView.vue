@@ -127,9 +127,8 @@ function checkAgreement(): void {
 
 <style scoped>
 .agreement {
-  padding: 5%;
+  padding: 15px;
 }
-
 .agreement p,
 .agreement li {
   margin-top: 8px;
@@ -137,7 +136,7 @@ function checkAgreement(): void {
 
 .agreement-check .p-checkbox {
   margin-right: 5px;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .agreement-check strong {
@@ -146,13 +145,12 @@ function checkAgreement(): void {
 }
 
 .p-button {
-  margin-top: 8px;
-  height: 45px;
+  margin-top: 12px;
   width: 100%;
 }
 
 .p-card-header img {
   width: 80%;
-  padding: 4%;
+  padding: 8% 2%;
 }
 </style>

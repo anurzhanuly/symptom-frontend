@@ -10,6 +10,8 @@ import "primevue/resources/themes/saga-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 
+import "./styles/index.css";
+
 import { StylesManager } from "survey-core";
 import "survey-core/defaultV2.min.css";
 import "survey-core/survey.i18n";

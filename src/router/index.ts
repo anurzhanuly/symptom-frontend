@@ -11,29 +11,19 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/clientSignup",
-      name: "clientSignup",
-      component: (): Component => import("@/modules/authorization/AuthorizationCabinet.vue"),
+      path: "/client-sign-in",
+      name: "client-sign-in",
+      component: (): Component => import("@/modules/authorization/AuthorizationClientView.vue"),
     },
     {
-      path: "/clientSignin",
-      name: "clientSignin",
-      component: (): Component => import("@/modules/authorization/AuthorizationCabinet.vue"),
-    },
-    {
-      path: "/doctorSignin",
-      name: "doctorSignin",
-      component: (): Component => import("@/modules/authorization/AuthorizationDoctor.vue"),
+      path: "/doctor-sign-in",
+      name: "doctor-sign-in",
+      component: (): Component => import("@/modules/authorization/AuthorizationDoctorView.vue"),
     },
     {
       path: "/agreement",
       name: "agreement",
       component: (): Component => import("@/modules/authorization/AuthorizationAgreementView.vue"),
-    },
-    {
-      path: "/onboarding",
-      name: "onboarding",
-      component: (): Component => import("@/modules/authorization/OnboardingMobile.vue"),
     },
     {
       path: "/result",

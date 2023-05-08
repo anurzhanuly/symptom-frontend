@@ -2,7 +2,7 @@
   <div class="about">
     <div class="about-container">
       <div class="image">
-        <img src="@/assets/onboard2.png" alt="logo" />
+        <img src="@/assets/onboarding/onboard2.png" alt="logo" />
       </div>
       <div class="info">
         <h3>О проекте</h3>
@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { useHomeStore } from "../store/main.store";
+import { useHomeStore } from "../store/home.store";
 import { useRouter } from "vue-router";
 import { computed } from "vue";
 

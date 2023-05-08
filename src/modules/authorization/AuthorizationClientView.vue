@@ -1,85 +1,70 @@
 <template>
   <authorization>
-    <form v-if="isSignupRoute" class="authorization-form">
-      <img src="@/assets/logo-auth.png" alt="Symptom logo" />
-      <div>
-        <h4>Имя <span>*</span></h4>
-        <input-text v-model="firstName" />
-      </div>
-      <div>
-        <h4>Фамилия <span>*</span></h4>
-        <input-text v-model="lastName" />
-      </div>
-      <div>
-        <h4>Отчество</h4>
-        <input-text v-model="middleName" />
-      </div>
-      <div>
-        <h4>Номер телефона <span>*</span></h4>
-        <input-text v-model="phone" />
-      </div>
-      <div>
-        <h4>Выберите клинику</h4>
-        <dropdown
-          v-model="сlinic"
-          :options="clinics"
-          option-value="attributes.name"
-          option-label="attributes.name"
-          filter-placeholder="Поиск"
-          filter
-          lazy
-          :empty-filter-message="'Ничего не найдено'"
-          :empty-message="'Ничего не найдено'"
-        />
-      </div>
-      <div>
-        <h4>Выберите врача</h4>
-        <dropdown
-          v-model="doctor"
-          :options="doctorsFIO"
-          option-value="id"
-          option-label="name"
-          filter-placeholder="Поиск"
-          filter
-          lazy
-          :empty-filter-message="'Ничего не найдено'"
-          :empty-message="'Ничего не найдено'"
-        />
-      </div>
-      <p-button label="Пройти опрос" @click="goToSurvey" />
-    </form>
-    <form v-if="!isSignupRoute" class="authorization-form">
-      <img src="@/assets/logo-auth.png" alt="Symptom logo" />
-      <div>
-        <h4>Номер телефона <span>*</span></h4>
-        <input-text v-model="loginPhone" />
-      </div>
-      <div>
-        <h4>Пароль <span>*</span></h4>
-        <input-text v-model="password" type="password" />
-      </div>
-      <p-button label="Вход" @click="goToPatientCab" />
-    </form>
+    <div class="authorization-client">
+      <form class="authorization-form p-fluid">
+        <img src="@/assets/logo-auth.png" alt="Symptom logo" />
+        <div>
+          <h4>Имя <span>*</span></h4>
+          <input-text v-model="firstName" />
+        </div>
+        <div>
+          <h4>Фамилия <span>*</span></h4>
+          <input-text v-model="lastName" />
+        </div>
+        <div>
+          <h4>Отчество</h4>
+          <input-text v-model="middleName" />
+        </div>
+        <div>
+          <h4>Номер телефона <span>*</span></h4>
+          <input-text v-model="phone" />
+        </div>
+        <div>
+          <h4>Выберите клинику</h4>
+          <dropdown
+            v-model="сlinic"
+            :options="clinics"
+            option-value="attributes.name"
+            option-label="attributes.name"
+            filter-placeholder="Поиск"
+            filter
+            lazy
+            :empty-message="'Ничего не найдено'"
+          />
+        </div>
+        <div>
+          <h4>Выберите врача</h4>
+          <dropdown
+            v-model="doctor"
+            :options="doctorsFIO"
+            option-value="id"
+            option-label="name"
+            filter-placeholder="Поиск"
+            filter
+            lazy
+            :empty-message="'Ничего не найдено'"
+          />
+        </div>
+        <p-button label="Пройти опрос" @click="goToSurvey" />
+      </form>
+    </div>
   </authorization>
 </template>
 
 <script setup lang="ts">
 import Authorization from "./components/Authorization.vue";
 import { useClinicsStore } from "@/modules/admin/stores/clinics.store";
-import { ref, computed } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import { warn } from "@/utils/toast";
 import { storeToRefs } from "pinia";
+import { ref } from "vue";
 
 import PButton from "primevue/button";
 import InputText from "primevue/inputtext";
 import Dropdown from "primevue/dropdown";
 
 const router = useRouter();
-const route = useRoute();
 const clinicStore = useClinicsStore();
-
-const isSignupRoute = computed(() => route.path === "/clientSignup");
 
 const { clinics, doctorsFIO } = storeToRefs(clinicStore);
 
@@ -127,11 +112,6 @@ const validateRegisterForm = (): boolean => {
 
   if (lastName.value.length > 2 && !cyrillicPattern.test(lastName.value)) {
     warn("Внимание", "Поле 'Фамилия' должно быть на кириллице и больше 2 символов");
-    return false;
-  }
-
-  if (middleName.value && !cyrillicPattern.test(middleName.value)) {
-    warn("Внимание", "Поле 'Отчество' должно быть заполнено");
     return false;
   }
 
@@ -187,8 +167,8 @@ const validateLoginForm = (): boolean => {
 </script>
 
 <style scoped>
-.authorization-form {
-  width: 50%;
+.authorization-client {
+  padding: 17%;
 }
 
 .authorization-form span {
@@ -208,12 +188,20 @@ const validateLoginForm = (): boolean => {
 .authorization-form .p-inputtext,
 .authorization-form .p-dropdown {
   margin-top: 8px;
+  width: 100%;
 }
 
 .authorization-form .p-button {
-  margin-top: 8px;
+  margin-top: 15px;
   height: 45px;
   font-weight: 600;
   border-radius: 5px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 750px) {
+  .authorization-client {
+    padding: 10%;
+  }
 }
 </style>

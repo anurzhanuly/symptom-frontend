@@ -16,7 +16,7 @@ export const useCabinetStore = defineStore("cabinet", () => {
     if (!axios.isAxiosError(res)) {
       myConsultation.value = res.data.included;
     } else {
-      router.push("/doctorSignin");
+      router.push("/doctor-sign-in");
     }
   }
 
@@ -26,7 +26,7 @@ export const useCabinetStore = defineStore("cabinet", () => {
       consultationResult.value = res.data.included.filter((item: { type: string }) => item.type === "patient")[0];
       router.push("/cabinet/result");
     } else {
-      router.push("/doctorSignin");
+      router.push("/doctor-sign-in");
     }
   }
 
