@@ -19,7 +19,7 @@ export function validateClinic(name: string, city: string, address: string): boo
   return true;
 }
 
-export function validateDoctor(email: string, password: string): boolean {
+export function validateLogin(email: string, password: string): boolean {
   if (!email) {
     error("Ошибка", "Поле 'Почта' должно быть заполнено");
     return false;

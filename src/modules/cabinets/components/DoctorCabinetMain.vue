@@ -20,23 +20,23 @@
 </template>
 
 <script setup lang="ts">
-import { useCabinetStore } from "@/modules/doctorCabinet/store/cabinet.store";
+import { useCabinetsStore } from "@/modules/cabinets/store/cabinets.store";
+import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 
 import PButton from "primevue/button";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
-import { storeToRefs } from "pinia";
 
-const cabinetStore = useCabinetStore();
+const cabinetsStore = useCabinetsStore();
 
 onMounted(() => {
-  cabinetStore.getDoctorsConsultationsData();
+  cabinetsStore.getDoctorsConsultationsData();
 });
 
-const { myConsultation } = storeToRefs(cabinetStore);
+const { myConsultation } = storeToRefs(cabinetsStore);
 
-const checkResult = (Id: string) => {
-  cabinetStore.getResultData(Id);
-};
+function checkResult(Id: string) {
+  cabinetsStore.getResultData(Id);
+}
 </script>

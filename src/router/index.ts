@@ -36,21 +36,6 @@ const router = createRouter({
       component: (): Component => import("@/modules/survey/SurveyView.vue"),
     },
     {
-      path: "/patientcab",
-      name: "patientcab",
-      component: (): Component => import("@/modules/patientsCabinet/PatientCabinet.vue"),
-      children: [
-        {
-          path: "main",
-          component: (): Component => import("@/modules/patientsCabinet/views/PatientCabinetMain.vue"),
-        },
-        {
-          path: "settings",
-          component: (): Component => import("@/modules/patientsCabinet/views/PatientCabinetSettings.vue"),
-        },
-      ],
-    },
-    {
       path: "/admin",
       name: "admin",
       component: (): Component => import("@/modules/admin/AdminView.vue"),
@@ -78,25 +63,36 @@ const router = createRouter({
       ],
     },
     {
-      path: "/cabinet",
-      name: "cabinet",
-      component: (): Component => import("@/modules/doctorCabinet/DoctorCabinet.vue"),
+      path: "/doctor-cabinet",
+      name: "doctor-cabinet",
+      component: (): Component => import("@/modules/cabinets/DoctorCabinetView.vue"),
       children: [
         {
           path: "main",
-          component: (): Component => import("@/modules/doctorCabinet/views/DoctorCabinetMain.vue"),
+          component: (): Component => import("@/modules/cabinets/components/DoctorCabinetMain.vue"),
         },
         {
           path: "patients",
-          component: (): Component => import("@/modules/doctorCabinet/views/DoctorCabinetPatients.vue"),
+          component: (): Component => import("@/modules/cabinets/components/DoctorCabinetPatients.vue"),
         },
         {
           path: "settings",
-          component: (): Component => import("@/modules/doctorCabinet/views/DoctorCabinetSettings.vue"),
+          component: (): Component => import("@/modules/cabinets/components/DoctorCabinetSettings.vue"),
         },
         {
           path: "result",
-          component: (): Component => import("@/modules/doctorCabinet/views/DoctorCabinetResult.vue"),
+          component: (): Component => import("@/modules/cabinets/components/DoctorCabinetResult.vue"),
+        },
+      ],
+    },
+    {
+      path: "/client-cabinet",
+      name: "/client-cabinet",
+      component: (): Component => import("@/modules/cabinets/ClientCabinetView.vue"),
+      children: [
+        {
+          path: "main",
+          component: (): Component => import("@/modules/cabinets/components/ClientCabinetMain.vue"),
         },
       ],
     },

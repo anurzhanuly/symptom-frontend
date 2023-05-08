@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { useCabinetStore } from "@/modules/doctorCabinet/store/cabinet.store";
+import { useCabinetsStore } from "@/modules/cabinets/store/cabinets.store";
 import { computed } from "vue";
 
 import DataTable from "primevue/datatable";
@@ -32,8 +32,8 @@ import Column from "primevue/column";
 import InputText from "primevue/inputtext";
 import PButton from "primevue/button";
 
-const cabinetStore = useCabinetStore();
-const myConsultation = computed(() => cabinetStore.myConsultation);
+const cabinetsStore = useCabinetsStore();
+const myConsultation = computed(() => cabinetsStore.myConsultation);
 
 const myPatientsColumns = [
   {

@@ -1,19 +1,17 @@
-import { getDoctorsConsultations, getResult } from "../services/cabinet.refbooks";
-import type { Consultation, ConsultationResult } from "../types/doctorCabinet";
+import { getDoctorsConsultations, getResult } from "../services/cabinets.refbooks";
+import type { Consultation, ConsultationResult } from "../types/cabinets";
+import { useRouter } from "vue-router";
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import axios from "axios";
-import { useRouter } from "vue-router";
 
-export const useCabinetStore = defineStore("cabinet", () => {
+export const useCabinetsStore = defineStore("cabinet", () => {
   const myConsultation = ref<Consultation[]>([]);
   const consultationResult = ref<ConsultationResult>();
   const router = useRouter();
 
   async function getDoctorsConsultationsData(): Promise<void> {
     const res = await getDoctorsConsultations();
-    console.log("getDoctorsConsultationsData  res:", res);
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       myConsultation.value = res.data.included;
     } else {
       router.push("/doctor-sign-in");
@@ -22,9 +20,9 @@ export const useCabinetStore = defineStore("cabinet", () => {
 
   async function getResultData(Id: string): Promise<void> {
     const res = await getResult(Id);
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       consultationResult.value = res.data.included.filter((item: { type: string }) => item.type === "patient")[0];
-      router.push("/cabinet/result");
+      router.push("/doctor-cabinet/result");
     } else {
       router.push("/doctor-sign-in");
     }

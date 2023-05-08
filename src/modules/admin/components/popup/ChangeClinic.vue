@@ -65,4 +65,27 @@ async function changeClinic(): Promise<void> {
 }
 </script>
 
-<style src="@/styles/clinics.css"></style>
+<style scoped>
+.clinic-list-popup {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.clinic-list-popup-form {
+  width: 60%;
+}
+
+.clinic-list-popup-form > div {
+  margin: 15px 0;
+}
+
+.clinic-list-popup-action {
+  display: flex;
+  justify-content: center;
+}
+
+.clinic-list-popup-action .p-button {
+  width: 315px;
+}
+</style>

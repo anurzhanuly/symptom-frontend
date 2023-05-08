@@ -1,7 +1,7 @@
 import { useSymptomApi } from "@/services/api";
-import type { AxiosResponse, AxiosError } from "axios";
+import type { AxiosResponse } from "axios";
 
-export const getDoctorsConsultations = async (): Promise<AxiosResponse | AxiosError> => {
+export const getDoctorsConsultations = async (): Promise<AxiosResponse | null> => {
   try {
     return await useSymptomApi.get("/doctors/cabinet", {
       headers: {
@@ -9,13 +9,12 @@ export const getDoctorsConsultations = async (): Promise<AxiosResponse | AxiosEr
       },
     });
   } catch (error) {
-    const err = error as AxiosError<Error>;
     console.log(error);
-    return err;
+    return null;
   }
 };
 
-export const getResult = async (Id: string): Promise<AxiosResponse | AxiosError> => {
+export const getResult = async (Id: string): Promise<AxiosResponse | null> => {
   try {
     return await useSymptomApi.get(`/results/${Id}`, {
       headers: {
@@ -23,8 +22,7 @@ export const getResult = async (Id: string): Promise<AxiosResponse | AxiosError>
       },
     });
   } catch (error) {
-    const err = error as AxiosError<Error>;
     console.log(error);
-    return err;
+    return null;
   }
 };

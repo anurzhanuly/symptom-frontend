@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <p-divider layout="vertical" />
+      <divider layout="vertical" />
 
       <div class="client-download-btn">
         <p-button :label="props.buttonLabel" class="p-button-raised p-button-text" />
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import PDivider from "primevue/divider";
+import Divider from "primevue/divider";
 import PButton from "primevue/button";
 
 const props = defineProps({
@@ -42,4 +42,63 @@ const props = defineProps({
 });
 </script>
 
-<style src="@/styles/result.css"></style>
+<style scoped>
+.client-card-main {
+  margin: 25px 15px 25px 25px;
+  border: 1px solid #cacaca;
+}
+
+.client-card-section {
+  background: var(--surface-card);
+  padding: 2rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.client-card {
+  width: 50%;
+}
+
+.patient-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.patient-info-inner {
+  display: block;
+  margin: 16px 22px 0 0;
+}
+
+.patient-info-inner label {
+  color: var(--surface-600);
+  font-weight: bold;
+}
+
+.client-download-btn {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.survey-result-section {
+  display: flex;
+  gap: 16px;
+  margin: 25px 15px 25px 25px;
+}
+.result {
+  width: 70%;
+}
+.result-panels {
+  margin-top: 16px;
+}
+
+.result-panels div {
+  margin-bottom: 16px;
+}
+.patient-doctor {
+  width: 30%;
+}
+</style>

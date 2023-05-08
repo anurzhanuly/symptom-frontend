@@ -36,7 +36,7 @@
       <p-button label="Отправить" />
     </div>
     <div class="questions-img">
-      <img src="@/assets/onboard1.png" alt="logo" />
+      <img src="@/assets/onboarding/onboard1.png" alt="logo" />
     </div>
   </div>
 </template>

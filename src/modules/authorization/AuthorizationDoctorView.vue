@@ -10,6 +10,7 @@
         <h4>Пароль <span>*</span></h4>
         <p-password v-model="password" toggle-mask />
 
+        <inline-message v-if="isWrong">Неверный пароль или почта</inline-message>
         <p-button label="Вход" @click="checkDoctor" />
       </form>
     </div>
@@ -19,20 +20,23 @@
 <script setup lang="ts">
 import Authorization from "./components/Authorization.vue";
 import { useAuthorizationStore } from "./store/authorization.store";
-import { validateDoctor } from "@/utils/validation";
+import { validateLogin } from "@/utils/validation";
 import { ref } from "vue";
 
 import PButton from "primevue/button";
 import PPassword from "primevue/password";
 import InputText from "primevue/inputtext";
+import { storeToRefs } from "pinia";
 
 const authorizationStore = useAuthorizationStore();
+const { isWrong } = storeToRefs(authorizationStore);
+
 const password = ref("");
 const email = ref("");
 
 function checkDoctor(): void {
-  if (validateDoctor(email.value, password.value)) {
-    authorizationStore.postLoginDoctorData(email.value, password.value);
+  if (validateLogin(email.value, password.value)) {
+    authorizationStore.postLoginDoctor(email.value, password.value);
   }
 }
 </script>
