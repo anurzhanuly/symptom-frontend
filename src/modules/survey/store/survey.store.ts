@@ -18,7 +18,7 @@ export const useSurveyStore = defineStore("survey", () => {
 
   async function getQuestionsData(): Promise<void> {
     const res = await getQuestionsJson();
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       questions.value = res.data.data.attributes.questionnaire;
     }
   }
@@ -27,6 +27,7 @@ export const useSurveyStore = defineStore("survey", () => {
     isLoading.value = true;
     resultAnswersChatGPT.value = data.answers;
     try {
+      // TODO: Переписать
       const res = await postAnswersToChatGPT(data);
       if (!axios.isAxiosError(res)) {
         pationsCard.value = res.data.patientCard;

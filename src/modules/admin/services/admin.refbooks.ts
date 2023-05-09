@@ -1,46 +1,45 @@
 import type { Recommendation } from "../types/recommendations";
 import type { ResQuestions } from "../types/questions";
-import type { Error } from "@/types/response";
-import type { AxiosError, AxiosResponse } from "axios";
+import type { AxiosResponse } from "axios";
 import { useSymptomApi } from "@/services/api";
 
-export async function getQuestionsJson(): Promise<AxiosResponse | AxiosError> {
+export async function getQuestionsJson(): Promise<AxiosResponse | null> {
   try {
     return await useSymptomApi.get<ResQuestions>("/questionnaires/latest");
   } catch (error) {
-    console.log(error);
-    return error as AxiosError<Error>;
+    console.error(error);
+    return null;
   }
 }
 
-export async function getRecommendations(): Promise<AxiosResponse | AxiosError> {
+export async function getRecommendations(): Promise<AxiosResponse | null> {
   try {
     return await useSymptomApi.get<Recommendation[]>("/admin/recommendations/");
   } catch (error) {
-    console.log(error);
-    return error as AxiosError<Error>;
+    console.error(error);
+    return null;
   }
 }
 
-export async function getRecommendationDetail(id: string): Promise<AxiosResponse | AxiosError> {
+export async function getRecommendationDetail(id: string): Promise<AxiosResponse | null> {
   try {
     return await useSymptomApi.get<any>(`/admin/recommendations/${id}`);
   } catch (error) {
-    console.log(error);
-    return error as AxiosError<Error>;
+    console.error(error);
+    return null;
   }
 }
 
-export async function deleteRecommendation(id: string): Promise<AxiosResponse | AxiosError> {
+export async function deleteRecommendation(id: string): Promise<AxiosResponse | null> {
   try {
     return await useSymptomApi.post(`/admin/recommendations/${id}/delete`);
   } catch (error) {
-    console.log(error);
-    return error as AxiosError<Error>;
+    console.error(error);
+    return null;
   }
 }
 
-export async function createRecommendation(name: string): Promise<AxiosResponse | AxiosError> {
+export async function createRecommendation(name: string): Promise<AxiosResponse | null> {
   try {
     return await useSymptomApi.post(`/admin/recommendations/create`, {
       data: {
@@ -50,8 +49,8 @@ export async function createRecommendation(name: string): Promise<AxiosResponse 
       },
     });
   } catch (error) {
-    console.log(error);
-    return error as AxiosError<Error>;
+    console.error(error);
+    return null;
   }
 }
 
@@ -60,7 +59,7 @@ export async function updateRecommendation(
   name: string,
   tests: any,
   conditions: any,
-): Promise<AxiosResponse | AxiosError> {
+): Promise<AxiosResponse | null> {
   try {
     return await useSymptomApi.post(`/admin/recommendations/${id}/update`, {
       data: {
@@ -70,7 +69,7 @@ export async function updateRecommendation(
       },
     });
   } catch (error) {
-    console.log(error);
-    return error as AxiosError<Error>;
+    console.error(error);
+    return null;
   }
 }

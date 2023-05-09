@@ -80,8 +80,8 @@ const router = createRouter({
           component: (): Component => import("@/modules/cabinets/components/DoctorCabinetSettings.vue"),
         },
         {
-          path: "result",
-          component: (): Component => import("@/modules/cabinets/components/DoctorCabinetResult.vue"),
+          path: "result/:id",
+          component: (): Component => import("@/modules/cabinets/components/CabinetResult.vue"),
         },
       ],
     },
@@ -97,6 +97,10 @@ const router = createRouter({
         {
           path: "settings",
           component: (): Component => import("@/modules/cabinets/components/ClientCabinetSettings.vue"),
+        },
+        {
+          path: "result/:id",
+          component: (): Component => import("@/modules/cabinets/components/CabinetResult.vue"),
         },
       ],
     },
