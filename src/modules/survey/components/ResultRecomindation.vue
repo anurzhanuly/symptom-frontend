@@ -1,5 +1,5 @@
 <template>
-  <div class="recomindation-result">
+  <div>
     <card>
       <template #title>Рекомендации</template>
       <template #content>
@@ -25,5 +25,3 @@ import Panel from "primevue/panel";
 const surveyStore = useSurveyStore();
 const { recommendations, isButtonsVisible } = storeToRefs(surveyStore);
 </script>
-
-<style scoped></style>

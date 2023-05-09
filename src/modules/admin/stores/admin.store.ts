@@ -11,7 +11,6 @@ import {
   getRecommendationDetail,
   updateRecommendation,
 } from "../services/admin.refbooks.js";
-import axios from "axios";
 import { success } from "@/utils/toast.js";
 import { useDialog } from "primevue/usedialog";
 
@@ -45,7 +44,7 @@ export const useAdminStore = defineStore("admin", () => {
 
   watch(selectedRecommendation, async newRecommendationName => {
     const res = await getRecommendationDetail(newRecommendationName?.id!);
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       tests.value = res.data.data.attributes.tests;
       const keys = Object.keys(tests.value);
       lastTestKey.value = keys[keys.length - 1] ? Number(keys[keys.length - 1]) + 1 : 1;
@@ -96,7 +95,7 @@ export const useAdminStore = defineStore("admin", () => {
 
   async function getQuestionsData(): Promise<void> {
     const res = await getQuestionsJson();
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       questions.value = res.data.data.attributes.questionnaire.pages.map((el: { elements: any }) => el.elements[0]);
       questionsNames.value = questions.value.map(el => {
         return { value: el.name };
@@ -106,7 +105,7 @@ export const useAdminStore = defineStore("admin", () => {
 
   async function getRecommendationsData(): Promise<void> {
     const res = await getRecommendations();
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       allRecommendations.value = res.data.data;
     }
   }
@@ -156,7 +155,7 @@ export const useAdminStore = defineStore("admin", () => {
 
   async function createRecommendationData(): Promise<void> {
     const res = await createRecommendation(recomindationNewName.value);
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       allRecommendations.value.push(res.data.data);
       recomindationNewName.value = "";
     }
@@ -165,7 +164,7 @@ export const useAdminStore = defineStore("admin", () => {
   async function deleteRecommendationData(): Promise<void> {
     const foundedObject = allRecommendations.value.find(item => item.attributes.name === recomindationDeleteName.value);
     const res = await deleteRecommendation(foundedObject?.id!);
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       allRecommendations.value = allRecommendations.value.filter(item => item.id !== foundedObject?.id);
 
       success("Удаление рекоминдации", res.data.message);
@@ -182,7 +181,7 @@ export const useAdminStore = defineStore("admin", () => {
       conditions.value,
     );
 
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       success("Изменения рекоминдации", "Все изменения сохранены");
     }
   }

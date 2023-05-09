@@ -30,7 +30,6 @@ const props = defineProps({
   width: 280px;
   display: flex;
   flex-direction: column;
-  margin-right: 15px;
   background-color: #ffffff;
 }
 

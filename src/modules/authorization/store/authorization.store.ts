@@ -20,7 +20,6 @@ export const useAuthorizationStore = defineStore("authorization", () => {
 
   async function postLoginClient(email: string, password: string): Promise<void> {
     const res = await postLogin(email, password);
-    console.log("postLoginClient  res:", res);
     if (res) {
       localStorage.setItem("clientToken", JSON.stringify(res.data.data.token));
       router.push("/client-cabinet");

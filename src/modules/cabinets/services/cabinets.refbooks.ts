@@ -1,7 +1,7 @@
 import { useSymptomApi } from "@/services/api";
 import type { AxiosResponse } from "axios";
 
-export const getDoctorsConsultations = async (): Promise<AxiosResponse | null> => {
+export async function getDoctorConsultations(): Promise<AxiosResponse | null> {
   try {
     return await useSymptomApi.get("/doctors/cabinet", {
       headers: {
@@ -9,20 +9,29 @@ export const getDoctorsConsultations = async (): Promise<AxiosResponse | null> =
       },
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
-};
+}
 
-export const getResult = async (Id: string): Promise<AxiosResponse | null> => {
+export async function getClientConsultations(): Promise<AxiosResponse | null> {
   try {
-    return await useSymptomApi.get(`/results/${Id}`, {
+    return await useSymptomApi.get("/patients/cabinet", {
       headers: {
-        "auth-token": JSON.parse(localStorage.getItem("doctorToken")!),
+        "auth-token": JSON.parse(localStorage.getItem("clientToken")!),
       },
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
-};
+}
+
+export async function getResult(Id: string): Promise<AxiosResponse | null> {
+  try {
+    return await useSymptomApi.get(`/results/${Id}`);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}

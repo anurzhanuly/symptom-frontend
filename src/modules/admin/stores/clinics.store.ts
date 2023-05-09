@@ -11,7 +11,6 @@ import {
 } from "../services/clinics.refbooks";
 import { defineStore } from "pinia";
 import { onMounted, ref } from "vue";
-import axios from "axios";
 
 export const useClinicsStore = defineStore("clinics", () => {
   const clinics = ref<Clinics[]>([]);
@@ -23,6 +22,7 @@ export const useClinicsStore = defineStore("clinics", () => {
   const selectedDoctor = ref<Doctors>();
 
   onMounted(() => {
+    // TODO: Переписать норм
     if (!clinics.value.length) {
       getClinicsData();
       getDoctorsData();
@@ -31,15 +31,14 @@ export const useClinicsStore = defineStore("clinics", () => {
 
   async function getClinicsData(): Promise<void> {
     const res = await getClinics();
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       clinics.value = res.data.data;
     }
   }
 
   async function createClinicData(newClinic: NewClinic): Promise<number> {
     const res = await postNewClinic(newClinic);
-    console.log("createClinicData  res:", res);
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       clinics.value.push(res.data.data);
       return res.status;
     }
@@ -49,8 +48,7 @@ export const useClinicsStore = defineStore("clinics", () => {
 
   async function changeClinicData(id: string, newClinic: NewClinic): Promise<number> {
     const res = await postChangeClinic(id, newClinic);
-    console.log("changeClinicData  res:", res);
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       const index = clinics.value.findIndex(elem => elem.id === id);
       clinics.value[index] = res.data;
       return res.status;
@@ -61,8 +59,7 @@ export const useClinicsStore = defineStore("clinics", () => {
 
   async function changeDoctorData(id: string, newClinic: NewDoctor): Promise<number> {
     const res = await postChangeDoctor(id, newClinic);
-    console.log("changeDoctorData  res:", res);
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       const index = clinics.value.findIndex(elem => elem.id === id);
       doctors.value[index] = res.data;
       return res.status;
@@ -73,7 +70,7 @@ export const useClinicsStore = defineStore("clinics", () => {
 
   async function getDoctorsData(): Promise<void> {
     const res = await getDoctors();
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       doctors.value = res.data.data;
 
       doctorsFIO.value = doctors.value.map(doctor => ({
@@ -85,8 +82,7 @@ export const useClinicsStore = defineStore("clinics", () => {
 
   async function createDoctorData(newDoctor: NewDoctor): Promise<number> {
     const res = await postNewDoctor(newDoctor);
-    console.log("createDoctorData  res:", res);
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       doctors.value.push(res.data.data);
       return res.status;
     }
@@ -96,14 +92,14 @@ export const useClinicsStore = defineStore("clinics", () => {
 
   async function getCitiesData(): Promise<void> {
     const res = await getCities();
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       cities.value = res.data.data;
     }
   }
 
   async function getSpecializationsData(): Promise<void> {
     const res = await getSpecializations();
-    if (!axios.isAxiosError(res)) {
+    if (res) {
       specializations.value = res.data.data;
     }
   }
