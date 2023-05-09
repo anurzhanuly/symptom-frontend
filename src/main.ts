@@ -16,9 +16,6 @@ import { StylesManager } from "survey-core";
 import "survey-core/defaultV2.min.css";
 import "survey-core/survey.i18n";
 
-import "swiper/css";
-import "swiper/css/pagination";
-
 StylesManager.applyTheme("defaultV2");
 
 export const app = createApp(App);

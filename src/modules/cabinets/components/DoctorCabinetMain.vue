@@ -31,12 +31,12 @@ import Column from "primevue/column";
 const cabinetsStore = useCabinetsStore();
 
 onMounted(() => {
-  cabinetsStore.getDoctorsConsultationsData();
+  cabinetsStore.getDoctorConsultationsData();
 });
 
 const { myConsultation } = storeToRefs(cabinetsStore);
 
 function checkResult(Id: string) {
-  cabinetsStore.getResultData(Id);
+  cabinetsStore.getDoctorResultData(Id);
 }
 </script>

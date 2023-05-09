@@ -94,6 +94,10 @@ const router = createRouter({
           path: "main",
           component: (): Component => import("@/modules/cabinets/components/ClientCabinetMain.vue"),
         },
+        {
+          path: "settings",
+          component: (): Component => import("@/modules/cabinets/components/ClientCabinetSettings.vue"),
+        },
       ],
     },
   ],

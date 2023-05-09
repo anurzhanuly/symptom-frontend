@@ -10,6 +10,7 @@ export interface Attributes {
   firstName?: string;
   lastName?: string;
   phone?: string;
+  name?: string;
 }
 
 export interface ConsultationResult {
