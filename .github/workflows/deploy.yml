@@ -37,6 +37,9 @@ jobs:
       env:
         PRIVATE_KEY: ${{ secrets.SSH_KEY }}
         
+    - name: Устанавливаем доступы до ключа
+      run: chmod 600 ~/.ssh/id_rsa
+        
     - name: Деплоим на сервак
       env:
         SERVER_HOST: 194.110.55.190
