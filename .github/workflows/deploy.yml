@@ -1,0 +1,33 @@
+name: Deploy frontend to ps server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Стягиваем последние изменения
+      uses: actions/checkout@v2
+
+    - name: Ставим ноду
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18.x'
+
+    - name: Кешируем зависимости
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+
+    - name: Устанавливаем зависимости
+      run: npm install
+
+    - name: Билдим проект
+      run: npm run build
