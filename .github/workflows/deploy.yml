@@ -31,3 +31,17 @@ jobs:
 
     - name: Билдим проект
       run: npm run build
+
+    - name: Сохраняем SSH ключ
+      run: echo "${{ secrets.SSH_KEY }}" > id_rsa
+      env:
+        PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+        
+    - name: Деплоим на сервак
+      env:
+        SERVER_HOST: 194.110.55.190
+        SERVER_USER: ubuntu
+      run: |
+        eval "$(ssh-agent -s)"
+        ssh-add id_rsa
+        scp -r dist/ $SERVER_USER@$SERVER_HOST:/var/www/symptom-frontend
