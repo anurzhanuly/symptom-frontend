@@ -31,7 +31,10 @@ jobs:
 
     - name: Билдим проект
       run: npm run build
-
+    
+    - name: Создаём папку .ssh
+      run: mkdir ~/.ssh
+    
     - name: Сохраняем SSH ключ
       run: echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
       env:
