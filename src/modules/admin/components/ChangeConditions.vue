@@ -74,15 +74,9 @@
               <template #editor="{ data, field }">
                 <div v-if="column.field === 'value'">
                   <p-multi-select
-                    v-if="questions.filter(el => el.name === data.questionName)[0]?.choices"
+                    v-if="questions"
                     v-model="data[field]"
-                    :options="
-                      questions
-                        .filter(el => el.name === data.questionName)[0]
-                        ?.choices.map(el => {
-                          return { value: el };
-                        })
-                    "
+                    :options="questionsNames"
                     option-value="value"
                     option-label="value"
                     placeholder="Выберите..."
@@ -152,6 +146,7 @@ const {
   recomindationDeleteName,
   recomindationNewName,
   questions,
+  questionsNames,
 } = storeToRefs(adminStore);
 
 const conditionColumns = computed(() => adminStore.conditionColumns || []);
