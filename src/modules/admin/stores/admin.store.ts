@@ -24,6 +24,7 @@ export const useAdminStore = defineStore("admin", () => {
   const selectedCondition = ref<Condition>();
   const questionsNames = ref<{ value: string }[]>([]);
   const conditionIndex = ref(0);
+  const vals = ref<any[]>([]); // TODO: исправить типизацию
 
   const tests = ref();
   const lastTestKey = ref(1);
@@ -98,8 +99,10 @@ export const useAdminStore = defineStore("admin", () => {
     const res = await getQuestionsJson();
     if (res) {
       const pages = res.data.attributes.questionnaire.pages;
+      console.log("getQuestionsData  pages:", pages);
       const elements = [];
       const names = [];
+      const test = [];
 
       for (let i = 0; i < pages.length; i++) {
         const element = pages[i];
@@ -109,11 +112,16 @@ export const useAdminStore = defineStore("admin", () => {
           const item = element.elements[j];
 
           names.push({ value: item.name });
+          test.push(item);
         }
       }
 
       questions.value = elements;
+      console.log("getQuestionsData  elements:", elements);
       questionsNames.value = names;
+      console.log("getQuestionsData  names:", names);
+      console.log("getQuestionsData  test:", test);
+      vals.value = test;
     }
   }
 
@@ -246,6 +254,7 @@ export const useAdminStore = defineStore("admin", () => {
     questionsNames,
     conditionColumns,
     conditionIndex,
+    vals,
     getQuestionsData,
     updateCondition,
     deleteCondition,
