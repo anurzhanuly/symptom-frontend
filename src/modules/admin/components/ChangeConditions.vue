@@ -74,11 +74,9 @@
               <template #editor="{ data, field }">
                 <div v-if="column.field === 'value'">
                   <p-multi-select
-                    v-if="questions"
+                    v-if="checkOptions(data.questionName)"
                     v-model="data[field]"
-                    :options="questionsNames"
-                    option-value="value"
-                    option-label="value"
+                    :options="checkOptions(data.questionName)"
                     placeholder="Выберите..."
                     filter-placeholder="Поиск"
                     filter
@@ -146,10 +144,21 @@ const {
   recomindationDeleteName,
   recomindationNewName,
   questions,
-  questionsNames,
+  vals,
 } = storeToRefs(adminStore);
 
 const conditionColumns = computed(() => adminStore.conditionColumns || []);
+
+function checkOptions(name: string) {
+  const options = vals.value.filter(item => item.title === name);
+  console.log("checkOptions  options:", options);
+
+  if (options.length && options[0].choices) {
+    return options[0].choices;
+  } else {
+    return false;
+  }
+}
 
 function deleteConditionConfirm(event: any, index: number): void {
   confirm.require({

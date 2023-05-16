@@ -44,8 +44,6 @@
           <p-multi-select
             v-model="newRecord[column.field]"
             :options="valueOptions"
-            option-value="value"
-            option-label="value"
             placeholder="Выберите..."
             filter-placeholder="Поиск"
             filter
@@ -82,7 +80,7 @@ const valueOptions = ref<Record<string, string>[]>([]);
 const isValueHasChoices = ref(false);
 const conditionValue = ref("");
 
-const { conditions, conditionIndex, questions } = storeToRefs(adminStore);
+const { conditions, conditionIndex, questions, vals } = storeToRefs(adminStore);
 
 const conditionColumns = computed(() => adminStore.conditionColumns);
 const newRecord = ref(createPopupFields(conditionColumns.value.filter(el => el.header !== "Удаление")));
@@ -119,7 +117,8 @@ const conditionValidation = (): boolean => {
 const createCondition = () => {
   if (conditionValidation()) {
     const res = { ...newRecord.value } as unknown as Condition;
-    const question = questions.value.filter(el => el.name === newRecord.value.questionName)[0];
+    const question: any = vals.value.filter(el => el.name === newRecord.value.questionName);
+
     res.multiple = question?.maxSelectedChoices > 1 ? true : false;
     res.type = question.type;
     res.value = isValueHasChoices.value ? res.value : conditionValue.value.split(",");
@@ -131,17 +130,13 @@ const createCondition = () => {
 };
 
 const addValueOptions = () => {
-  const question = questions.value.filter(el => el.name === newRecord.value.questionName)[0];
-  if (question?.choices) {
+  const options = vals.value.filter(item => item.name === newRecord.value.questionName);
+  if (options.length && options[0].choices) {
+    valueOptions.value = options[0].choices;
     isValueHasChoices.value = true;
-    valueOptions.value = question.choices.map(el => {
-      return { value: el };
-    });
-
-    return;
+  } else {
+    isValueHasChoices.value = false;
   }
-
-  isValueHasChoices.value = false;
 };
 </script>
 
