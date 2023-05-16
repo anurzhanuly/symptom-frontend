@@ -20,13 +20,13 @@ export const useAdminStore = defineStore("admin", () => {
   const allRecommendations = ref<Recommendation[]>([]);
   const selectedRecommendation = ref<Recommendation | null>();
   const questions = ref<Questions[]>([]);
+  const conditions = ref<Condition[] | any[]>([]); // TODO: исправить типизацию
   const selectedCondition = ref<Condition>();
   const questionsNames = ref<{ value: string }[]>([]);
   const conditionIndex = ref(0);
 
   const tests = ref();
   const lastTestKey = ref(1);
-  const conditions = ref<any>();
   const recomindationDeleteName = ref("");
   const recomindationNewName = ref("");
 
@@ -45,6 +45,7 @@ export const useAdminStore = defineStore("admin", () => {
   watch(selectedRecommendation, async newRecommendationName => {
     const res = await getRecommendationDetail(newRecommendationName?.id!);
     if (res) {
+      console.log("useAdminStore  res:", res);
       tests.value = res.data.data.attributes.tests;
       const keys = Object.keys(tests.value);
       lastTestKey.value = keys[keys.length - 1] ? Number(keys[keys.length - 1]) + 1 : 1;
@@ -96,10 +97,23 @@ export const useAdminStore = defineStore("admin", () => {
   async function getQuestionsData(): Promise<void> {
     const res = await getQuestionsJson();
     if (res) {
-      questions.value = res.data.data.attributes.questionnaire.pages.map((el: { elements: any }) => el.elements[0]);
-      questionsNames.value = questions.value.map(el => {
-        return { value: el.name };
-      });
+      const pages = res.data.attributes.questionnaire.pages;
+      const elements = [];
+      const names = [];
+
+      for (let i = 0; i < pages.length; i++) {
+        const element = pages[i];
+        elements.push(element.elements);
+
+        for (let j = 0; j < element.elements.length; j++) {
+          const item = element.elements[j];
+
+          names.push({ value: item.name });
+        }
+      }
+
+      questions.value = elements;
+      questionsNames.value = names;
     }
   }
 
@@ -123,13 +137,20 @@ export const useAdminStore = defineStore("admin", () => {
   }
 
   function deleteCondition(indexToDelete: number): void {
-    conditions.value = conditions.value.filter((_: never, index: number) => index !== indexToDelete);
+    conditions.value = conditions.value.filter((_: any, index: number) => index !== indexToDelete);
 
     success("Удаление блока условии", "Блок условии удален, не забудьте сохранить");
   }
 
   function createCondition() {
-    conditions.value.push([]);
+    conditions.value.push({
+      value: "",
+      type: "",
+      compare: "",
+      multiple: false,
+      testCase: "",
+      questionName: "",
+    });
   }
 
   function createConditionItem(index: number): void {
@@ -146,9 +167,11 @@ export const useAdminStore = defineStore("admin", () => {
   }
 
   function deleteConditionItem(tableIndex: number): void {
-    conditions.value[tableIndex] = conditions.value[tableIndex].filter(
-      (item: Condition | undefined) => item !== selectedCondition.value,
+    const filteredConditions: any = (conditions.value[tableIndex] as unknown as Condition[]).filter(
+      item => item !== selectedCondition.value,
     );
+
+    conditions.value[tableIndex] = filteredConditions;
 
     success("Удаление условия", "Условие удалено, не забудьте сохранить");
   }

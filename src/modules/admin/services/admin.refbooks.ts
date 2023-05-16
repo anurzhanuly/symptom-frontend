@@ -3,9 +3,10 @@ import type { ResQuestions } from "../types/questions";
 import type { AxiosResponse } from "axios";
 import { useSymptomApi } from "@/services/api";
 
-export async function getQuestionsJson(): Promise<AxiosResponse | null> {
+export async function getQuestionsJson() {
   try {
-    return await useSymptomApi.get<ResQuestions>("/questionnaires/latest");
+    const res = await useSymptomApi.get("/questionnaires/latest");
+    return res.data || null;
   } catch (error) {
     console.error(error);
     return null;
