@@ -97,9 +97,9 @@ export const useAdminStore = defineStore("admin", () => {
 
   async function getQuestionsData(): Promise<void> {
     const res = await getQuestionsJson();
+
     if (res) {
       const pages = res.data.attributes.questionnaire.pages;
-      console.log("getQuestionsData  pages:", pages);
       const elements = [];
       const names = [];
       const test = [];
@@ -117,10 +117,7 @@ export const useAdminStore = defineStore("admin", () => {
       }
 
       questions.value = elements;
-      console.log("getQuestionsData  elements:", elements);
       questionsNames.value = names;
-      console.log("getQuestionsData  names:", names);
-      console.log("getQuestionsData  test:", test);
       vals.value = test;
     }
   }

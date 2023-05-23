@@ -168,7 +168,6 @@ const {
   selectedCondition,
   recomindationDeleteName,
   recomindationNewName,
-  questions,
   vals,
 } = storeToRefs(adminStore);
 
@@ -176,13 +175,12 @@ const conditionColumns = computed(() => adminStore.conditionColumns || []);
 
 function checkOptions(name: string) {
   const options = vals.value.filter(item => item.title === name);
-  console.log("checkOptions  options:", options);
 
   if (options.length && options[0].choices) {
     return options[0].choices;
-  } else {
-    return false;
   }
+
+  return;
 }
 
 function deleteConditionConfirm(event: any, index: number): void {
@@ -203,16 +201,6 @@ function deleteConditionConfirm(event: any, index: number): void {
   flex-direction: row;
 }
 
-.new-record-button {
-  margin-bottom: 20px;
-}
-
-.condition-buttons {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
 .conditions-list {
   width: 15%;
 }
@@ -222,15 +210,6 @@ function deleteConditionConfirm(event: any, index: number): void {
   margin-left: 10px;
 }
 
-.conditions-actions .p-button {
-  margin-left: 10px;
-}
-
-.p-card {
-  width: 27%;
-  margin-top: 15px;
-}
-
 .recommendations-block {
   display: flex;
   flex-direction: column;
@@ -238,14 +217,5 @@ function deleteConditionConfirm(event: any, index: number): void {
 
 .recommendations-block div:first-child {
   margin-bottom: 15px;
-}
-
-.recommendations-block .p-button {
-  width: 100%;
-}
-
-.recommendations-block .p-inputtext {
-  width: 100%;
-  margin-bottom: 5px;
 }
 </style>
