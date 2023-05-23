@@ -24,6 +24,7 @@ export const useAdminStore = defineStore("admin", () => {
   const selectedCondition = ref<Condition>();
   const questionsNames = ref<{ value: string }[]>([]);
   const conditionIndex = ref(0);
+  const isLoading = ref(false);
   const vals = ref<any[]>([]); // TODO: исправить типизацию
 
   const tests = ref();
@@ -45,6 +46,7 @@ export const useAdminStore = defineStore("admin", () => {
 
   watch(selectedRecommendation, async newRecommendationName => {
     const res = await getRecommendationDetail(newRecommendationName?.id!);
+
     if (res) {
       console.log("useAdminStore  res:", res);
       tests.value = res.data.data.attributes.tests;
@@ -96,6 +98,7 @@ export const useAdminStore = defineStore("admin", () => {
   ];
 
   async function getQuestionsData(): Promise<void> {
+    isLoading.value = true;
     const res = await getQuestionsJson();
 
     if (res) {
@@ -119,6 +122,8 @@ export const useAdminStore = defineStore("admin", () => {
       questions.value = elements;
       questionsNames.value = names;
       vals.value = test;
+
+      isLoading.value = false;
     }
   }
 
@@ -252,6 +257,7 @@ export const useAdminStore = defineStore("admin", () => {
     conditionColumns,
     conditionIndex,
     vals,
+    isLoading,
     getQuestionsData,
     updateCondition,
     deleteCondition,
