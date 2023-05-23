@@ -9,7 +9,7 @@
     "test:unit": "vitest --environment jsdom",
     "build-only": "vite build --mode production",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .eslintignore",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "prettier": "prettier . --write"
   },
   "dependencies": {
@@ -35,7 +35,6 @@
     "eslint-plugin-vue": "^9.6.0",
     "jsdom": "^20.0.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.7.1",
     "typescript": "~4.7.4",
     "vite": "^3.1.7",
     "vite-plugin-eslint": "^1.8.1",

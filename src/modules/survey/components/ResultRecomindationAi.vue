@@ -1,5 +1,8 @@
 <template>
-  <div v-if="recommendationsChatGPT" class="recomindation-ai-result">
+  <div
+    v-if="recommendationsChatGPT"
+    class="recomindation-ai-result"
+  >
     <card>
       <template #title>Рекомендации от SymptomAi</template>
       <template #content>
@@ -11,19 +14,36 @@
         >
           <div v-if="Array.isArray(value)">
             <ul>
-              <li v-for="(item, index) in value" :key="index">{{ item }}</li>
+              <li
+                v-for="(item, index) in value"
+                :key="index"
+              >
+                {{ item }}
+              </li>
             </ul>
           </div>
           <div v-else>
             <ul>
-              <li v-for="(item, index) in value" :key="index">{{ index }}: {{ item }}</li>
+              <li
+                v-for="(item, index) in value"
+                :key="index"
+              >
+                {{ index }}: {{ item }}
+              </li>
             </ul>
           </div>
         </panel>
       </template>
 
-      <template #footer v-if="isButtonsVisible">
-        <p-button label="Открыть в PDF" class="p-button-raised" @click="surveyStore.resultPDF" />
+      <template
+        v-if="isButtonsVisible"
+        #footer
+      >
+        <p-button
+          label="Открыть в PDF"
+          class="p-button-raised"
+          @click="surveyStore.resultPDF"
+        />
       </template>
     </card>
   </div>

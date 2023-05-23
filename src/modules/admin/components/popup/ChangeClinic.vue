@@ -24,7 +24,11 @@
     </div>
 
     <div class="clinic-list-popup-action">
-      <p-button label="Изменить" class="p-button-success" @click="changeClinic" />
+      <p-button
+        label="Изменить"
+        class="p-button-success"
+        @click="changeClinic"
+      />
     </div>
   </div>
 </template>

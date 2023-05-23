@@ -15,13 +15,6 @@ module.exports = {
   },
   plugins: ["vue", "@typescript-eslint"],
   rules: {
-    "prettier/prettier": [
-      "error",
-      {
-        singleQuote: true,
-        parser: "flow",
-      },
-    ],
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
     'import/prefer-default-export':    'off',

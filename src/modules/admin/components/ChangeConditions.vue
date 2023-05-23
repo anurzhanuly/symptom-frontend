@@ -2,7 +2,12 @@
   <panel header="Изменить условия рекомендаций">
     <div class="conditions">
       <div class="conditions-list">
-        <listbox v-model="selectedRecommendation" :options="allRecommendations" filter optionLabel="attributes.name" />
+        <listbox
+          v-model="selectedRecommendation"
+          :options="allRecommendations"
+          filter
+          option-label="attributes.name"
+        />
         <panel>
           <div class="recommendations-block">
             <div>
@@ -28,10 +33,17 @@
           </div>
         </panel>
       </div>
-      <div v-if="selectedRecommendation" class="conditions-actions">
+      <div
+        v-if="selectedRecommendation"
+        class="conditions-actions"
+      >
         <toolbar>
           <template #start>
-            <p-button label="Добавить новый блок" raised @click="adminStore.createCondition" />
+            <p-button
+              label="Добавить новый блок"
+              raised
+              @click="adminStore.createCondition"
+            />
             <p-button
               label="Сохранить изменения"
               severity="success"
@@ -70,7 +82,12 @@
             edit-mode="cell"
             @cell-edit-complete="adminStore.updateCondition($event, index)"
           >
-            <column v-for="(column, idx) in conditionColumns" :key="idx" :header="column.header" :field="column.field">
+            <column
+              v-for="(column, idx) in conditionColumns"
+              :key="idx"
+              :header="column.header"
+              :field="column.field"
+            >
               <template #editor="{ data, field }">
                 <div v-if="column.field === 'value'">
                   <p-multi-select
@@ -84,7 +101,11 @@
                     :empty-filter-message="'Ничего не найдено'"
                     :empty-message="'Ничего не найдено'"
                   />
-                  <p-textarea v-else v-model="data[field]" style="width: 100%" />
+                  <p-textarea
+                    v-else
+                    v-model="data[field]"
+                    style="width: 100%"
+                  />
                 </div>
                 <p-button
                   v-else-if="column.header === 'Удаление'"
@@ -106,7 +127,11 @@
                   :empty-message="'Ничего не найдено'"
                   @change="field === 'questionName' ? (data.value = '') : null"
                 />
-                <input-text v-else v-model="data[field]" style="width: 100%" />
+                <input-text
+                  v-else
+                  v-model="data[field]"
+                  style="width: 100%"
+                />
               </template>
             </column>
           </data-table>

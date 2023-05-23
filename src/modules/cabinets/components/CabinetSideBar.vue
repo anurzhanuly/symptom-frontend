@@ -9,7 +9,13 @@
       @click="$router.push(view.to)"
     >
       <i :class="view.icon" />
-      <input :id="`${index}`" v-model="selectedPage" type="radio" class="hidden" :value="view.label" />
+      <input
+        :id="`${index}`"
+        v-model="selectedPage"
+        type="radio"
+        class="hidden"
+        :value="view.label"
+      />
       {{ view.label }}
     </label>
   </div>

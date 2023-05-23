@@ -16,22 +16,46 @@
             <h2>Все клиники</h2>
           </div>
           <div>
-            <p-button label="Добавить клинику" class="p-button-success" @click="createClinic" />
+            <p-button
+              label="Добавить клинику"
+              class="p-button-success"
+              @click="createClinic"
+            />
           </div>
         </div>
       </template>
-      <column header="Id" field="id" header-style="width: 2%" />
-      <column header="Название" field="attributes.name" />
-      <column header="Город" field="attributes.city" />
-      <column header="Адрес" field="attributes.address" />
+      <column
+        header="Id"
+        field="id"
+        header-style="width: 2%"
+      />
+      <column
+        header="Название"
+        field="attributes.name"
+      />
+      <column
+        header="Город"
+        field="attributes.city"
+      />
+      <column
+        header="Адрес"
+        field="attributes.address"
+      />
       <column header-style="width: 6%">
         <template #body="slotProps">
-          <p-button label="Изменить" @click="changeClinic(slotProps.data)" />
+          <p-button
+            label="Изменить"
+            @click="changeClinic(slotProps.data)"
+          />
         </template>
       </column>
       <column header-style="width: 6%">
         <template #body>
-          <p-button label="Удалить" class="p-button-danger" :disabled="true" />
+          <p-button
+            label="Удалить"
+            class="p-button-danger"
+            :disabled="true"
+          />
         </template>
       </column>
     </data-table>
@@ -52,11 +76,19 @@
             <h2>Все врачи</h2>
           </div>
           <div>
-            <p-button label="Добавить врача" class="p-button-success" @click="createDoctor" />
+            <p-button
+              label="Добавить врача"
+              class="p-button-success"
+              @click="createDoctor"
+            />
           </div>
         </div>
       </template>
-      <column header="Id" field="id" header-style="width: 2%" />
+      <column
+        header="Id"
+        field="id"
+        header-style="width: 2%"
+      />
       <column header="ФИО">
         <template #body="slotProps">
           {{ slotProps.data.attributes.firstName }}
@@ -64,16 +96,29 @@
           {{ slotProps.data.attributes.midName }}
         </template>
       </column>
-      <column header="Специализация" field="attributes.specialization" />
-      <column header="Опыт" field="attributes.experience" />
+      <column
+        header="Специализация"
+        field="attributes.specialization"
+      />
+      <column
+        header="Опыт"
+        field="attributes.experience"
+      />
       <column header-style="width: 6%">
         <template #body="slotProps">
-          <p-button label="Изменить" @click="changeDoctor(slotProps.data)" />
+          <p-button
+            label="Изменить"
+            @click="changeDoctor(slotProps.data)"
+          />
         </template>
       </column>
       <column header-style="width: 6%">
         <template #body>
-          <p-button label="Удалить" class="p-button-danger" :disabled="true" />
+          <p-button
+            label="Удалить"
+            class="p-button-danger"
+            :disabled="true"
+          />
         </template>
       </column>
     </data-table>

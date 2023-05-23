@@ -3,12 +3,23 @@
     <card>
       <template #title>Рекомендации</template>
       <template #content>
-        <panel v-for="(recommendation, index) in recommendations" :key="index" :header="(index + 1).toString()">
+        <panel
+          v-for="(recommendation, index) in recommendations"
+          :key="index"
+          :header="(index + 1).toString()"
+        >
           <li>{{ recommendation }}</li>
         </panel>
       </template>
-      <template #footer v-if="isButtonsVisible">
-        <p-button label="Открыть в PDF" raised @click="surveyStore.resultPDF" />
+      <template
+        v-if="isButtonsVisible"
+        #footer
+      >
+        <p-button
+          label="Открыть в PDF"
+          raised
+          @click="surveyStore.resultPDF"
+        />
       </template>
     </card>
   </div>

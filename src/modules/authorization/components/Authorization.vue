@@ -4,9 +4,14 @@
       <base-carousel />
     </div>
     <div class="authorization-main">
-      <p-button label="Назад" link icon="pi pi-arrow-left" @click="$router.push('/')" />
+      <p-button
+        label="Назад"
+        link
+        icon="pi pi-arrow-left"
+        @click="$router.push('/')"
+      />
       <div>
-        <slot></slot>
+        <slot />
       </div>
     </div>
   </div>

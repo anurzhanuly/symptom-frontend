@@ -2,7 +2,10 @@
   <div class="about">
     <div class="about-container">
       <div class="image">
-        <img src="@/assets/onboarding/onboard2.png" alt="logo" />
+        <img
+          src="@/assets/onboarding/onboard2.png"
+          alt="logo"
+        />
       </div>
       <div class="info">
         <h3>О проекте</h3>
@@ -21,7 +24,10 @@
   </div>
   <div class="about-action">
     <h4>{{ actionInfo }}</h4>
-    <p-button :label="buttonLabel" @click="direct" />
+    <p-button
+      :label="buttonLabel"
+      @click="direct"
+    />
   </div>
 </template>
 

@@ -1,7 +1,13 @@
 <template>
   <panel header="Вставьте сюда json с вопросами из survey">
-    <p-textarea v-model="surveyStr" rows="25" />
-    <p-button label="Сохранить" @click="changeSurveyQuestions" />
+    <p-textarea
+      v-model="surveyStr"
+      rows="25"
+    />
+    <p-button
+      label="Сохранить"
+      @click="changeSurveyQuestions"
+    />
   </panel>
 </template>
 
