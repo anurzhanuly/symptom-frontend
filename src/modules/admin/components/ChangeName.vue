@@ -1,27 +1,27 @@
 <template>
-  <panel header="Наименование вопроса в рекомендациях">
-    <input-text
-      v-model="beforeQuestName"
-      placeholder="До"
-    />
-    <dropdown
-      v-model="afterQuestName"
-      :options="questionNameOptions"
-      option-value="value"
-      option-label="value"
-      placeholder="После"
-      filter-placeholder="Поиск"
-      filter
-      lazy
-      :empty-filter-message="'Ничего не найдено'"
-      :empty-message="'Ничего не найдено'"
-    />
-    <p-button
-      label="Изменить"
-      :disabled="!isReadyToChange"
-      @click="confirmChange($event)"
-    />
-  </panel>
+    <panel header="Наименование вопроса в рекомендациях">
+        <input-text
+            v-model="beforeQuestName"
+            placeholder="До"
+        />
+        <dropdown
+            v-model="afterQuestName"
+            :options="questionNameOptions"
+            option-value="value"
+            option-label="value"
+            placeholder="После"
+            filter-placeholder="Поиск"
+            filter
+            lazy
+            :empty-filter-message="'Ничего не найдено'"
+            :empty-message="'Ничего не найдено'"
+        />
+        <p-button
+            label="Изменить"
+            :disabled="!isReadyToChange"
+            @click="confirmChange($event)"
+        />
+    </panel>
 </template>
 
 <script lang="ts" setup>

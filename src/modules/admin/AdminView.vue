@@ -1,7 +1,7 @@
 <template>
-  <base-header />
-  <tab-menu :model="adminPages" />
-  <router-view />
+    <base-header />
+    <tab-menu :model="adminPages" />
+    <router-view />
 </template>
 
 <script lang="ts" setup>

@@ -1,29 +1,29 @@
 <template>
-  <div class="popup">
-    <div>
-      <h3>Логин</h3>
-      <input-text
-        v-model="login"
-        style="width: 100%"
-      />
+    <div class="popup">
+        <div>
+            <h3>Логин</h3>
+            <input-text
+                v-model="login"
+                style="width: 100%"
+            />
+        </div>
+        <div>
+            <h3>Пароль</h3>
+            <input-text
+                v-model="password"
+                type="password"
+                style="width: 100%"
+            />
+        </div>
+        <p-button
+            label="Ввести"
+            icon="pi pi-check"
+            class="p-button-success"
+            autofocus
+            style="margin-top: 20px; width: 100%"
+            @click="checkAdmin()"
+        />
     </div>
-    <div>
-      <h3>Пароль</h3>
-      <input-text
-        v-model="password"
-        type="password"
-        style="width: 100%"
-      />
-    </div>
-    <p-button
-      label="Ввести"
-      icon="pi pi-check"
-      class="p-button-success"
-      autofocus
-      style="margin-top: 20px; width: 100%"
-      @click="checkAdmin()"
-    />
-  </div>
 </template>
 
 <script lang="ts" setup>

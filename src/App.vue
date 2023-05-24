@@ -1,8 +1,8 @@
 <template>
-  <router-view />
-  <dynamic-dialog />
-  <confirm-popup />
-  <p-toast />
+    <router-view />
+    <dynamic-dialog />
+    <confirm-popup />
+    <p-toast />
 </template>
 
 <script setup lang="ts">

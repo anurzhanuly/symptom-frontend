@@ -1,6 +1,6 @@
 <template>
-  <progress-bar :value="progress" />
-  <div id="survey" />
+    <progress-bar :value="progress" />
+    <div id="survey" />
 </template>
 
 <script setup lang="ts">

@@ -1,20 +1,20 @@
 <template>
-  <div class="authorization">
-    <div class="authorization-onboarding">
-      <base-carousel />
+    <div class="authorization">
+        <div class="authorization-onboarding">
+            <base-carousel />
+        </div>
+        <div class="authorization-main">
+            <p-button
+                label="Назад"
+                link
+                icon="pi pi-arrow-left"
+                @click="$router.push('/')"
+            />
+            <div>
+                <slot />
+            </div>
+        </div>
     </div>
-    <div class="authorization-main">
-      <p-button
-        label="Назад"
-        link
-        icon="pi pi-arrow-left"
-        @click="$router.push('/')"
-      />
-      <div>
-        <slot />
-      </div>
-    </div>
-  </div>
 </template>
 
 <script setup lang="ts">

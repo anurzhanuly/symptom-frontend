@@ -1,13 +1,13 @@
 <template>
-  <header-bar />
-  <main-bar />
-  <about-project />
-  <solutions />
-  <advantages />
-  <team />
-  <footer-bar />
+    <header-bar />
+    <main-bar />
+    <about-project />
+    <solutions />
+    <advantages />
+    <team />
+    <footer-bar />
 
-  <scroll-top />
+    <scroll-top />
 </template>
 
 <script setup lang="ts">

@@ -25,6 +25,7 @@ module.exports = {
         "vue/no-reserved-component-names": ["warn"],
         "no-underscore-dangle": "warn",
         "vue/no-multiple-template-root": "off",
+        "vue/html-indent": 0,
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/explicit-function-return-type": "warn",
         "@typescript-eslint/no-unused-vars": "error",

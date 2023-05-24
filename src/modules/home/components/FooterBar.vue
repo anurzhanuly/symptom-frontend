@@ -1,39 +1,39 @@
 <template>
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-symptom">
-        <h2 @click="openAdminLoginPopup">Symptom</h2>
-      </div>
-      <div class="footer-info">
-        <p
-          v-for="link in links"
-          @click="homeStore.scroll(link.top)"
-        >
-          {{ link.name }}
-        </p>
-      </div>
-      <div class="footer-icons">
-        <a
-          href="https://www.instagram.com/symptom.kz/?igshid=YmMyMTA2M2Y%3D"
-          target="_blank"
-        >
-          <i class="pi pi-instagram" />
-        </a>
-        <a href="tel:+77779613377">
-          <i class="pi pi-phone" />
-        </a>
-        <a
-          href="https://api.whatsapp.com/send/?phone=77779613377"
-          target="_blank"
-        >
-          <i class="pi pi-whatsapp" />
-        </a>
-      </div>
-      <div class="footer-reserved">
-        <h2>Все права защищены «Symptom» 2023</h2>
-      </div>
-    </div>
-  </footer>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-symptom">
+                <h2 @click="openAdminLoginPopup">Symptom</h2>
+            </div>
+            <div class="footer-info">
+                <p
+                    v-for="link in links"
+                    @click="homeStore.scroll(link.top)"
+                >
+                    {{ link.name }}
+                </p>
+            </div>
+            <div class="footer-icons">
+                <a
+                    href="https://www.instagram.com/symptom.kz/?igshid=YmMyMTA2M2Y%3D"
+                    target="_blank"
+                >
+                    <i class="pi pi-instagram" />
+                </a>
+                <a href="tel:+77779613377">
+                    <i class="pi pi-phone" />
+                </a>
+                <a
+                    href="https://api.whatsapp.com/send/?phone=77779613377"
+                    target="_blank"
+                >
+                    <i class="pi pi-whatsapp" />
+                </a>
+            </div>
+            <div class="footer-reserved">
+                <h2>Все права защищены «Symptom» 2023</h2>
+            </div>
+        </div>
+    </footer>
 </template>
 
 <script lang="ts" setup>

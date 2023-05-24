@@ -1,47 +1,47 @@
 <template>
-  <div>
-    <div class="clinic-list-popup p-fluid">
-      <form class="clinic-list-popup-form">
-        <div>
-          <h3>Фамилия</h3>
-          <input-text v-model="newDoctorFirstName" />
+    <div>
+        <div class="clinic-list-popup p-fluid">
+            <form class="clinic-list-popup-form">
+                <div>
+                    <h3>Фамилия</h3>
+                    <input-text v-model="newDoctorFirstName" />
+                </div>
+                <div>
+                    <h3>Имя</h3>
+                    <input-text v-model="newDoctorLastName" />
+                </div>
+                <div>
+                    <h3>Отчество</h3>
+                    <input-text v-model="newDoctorMidName" />
+                </div>
+                <div>
+                    <h3>Опыт (число)</h3>
+                    <input-text
+                        v-model="newDoctorExp"
+                        type="number"
+                    />
+                </div>
+                <div>
+                    <h3>Специализация</h3>
+                    <dropdown
+                        v-model="newDoctorspecId"
+                        :options="specializations"
+                        option-label="attributes.name"
+                        option-value="id"
+                        placeholder="Выберите специализацию"
+                    />
+                </div>
+            </form>
         </div>
-        <div>
-          <h3>Имя</h3>
-          <input-text v-model="newDoctorLastName" />
-        </div>
-        <div>
-          <h3>Отчество</h3>
-          <input-text v-model="newDoctorMidName" />
-        </div>
-        <div>
-          <h3>Опыт (число)</h3>
-          <input-text
-            v-model="newDoctorExp"
-            type="number"
-          />
-        </div>
-        <div>
-          <h3>Специализация</h3>
-          <dropdown
-            v-model="newDoctorspecId"
-            :options="specializations"
-            option-label="attributes.name"
-            option-value="id"
-            placeholder="Выберите специализацию"
-          />
-        </div>
-      </form>
-    </div>
 
-    <div class="clinic-list-popup-action">
-      <p-button
-        label="Сохранить"
-        class="p-button-success"
-        @click="createDoctor"
-      />
+        <div class="clinic-list-popup-action">
+            <p-button
+                label="Сохранить"
+                class="p-button-success"
+                @click="createDoctor"
+            />
+        </div>
     </div>
-  </div>
 </template>
 
 <script lang="ts" setup>

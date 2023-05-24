@@ -1,62 +1,62 @@
 <template>
-  <div class="team-container">
-    <div class="team-carousel">
-      <carousel
-        :value="team"
-        :num-visible="4"
-        :num-scroll="4"
-        :responsive-options="responsiveOptions"
-        :autoplay-interval="3000"
-      >
-        <template #header>
-          <div class="team-carousel-header">
-            <h1>Наша команда</h1>
-          </div>
-        </template>
-        <template #item="slotProps">
-          <div class="team-carousel-info">
-            <img
-              :src="getImageUrl(slotProps.data.photo)"
-              alt="logo"
-            />
-            <h3>{{ slotProps.data.name }}</h3>
-            <p>{{ slotProps.data.info }}</p>
-          </div>
-        </template>
-      </carousel>
+    <div class="team-container">
+        <div class="team-carousel">
+            <carousel
+                :value="team"
+                :num-visible="4"
+                :num-scroll="4"
+                :responsive-options="responsiveOptions"
+                :autoplay-interval="3000"
+            >
+                <template #header>
+                    <div class="team-carousel-header">
+                        <h1>Наша команда</h1>
+                    </div>
+                </template>
+                <template #item="slotProps">
+                    <div class="team-carousel-info">
+                        <img
+                            :src="getImageUrl(slotProps.data.photo)"
+                            alt="logo"
+                        />
+                        <h3>{{ slotProps.data.name }}</h3>
+                        <p>{{ slotProps.data.info }}</p>
+                    </div>
+                </template>
+            </carousel>
+        </div>
     </div>
-  </div>
 
-  <div
-    v-if="isDoctor"
-    class="questions"
-  >
-    <div class="questions-actions">
-      <div>
-        <h1>Остались вопросы?</h1>
-        <p>Оставьте контактные данные, чтобы мы могли перезвонить вам и проконсультровать</p>
-      </div>
-      <input-text
-        v-model="name"
-        placeholder="Ваше имя и фамилия"
-      />
-      <input-text
-        v-model="place"
-        placeholder="Место работы"
-      />
-      <input-text
-        v-model="phone"
-        placeholder="Номер телефона"
-      />
-      <p-button label="Отправить" />
+    <div
+        v-if="isDoctor"
+        class="questions"
+    >
+        <div class="questions-actions">
+            <div>
+                <h1>Остались вопросы?</h1>
+                <p>Оставьте контактные данные, чтобы мы могли перезвонить вам и проконсультровать</p>
+            </div>
+            <input-text
+                v-model="name"
+                placeholder="Ваше имя и фамилия"
+            />
+            <input-text
+                v-model="place"
+                placeholder="Место работы"
+            />
+            <input-text
+                v-model="phone"
+                placeholder="Номер телефона"
+            />
+            <p-button label="Отправить" />
+        </div>
+        <div class="questions-img">
+            <img
+                src="@/assets/onboarding/onboard1.png"
+                alt="logo"
+            />
+        </div>
     </div>
-    <div class="questions-img">
-      <img
-        src="@/assets/onboarding/onboard1.png"
-        alt="logo"
-      />
-    </div>
-  </div>
 </template>
 
 <script setup lang="ts">

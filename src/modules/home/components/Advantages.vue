@@ -1,25 +1,25 @@
 <template>
-  <div class="advantages-container">
-    <div class="advantages-info">
-      <h3>Наши приемущества</h3>
-      <div>
-        <h1>01</h1>
-        <p>{{ advantagesInfoFirst }}</p>
-      </div>
-      <div>
-        <h1>02</h1>
-        <p>{{ advantagesInfoSecond }}</p>
-      </div>
-      <div />
-    </div>
+    <div class="advantages-container">
+        <div class="advantages-info">
+            <h3>Наши приемущества</h3>
+            <div>
+                <h1>01</h1>
+                <p>{{ advantagesInfoFirst }}</p>
+            </div>
+            <div>
+                <h1>02</h1>
+                <p>{{ advantagesInfoSecond }}</p>
+            </div>
+            <div />
+        </div>
 
-    <div class="image">
-      <img
-        src="@/assets/phone.png"
-        alt="logo"
-      />
+        <div class="image">
+            <img
+                src="@/assets/phone.png"
+                alt="logo"
+            />
+        </div>
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">

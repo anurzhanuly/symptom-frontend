@@ -1,36 +1,36 @@
 <template>
-  <div>
-    <div class="clinic-list-popup p-fluid">
-      <form class="clinic-list-popup-form">
-        <div>
-          <h3>Название клиники</h3>
-          <input-text v-model="newClinicName" />
+    <div>
+        <div class="clinic-list-popup p-fluid">
+            <form class="clinic-list-popup-form">
+                <div>
+                    <h3>Название клиники</h3>
+                    <input-text v-model="newClinicName" />
+                </div>
+                <div>
+                    <h3>Город</h3>
+                    <dropdown
+                        v-model="newClinicCityId"
+                        :options="cities"
+                        option-label="attributes.city"
+                        option-value="id"
+                        placeholder="Выберите город"
+                    />
+                </div>
+                <div>
+                    <h3>Адрес</h3>
+                    <input-text v-model="newClinicAddress" />
+                </div>
+            </form>
         </div>
-        <div>
-          <h3>Город</h3>
-          <dropdown
-            v-model="newClinicCityId"
-            :options="cities"
-            option-label="attributes.city"
-            option-value="id"
-            placeholder="Выберите город"
-          />
-        </div>
-        <div>
-          <h3>Адрес</h3>
-          <input-text v-model="newClinicAddress" />
-        </div>
-      </form>
-    </div>
 
-    <div class="clinic-list-popup-action">
-      <p-button
-        label="Сохранить"
-        class="p-button-success"
-        @click="createClinic"
-      />
+        <div class="clinic-list-popup-action">
+            <p-button
+                label="Сохранить"
+                class="p-button-success"
+                @click="createClinic"
+            />
+        </div>
     </div>
-  </div>
 </template>
 
 <script lang="ts" setup>

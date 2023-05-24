@@ -1,24 +1,24 @@
 <template>
-  <div class="pages-nav">
-    <label
-      v-for="(view, index) in props.views"
-      :key="index"
-      :for="`${index}`"
-      class="label"
-      :class="{ selected: selectedPage === view.label }"
-      @click="$router.push(view.to)"
-    >
-      <i :class="view.icon" />
-      <input
-        :id="`${index}`"
-        v-model="selectedPage"
-        type="radio"
-        class="hidden"
-        :value="view.label"
-      />
-      {{ view.label }}
-    </label>
-  </div>
+    <div class="pages-nav">
+        <label
+            v-for="(view, index) in props.views"
+            :key="index"
+            :for="`${index}`"
+            class="label"
+            :class="{ selected: selectedPage === view.label }"
+            @click="$router.push(view.to)"
+        >
+            <i :class="view.icon" />
+            <input
+                :id="`${index}`"
+                v-model="selectedPage"
+                type="radio"
+                class="hidden"
+                :value="view.label"
+            />
+            {{ view.label }}
+        </label>
+    </div>
 </template>
 
 <script setup lang="ts">

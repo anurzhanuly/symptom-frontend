@@ -1,18 +1,18 @@
 <template>
-  <div class="base-header">
-    <div class="base-header-content">
-      <img
-        src="@/assets/logo-auth.png"
-        alt="Symptom logo"
-        @click="$router.push('/')"
-      />
-      <p-button
-        icon="pi pi-sign-out"
-        class="p-button-raised p-button-outlined p-button-text"
-        @click="$router.push('/')"
-      />
+    <div class="base-header">
+        <div class="base-header-content">
+            <img
+                src="@/assets/logo-auth.png"
+                alt="Symptom logo"
+                @click="$router.push('/')"
+            />
+            <p-button
+                icon="pi pi-sign-out"
+                class="p-button-raised p-button-outlined p-button-text"
+                @click="$router.push('/')"
+            />
+        </div>
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">

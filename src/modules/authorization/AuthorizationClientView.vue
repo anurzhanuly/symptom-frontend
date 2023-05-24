@@ -1,40 +1,40 @@
 <template>
-  <authorization>
-    <div class="authorization-client">
-      <form class="authorization-form p-fluid">
-        <img
-          src="@/assets/logo-auth.png"
-          alt="Symptom logo"
-        />
-        <div>
-          <h4>Почта <span>*</span></h4>
-          <input-text v-model="email" />
-        </div>
-        <div>
-          <h4>Пароль <span>*</span></h4>
-          <p-password
-            v-model="password"
-            toggle-mask
-          />
+    <authorization>
+        <div class="authorization-client">
+            <form class="authorization-form p-fluid">
+                <img
+                    src="@/assets/logo-auth.png"
+                    alt="Symptom logo"
+                />
+                <div>
+                    <h4>Почта <span>*</span></h4>
+                    <input-text v-model="email" />
+                </div>
+                <div>
+                    <h4>Пароль <span>*</span></h4>
+                    <p-password
+                        v-model="password"
+                        toggle-mask
+                    />
+                </div>
+
+                <inline-message v-if="isWrong">Неверный пароль или почта</inline-message>
+                <p-button
+                    label="Вход"
+                    @click="checkClient"
+                />
+                <p-button
+                    link
+                    label="Забыли пароль?"
+                    @click="resetPassword"
+                />
+            </form>
         </div>
 
-        <inline-message v-if="isWrong">Неверный пароль или почта</inline-message>
-        <p-button
-          label="Вход"
-          @click="checkClient"
-        />
-        <p-button
-          link
-          label="Забыли пароль?"
-          @click="resetPassword"
-        />
-      </form>
-    </div>
-
-    <div class="registration-client">
-      <p>Нет аккаунта? Вы можете <strong @click="clientRegistration">Зарегистрироваться</strong></p>
-    </div>
-  </authorization>
+        <div class="registration-client">
+            <p>Нет аккаунта? Вы можете <strong @click="clientRegistration">Зарегистрироваться</strong></p>
+        </div>
+    </authorization>
 </template>
 
 <script setup lang="ts">

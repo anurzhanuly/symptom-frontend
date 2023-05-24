@@ -1,128 +1,128 @@
 <template>
-  <div class="clinic-list">
-    <data-table
-      selection-mode="single"
-      :value="clinics"
-      class="p-datatable-sm"
-      striped-rows
-      reorderable-columns
-      resizable-columns
-      show-gridlines
-      edit-mode="cell"
-    >
-      <template #header>
-        <div class="clinics-list-table-header">
-          <div>
-            <h2>Все клиники</h2>
-          </div>
-          <div>
-            <p-button
-              label="Добавить клинику"
-              class="p-button-success"
-              @click="createClinic"
+    <div class="clinic-list">
+        <data-table
+            selection-mode="single"
+            :value="clinics"
+            class="p-datatable-sm"
+            striped-rows
+            reorderable-columns
+            resizable-columns
+            show-gridlines
+            edit-mode="cell"
+        >
+            <template #header>
+                <div class="clinics-list-table-header">
+                    <div>
+                        <h2>Все клиники</h2>
+                    </div>
+                    <div>
+                        <p-button
+                            label="Добавить клинику"
+                            class="p-button-success"
+                            @click="createClinic"
+                        />
+                    </div>
+                </div>
+            </template>
+            <column
+                header="Id"
+                field="id"
+                header-style="width: 2%"
             />
-          </div>
-        </div>
-      </template>
-      <column
-        header="Id"
-        field="id"
-        header-style="width: 2%"
-      />
-      <column
-        header="Название"
-        field="attributes.name"
-      />
-      <column
-        header="Город"
-        field="attributes.city"
-      />
-      <column
-        header="Адрес"
-        field="attributes.address"
-      />
-      <column header-style="width: 6%">
-        <template #body="slotProps">
-          <p-button
-            label="Изменить"
-            @click="changeClinic(slotProps.data)"
-          />
-        </template>
-      </column>
-      <column header-style="width: 6%">
-        <template #body>
-          <p-button
-            label="Удалить"
-            class="p-button-danger"
-            :disabled="true"
-          />
-        </template>
-      </column>
-    </data-table>
+            <column
+                header="Название"
+                field="attributes.name"
+            />
+            <column
+                header="Город"
+                field="attributes.city"
+            />
+            <column
+                header="Адрес"
+                field="attributes.address"
+            />
+            <column header-style="width: 6%">
+                <template #body="slotProps">
+                    <p-button
+                        label="Изменить"
+                        @click="changeClinic(slotProps.data)"
+                    />
+                </template>
+            </column>
+            <column header-style="width: 6%">
+                <template #body>
+                    <p-button
+                        label="Удалить"
+                        class="p-button-danger"
+                        :disabled="true"
+                    />
+                </template>
+            </column>
+        </data-table>
 
-    <data-table
-      selection-mode="single"
-      :value="doctors"
-      class="p-datatable-sm"
-      striped-rows
-      reorderable-columns
-      resizable-columns
-      show-gridlines
-      edit-mode="cell"
-    >
-      <template #header>
-        <div class="clinics-list-table-header">
-          <div>
-            <h2>Все врачи</h2>
-          </div>
-          <div>
-            <p-button
-              label="Добавить врача"
-              class="p-button-success"
-              @click="createDoctor"
+        <data-table
+            selection-mode="single"
+            :value="doctors"
+            class="p-datatable-sm"
+            striped-rows
+            reorderable-columns
+            resizable-columns
+            show-gridlines
+            edit-mode="cell"
+        >
+            <template #header>
+                <div class="clinics-list-table-header">
+                    <div>
+                        <h2>Все врачи</h2>
+                    </div>
+                    <div>
+                        <p-button
+                            label="Добавить врача"
+                            class="p-button-success"
+                            @click="createDoctor"
+                        />
+                    </div>
+                </div>
+            </template>
+            <column
+                header="Id"
+                field="id"
+                header-style="width: 2%"
             />
-          </div>
-        </div>
-      </template>
-      <column
-        header="Id"
-        field="id"
-        header-style="width: 2%"
-      />
-      <column header="ФИО">
-        <template #body="slotProps">
-          {{ slotProps.data.attributes.firstName }}
-          {{ slotProps.data.attributes.lastName }}
-          {{ slotProps.data.attributes.midName }}
-        </template>
-      </column>
-      <column
-        header="Специализация"
-        field="attributes.specialization"
-      />
-      <column
-        header="Опыт"
-        field="attributes.experience"
-      />
-      <column header-style="width: 6%">
-        <template #body="slotProps">
-          <p-button
-            label="Изменить"
-            @click="changeDoctor(slotProps.data)"
-          />
-        </template>
-      </column>
-      <column header-style="width: 6%">
-        <template #body>
-          <p-button
-            label="Удалить"
-            class="p-button-danger"
-            :disabled="true"
-          />
-        </template>
-      </column>
-    </data-table>
-  </div>
+            <column header="ФИО">
+                <template #body="slotProps">
+                    {{ slotProps.data.attributes.firstName }}
+                    {{ slotProps.data.attributes.lastName }}
+                    {{ slotProps.data.attributes.midName }}
+                </template>
+            </column>
+            <column
+                header="Специализация"
+                field="attributes.specialization"
+            />
+            <column
+                header="Опыт"
+                field="attributes.experience"
+            />
+            <column header-style="width: 6%">
+                <template #body="slotProps">
+                    <p-button
+                        label="Изменить"
+                        @click="changeDoctor(slotProps.data)"
+                    />
+                </template>
+            </column>
+            <column header-style="width: 6%">
+                <template #body>
+                    <p-button
+                        label="Удалить"
+                        class="p-button-danger"
+                        :disabled="true"
+                    />
+                </template>
+            </column>
+        </data-table>
+    </div>
 </template>
 
 <script lang="ts" setup>

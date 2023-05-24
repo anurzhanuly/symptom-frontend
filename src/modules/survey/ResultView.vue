@@ -1,14 +1,14 @@
 <template>
-  <section>
-    <progress-bar
-      v-if="isLoading"
-      mode="indeterminate"
-    />
-    <base-header v-if="isButtonsVisible" />
-    <result-patient-card />
-    <result-recomindation />
-    <result-recomindation-ai />
-  </section>
+    <section>
+        <progress-bar
+            v-if="isLoading"
+            mode="indeterminate"
+        />
+        <base-header v-if="isButtonsVisible" />
+        <result-patient-card />
+        <result-recomindation />
+        <result-recomindation-ai />
+    </section>
 </template>
 
 <script lang="ts" setup>

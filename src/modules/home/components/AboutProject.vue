@@ -1,34 +1,34 @@
 <template>
-  <div class="about">
-    <div class="about-container">
-      <div class="image">
-        <img
-          src="@/assets/onboarding/onboard2.png"
-          alt="logo"
-        />
-      </div>
-      <div class="info">
-        <h3>О проекте</h3>
-        <div>
-          <div class="project-info">
-            <h1>01</h1>
-            <p>{{ projectInfoFirst }}</p>
-          </div>
-          <div class="project-info">
-            <h1>02</h1>
-            <p>{{ projectInfoSecond }}</p>
-          </div>
+    <div class="about">
+        <div class="about-container">
+            <div class="image">
+                <img
+                    src="@/assets/onboarding/onboard2.png"
+                    alt="logo"
+                />
+            </div>
+            <div class="info">
+                <h3>О проекте</h3>
+                <div>
+                    <div class="project-info">
+                        <h1>01</h1>
+                        <p>{{ projectInfoFirst }}</p>
+                    </div>
+                    <div class="project-info">
+                        <h1>02</h1>
+                        <p>{{ projectInfoSecond }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="about-action">
-    <h4>{{ actionInfo }}</h4>
-    <p-button
-      :label="buttonLabel"
-      @click="direct"
-    />
-  </div>
+    <div class="about-action">
+        <h4>{{ actionInfo }}</h4>
+        <p-button
+            :label="buttonLabel"
+            @click="direct"
+        />
+    </div>
 </template>
 
 <script setup lang="ts">

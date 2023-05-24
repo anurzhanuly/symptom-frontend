@@ -1,30 +1,30 @@
 <template>
-  <header>
-    <div class="header-container">
-      <RouterLink to="/">
-        <img
-          src="@/assets/logo.png"
-          class="header-image"
-          alt="logo"
-        />
-      </RouterLink>
-      <p
-        v-for="link in links"
-        class="static-buttons"
-        @click="homeStore.scroll(link.top)"
-      >
-        {{ link.name }}
-      </p>
-      <div>
-        <p
-          class="dynamic-button"
-          @click="isDoctor = !isDoctor"
-        >
-          {{ label }}
-        </p>
-      </div>
-    </div>
-  </header>
+    <header>
+        <div class="header-container">
+            <RouterLink to="/">
+                <img
+                    src="@/assets/logo.png"
+                    class="header-image"
+                    alt="logo"
+                />
+            </RouterLink>
+            <p
+                v-for="link in links"
+                class="static-buttons"
+                @click="homeStore.scroll(link.top)"
+            >
+                {{ link.name }}
+            </p>
+            <div>
+                <p
+                    class="dynamic-button"
+                    @click="isDoctor = !isDoctor"
+                >
+                    {{ label }}
+                </p>
+            </div>
+        </div>
+    </header>
 </template>
 
 <script setup lang="ts">

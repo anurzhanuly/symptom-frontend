@@ -1,39 +1,39 @@
 <template>
-  <div class="main-container">
-    <div class="main-information">
-      <h1>Что Вас беспокоит?</h1>
-      <h3>Пройдите опрос, узнайте о состоянии вашего здоровья и начните приём с нами</h3>
-      <div
-        v-if="isDoctor"
-        class="main-container-button"
-      >
-        <p-button
-          label="Войти в кабинет врача"
-          @click="$router.push('doctor-sign-in')"
-        />
-      </div>
-      <div
-        v-else
-        class="main-container-buttons"
-      >
-        <p-button
-          label="Пройти опрос"
-          @click="$router.push('agreement')"
-        />
-        <p-button
-          label="Войти в личный кабинет"
-          class="p-button-outlined"
-          @click="$router.push('client-sign-in')"
-        />
-      </div>
+    <div class="main-container">
+        <div class="main-information">
+            <h1>Что Вас беспокоит?</h1>
+            <h3>Пройдите опрос, узнайте о состоянии вашего здоровья и начните приём с нами</h3>
+            <div
+                v-if="isDoctor"
+                class="main-container-button"
+            >
+                <p-button
+                    label="Войти в кабинет врача"
+                    @click="$router.push('doctor-sign-in')"
+                />
+            </div>
+            <div
+                v-else
+                class="main-container-buttons"
+            >
+                <p-button
+                    label="Пройти опрос"
+                    @click="$router.push('agreement')"
+                />
+                <p-button
+                    label="Войти в личный кабинет"
+                    class="p-button-outlined"
+                    @click="$router.push('client-sign-in')"
+                />
+            </div>
+        </div>
+        <div class="main-image">
+            <img
+                src="@/assets/main.png"
+                alt="logo"
+            />
+        </div>
     </div>
-    <div class="main-image">
-      <img
-        src="@/assets/main.png"
-        alt="logo"
-      />
-    </div>
-  </div>
 </template>
 
 <script lang="ts" setup>

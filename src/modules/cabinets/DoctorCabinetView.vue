@@ -1,11 +1,11 @@
 <template>
-  <base-header />
-  <div class="doctor-cabinet">
-    <cabinet-side-bar :views="doctorViews" />
-    <div class="doctor-view">
-      <router-view />
+    <base-header />
+    <div class="doctor-cabinet">
+        <cabinet-side-bar :views="doctorViews" />
+        <div class="doctor-view">
+            <router-view />
+        </div>
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">

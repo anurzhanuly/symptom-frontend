@@ -1,32 +1,32 @@
 <template>
-  <authorization>
-    <div class="authorization-doctor">
-      <form class="authorization-form p-fluid">
-        <img
-          src="@/assets/logo-auth.png"
-          alt="Symptom logo"
-        />
+    <authorization>
+        <div class="authorization-doctor">
+            <form class="authorization-form p-fluid">
+                <img
+                    src="@/assets/logo-auth.png"
+                    alt="Symptom logo"
+                />
 
-        <h4>Почта <span>*</span></h4>
-        <input-text
-          v-model="email"
-          type="mail"
-        />
+                <h4>Почта <span>*</span></h4>
+                <input-text
+                    v-model="email"
+                    type="mail"
+                />
 
-        <h4>Пароль <span>*</span></h4>
-        <p-password
-          v-model="password"
-          toggle-mask
-        />
+                <h4>Пароль <span>*</span></h4>
+                <p-password
+                    v-model="password"
+                    toggle-mask
+                />
 
-        <inline-message v-if="isWrong">Неверный пароль или почта</inline-message>
-        <p-button
-          label="Вход"
-          @click="checkDoctor"
-        />
-      </form>
-    </div>
-  </authorization>
+                <inline-message v-if="isWrong">Неверный пароль или почта</inline-message>
+                <p-button
+                    label="Вход"
+                    @click="checkDoctor"
+                />
+            </form>
+        </div>
+    </authorization>
 </template>
 
 <script setup lang="ts">
