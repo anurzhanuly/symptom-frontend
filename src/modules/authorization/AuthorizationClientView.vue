@@ -1,40 +1,40 @@
 <template>
-  <authorization>
-    <div class="authorization-client">
-      <form class="authorization-form p-fluid">
-        <img
-          src="@/assets/logo-auth.png"
-          alt="Symptom logo"
-        />
-        <div>
-          <h4>Почта <span>*</span></h4>
-          <input-text v-model="email" />
-        </div>
-        <div>
-          <h4>Пароль <span>*</span></h4>
-          <p-password
-            v-model="password"
-            toggle-mask
-          />
+    <authorization>
+        <div class="authorization-client">
+            <form class="authorization-form p-fluid">
+                <img
+                    src="@/assets/logo-auth.png"
+                    alt="Symptom logo"
+                />
+                <div>
+                    <h4>Почта <span>*</span></h4>
+                    <input-text v-model="email" />
+                </div>
+                <div>
+                    <h4>Пароль <span>*</span></h4>
+                    <p-password
+                        v-model="password"
+                        toggle-mask
+                    />
+                </div>
+
+                <inline-message v-if="isWrong">Неверный пароль или почта</inline-message>
+                <p-button
+                    label="Вход"
+                    @click="checkClient"
+                />
+                <p-button
+                    link
+                    label="Забыли пароль?"
+                    @click="resetPassword"
+                />
+            </form>
         </div>
 
-        <inline-message v-if="isWrong">Неверный пароль или почта</inline-message>
-        <p-button
-          label="Вход"
-          @click="checkClient"
-        />
-        <p-button
-          link
-          label="Забыли пароль?"
-          @click="resetPassword"
-        />
-      </form>
-    </div>
-
-    <div class="registration-client">
-      <p>Нет аккаунта? Вы можете <strong @click="clientRegistration">Зарегистрироваться</strong></p>
-    </div>
-  </authorization>
+        <div class="registration-client">
+            <p>Нет аккаунта? Вы можете <strong @click="clientRegistration">Зарегистрироваться</strong></p>
+        </div>
+    </authorization>
 </template>
 
 <script setup lang="ts">
@@ -61,76 +61,76 @@ const password = ref("");
 const email = ref("");
 
 function checkClient(): void {
-  if (validateLogin(email.value, password.value)) {
-    authorizationStore.postLoginClient(email.value, password.value);
-  }
+    if (validateLogin(email.value, password.value)) {
+        authorizationStore.postLoginClient(email.value, password.value);
+    }
 }
 
 function resetPassword() {
-  console.log("TODO: reset password");
+    console.log("TODO: reset password");
 }
 
 function clientRegistration() {
-  dialog.open(ClientRegistration, {
-    props: {
-      header: "Регистрация",
-      style: {
-        width: "40%",
-      },
-      modal: true,
-    },
-  });
+    dialog.open(ClientRegistration, {
+        props: {
+            header: "Регистрация",
+            style: {
+                width: "40%"
+            },
+            modal: true
+        }
+    });
 }
 </script>
 
 <style scoped>
 .authorization-client {
-  padding: 27%;
+    padding: 27%;
 }
 
 .authorization-form span {
-  color: #d0312d;
+    color: #d0312d;
 }
 
 .authorization-form img {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .authorization-form h4 {
-  color: #3f3f3f;
-  font-weight: 400;
-  margin-top: 8px;
+    color: #3f3f3f;
+    font-weight: 400;
+    margin-top: 8px;
 }
 
 .authorization-form .p-inputtext,
 .authorization-form .p-dropdown,
 .authorization-form .p-inline-message {
-  margin-top: 8px;
-  width: 100%;
+    margin-top: 8px;
+    width: 100%;
 }
 
 .authorization-form .p-button {
-  margin-top: 15px;
-  height: 45px;
-  font-weight: 600;
-  border-radius: 5px;
-  width: 100%;
+    margin-top: 15px;
+    height: 45px;
+    font-weight: 600;
+    border-radius: 5px;
+    width: 100%;
 }
 
 .registration-client {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .registration-client strong {
-  color: #2196f3;
-  cursor: pointer;
+    color: #2196f3;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 750px) {
-  .authorization-client {
-    padding: 10%;
-  }
+    .authorization-client {
+        padding: 10%;
+    }
 }
 </style>

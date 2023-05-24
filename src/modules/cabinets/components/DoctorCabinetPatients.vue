@@ -1,3 +1,3 @@
 <template>
-  <div>patients</div>
+    <div>patients</div>
 </template>

@@ -4,12 +4,12 @@ import type { Questions } from "../types/questions.js";
 import { computed, onMounted, ref, watch } from "vue";
 import { defineStore } from "pinia";
 import {
-  getRecommendations,
-  getQuestionsJson,
-  deleteRecommendation,
-  createRecommendation,
-  getRecommendationDetail,
-  updateRecommendation,
+    createRecommendation,
+    deleteRecommendation,
+    getQuestionsJson,
+    getRecommendationDetail,
+    getRecommendations,
+    updateRecommendation
 } from "../services/admin.refbooks.js";
 import { success } from "@/utils/toast.js";
 import { useDialog } from "primevue/usedialog";
@@ -17,258 +17,249 @@ import { useDialog } from "primevue/usedialog";
 import CreateConditions from "../components/popup/CreateConditions.vue";
 
 export const useAdminStore = defineStore("admin", () => {
-  const allRecommendations = ref<Recommendation[]>([]);
-  const selectedRecommendation = ref<Recommendation | null>();
-  const questions = ref<Questions[]>([]);
-  const conditions = ref<Condition[] | any[]>([]); // TODO: исправить типизацию
-  const selectedCondition = ref<Condition>();
-  const questionsNames = ref<{ value: string }[]>([]);
-  const conditionIndex = ref(0);
-  const isLoading = ref(false);
-  const vals = ref<any[]>([]); // TODO: исправить типизацию
+    const allRecommendations = ref<Recommendation[]>([]);
+    const selectedRecommendation = ref<Recommendation | null>();
+    const questions = ref<Questions[]>([]);
+    const conditions = ref<Condition[] | any[]>([]); // TODO: исправить типизацию
+    const selectedCondition = ref<Condition>();
+    const questionsNames = ref<{ value: string }[]>([]);
+    const conditionIndex = ref(0);
+    const isLoading = ref(false);
+    const vals = ref<any[]>([]); // TODO: исправить типизацию
 
-  const tests = ref();
-  const lastTestKey = ref(1);
-  const recomindationDeleteName = ref("");
-  const recomindationNewName = ref("");
+    const tests = ref();
+    const lastTestKey = ref(1);
+    const recomindationDeleteName = ref("");
+    const recomindationNewName = ref("");
 
-  const dialog = useDialog();
+    const dialog = useDialog();
 
-  onMounted(() => {
-    if (!allRecommendations.value.length) {
-      getRecommendationsData();
-    }
-
-    if (!questions.value.length) {
-      getQuestionsData();
-    }
-  });
-
-  watch(selectedRecommendation, async newRecommendationName => {
-    const res = await getRecommendationDetail(newRecommendationName?.id!);
-
-    if (res) {
-      console.log("useAdminStore  res:", res);
-      tests.value = res.data.data.attributes.tests;
-      const keys = Object.keys(tests.value);
-      lastTestKey.value = keys[keys.length - 1] ? Number(keys[keys.length - 1]) + 1 : 1;
-
-      conditions.value = res.data.data.attributes.conditions;
-    }
-  });
-
-  const conditionColumns = [
-    {
-      header: "Наименование вопроса",
-      field: "questionName",
-      hasDropdown: true,
-      options: computed(() => questionsNames.value),
-    },
-    {
-      header: "Условие",
-      field: "compare",
-      hasDropdown: true,
-      options: [
-        { value: "exact" },
-        { value: "except" },
-        { value: "greater" },
-        { value: "less" },
-        { value: "range" },
-        { value: "optional" },
-      ],
-    },
-    {
-      header: "Значение",
-      field: "value",
-      hasDropdown: false,
-      options: [],
-    },
-    {
-      header: "Номер рекомендации",
-      field: "testCase",
-      hasDropdown: false,
-      options: [],
-    },
-    {
-      header: "Удаление",
-      field: "",
-      hasDropdown: false,
-      options: [],
-    },
-  ];
-
-  async function getQuestionsData(): Promise<void> {
-    isLoading.value = true;
-    const res = await getQuestionsJson();
-
-    if (res) {
-      const pages = res.data.attributes.questionnaire.pages;
-      const elements = [];
-      const names = [];
-      const test = [];
-
-      for (let i = 0; i < pages.length; i++) {
-        const element = pages[i];
-        elements.push(element.elements);
-
-        for (let j = 0; j < element.elements.length; j++) {
-          const item = element.elements[j];
-
-          names.push({ value: item.name });
-          test.push(item);
+    onMounted(() => {
+        if (!allRecommendations.value.length) {
+            getRecommendationsData();
         }
-      }
 
-      questions.value = elements;
-      questionsNames.value = names;
-      vals.value = test;
-
-      isLoading.value = false;
-    }
-  }
-
-  async function getRecommendationsData(): Promise<void> {
-    const res = await getRecommendations();
-    if (res) {
-      allRecommendations.value = res.data.data;
-    }
-  }
-
-  function updateCondition(event: DataTableCellEditCompleteEvent, tableIndex: number): void {
-    const updated = { ...event.newData };
-
-    if (typeof updated.value === "string") {
-      updated.value = updated.value.split(",");
-    }
-
-    if (event.newValue && event.value !== event.newValue) {
-      conditions.value[tableIndex][event.index] = { ...updated };
-    }
-  }
-
-  function deleteCondition(indexToDelete: number): void {
-    conditions.value = conditions.value.filter((_: any, index: number) => index !== indexToDelete);
-
-    success("Удаление блока условии", "Блок условии удален, не забудьте сохранить");
-  }
-
-  function createCondition() {
-    conditions.value.push({
-      value: "",
-      type: "",
-      compare: "",
-      multiple: false,
-      testCase: "",
-      questionName: "",
+        if (!questions.value.length) {
+            getQuestionsData();
+        }
     });
-  }
 
-  function createConditionItem(index: number): void {
-    conditionIndex.value = index;
-    dialog.open(CreateConditions, {
-      props: {
-        header: "Создание нового условия для блока",
-        style: {
-          width: "60%",
+    watch(selectedRecommendation, async newRecommendationName => {
+        const res = await getRecommendationDetail(newRecommendationName?.id!);
+
+        if (res) {
+            tests.value = res.data.data.attributes.tests;
+            const keys = Object.keys(tests.value);
+            lastTestKey.value = keys[keys.length - 1] ? Number(keys[keys.length - 1]) + 1 : 1;
+
+            conditions.value = res.data.data.attributes.conditions;
+        }
+    });
+
+    const conditionColumns = [
+        {
+            header: "Наименование вопроса",
+            field: "questionName",
+            hasDropdown: true,
+            options: computed(() => questionsNames.value)
         },
-        modal: true,
-      },
-    });
-  }
+        {
+            header: "Условие",
+            field: "compare",
+            hasDropdown: true,
+            options: [
+                { value: "exact" },
+                { value: "except" },
+                { value: "greater" },
+                { value: "less" },
+                { value: "range" },
+                { value: "optional" }
+            ]
+        },
+        {
+            header: "Значение",
+            field: "value",
+            hasDropdown: false,
+            options: []
+        },
+        {
+            header: "Номер рекомендации",
+            field: "testCase",
+            hasDropdown: false,
+            options: []
+        },
+        {
+            header: "Удаление",
+            field: "",
+            hasDropdown: false,
+            options: []
+        }
+    ];
 
-  function deleteConditionItem(tableIndex: number): void {
-    const filteredConditions: any = (conditions.value[tableIndex] as unknown as Condition[]).filter(
-      item => item !== selectedCondition.value,
-    );
+    async function getQuestionsData(): Promise<void> {
+        isLoading.value = true;
+        const res = await getQuestionsJson();
 
-    conditions.value[tableIndex] = filteredConditions;
+        if (res) {
+            const pages = res.data.attributes.questionnaire.pages;
+            const elements = [];
+            const names = [];
+            const test = [];
 
-    success("Удаление условия", "Условие удалено, не забудьте сохранить");
-  }
+            for (let i = 0; i < pages.length; i++) {
+                const element = pages[i];
+                elements.push(element.elements);
 
-  async function createRecommendationData(): Promise<void> {
-    const res = await createRecommendation(recomindationNewName.value);
-    if (res) {
-      allRecommendations.value.push(res.data.data);
-      recomindationNewName.value = "";
+                for (let j = 0; j < element.elements.length; j++) {
+                    const item = element.elements[j];
+
+                    names.push({ value: item.name });
+                    test.push(item);
+                }
+            }
+
+            questions.value = elements;
+            questionsNames.value = names;
+            vals.value = test;
+
+            isLoading.value = false;
+        }
     }
-  }
 
-  async function deleteRecommendationData(): Promise<void> {
-    const foundedObject = allRecommendations.value.find(item => item.attributes.name === recomindationDeleteName.value);
-    const res = await deleteRecommendation(foundedObject?.id!);
-    if (res) {
-      allRecommendations.value = allRecommendations.value.filter(item => item.id !== foundedObject?.id);
-
-      success("Удаление рекоминдации", res.data.message);
-      recomindationDeleteName.value = "";
-      selectedRecommendation.value = null;
-    }
-  }
-
-  async function updateRecommendationData(): Promise<void> {
-    const res = await updateRecommendation(
-      selectedRecommendation.value?.id!,
-      selectedRecommendation.value?.attributes.name!,
-      tests.value,
-      conditions.value,
-    );
-
-    if (res) {
-      success("Изменения рекоминдации", "Все изменения сохранены");
-    }
-  }
-
-  function deleteTest(deleteKey: string): void {
-    delete tests.value[deleteKey];
-
-    const keys = Object.keys(tests.value);
-    const sortedKeys = keys.sort((a: any, b: any) => a - b);
-    const newObj: Record<string, string[]> = {};
-
-    for (let i = 0; i < sortedKeys.length; i++) {
-      newObj[i + 1] = tests.value[sortedKeys[i]];
+    async function getRecommendationsData(): Promise<void> {
+        const res = await getRecommendations();
+        if (res) {
+            allRecommendations.value = res.data.data;
+        }
     }
 
-    tests.value = newObj;
-    const newKeys = Object.keys(tests.value);
-    lastTestKey.value = newKeys[newKeys.length - 1] ? Number(newKeys[newKeys.length - 1]) + 1 : 1;
+    function updateCondition(event: DataTableCellEditCompleteEvent, tableIndex: number): void {
+        const updated = { ...event.newData };
 
-    success("Удаление теста", "Тест удален, не забудьте сохранить");
-  }
+        if (typeof updated.value === "string") {
+            updated.value = updated.value.split(",");
+        }
 
-  function createTest(): void {
-    tests.value[lastTestKey.value.toString()] = "";
+        if (event.newValue && event.value !== event.newValue) {
+            conditions.value[tableIndex][event.index] = { ...updated };
+        }
+    }
 
-    lastTestKey.value++;
-  }
+    function deleteCondition(indexToDelete: number): void {
+        conditions.value = conditions.value.filter((_: any, index: number) => index !== indexToDelete);
 
-  return {
-    allRecommendations,
-    selectedRecommendation,
-    tests,
-    conditions,
-    selectedCondition,
-    questions,
-    lastTestKey,
-    recomindationDeleteName,
-    recomindationNewName,
-    questionsNames,
-    conditionColumns,
-    conditionIndex,
-    vals,
-    isLoading,
-    getQuestionsData,
-    updateCondition,
-    deleteCondition,
-    createCondition,
-    deleteConditionItem,
-    createConditionItem,
-    getRecommendationsData,
-    createRecommendationData,
-    deleteRecommendationData,
-    updateRecommendationData,
-    deleteTest,
-    createTest,
-  };
+        success("Удаление блока условии", "Блок условии удален, не забудьте сохранить");
+    }
+
+    function createBlockCondition() {
+        conditions.value.push([]);
+    }
+
+    function createConditionItem(index: number): void {
+        conditionIndex.value = index;
+        dialog.open(CreateConditions, {
+            props: {
+                header: "Создание нового условия для блока",
+                style: {
+                    width: "60%"
+                },
+                modal: true
+            }
+        });
+    }
+
+    function deleteConditionItem(tableIndex: number): void {
+        const filteredConditions: any = (conditions.value[tableIndex] as unknown as Condition[]).filter(
+            item => item !== selectedCondition.value
+        );
+
+        conditions.value[tableIndex] = filteredConditions;
+
+        success("Удаление условия", "Условие удалено, не забудьте сохранить");
+    }
+
+    async function createRecommendationData(): Promise<void> {
+        const res = await createRecommendation(recomindationNewName.value);
+        if (res) {
+            allRecommendations.value.push(res.data.data);
+            recomindationNewName.value = "";
+        }
+    }
+
+    async function deleteRecommendationData(): Promise<void> {
+        const foundedObject = allRecommendations.value.find(item => item.attributes.name === recomindationDeleteName.value);
+        const res = await deleteRecommendation(foundedObject?.id!);
+        if (res) {
+            allRecommendations.value = allRecommendations.value.filter(item => item.id !== foundedObject?.id);
+
+            success("Удаление рекоминдации", res.data.message);
+            recomindationDeleteName.value = "";
+            selectedRecommendation.value = null;
+        }
+    }
+
+    async function updateRecommendationData(): Promise<void> {
+        const res = await updateRecommendation(
+            selectedRecommendation.value?.id!,
+            selectedRecommendation.value?.attributes.name!,
+            tests.value,
+            conditions.value
+        );
+
+        if (res) {
+            success("Изменения рекоминдации", "Все изменения сохранены");
+        }
+    }
+
+    function deleteTest(deleteKey: string): void {
+        delete tests.value[deleteKey];
+
+        const keys = Object.keys(tests.value);
+        const sortedKeys = keys.sort((a: any, b: any) => a - b);
+        const newObj: Record<string, string[]> = {};
+
+        for (let i = 0; i < sortedKeys.length; i++) {
+            newObj[i + 1] = tests.value[sortedKeys[i]];
+        }
+
+        tests.value = newObj;
+        const newKeys = Object.keys(tests.value);
+        lastTestKey.value = newKeys[newKeys.length - 1] ? Number(newKeys[newKeys.length - 1]) + 1 : 1;
+
+        success("Удаление теста", "Тест удален, не забудьте сохранить");
+    }
+
+    function createTest(): void {
+        tests.value[lastTestKey.value.toString()] = "";
+
+        lastTestKey.value++;
+    }
+
+    return {
+        allRecommendations,
+        selectedRecommendation,
+        tests,
+        conditions,
+        selectedCondition,
+        questions,
+        lastTestKey,
+        recomindationDeleteName,
+        recomindationNewName,
+        questionsNames,
+        conditionColumns,
+        conditionIndex,
+        vals,
+        isLoading,
+        getQuestionsData,
+        updateCondition,
+        deleteCondition,
+        createBlockCondition,
+        deleteConditionItem,
+        createConditionItem,
+        createRecommendationData,
+        deleteRecommendationData,
+        updateRecommendationData,
+        deleteTest,
+        createTest
+    };
 });

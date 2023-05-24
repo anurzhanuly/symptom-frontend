@@ -1,14 +1,14 @@
 <template>
-  <panel header="Вставьте сюда json с вопросами из survey">
-    <p-textarea
-      v-model="surveyStr"
-      rows="25"
-    />
-    <p-button
-      label="Сохранить"
-      @click="changeSurveyQuestions"
-    />
-  </panel>
+    <panel header="Вставьте сюда json с вопросами из survey">
+        <p-textarea
+            v-model="surveyStr"
+            rows="25"
+        />
+        <p-button
+            label="Сохранить"
+            @click="changeSurveyQuestions"
+        />
+    </panel>
 </template>
 
 <script lang="ts" setup>
@@ -24,38 +24,39 @@ import PButton from "primevue/button";
 const surveyStr = ref("");
 
 async function changeSurveyQuestions(): Promise<void> {
-  if (!surveyStr.value) {
-    return;
-  }
+    if (!surveyStr.value) {
+        return;
+    }
 
-  const surveyJSON: QuestionsContent = JSON.parse(surveyStr.value.split("\n").join(""));
-  const questionsJson = surveyJSON.pages.filter(el => {
-    return el.elements[0].type !== "expression";
-  });
+    const surveyJSON: QuestionsContent = JSON.parse(surveyStr.value.split("\n").join(""));
+    const questionsJson = surveyJSON.pages.filter(el => {
+        return el.elements[0].type !== "expression";
+    });
 
-  const questions = {
-    content: { pages: questionsJson },
-  };
+    const questions = {
+        content: { pages: questionsJson }
+    };
 
-  await changeQuestionsJson(questions);
+    await changeQuestionsJson(questions);
 }
 
 async function changeQuestionsJson(questions: ResQuestions): Promise<AxiosError | AxiosResponse> {
-  try {
-    return await useSymptomApi.post("/questionnaires/new", questions);
-  } catch (error) {
-    console.log(error);
-    return error as AxiosError<Error>;
-  }
+    try {
+        return await useSymptomApi.post("/questionnaires/new", questions);
+    } catch (error) {
+        console.log(error);
+        return error as AxiosError<Error>;
+    }
 }
 </script>
 
 <style scoped>
 .p-inputtext {
-  width: -webkit-fill-available;
+    width: -webkit-fill-available;
 }
+
 .p-button {
-  margin-top: 20px;
-  width: 350px;
+    margin-top: 20px;
+    width: 350px;
 }
 </style>
