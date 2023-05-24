@@ -1,6 +1,9 @@
 <template>
   <panel header="Наименование вопроса в рекомендациях">
-    <input-text v-model="beforeQuestName" placeholder="До" />
+    <input-text
+      v-model="beforeQuestName"
+      placeholder="До"
+    />
     <dropdown
       v-model="afterQuestName"
       :options="questionNameOptions"
@@ -13,7 +16,11 @@
       :empty-filter-message="'Ничего не найдено'"
       :empty-message="'Ничего не найдено'"
     />
-    <p-button label="Изменить" :disabled="!isReadyToChange" @click="confirmChange($event)" />
+    <p-button
+      label="Изменить"
+      :disabled="!isReadyToChange"
+      @click="confirmChange($event)"
+    />
   </panel>
 </template>
 

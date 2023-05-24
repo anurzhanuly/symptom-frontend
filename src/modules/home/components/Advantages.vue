@@ -10,11 +10,14 @@
         <h1>02</h1>
         <p>{{ advantagesInfoSecond }}</p>
       </div>
-      <div></div>
+      <div />
     </div>
 
     <div class="image">
-      <img src="@/assets/phone.png" alt="logo" />
+      <img
+        src="@/assets/phone.png"
+        alt="logo"
+      />
     </div>
   </div>
 </template>

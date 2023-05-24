@@ -16,7 +16,10 @@
         </div>
         <div>
           <h3>Опыт (число)</h3>
-          <input-text v-model="newDoctorExp" type="number" />
+          <input-text
+            v-model="newDoctorExp"
+            type="number"
+          />
         </div>
         <div>
           <h3>Специализация</h3>
@@ -32,7 +35,11 @@
     </div>
 
     <div class="clinic-list-popup-action">
-      <p-button label="Сохранить" class="p-button-success" @click="createDoctor" />
+      <p-button
+        label="Сохранить"
+        class="p-button-success"
+        @click="createDoctor"
+      />
     </div>
   </div>
 </template>

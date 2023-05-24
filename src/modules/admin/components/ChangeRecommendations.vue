@@ -2,20 +2,48 @@
   <panel header="Изменить рекомендации">
     <div class="recommendations">
       <div class="recommendations-list">
-        <listbox v-model="selectedRecommendation" :options="allRecommendations" optionLabel="attributes.name" filter />
+        <listbox
+          v-model="selectedRecommendation"
+          :options="allRecommendations"
+          option-label="attributes.name"
+          filter
+        />
       </div>
-      <div v-if="selectedRecommendation" class="recommendations-tests">
+      <div
+        v-if="selectedRecommendation"
+        class="recommendations-tests"
+      >
         <toolbar>
           <template #start>
-            <p-button label="Добавить тест" @click="adminStore.createTest" />
-            <p-button label="Сохранить изменения" severity="success" @click="updateTest" />
+            <p-button
+              label="Добавить тест"
+              @click="adminStore.createTest"
+            />
+            <p-button
+              label="Сохранить изменения"
+              severity="success"
+              @click="updateTest"
+            />
           </template>
         </toolbar>
-        <panel v-for="(key, _) in Object.keys(tests)" :key="_" :header="key">
+        <panel
+          v-for="(key, _) in Object.keys(tests)"
+          :key="_"
+          :header="key"
+        >
           <template #icons>
-            <p-button label="Удалить тест" severity="danger" raised rounded @click="deleteTestConfirm($event, key)" />
+            <p-button
+              label="Удалить тест"
+              severity="danger"
+              raised
+              rounded
+              @click="deleteTestConfirm($event, key)"
+            />
           </template>
-          <p-textarea v-model="tests[key]" rows="2" />
+          <p-textarea
+            v-model="tests[key]"
+            rows="2"
+          />
         </panel>
       </div>
     </div>

@@ -1,7 +1,10 @@
 <template>
   <div>
     <form class="authorization-form p-fluid">
-      <img src="@/assets/logo-auth.png" alt="Symptom logo" />
+      <img
+        src="@/assets/logo-auth.png"
+        alt="Symptom logo"
+      />
       <div>
         <h4>Имя <span>*</span></h4>
         <inline-message v-if="!isFirstName">Поле 'Имя' обязательно для заполнено</inline-message>
@@ -27,15 +30,24 @@
       <div>
         <h4>Пароль <span>*</span></h4>
         <inline-message v-if="!isPassword">Поле 'Пароль' обязательно для заполнения</inline-message>
-        <p-password v-model="password" toggle-mask />
+        <p-password
+          v-model="password"
+          toggle-mask
+        />
       </div>
       <div>
         <h4>Подтверждение пароля <span>*</span></h4>
         <inline-message v-if="!isConfirmPassword">Пароли не совпадают!</inline-message>
-        <p-password v-model="passwordConfirm" :feedback="false" />
+        <p-password
+          v-model="passwordConfirm"
+          :feedback="false"
+        />
       </div>
 
-      <p-button label="Зарегистрироваться" @click="clientRegistration" />
+      <p-button
+        label="Зарегистрироваться"
+        @click="clientRegistration"
+      />
     </form>
   </div>
 </template>

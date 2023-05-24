@@ -1,6 +1,9 @@
 <template>
   <section>
-    <progress-bar v-if="isLoading" mode="indeterminate"></progress-bar>
+    <progress-bar
+      v-if="isLoading"
+      mode="indeterminate"
+    />
     <base-header v-if="isButtonsVisible" />
     <result-patient-card />
     <result-recomindation />

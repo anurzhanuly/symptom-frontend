@@ -27,7 +27,10 @@
             <divider layout="vertical" />
 
             <div>
-              <p-button label="Результаты в PDF" outlined />
+              <p-button
+                label="Результаты в PDF"
+                outlined
+              />
             </div>
           </div>
         </template>
@@ -35,9 +38,15 @@
     </div>
 
     <div class="result-patient-answer">
-      <panel header="Ответы пациента" toggleable>
+      <panel
+        header="Ответы пациента"
+        toggleable
+      >
         <ul>
-          <li v-for="(answer, question) in patientAnswer" :key="question">
+          <li
+            v-for="(answer, question) in patientAnswer"
+            :key="question"
+          >
             <strong>{{ question }}</strong> {{ answer[0] }}
           </li>
         </ul>
@@ -45,9 +54,15 @@
     </div>
 
     <div class="result-recommendations">
-      <panel header="Рекомендации" toggleable>
+      <panel
+        header="Рекомендации"
+        toggleable
+      >
         <ul>
-          <li v-for="(recommendation, index) in recommendations" :key="index">
+          <li
+            v-for="(recommendation, index) in recommendations"
+            :key="index"
+          >
             <strong>{{ index + 1 }}:</strong> {{ recommendation }}
           </li>
         </ul>

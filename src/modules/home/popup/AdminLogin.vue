@@ -2,11 +2,18 @@
   <div class="popup">
     <div>
       <h3>Логин</h3>
-      <input-text v-model="login" style="width: 100%" />
+      <input-text
+        v-model="login"
+        style="width: 100%"
+      />
     </div>
     <div>
       <h3>Пароль</h3>
-      <input-text v-model="password" type="password" style="width: 100%" />
+      <input-text
+        v-model="password"
+        type="password"
+        style="width: 100%"
+      />
     </div>
     <p-button
       label="Ввести"

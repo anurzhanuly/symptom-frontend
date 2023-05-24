@@ -22,38 +22,66 @@
           </ul>
 
           <div class="agreement-check">
-            <checkbox v-model="isUse" :binary="true" />
+            <checkbox
+              v-model="isUse"
+              :binary="true"
+            />
             <span>Я прочитал(а) и принимаю <strong @click="termsOfUse = true">Условия использования.</strong></span>
-            <inline-message v-if="isNotUse" severity="error">Примите Условия использования.</inline-message>
+            <inline-message
+              v-if="isNotUse"
+              severity="error"
+            >
+              Примите Условия использования.
+            </inline-message>
             <br />
 
-            <checkbox v-model="isProvicy" :binary="true" />
-            <span
-              >Я соглашаюсь на использование информации о моем здоровье для прохождения опроса. Полная информация
-              доступна в <strong @click="privacyPolicy = true">Политика конфиденциальности.</strong></span
+            <checkbox
+              v-model="isProvicy"
+              :binary="true"
+            />
+            <span>Я соглашаюсь на использование информации о моем здоровье для прохождения опроса. Полная информация
+              доступна в <strong @click="privacyPolicy = true">Политика конфиденциальности.</strong></span>
+            <inline-message
+              v-if="isNotPrivacy"
+              severity="error"
             >
-            <inline-message v-if="isNotPrivacy" severity="error"
-              >Пожалуйста, согласитесь с Политикой конфиденциальности и обработкой информации о ваших персональных
-              медицинских данных.</inline-message
-            >
+              Пожалуйста, согласитесь с Политикой конфиденциальности и обработкой информации о ваших персональных
+              медицинских данных.
+            </inline-message>
           </div>
 
-          <p-button label="Начать опрос" @click="checkAgreement" />
+          <p-button
+            label="Начать опрос"
+            @click="checkAgreement"
+          />
         </template>
       </card>
     </div>
   </authorization>
 
-  <sidebar v-model:visible="termsOfUse" position="right" style="width: 60%">
+  <sidebar
+    v-model:visible="termsOfUse"
+    position="right"
+    style="width: 60%"
+  >
     <h1>Условия использования</h1>
     <ol>
-      <li v-for="rule in TERMS_OF_USE" :key="rule.title">
+      <li
+        v-for="rule in TERMS_OF_USE"
+        :key="rule.title"
+      >
         <strong>{{ rule.title }}</strong>
         <ol>
-          <li v-for="subRule in rule.subRules" :key="subRule?.title">
+          <li
+            v-for="subRule in rule.subRules"
+            :key="subRule?.title"
+          >
             &ensp;{{ subRule?.title }}
             <ol>
-              <li v-for="nestedSubRule in subRule?.subRules" :key="nestedSubRule?.title">
+              <li
+                v-for="nestedSubRule in subRule?.subRules"
+                :key="nestedSubRule?.title"
+              >
                 &ensp;&ensp;{{ nestedSubRule?.title }}
               </li>
             </ol>
@@ -63,16 +91,29 @@
     </ol>
   </sidebar>
 
-  <sidebar v-model:visible="privacyPolicy" position="right" style="width: 60%">
+  <sidebar
+    v-model:visible="privacyPolicy"
+    position="right"
+    style="width: 60%"
+  >
     <h1>Политика в отношении обработки персональных данных</h1>
     <ol>
-      <li v-for="rule in PRIVACY_POLICY" :key="rule.title">
+      <li
+        v-for="rule in PRIVACY_POLICY"
+        :key="rule.title"
+      >
         <strong>{{ rule.title }}</strong>
         <ol>
-          <li v-for="subRule in rule.subRules" :key="subRule?.title">
+          <li
+            v-for="subRule in rule.subRules"
+            :key="subRule?.title"
+          >
             &ensp;<strong>{{ subRule?.title }}</strong>
             <ol>
-              <li v-for="nestedSubRule in subRule?.subRules" :key="nestedSubRule?.title">
+              <li
+                v-for="nestedSubRule in subRule?.subRules"
+                :key="nestedSubRule?.title"
+              >
                 &ensp;&ensp;{{ nestedSubRule?.title }}
               </li>
             </ol>

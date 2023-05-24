@@ -4,8 +4,14 @@
       <h1>Какие проблемы решает Symptom</h1>
     </div>
     <div class="solution">
-      <div v-for="solution in solutions" class="solutions">
-        <img :src="getImageUrl(solution.img)" alt="logo" />
+      <div
+        v-for="solution in solutions"
+        class="solutions"
+      >
+        <img
+          :src="getImageUrl(solution.img)"
+          alt="logo"
+        />
         <p>{{ solution.info }}</p>
       </div>
     </div>

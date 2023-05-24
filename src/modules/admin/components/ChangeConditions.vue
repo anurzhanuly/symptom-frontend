@@ -2,7 +2,12 @@
   <panel header="Изменить условия рекомендаций">
     <div class="conditions">
       <div class="conditions-list">
-        <listbox v-model="selectedRecommendation" :options="allRecommendations" filter optionLabel="attributes.name" />
+        <listbox
+          v-model="selectedRecommendation"
+          :options="allRecommendations"
+          filter
+          option-label="attributes.name"
+        />
         <panel>
           <div class="recommendations-block">
             <div>
@@ -28,10 +33,17 @@
           </div>
         </panel>
       </div>
-      <div v-if="selectedRecommendation" class="conditions-actions">
+      <div
+        v-if="selectedRecommendation"
+        class="conditions-actions"
+      >
         <toolbar>
           <template #start>
-            <p-button label="Добавить новый блок" raised @click="adminStore.createCondition" />
+            <p-button
+              label="Добавить новый блок"
+              raised
+              @click="adminStore.createCondition"
+            />
             <p-button
               label="Сохранить изменения"
               severity="success"
@@ -61,55 +73,69 @@
               @click="adminStore.createConditionItem(index)"
             />
           </template>
-
-          <data-table
-            v-model:selection="selectedCondition"
-            selection-mode="single"
-            :value="condition"
-            show-gridlines
-            edit-mode="cell"
-            @cell-edit-complete="adminStore.updateCondition($event, index)"
-          >
-            <column v-for="(column, idx) in conditionColumns" :key="idx" :header="column.header" :field="column.field">
-              <template #editor="{ data, field }">
-                <div v-if="column.field === 'value'">
-                  <p-multi-select
-                    v-if="checkOptions(data.questionName)"
+          <block-u-i :blocked="isLoading">
+            <data-table
+              v-model:selection="selectedCondition"
+              selection-mode="single"
+              :value="condition"
+              show-gridlines
+              edit-mode="cell"
+              @cell-edit-complete="adminStore.updateCondition($event, index)"
+            >
+              <column
+                v-for="(column, idx) in conditionColumns"
+                :key="idx"
+                :header="column.header"
+                :field="column.field"
+              >
+                <template #editor="{ data, field }">
+                  <div v-if="column.field === 'value'">
+                    <p-multi-select
+                      v-if="checkOptions(data.questionName)"
+                      v-model="data[field]"
+                      :options="checkOptions(data.questionName)"
+                      placeholder="Выберите..."
+                      filter-placeholder="Поиск"
+                      filter
+                      lazy
+                      :empty-filter-message="'Ничего не найдено'"
+                      :empty-message="'Ничего не найдено'"
+                    />
+                    <p-textarea
+                      v-else
+                      v-model="data[field]"
+                      style="width: 100%"
+                    />
+                  </div>
+                  <p-button
+                    v-else-if="column.header === 'Удаление'"
+                    icon="pi pi-times"
+                    severity="danger"
+                    @click="adminStore.deleteConditionItem(index)"
+                  />
+                  <dropdown
+                    v-else-if="column.hasDropdown"
                     v-model="data[field]"
-                    :options="checkOptions(data.questionName)"
+                    :options="column?.options"
+                    option-value="value"
+                    option-label="value"
                     placeholder="Выберите..."
                     filter-placeholder="Поиск"
-                    filter
                     lazy
+                    filter
                     :empty-filter-message="'Ничего не найдено'"
                     :empty-message="'Ничего не найдено'"
+                    @change="field === 'questionName' ? (data.value = '') : null"
                   />
-                  <p-textarea v-else v-model="data[field]" style="width: 100%" />
-                </div>
-                <p-button
-                  v-else-if="column.header === 'Удаление'"
-                  icon="pi pi-times"
-                  severity="danger"
-                  @click="adminStore.deleteConditionItem(index)"
-                />
-                <dropdown
-                  v-else-if="column.hasDropdown"
-                  v-model="data[field]"
-                  :options="column?.options"
-                  option-value="value"
-                  option-label="value"
-                  placeholder="Выберите..."
-                  filter-placeholder="Поиск"
-                  lazy
-                  filter
-                  :empty-filter-message="'Ничего не найдено'"
-                  :empty-message="'Ничего не найдено'"
-                  @change="field === 'questionName' ? (data.value = '') : null"
-                />
-                <input-text v-else v-model="data[field]" style="width: 100%" />
-              </template>
-            </column>
-          </data-table>
+                  <input-text
+                    v-else
+                    v-model="data[field]"
+                    style="width: 100%"
+                  />
+                </template>
+              </column>
+            </data-table>
+          </block-u-i>
         </panel>
       </div>
     </div>
@@ -132,6 +158,7 @@ import Dropdown from "primevue/dropdown";
 import Listbox from "primevue/listbox";
 import Toolbar from "primevue/toolbar";
 import Panel from "primevue/panel";
+import BlockUI from 'primevue/blockui';
 
 const adminStore = useAdminStore();
 const confirm = useConfirm();
@@ -143,21 +170,20 @@ const {
   selectedCondition,
   recomindationDeleteName,
   recomindationNewName,
-  questions,
   vals,
+  isLoading,
 } = storeToRefs(adminStore);
 
 const conditionColumns = computed(() => adminStore.conditionColumns || []);
 
 function checkOptions(name: string) {
   const options = vals.value.filter(item => item.title === name);
-  console.log("checkOptions  options:", options);
 
   if (options.length && options[0].choices) {
     return options[0].choices;
-  } else {
-    return false;
   }
+
+  return;
 }
 
 function deleteConditionConfirm(event: any, index: number): void {
@@ -178,16 +204,6 @@ function deleteConditionConfirm(event: any, index: number): void {
   flex-direction: row;
 }
 
-.new-record-button {
-  margin-bottom: 20px;
-}
-
-.condition-buttons {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
 .conditions-list {
   width: 15%;
 }
@@ -197,15 +213,6 @@ function deleteConditionConfirm(event: any, index: number): void {
   margin-left: 10px;
 }
 
-.conditions-actions .p-button {
-  margin-left: 10px;
-}
-
-.p-card {
-  width: 27%;
-  margin-top: 15px;
-}
-
 .recommendations-block {
   display: flex;
   flex-direction: column;
@@ -213,14 +220,5 @@ function deleteConditionConfirm(event: any, index: number): void {
 
 .recommendations-block div:first-child {
   margin-bottom: 15px;
-}
-
-.recommendations-block .p-button {
-  width: 100%;
-}
-
-.recommendations-block .p-inputtext {
-  width: 100%;
-  margin-bottom: 5px;
 }
 </style>

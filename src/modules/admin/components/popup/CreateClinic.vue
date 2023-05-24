@@ -24,7 +24,11 @@
     </div>
 
     <div class="clinic-list-popup-action">
-      <p-button label="Сохранить" class="p-button-success" @click="createClinic" />
+      <p-button
+        label="Сохранить"
+        class="p-button-success"
+        @click="createClinic"
+      />
     </div>
   </div>
 </template>

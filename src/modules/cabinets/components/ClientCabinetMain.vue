@@ -20,15 +20,25 @@
           <div>
             <span class="p-input-icon-left">
               <i class="pi pi-search" />
-              <input-text v-model="searchString" placeholder="Поиск" />
+              <input-text
+                v-model="searchString"
+                placeholder="Поиск"
+              />
             </span>
           </div>
         </div>
       </template>
-      <column header="Дата опроса" field="attributes.name" />
+      <column
+        header="Дата опроса"
+        field="attributes.name"
+      />
       <column style="width: 7%">
         <template #body="slotProps">
-          <p-button icon="pi pi-credit-card" class="p-button-text" @click="checkResult(slotProps.data.id)" />
+          <p-button
+            icon="pi pi-credit-card"
+            class="p-button-text"
+            @click="checkResult(slotProps.data.id)"
+          />
         </template>
       </column>
     </data-table>
