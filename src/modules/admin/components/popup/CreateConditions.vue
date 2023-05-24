@@ -88,7 +88,7 @@ const valueOptions = ref<Record<string, string>[]>([]);
 const isValueHasChoices = ref(false);
 const conditionValue = ref("");
 
-const { conditions, conditionIndex, questions, vals } = storeToRefs(adminStore);
+const { conditions, conditionIndex, vals } = storeToRefs(adminStore);
 
 const conditionColumns = computed(() => adminStore.conditionColumns);
 const newRecord = ref(createPopupFields(conditionColumns.value.filter(el => el.header !== "Удаление")));
@@ -131,7 +131,7 @@ const createCondition = () => {
     res.type = question.type;
     res.value = isValueHasChoices.value ? res.value : conditionValue.value.split(",");
 
-    conditions.value[conditionIndex.value].push(res);
+    conditions.value[conditionIndex.value] = { ...conditions.value[conditionIndex.value], ...res };
     success("Успешно", "Условие создано, не забудьте сохранить");
     dialogRef.value.close();
   }
