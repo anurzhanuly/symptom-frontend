@@ -46,7 +46,7 @@
 
 <script lang="ts" setup>
 import { useClinicsStore } from "../../stores/clinics.store";
-import { ref, inject } from "vue";
+import { inject, ref } from "vue";
 
 import PButton from "primevue/button";
 import Dropdown from "primevue/dropdown";
@@ -65,50 +65,50 @@ const changeDoctorspecId = ref<string>("");
 const changeDoctorExp = ref<string>("");
 
 async function changeDoctor(): Promise<void> {
-  // if (
-  //   validateDoctor(
-  //     changeDoctorFirstName.value,
-  //     changeDoctorLastName.value,
-  //     changeDoctorExp.value,
-  //     changeDoctorspecId.value,
-  //   )
-  // ) {
-  //   const res = await clinicStore.changeDoctorData(selectedDoctor.value?.id!, {
-  //     first_name: changeDoctorFirstName.value,
-  //     last_name: changeDoctorLastName.value,
-  //     middle_name: changeDoctorMidName.value,
-  //     experience: changeDoctorExp.value,
-  //     specialization_id: changeDoctorspecId.value,
-  //   });
-  //   if (res === 200) {
-  //     success("Успешно", `Врач изменен`);
-  //     dialogRef.value.close();
-  //   }
-  // }
+    // if (
+    //   validateDoctor(
+    //     changeDoctorFirstName.value,
+    //     changeDoctorLastName.value,
+    //     changeDoctorExp.value,
+    //     changeDoctorspecId.value,
+    //   )
+    // ) {
+    //   const res = await clinicStore.changeDoctorData(selectedDoctor.value?.id!, {
+    //     first_name: changeDoctorFirstName.value,
+    //     last_name: changeDoctorLastName.value,
+    //     middle_name: changeDoctorMidName.value,
+    //     experience: changeDoctorExp.value,
+    //     specialization_id: changeDoctorspecId.value,
+    //   });
+    //   if (res === 200) {
+    //     success("Успешно", `Врач изменен`);
+    //     dialogRef.value.close();
+    //   }
+    // }
 }
 </script>
 
 <style scoped>
 .clinic-list-popup {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
 }
 
 .clinic-list-popup-form {
-  width: 60%;
+    width: 60%;
 }
 
 .clinic-list-popup-form > div {
-  margin: 15px 0;
+    margin: 15px 0;
 }
 
 .clinic-list-popup-action {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .clinic-list-popup-action .p-button {
-  width: 315px;
+    width: 315px;
 }
 </style>

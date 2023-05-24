@@ -33,6 +33,6 @@ const { pationsCard, isResultVisible } = storeToRefs(surveyStore);
 
 <style scoped>
 .p-panel {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 </style>

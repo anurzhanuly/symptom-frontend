@@ -37,71 +37,71 @@ const homeStore = useHomeStore();
 const { isDoctor, links } = storeToRefs(homeStore);
 
 const label = computed(() => {
-  return isDoctor.value ? "Для пациента" : "Для врача";
+    return isDoctor.value ? "Для пациента" : "Для врача";
 });
 </script>
 
 <style scoped>
 .header-container {
-  display: flex;
-  justify-content: space-between;
-  height: 80px;
-  align-items: center;
-  padding: 20px 190px;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    align-items: center;
+    padding: 20px 190px;
 }
 
 .dynamic-button {
-  font-size: 18px;
-  color: #276ef1;
-  border-bottom: 1px solid #276ef1;
-  cursor: pointer;
+    font-size: 18px;
+    color: #276ef1;
+    border-bottom: 1px solid #276ef1;
+    cursor: pointer;
 }
 
 .static-buttons {
-  color: #1f1534;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 16px;
-  opacity: 0.5;
+    color: #1f1534;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    opacity: 0.5;
 }
 
 .header-image {
-  width: 250px;
+    width: 250px;
 }
 
 @media (max-width: 1350px) {
-  .static-buttons {
-    display: none;
-  }
+    .static-buttons {
+        display: none;
+    }
 
-  .header-image {
-    width: 200px;
-  }
+    .header-image {
+        width: 200px;
+    }
 }
 
 @media (max-width: 860px) {
-  .header-container {
-    padding: 20px 60px;
-  }
+    .header-container {
+        padding: 20px 60px;
+    }
 }
 
 @media (max-width: 490px) {
-  .header-container {
-    padding: 20px 15px;
-  }
+    .header-container {
+        padding: 20px 15px;
+    }
 
-  .header-image {
-    width: 180px;
-  }
+    .header-image {
+        width: 180px;
+    }
 
-  .dynamic-button {
-    font-size: 16px;
-  }
+    .dynamic-button {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 400px) {
-  .header-image {
-    width: 150px;
-  }
+    .header-image {
+        width: 150px;
+    }
 }
 </style>

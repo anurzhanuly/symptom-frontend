@@ -58,26 +58,26 @@ import Column from "primevue/column";
 const cabinetsStore = useCabinetsStore();
 
 onMounted(() => {
-  if (!myConsultation.value.length) {
-    cabinetsStore.getClientConsultationsData();
-  }
+    if (!myConsultation.value.length) {
+        cabinetsStore.getClientConsultationsData();
+    }
 });
 
 const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);
 
 function checkResult(Id: string) {
-  cabinetsStore.getClientResultData(Id);
+    cabinetsStore.getClientResultData(Id);
 }
 </script>
 
 <style scoped>
 .request-table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .request-table-header .p-inputtext {
-  margin-right: 5px;
+    margin-right: 5px;
 }
 </style>

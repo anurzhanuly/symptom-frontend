@@ -16,30 +16,30 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 onMounted(() => {
-  const router = useRouter();
-  router.push("/client-cabinet/main");
+    const router = useRouter();
+    router.push("/client-cabinet/main");
 });
 
 const clientViews = ref([
-  {
-    label: "Главная",
-    icon: "pi pi-fw pi-book",
-    to: "/client-cabinet/main",
-  },
-  {
-    label: "Настройки",
-    icon: "pi pi-fw pi-exclamation-circle",
-    to: "/client-cabinet/settings",
-  },
+    {
+        label: "Главная",
+        icon: "pi pi-fw pi-book",
+        to: "/client-cabinet/main"
+    },
+    {
+        label: "Настройки",
+        icon: "pi pi-fw pi-exclamation-circle",
+        to: "/client-cabinet/settings"
+    }
 ]);
 </script>
 
 <style scoped>
 .client-cabinet {
-  display: flex;
+    display: flex;
 }
 
 .client-view {
-  width: -webkit-fill-available;
+    width: -webkit-fill-available;
 }
 </style>

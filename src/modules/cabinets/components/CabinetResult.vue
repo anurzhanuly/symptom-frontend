@@ -19,7 +19,10 @@
             <divider layout="vertical" />
 
             <div>
-              <h3>Пациент: {{ patientResult?.attributes.firstName }} {{ patientResult?.attributes.lastName }}</h3>
+              <h3>
+                Пациент: {{ patientResult?.attributes.firstName }} {{ patientResult?.attributes.lastName
+                }}
+              </h3>
 
               <p>Номер телефона: {{ patientResult?.attributes.phone }}</p>
             </div>
@@ -87,26 +90,26 @@ const { patientResult, doctorResult, patientAnswer, recommendations } = storeToR
 
 <style scoped>
 .result {
-  padding: 15px;
+    padding: 15px;
 }
 
 .result-card p {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .result-card-content {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .result-recommendations,
 .result-patient-answer {
-  margin-top: 7px;
+    margin-top: 7px;
 }
 
 .result-recommendations li,
 .result-patient-answer li {
-  margin-top: 3px;
+    margin-top: 3px;
 }
 </style>

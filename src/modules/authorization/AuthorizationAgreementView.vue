@@ -5,13 +5,15 @@
         <template #header>
           <img src="@/assets/logo.png" />
         </template>
-        <template #title> <h3>Условия использования</h3> </template>
+        <template #title><h3>Условия использования</h3></template>
         <template #content>
           <p>Дорогой пациент!</p>
           <ul>
             <li>
-              <strong> Данный опрос и результаты не является диагностикой, лечением и заменой врача. </strong>
-              Оно предназначено исключительно для общего сведения и не является квалифицированным медицинским
+              <strong> Данный опрос и результаты не является диагностикой, лечением и заменой
+                врача. </strong>
+              Оно предназначено исключительно для общего сведения и не является квалифицированным
+              медицинским
               заключением.
             </li>
             <li>
@@ -26,7 +28,9 @@
               v-model="isUse"
               :binary="true"
             />
-            <span>Я прочитал(а) и принимаю <strong @click="termsOfUse = true">Условия использования.</strong></span>
+            <span>Я прочитал(а) и принимаю <strong
+              @click="termsOfUse = true"
+            >Условия использования.</strong></span>
             <inline-message
               v-if="isNotUse"
               severity="error"
@@ -45,7 +49,8 @@
               v-if="isNotPrivacy"
               severity="error"
             >
-              Пожалуйста, согласитесь с Политикой конфиденциальности и обработкой информации о ваших персональных
+              Пожалуйста, согласитесь с Политикой конфиденциальности и обработкой информации о ваших
+              персональных
               медицинских данных.
             </inline-message>
           </div>
@@ -126,7 +131,7 @@
 
 <script setup lang="ts">
 import Authorization from "./components/Authorization.vue";
-import { TERMS_OF_USE, PRIVACY_POLICY } from "@/utils/agreement";
+import { PRIVACY_POLICY, TERMS_OF_USE } from "@/utils/agreement";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 
@@ -146,52 +151,53 @@ const termsOfUse = ref(false);
 const privacyPolicy = ref(false);
 
 function checkAgreement(): void {
-  if (!isUse.value && !isProvicy.value) {
-    isNotUse.value = true;
-    isNotPrivacy.value = true;
-    return;
-  }
+    if (!isUse.value && !isProvicy.value) {
+        isNotUse.value = true;
+        isNotPrivacy.value = true;
+        return;
+    }
 
-  if (!isUse.value) {
-    isNotUse.value = true;
-    return;
-  }
+    if (!isUse.value) {
+        isNotUse.value = true;
+        return;
+    }
 
-  if (!isProvicy.value) {
-    isNotPrivacy.value = true;
-    return;
-  }
+    if (!isProvicy.value) {
+        isNotPrivacy.value = true;
+        return;
+    }
 
-  router.push("survey");
+    router.push("survey");
 }
 </script>
 
 <style scoped>
 .agreement {
-  padding: 15px;
+    padding: 15px;
 }
+
 .agreement p,
 .agreement li {
-  margin-top: 8px;
+    margin-top: 8px;
 }
 
 .agreement-check .p-checkbox {
-  margin-right: 5px;
-  margin-top: 12px;
+    margin-right: 5px;
+    margin-top: 12px;
 }
 
 .agreement-check strong {
-  color: #1769aa;
-  cursor: pointer;
+    color: #1769aa;
+    cursor: pointer;
 }
 
 .p-button {
-  margin-top: 12px;
-  width: 100%;
+    margin-top: 12px;
+    width: 100%;
 }
 
 .p-card-header img {
-  width: 80%;
-  padding: 8% 2%;
+    width: 80%;
+    padding: 8% 2%;
 }
 </style>

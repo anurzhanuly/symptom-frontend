@@ -47,47 +47,47 @@ const password = ref("");
 const email = ref("");
 
 function checkDoctor(): void {
-  if (validateLogin(email.value, password.value)) {
-    authorizationStore.postLoginDoctor(email.value, password.value);
-  }
+    if (validateLogin(email.value, password.value)) {
+        authorizationStore.postLoginDoctor(email.value, password.value);
+    }
 }
 </script>
 
 <style scoped>
 .authorization-doctor {
-  padding: 32%;
+    padding: 32%;
 }
 
 .authorization-form span {
-  color: #d0312d;
+    color: #d0312d;
 }
 
 .authorization-form img {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .authorization-form h4 {
-  color: #3f3f3f;
-  font-weight: 400;
-  margin-top: 8px;
+    color: #3f3f3f;
+    font-weight: 400;
+    margin-top: 8px;
 }
 
 .authorization-form .p-inputtext {
-  width: 100%;
-  margin-top: 8px;
+    width: 100%;
+    margin-top: 8px;
 }
 
 .authorization-form .p-button {
-  margin-top: 15px;
-  height: 45px;
-  font-weight: 600;
-  border-radius: 5px;
-  width: 100%;
+    margin-top: 15px;
+    height: 45px;
+    font-weight: 600;
+    border-radius: 5px;
+    width: 100%;
 }
 
 @media only screen and (max-width: 750px) {
-  .authorization-doctor {
-    padding: 10%;
-  }
+    .authorization-doctor {
+        padding: 10%;
+    }
 }
 </style>

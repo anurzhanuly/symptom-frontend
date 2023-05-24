@@ -148,68 +148,68 @@ const dialog = useDialog();
 const { clinics, doctors, selectedClinic, selectedDoctor } = storeToRefs(clinicsStore);
 
 onMounted(() => {
-  clinicsStore.getCitiesData();
-  clinicsStore.getSpecializationsData();
+    clinicsStore.getCitiesData();
+    clinicsStore.getSpecializationsData();
 });
 
 function createClinic(): void {
-  dialog.open(CreateClinic, {
-    props: {
-      header: "Добавление новой клиники",
-      style: {
-        width: "30%",
-      },
-      modal: true,
-    },
-  });
+    dialog.open(CreateClinic, {
+        props: {
+            header: "Добавление новой клиники",
+            style: {
+                width: "30%"
+            },
+            modal: true
+        }
+    });
 }
 
 function createDoctor(): void {
-  dialog.open(CreateDoctor, {
-    props: {
-      header: "Добавление нового врача",
-      style: {
-        width: "30%",
-      },
-      modal: true,
-    },
-  });
+    dialog.open(CreateDoctor, {
+        props: {
+            header: "Добавление нового врача",
+            style: {
+                width: "30%"
+            },
+            modal: true
+        }
+    });
 }
 
 function changeClinic(data: Clinics): void {
-  selectedClinic.value = data;
-  dialog.open(ChangeClinic, {
-    props: {
-      header: "Изменение клинки",
-      style: {
-        width: "30%",
-      },
-      modal: true,
-    },
-  });
+    selectedClinic.value = data;
+    dialog.open(ChangeClinic, {
+        props: {
+            header: "Изменение клинки",
+            style: {
+                width: "30%"
+            },
+            modal: true
+        }
+    });
 }
 
 function changeDoctor(data: Doctors): void {
-  selectedDoctor.value = data;
-  dialog.open(ChangeDoctor, {
-    props: {
-      header: "Изменение врача",
-      style: {
-        width: "30%",
-      },
-      modal: true,
-    },
-  });
+    selectedDoctor.value = data;
+    dialog.open(ChangeDoctor, {
+        props: {
+            header: "Изменение врача",
+            style: {
+                width: "30%"
+            },
+            modal: true
+        }
+    });
 }
 </script>
 
 <style scoped>
 .clinics-list-table-header {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .clinics-list-table-header .p-button {
-  margin-left: 5px;
+    margin-left: 5px;
 }
 </style>

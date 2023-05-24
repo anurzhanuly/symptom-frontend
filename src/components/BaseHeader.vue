@@ -21,12 +21,12 @@ import PButton from "primevue/button";
 
 <style scoped>
 .base-header {
-  border-bottom: 1px solid #cacaca;
+    border-bottom: 1px solid #cacaca;
 }
 
 .base-header-content {
-  display: flex;
-  justify-content: space-between;
-  margin: 15px 15px;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 15px;
 }
 </style>

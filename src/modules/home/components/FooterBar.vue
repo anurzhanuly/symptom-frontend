@@ -48,83 +48,83 @@ const homeStore = useHomeStore();
 const { links } = storeToRefs(homeStore);
 
 function openAdminLoginPopup(): void {
-  dialog.open(AdminLogin, {
-    props: {
-      header: "Введите логин и пароль",
-      style: {
-        width: "25%",
-      },
-      modal: true,
-    },
-  });
+    dialog.open(AdminLogin, {
+        props: {
+            header: "Введите логин и пароль",
+            style: {
+                width: "25%"
+            },
+            modal: true
+        }
+    });
 }
 </script>
 
 <style scoped>
 .footer {
-  background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
-  padding: 25px 0;
+    background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
+    padding: 25px 0;
 }
 
 .footer-symptom,
 .footer-icons,
 .footer-reserved {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-symptom h2 {
-  font-size: 33px;
-  color: #000000;
-  letter-spacing: 2.5px;
+    font-size: 33px;
+    color: #000000;
+    letter-spacing: 2.5px;
 }
 
 .footer-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
 }
 
 .footer-info p {
-  font-weight: 500;
-  font-size: 18px;
-  color: #000000;
-  padding: 0 15px;
+    font-weight: 500;
+    font-size: 18px;
+    color: #000000;
+    padding: 0 15px;
 }
 
 .footer-icons {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .footer-icons i {
-  font-size: 1.5rem;
-  margin: 0 10px;
-  color: #ffffff;
-  background-color: #276ef1;
-  border-radius: 5px;
-  padding: 8px;
-  cursor: pointer;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    color: #ffffff;
+    background-color: #276ef1;
+    border-radius: 5px;
+    padding: 8px;
+    cursor: pointer;
 }
 
 .footer-reserved h2 {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 24px;
-  color: #000000;
-  margin-top: 15px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    margin-top: 15px;
 }
 
 @media (max-width: 550px) {
-  .footer-info {
-    display: none;
-  }
+    .footer-info {
+        display: none;
+    }
 }
 
 @media (max-width: 400px) {
-  .footer-reserved h2 {
-    font-size: 14px;
-  }
+    .footer-reserved h2 {
+        font-size: 14px;
+    }
 }
 </style>

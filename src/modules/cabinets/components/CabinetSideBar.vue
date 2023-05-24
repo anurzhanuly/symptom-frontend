@@ -26,38 +26,38 @@ import { ref } from "vue";
 
 const selectedPage = ref<any>("Главная");
 const props = defineProps({
-  views: Object,
+    views: Object
 });
 </script>
 
 <style scoped>
 .pages-nav {
-  height: max-content;
-  width: 280px;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
+    height: max-content;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
 }
 
 .hidden {
-  visibility: hidden;
-  position: absolute;
-  right: 0;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .label {
-  display: block;
-  margin-top: 1px;
-  padding: 14px;
-  font-weight: 400;
-  cursor: pointer;
+    display: block;
+    margin-top: 1px;
+    padding: 14px;
+    font-weight: 400;
+    cursor: pointer;
 }
 
 .selected {
-  background: #eef5fb;
-  border-right: 3px solid #276ef1;
+    background: #eef5fb;
+    border-right: 3px solid #276ef1;
 }
 </style>

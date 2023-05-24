@@ -56,25 +56,25 @@ import Column from "primevue/column";
 const cabinetsStore = useCabinetsStore();
 
 onMounted(() => {
-  // TODO: Сделать рефакторинг
-  cabinetsStore.getDoctorConsultationsData();
+    // TODO: Сделать рефакторинг
+    cabinetsStore.getDoctorConsultationsData();
 });
 
 const { myConsultation, filters, searchString } = storeToRefs(cabinetsStore);
 
 function checkResult(Id: string) {
-  cabinetsStore.getDoctorResultData(Id);
+    cabinetsStore.getDoctorResultData(Id);
 }
 </script>
 
 <style scoped>
 .request-table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .request-table-header .p-inputtext {
-  margin-right: 5px;
+    margin-right: 5px;
 }
 </style>

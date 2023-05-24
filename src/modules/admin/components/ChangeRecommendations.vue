@@ -67,63 +67,63 @@ const adminStore = useAdminStore();
 const { selectedRecommendation, allRecommendations, tests } = storeToRefs(adminStore);
 
 function updateTest(): void {
-  let isEmpty = false;
+    let isEmpty = false;
 
-  for (const key in tests.value) {
-    if (!tests.value[key][0]) {
-      isEmpty = true;
+    for (const key in tests.value) {
+        if (!tests.value[key][0]) {
+            isEmpty = true;
+        }
+
+        if (typeof tests.value[key] === "string") {
+            tests.value[key] = [`${tests.value[key]}`];
+        }
+
+        if (isEmpty) {
+            warn("Пустое поле", "У вас есть пустое поле в рекоминдациях удалите его или добавьте описание");
+            return;
+        }
     }
 
-    if (typeof tests.value[key] === "string") {
-      tests.value[key] = [`${tests.value[key]}`];
-    }
-
-    if (isEmpty) {
-      warn("Пустое поле", "У вас есть пустое поле в рекоминдациях удалите его или добавьте описание");
-      return;
-    }
-  }
-
-  adminStore.updateRecommendationData();
+    adminStore.updateRecommendationData();
 }
 
 function deleteTestConfirm(event: any, key: string): void {
-  confirm.require({
-    target: event.currentTarget,
-    message: "Вы уверены?",
-    acceptLabel: "Да",
-    rejectLabel: "Нет",
-    icon: "pi pi-exclamation-triangle",
-    accept: () => adminStore.deleteTest(key),
-  });
+    confirm.require({
+        target: event.currentTarget,
+        message: "Вы уверены?",
+        acceptLabel: "Да",
+        rejectLabel: "Нет",
+        icon: "pi pi-exclamation-triangle",
+        accept: () => adminStore.deleteTest(key)
+    });
 }
 </script>
 
 <style scoped>
 .p-inputtextarea {
-  margin-top: 10px;
-  width: 100%;
+    margin-top: 10px;
+    width: 100%;
 }
 
 .recommendations {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .recommendations-list {
-  width: 15%;
+    width: 15%;
 }
 
 .recommendations-tests {
-  width: 85%;
-  margin-left: 10px;
+    width: 85%;
+    margin-left: 10px;
 }
 
 .p-panel {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .p-button {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 </style>

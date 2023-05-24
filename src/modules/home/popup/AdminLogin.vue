@@ -29,7 +29,7 @@
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
 import { error } from "@/utils/toast";
-import { ref, inject } from "vue";
+import { inject, ref } from "vue";
 
 import PButton from "primevue/button";
 import InputText from "primevue/inputtext";
@@ -40,36 +40,36 @@ const password = ref("");
 const dialogRef = inject<any>("dialogRef");
 
 const checkAdminValidation = (): boolean => {
-  if (login.value !== "symptom") {
-    error("Ошибка", "Неверный логин или пароль");
-    return false;
-  }
+    if (login.value !== "symptom") {
+        error("Ошибка", "Неверный логин или пароль");
+        return false;
+    }
 
-  if (password.value !== "adam") {
-    error("Ошибка", "Неверный логин или пароль");
-    return false;
-  }
+    if (password.value !== "adam") {
+        error("Ошибка", "Неверный логин или пароль");
+        return false;
+    }
 
-  return true;
+    return true;
 };
 
 const checkAdmin = (): void => {
-  if (checkAdminValidation()) {
-    router.push({
-      name: "admin",
-    });
-    dialogRef.value.close();
-  }
+    if (checkAdminValidation()) {
+        router.push({
+            name: "admin"
+        });
+        dialogRef.value.close();
+    }
 };
 </script>
 
 <style scoped>
 .popup {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .popup h3 {
-  margin: 10px 0px;
+    margin: 10px 0px;
 }
 </style>

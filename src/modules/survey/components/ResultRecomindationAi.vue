@@ -63,10 +63,10 @@ const { recommendationsChatGPT, isButtonsVisible } = storeToRefs(surveyStore);
 
 <style scoped>
 .recomindation-ai-result {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .p-panel {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 </style>

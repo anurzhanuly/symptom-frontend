@@ -37,7 +37,7 @@
 import { useClinicsStore } from "../../stores/clinics.store";
 import { validateClinic } from "@/utils/validation";
 import { success } from "@/utils/toast";
-import { ref, inject } from "vue";
+import { inject, ref } from "vue";
 
 import PButton from "primevue/button";
 import Dropdown from "primevue/dropdown";
@@ -54,42 +54,42 @@ const changeClinicCityId = ref<string>("");
 const changeClinicAddress = ref<string>(selectedClinic.value?.attributes.address!);
 
 async function changeClinic(): Promise<void> {
-  if (validateClinic(changeClinicName.value, changeClinicCityId.value, changeClinicAddress.value)) {
-    const res = await clinicStore.changeClinicData(selectedClinic.value?.id!, {
-      name: changeClinicName.value,
-      address: changeClinicAddress.value,
-      city_id: changeClinicCityId.value,
-    });
+    if (validateClinic(changeClinicName.value, changeClinicCityId.value, changeClinicAddress.value)) {
+        const res = await clinicStore.changeClinicData(selectedClinic.value?.id!, {
+            name: changeClinicName.value,
+            address: changeClinicAddress.value,
+            city_id: changeClinicCityId.value
+        });
 
-    if (res === 200) {
-      success("Успешно", `Клиника изменена`);
-      dialogRef.value.close();
+        if (res === 200) {
+            success("Успешно", `Клиника изменена`);
+            dialogRef.value.close();
+        }
     }
-  }
 }
 </script>
 
 <style scoped>
 .clinic-list-popup {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
 }
 
 .clinic-list-popup-form {
-  width: 60%;
+    width: 60%;
 }
 
 .clinic-list-popup-form > div {
-  margin: 15px 0;
+    margin: 15px 0;
 }
 
 .clinic-list-popup-action {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .clinic-list-popup-action .p-button {
-  width: 315px;
+    width: 315px;
 }
 </style>

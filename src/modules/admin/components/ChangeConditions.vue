@@ -158,67 +158,67 @@ import Dropdown from "primevue/dropdown";
 import Listbox from "primevue/listbox";
 import Toolbar from "primevue/toolbar";
 import Panel from "primevue/panel";
-import BlockUI from 'primevue/blockui';
+import BlockUI from "primevue/blockui";
 
 const adminStore = useAdminStore();
 const confirm = useConfirm();
 
 const {
-  allRecommendations,
-  selectedRecommendation,
-  conditions,
-  selectedCondition,
-  recomindationDeleteName,
-  recomindationNewName,
-  vals,
-  isLoading,
+    allRecommendations,
+    selectedRecommendation,
+    conditions,
+    selectedCondition,
+    recomindationDeleteName,
+    recomindationNewName,
+    vals,
+    isLoading
 } = storeToRefs(adminStore);
 
 const conditionColumns = computed(() => adminStore.conditionColumns || []);
 
 function checkOptions(name: string) {
-  const options = vals.value.filter(item => item.title === name);
+    const options = vals.value.filter(item => item.title === name);
 
-  if (options.length && options[0].choices) {
-    return options[0].choices;
-  }
+    if (options.length && options[0].choices) {
+        return options[0].choices;
+    }
 
-  return;
+    return;
 }
 
 function deleteConditionConfirm(event: any, index: number): void {
-  confirm.require({
-    target: event.currentTarget,
-    message: "Вы уверены?",
-    acceptLabel: "Да",
-    rejectLabel: "Нет",
-    icon: "pi pi-exclamation-triangle",
-    accept: () => adminStore.deleteCondition(index),
-  });
+    confirm.require({
+        target: event.currentTarget,
+        message: "Вы уверены?",
+        acceptLabel: "Да",
+        rejectLabel: "Нет",
+        icon: "pi pi-exclamation-triangle",
+        accept: () => adminStore.deleteCondition(index)
+    });
 }
 </script>
 
 <style scoped>
 .conditions {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .conditions-list {
-  width: 15%;
+    width: 15%;
 }
 
 .conditions-actions {
-  width: 85%;
-  margin-left: 10px;
+    width: 85%;
+    margin-left: 10px;
 }
 
 .recommendations-block {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .recommendations-block div:first-child {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 </style>
