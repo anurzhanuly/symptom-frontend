@@ -42,7 +42,7 @@
                         <p-button
                             label="Добавить новый блок"
                             raised
-                            @click="adminStore.createCondition"
+                            @click="adminStore.createBlockCondition"
                         />
                         <p-button
                             label="Сохранить изменения"

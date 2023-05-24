@@ -63,7 +63,7 @@
             label="Создать"
             severity="success"
             autofocus
-            @click="createCondition()"
+            @click="createCondition"
         />
     </div>
 </template>
@@ -131,7 +131,8 @@ const createCondition = () => {
         res.type = question.type;
         res.value = isValueHasChoices.value ? res.value : conditionValue.value.split(",");
 
-        conditions.value[conditionIndex.value] = { ...conditions.value[conditionIndex.value], ...res };
+        conditions.value[conditionIndex.value].push(res);
+
         success("Успешно", "Условие создано, не забудьте сохранить");
         dialogRef.value.close();
     }

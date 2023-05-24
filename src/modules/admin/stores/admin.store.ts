@@ -48,7 +48,6 @@ export const useAdminStore = defineStore("admin", () => {
         const res = await getRecommendationDetail(newRecommendationName?.id!);
 
         if (res) {
-            console.log("useAdminStore  res:", res);
             tests.value = res.data.data.attributes.tests;
             const keys = Object.keys(tests.value);
             lastTestKey.value = keys[keys.length - 1] ? Number(keys[keys.length - 1]) + 1 : 1;
@@ -152,16 +151,8 @@ export const useAdminStore = defineStore("admin", () => {
         success("Удаление блока условии", "Блок условии удален, не забудьте сохранить");
     }
 
-    function createCondition() {
-        console.log(conditions.value);
-        conditions.value.push({
-            value: "",
-            type: "",
-            compare: "",
-            multiple: false,
-            testCase: "",
-            questionName: ""
-        });
+    function createBlockCondition() {
+        conditions.value.push([]);
     }
 
     function createConditionItem(index: number): void {
@@ -262,10 +253,9 @@ export const useAdminStore = defineStore("admin", () => {
         getQuestionsData,
         updateCondition,
         deleteCondition,
-        createCondition,
+        createBlockCondition,
         deleteConditionItem,
         createConditionItem,
-        getRecommendationsData,
         createRecommendationData,
         deleteRecommendationData,
         updateRecommendationData,
