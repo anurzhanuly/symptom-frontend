@@ -152,7 +152,7 @@ export const useAdminStore = defineStore("admin", () => {
     }
 
     function createBlockCondition() {
-        conditions.value.push([]);
+        conditions.value.push([] as any);
     }
 
     function createConditionItem(index: number): void {
