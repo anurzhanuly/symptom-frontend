@@ -54,7 +54,6 @@ onMounted(() => {
 });
 
 const isMobileDevice = computed(() => /Mobi/.test(navigator.userAgent) && !/iPad/.test(navigator.userAgent));
-console.log(isMobileDevice.value);
 </script>
 
 <style scoped>

@@ -68,7 +68,7 @@ const projectInfoSecond = computed(() => {
 
 function direct(): void {
     if (isDoctor.value) {
-        console.log("TODO registration");
+        // TODO registration
     } else {
         router.push("/agreement");
     }

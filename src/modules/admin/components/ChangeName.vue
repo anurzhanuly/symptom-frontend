@@ -49,7 +49,6 @@ const questionNameOptions = computed(() => adminStore.conditionColumns[0].option
 function changeQuestName(): void {
     const recommendationStr = JSON.stringify(recommendationsJSON.value);
     const newRecommendation = recommendationStr.split(beforeQuestName.value).join(afterQuestName.value);
-    console.log(newRecommendation);
 }
 
 function confirmChange(event: any): void {

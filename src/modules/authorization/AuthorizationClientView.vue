@@ -67,7 +67,7 @@ function checkClient(): void {
 }
 
 function resetPassword() {
-    console.log("TODO: reset password");
+  // TODO reset password
 }
 
 function clientRegistration() {
