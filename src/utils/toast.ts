@@ -3,7 +3,7 @@ import { app } from '@/main';
 
 export function info(summary: string, detail: string, life = 2000): void {
     app.config.globalProperties.$toast.add({
-        severity: ToastSeverity.INFO,
+        severity: ToastSeverity.INFO as 'info',
         summary,
         detail,
         life,
@@ -12,7 +12,7 @@ export function info(summary: string, detail: string, life = 2000): void {
 
 export function warn(summary: string, detail: string, life = 2000): void {
     app.config.globalProperties.$toast.add({
-        severity: ToastSeverity.WARN,
+        severity: ToastSeverity.WARN as 'warn',
         summary,
         detail,
         life,
@@ -21,7 +21,7 @@ export function warn(summary: string, detail: string, life = 2000): void {
 
 export function success(summary: string, detail: string, life = 2000): void {
     app.config.globalProperties.$toast.add({
-        severity: ToastSeverity.SUCCESS,
+        severity: ToastSeverity.SUCCESS as 'success',
         summary,
         detail,
         life,
@@ -30,7 +30,7 @@ export function success(summary: string, detail: string, life = 2000): void {
 
 export function error(summary: string, detail: string, life = 2000): void {
     app.config.globalProperties.$toast.add({
-        severity: ToastSeverity.ERROR,
+        severity: ToastSeverity.ERROR as 'error',
         summary,
         detail,
         life,
