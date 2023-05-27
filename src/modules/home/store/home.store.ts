@@ -5,33 +5,25 @@ export const useHomeStore = defineStore("home", () => {
     const isDoctor = ref(false);
     const links = ref([
         {
-            top: 900,
+            htmlClass: ".about",
             name: "О проекте"
         },
         {
-            top: 1800,
+            htmlClass: ".solution-container",
             name: "Решение"
         },
         {
-            top: 2400,
+            htmlClass: ".advantages-container",
             name: "Преимущества"
         },
         {
-            top: 3250,
+            htmlClass: ".team-container",
             name: "Команда"
         }
     ]);
 
-    function scroll(top: number): void {
-        window.scrollTo({
-            top: top,
-            behavior: "smooth"
-        });
-    }
-
     return {
         isDoctor,
-        links,
-        scroll
+        links
     };
 });

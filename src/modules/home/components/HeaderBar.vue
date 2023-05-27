@@ -8,13 +8,14 @@
                     alt="logo"
                 />
             </RouterLink>
-            <p
-                v-for="link in links"
+            <a
+                v-for="(link,index) in links"
+                :key="index"
                 class="static-buttons"
-                @click="homeStore.scroll(link.top)"
+                @click="scrollToElement(link.htmlClass)"
             >
                 {{ link.name }}
-            </p>
+            </a>
             <div>
                 <p
                     class="dynamic-button"
@@ -31,7 +32,7 @@
 import { computed } from "vue";
 import { useHomeStore } from "../store/home.store";
 import { storeToRefs } from "pinia";
-
+import { scrollToElement } from "@/utils/scroll"
 const homeStore = useHomeStore();
 
 const { isDoctor, links } = storeToRefs(homeStore);
