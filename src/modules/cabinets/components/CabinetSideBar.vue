@@ -15,18 +15,18 @@
                 class="hidden"
                 type="radio"
                 :value="view.label"
-            >
+            />
             {{ view.label }}
         </label>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue';
 
-const selectedPage = ref<any>("Главная");
+const selectedPage = ref<any>('Главная');
 const props = defineProps({
-    views: Object
+    views: Object,
 });
 </script>
 

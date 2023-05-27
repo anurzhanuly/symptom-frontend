@@ -1,12 +1,12 @@
-import { ToastSeverity } from "primevue/api";
-import { app } from "@/main";
+import { ToastSeverity } from 'primevue/api';
+import { app } from '@/main';
 
 export function info(summary: string, detail: string, life = 2000): void {
     app.config.globalProperties.$toast.add({
         severity: ToastSeverity.INFO,
         summary,
         detail,
-        life
+        life,
     });
 }
 
@@ -15,7 +15,7 @@ export function warn(summary: string, detail: string, life = 2000): void {
         severity: ToastSeverity.WARN,
         summary,
         detail,
-        life
+        life,
     });
 }
 
@@ -24,7 +24,7 @@ export function success(summary: string, detail: string, life = 2000): void {
         severity: ToastSeverity.SUCCESS,
         summary,
         detail,
-        life
+        life,
     });
 }
 
@@ -33,6 +33,6 @@ export function error(summary: string, detail: string, life = 2000): void {
         severity: ToastSeverity.ERROR,
         summary,
         detail,
-        life
+        life,
     });
 }

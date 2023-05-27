@@ -2,10 +2,7 @@
     <div class="popup">
         <div>
             <h3>Логин</h3>
-            <input-text
-                v-model="login"
-                style="width: 100%"
-            />
+            <input-text v-model="login" style="width: 100%" />
         </div>
         <div>
             <h3>Пароль</h3>
@@ -27,26 +24,26 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from "vue-router";
-import { error } from "@/utils/toast";
-import { inject, ref } from "vue";
+import { useRouter } from 'vue-router';
+import { error } from '@/utils/toast';
+import { inject, ref } from 'vue';
 
-import PButton from "primevue/button";
-import InputText from "primevue/inputtext";
+import PButton from 'primevue/button';
+import InputText from 'primevue/inputtext';
 
 const router = useRouter();
-const login = ref("");
-const password = ref("");
-const dialogRef = inject<any>("dialogRef");
+const login = ref('');
+const password = ref('');
+const dialogRef = inject<any>('dialogRef');
 
 const checkAdminValidation = (): boolean => {
-    if (login.value !== "symptom") {
-        error("Ошибка", "Неверный логин или пароль");
+    if (login.value !== 'symptom') {
+        error('Ошибка', 'Неверный логин или пароль');
         return false;
     }
 
-    if (password.value !== "adam") {
-        error("Ошибка", "Неверный логин или пароль");
+    if (password.value !== 'adam') {
+        error('Ошибка', 'Неверный логин или пароль');
         return false;
     }
 
@@ -56,7 +53,7 @@ const checkAdminValidation = (): boolean => {
 const checkAdmin = (): void => {
     if (checkAdminValidation()) {
         router.push({
-            name: "admin"
+            name: 'admin',
         });
         dialogRef.value.close();
     }

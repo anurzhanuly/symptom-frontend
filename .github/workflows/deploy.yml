@@ -10,47 +10,47 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            -   name: Стягиваем последние изменения
-                uses: actions/checkout@v2
+            - name: Стягиваем последние изменения
+              uses: actions/checkout@v2
 
-            -   name: Ставим ноду
-                uses: actions/setup-node@v2
-                with:
-                    node-version: '18.x'
+            - name: Ставим ноду
+              uses: actions/setup-node@v2
+              with:
+                  node-version: "18.x"
 
-            -   name: Кешируем зависимости
-                uses: actions/cache@v2
-                with:
-                    path: ~/.npm
-                    key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-                    restore-keys: |
-                        ${{ runner.os }}-npm-
+            - name: Кешируем зависимости
+              uses: actions/cache@v2
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-npm-
 
-            -   name: Устанавливаем зависимости
-                run: npm install
+            - name: Устанавливаем зависимости
+              run: npm install
 
-            -   name: Билдим проект
-                run: npm run build
+            - name: Билдим проект
+              run: npm run build
 
-            -   name: Создаём папку .ssh
-                run: mkdir ~/.ssh
+            - name: Создаём папку .ssh
+              run: mkdir ~/.ssh
 
-            -   name: Сохраняем SSH ключ
-                run: echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-                env:
-                    PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+            - name: Сохраняем SSH ключ
+              run: echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+              env:
+                  PRIVATE_KEY: ${{ secrets.SSH_KEY }}
 
-            -   name: Устанавливаем доступы до ключа
-                run: chmod 600 ~/.ssh/id_rsa
+            - name: Устанавливаем доступы до ключа
+              run: chmod 600 ~/.ssh/id_rsa
 
-            -   name: Указываем хост
-                run: ssh-keyscan ${{ secrets.SYMPTOM_ADDRESS }} >> ~/.ssh/known_hosts
+            - name: Указываем хост
+              run: ssh-keyscan ${{ secrets.SYMPTOM_ADDRESS }} >> ~/.ssh/known_hosts
 
-            -   name: Деплоим на сервак
-                env:
-                    SERVER_HOST: ${{ secrets.SYMPTOM_ADDRESS }}
-                    SERVER_USER: ubuntu
-                run: |
-                    eval "$(ssh-agent -s)"
-                    ssh-add ~/.ssh/id_rsa
-                    scp -r dist/ $SERVER_USER@$SERVER_HOST:/var/www/symptom-frontend
+            - name: Деплоим на сервак
+              env:
+                  SERVER_HOST: ${{ secrets.SYMPTOM_ADDRESS }}
+                  SERVER_USER: ubuntu
+              run: |
+                  eval "$(ssh-agent -s)"
+                  ssh-add ~/.ssh/id_rsa
+                  scp -r dist/ $SERVER_USER@$SERVER_HOST:/var/www/symptom-frontend

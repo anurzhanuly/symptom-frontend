@@ -16,10 +16,7 @@
                 </div>
                 <div>
                     <h3>Опыт (число)</h3>
-                    <input-text
-                        v-model="newDoctorExp"
-                        type="number"
-                    />
+                    <input-text v-model="newDoctorExp" type="number" />
                 </div>
                 <div>
                     <h3>Специализация</h3>
@@ -45,22 +42,22 @@
 </template>
 
 <script lang="ts" setup>
-import { useClinicsStore } from "../../stores/clinics.store";
-import { inject, ref } from "vue";
+import { useClinicsStore } from '../../stores/clinics.store';
+import { inject, ref } from 'vue';
 
-import PButton from "primevue/button";
-import Dropdown from "primevue/dropdown";
-import InputText from "primevue/inputtext";
-import { storeToRefs } from "pinia";
+import PButton from 'primevue/button';
+import Dropdown from 'primevue/dropdown';
+import InputText from 'primevue/inputtext';
+import { storeToRefs } from 'pinia';
 
 const clinicStore = useClinicsStore();
-const dialogRef = inject<any>("dialogRef");
+const dialogRef = inject<any>('dialogRef');
 
-const newDoctorFirstName = ref<string>("");
-const newDoctorspecId = ref<string>("");
-const newDoctorExp = ref<string>("");
-const newDoctorLastName = ref<string>("");
-const newDoctorMidName = ref<string>("");
+const newDoctorFirstName = ref<string>('');
+const newDoctorspecId = ref<string>('');
+const newDoctorExp = ref<string>('');
+const newDoctorLastName = ref<string>('');
+const newDoctorMidName = ref<string>('');
 
 const { specializations } = storeToRefs(clinicStore);
 

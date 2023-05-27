@@ -1,12 +1,12 @@
-import { useSymptomApi } from "@/services/api";
-import type { AxiosResponse } from "axios";
+import { useSymptomApi } from '@/services/api';
+import type { AxiosResponse } from 'axios';
 
 export async function getDoctorConsultations(): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.get("/doctors/cabinet", {
+        return await useSymptomApi.get('/doctors/cabinet', {
             headers: {
-                "auth-token": JSON.parse(localStorage.getItem("doctorToken")!)
-            }
+                'auth-token': JSON.parse(localStorage.getItem('doctorToken')!),
+            },
         });
     } catch (error) {
         console.error(error);
@@ -16,10 +16,10 @@ export async function getDoctorConsultations(): Promise<AxiosResponse | null> {
 
 export async function getClientConsultations(): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.get("/patients/cabinet", {
+        return await useSymptomApi.get('/patients/cabinet', {
             headers: {
-                "auth-token": JSON.parse(localStorage.getItem("clientToken")!)
-            }
+                'auth-token': JSON.parse(localStorage.getItem('clientToken')!),
+            },
         });
     } catch (error) {
         console.error(error);

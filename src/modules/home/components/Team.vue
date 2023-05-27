@@ -18,7 +18,7 @@
                         <img
                             alt="logo"
                             :src="getImageUrl(slotProps.data.photo)"
-                        >
+                        />
                         <h3>{{ slotProps.data.name }}</h3>
                         <p>{{ slotProps.data.info }}</p>
                     </div>
@@ -27,133 +27,121 @@
         </div>
     </div>
 
-    <div
-        v-if="isDoctor"
-        class="questions"
-    >
+    <div v-if="isDoctor" class="questions">
         <div class="questions-actions">
             <div>
                 <h1>Остались вопросы?</h1>
-                <p>Оставьте контактные данные, чтобы мы могли перезвонить вам и проконсультровать</p>
+                <p>
+                    Оставьте контактные данные, чтобы мы могли перезвонить вам и
+                    проконсультровать
+                </p>
             </div>
-            <input-text
-                v-model="name"
-                placeholder="Ваше имя и фамилия"
-            />
-            <input-text
-                v-model="place"
-                placeholder="Место работы"
-            />
-            <input-text
-                v-model="phone"
-                placeholder="Номер телефона"
-            />
+            <input-text v-model="name" placeholder="Ваше имя и фамилия" />
+            <input-text v-model="place" placeholder="Место работы" />
+            <input-text v-model="phone" placeholder="Номер телефона" />
             <p-button label="Отправить" />
         </div>
         <div class="questions-img">
-            <img
-                alt="logo"
-                src="@/assets/onboarding/onboard1.png"
-            >
+            <img alt="logo" src="@/assets/onboarding/onboard1.png" />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { useHomeStore } from "../store/home.store";
-import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { useHomeStore } from '../store/home.store';
+import { storeToRefs } from 'pinia';
+import { ref } from 'vue';
 
-import Carousel from "primevue/carousel";
-import InputText from "primevue/inputtext";
-import PButton from "primevue/button";
+import Carousel from 'primevue/carousel';
+import InputText from 'primevue/inputtext';
+import PButton from 'primevue/button';
 
 const homeStore = useHomeStore();
 const { isDoctor } = storeToRefs(homeStore);
 
-const name = ref("");
-const place = ref("");
-const phone = ref("");
+const name = ref('');
+const place = ref('');
+const phone = ref('');
 
 const responsiveOptions = ref([
     {
-        breakpoint: "1250px",
+        breakpoint: '1250px',
         numVisible: 3,
-        numScroll: 3
+        numScroll: 3,
     },
     {
-        breakpoint: "1163px",
+        breakpoint: '1163px',
         numVisible: 2,
-        numScroll: 2
+        numScroll: 2,
     },
     {
-        breakpoint: "750px",
+        breakpoint: '750px',
         numVisible: 1,
-        numScroll: 1
-    }
+        numScroll: 1,
+    },
 ]);
 
 const team = ref([
     {
-        photo: "Temirlan.png",
-        name: "Темирлан Кайназаров",
-        info: "Co-founder, CEO MD, Enterpreneur"
+        photo: 'Temirlan.png',
+        name: 'Темирлан Кайназаров',
+        info: 'Co-founder, CEO MD, Enterpreneur',
     },
     {
-        photo: "Azat.png",
-        name: "Азат Нуржанулы",
-        info: "Co-founder, CTO Choco Group"
+        photo: 'Azat.png',
+        name: 'Азат Нуржанулы',
+        info: 'Co-founder, CTO Choco Group',
     },
     {
-        photo: "Karina.png",
-        name: "Карина Тапинова",
-        info: "MD, Research Assistant"
+        photo: 'Karina.png',
+        name: 'Карина Тапинова',
+        info: 'MD, Research Assistant',
     },
     {
-        photo: "Aiza.png",
-        name: "Айза Алманиязова",
-        info: "MD, Family Med Doctor"
+        photo: 'Aiza.png',
+        name: 'Айза Алманиязова',
+        info: 'MD, Family Med Doctor',
     },
     {
-        photo: "Miras.png",
-        name: "Мирас Зейнолдин ",
-        info: "MD, Family Med Doctor"
+        photo: 'Miras.png',
+        name: 'Мирас Зейнолдин ',
+        info: 'MD, Family Med Doctor',
     },
     {
-        photo: "Perizat.png",
-        name: "Перизат Канабекова",
-        info: "MD, Internal Med Doctor"
+        photo: 'Perizat.png',
+        name: 'Перизат Канабекова',
+        info: 'MD, Internal Med Doctor',
     },
     {
-        photo: "Meruert.png",
-        name: "Меруерт Рыскулбек",
-        info: "MD"
+        photo: 'Meruert.png',
+        name: 'Меруерт Рыскулбек',
+        info: 'MD',
     },
     {
-        photo: "Aruzhan.png",
-        name: "Аружан Жаксылык",
-        info: "MD"
+        photo: 'Aruzhan.png',
+        name: 'Аружан Жаксылык',
+        info: 'MD',
     },
     {
-        photo: "Sanzhar.png",
-        name: "Санжар Асылбекулы",
-        info: "Back-end, Kolesa group"
+        photo: 'Sanzhar.png',
+        name: 'Санжар Асылбекулы',
+        info: 'Back-end, Kolesa group',
     },
     {
-        photo: "Almas.png",
-        name: "Алмас Казыбек",
-        info: "Front-end, Kaspi"
+        photo: 'Almas.png',
+        name: 'Алмас Казыбек',
+        info: 'Front-end, Kaspi',
     },
     {
-        photo: "Ali.png",
-        name: "Али Шалбаев",
-        info: "Back-end & ML (ИИ), АП"
+        photo: 'Ali.png',
+        name: 'Али Шалбаев',
+        info: 'Back-end & ML (ИИ), АП',
     },
     {
-        photo: "Shynara.png",
-        name: "Шынара Аянбек",
-        info: "Front-end, Vostok"
-    }
+        photo: 'Shynara.png',
+        name: 'Шынара Аянбек',
+        info: 'Front-end, Vostok',
+    },
 ]);
 
 function getImageUrl(name: string): string {
@@ -164,7 +152,7 @@ function getImageUrl(name: string): string {
 <style scoped>
 .team-container {
     padding: 20px 150px;
-    font-family: "Montserrat";
+    font-family: 'Montserrat';
     font-style: normal;
 }
 

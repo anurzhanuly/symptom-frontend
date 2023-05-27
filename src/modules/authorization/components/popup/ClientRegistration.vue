@@ -1,92 +1,80 @@
 <template>
     <div>
         <form class="authorization-form p-fluid">
-            <img
-                alt="Symptom logo"
-                src="@/assets/logo-auth.png"
-            >
+            <img alt="Symptom logo" src="@/assets/logo-auth.png" />
             <div>
                 <h4>Имя <span>*</span></h4>
                 <inline-message v-if="!isFirstName">
-Поле 'Имя' обязательно для заполнено
-</inline-message>
+                    Поле 'Имя' обязательно для заполнено
+                </inline-message>
                 <input-text v-model="firstName" />
             </div>
             <div>
                 <h4>Фамилия <span>*</span></h4>
                 <inline-message v-if="!isLastName">
-Поле 'Фамилия' обязательно для заполнено
-</inline-message>
+                    Поле 'Фамилия' обязательно для заполнено
+                </inline-message>
                 <input-text v-model="lastName" />
             </div>
             <div>
                 <h4>Почта <span>*</span></h4>
                 <inline-message v-if="!isEmail">
-Поле 'Почта' обязательно для заполнения
-</inline-message>
+                    Поле 'Почта' обязательно для заполнения
+                </inline-message>
                 <inline-message v-if="!isCorrectEmail">
-Не корректная почта
-</inline-message>
+                    Не корректная почта
+                </inline-message>
                 <input-text v-model="email" />
             </div>
             <div>
                 <h4>Номер телефона <span>*</span></h4>
                 <inline-message v-if="!isPhoneNumber">
-Поле 'Номер телефона' обязательно для заполнения
-</inline-message>
+                    Поле 'Номер телефона' обязательно для заполнения
+                </inline-message>
                 <inline-message v-if="!isCorrectPhoneNumber">
-Не корректный номер телефона
-</inline-message>
+                    Не корректный номер телефона
+                </inline-message>
                 <input-text v-model="phoneNumber" />
             </div>
             <div>
                 <h4>Пароль <span>*</span></h4>
                 <inline-message v-if="!isPassword">
-Поле 'Пароль' обязательно для заполнения
-</inline-message>
-                <p-password
-                    v-model="password"
-                    toggle-mask
-                />
+                    Поле 'Пароль' обязательно для заполнения
+                </inline-message>
+                <p-password v-model="password" toggle-mask />
             </div>
             <div>
                 <h4>Подтверждение пароля <span>*</span></h4>
                 <inline-message v-if="!isConfirmPassword">
-Пароли не совпадают!
-</inline-message>
-                <p-password
-                    v-model="passwordConfirm"
-                    :feedback="false"
-                />
+                    Пароли не совпадают!
+                </inline-message>
+                <p-password v-model="passwordConfirm" :feedback="false" />
             </div>
 
-            <p-button
-                label="Зарегистрироваться"
-                @click="clientRegistration"
-            />
+            <p-button label="Зарегистрироваться" @click="clientRegistration" />
         </form>
     </div>
 </template>
 
 <script setup lang="ts">
-import { useAuthorizationStore } from "../../store/authorization.store";
-import { success } from "@/utils/toast";
-import { useRouter } from "vue-router";
-import { inject, ref } from "vue";
+import { useAuthorizationStore } from '../../store/authorization.store';
+import { success } from '@/utils/toast';
+import { useRouter } from 'vue-router';
+import { inject, ref } from 'vue';
 
-import InlineMessage from "primevue/inlinemessage";
-import PButton from "primevue/button";
-import InputText from "primevue/inputtext";
-import PPassword from "primevue/password";
+import InlineMessage from 'primevue/inlinemessage';
+import PButton from 'primevue/button';
+import InputText from 'primevue/inputtext';
+import PPassword from 'primevue/password';
 
 const authorizationStore = useAuthorizationStore();
 
-const firstName = ref("");
-const lastName = ref("");
-const email = ref("");
-const phoneNumber = ref("");
-const password = ref("");
-const passwordConfirm = ref("");
+const firstName = ref('');
+const lastName = ref('');
+const email = ref('');
+const phoneNumber = ref('');
+const password = ref('');
+const passwordConfirm = ref('');
 
 const isFirstName = ref(true);
 const isLastName = ref(true);
@@ -98,26 +86,26 @@ const isPassword = ref(true);
 const isConfirmPassword = ref(true);
 
 const router = useRouter();
-const dialogRef = inject<any>("dialogRef");
+const dialogRef = inject<any>('dialogRef');
 
 async function clientRegistration() {
     if (validateRegistratition()) {
         const token = await authorizationStore.clientRegistrationData({
             password: password.value,
             c_password: passwordConfirm.value,
-            type: "patient",
+            type: 'patient',
             first_name: firstName.value,
             last_name: lastName.value,
             phone: phoneNumber.value,
-            email: email.value
+            email: email.value,
         });
 
-        localStorage.setItem("clientToken", JSON.stringify(token));
+        localStorage.setItem('clientToken', JSON.stringify(token));
 
-        if (JSON.parse(localStorage.getItem("doctorToken")!)) {
-            success("Аккаунт создан", `Добро пожаловать ${firstName.value}`);
+        if (JSON.parse(localStorage.getItem('doctorToken')!)) {
+            success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
             dialogRef.value.close();
-            router.push("/client-cabinet");
+            router.push('/client-cabinet');
         }
     }
 }

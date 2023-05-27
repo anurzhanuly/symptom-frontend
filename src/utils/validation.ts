@@ -1,18 +1,22 @@
-import { error } from "./toast";
+import { error } from './toast';
 
-export function validateClinic(name: string, city: string, address: string): boolean {
+export function validateClinic(
+    name: string,
+    city: string,
+    address: string
+): boolean {
     if (!name) {
-        error("Ошибка", "Поле 'Название клиники' должно быть заполнено");
+        error('Ошибка', "Поле 'Название клиники' должно быть заполнено");
         return false;
     }
 
     if (!city) {
-        error("Ошибка", "Поле 'Поле 'Город' должно быть заполнено");
+        error('Ошибка', "Поле 'Поле 'Город' должно быть заполнено");
         return false;
     }
 
     if (!address) {
-        error("Ошибка", "Поле 'Поле 'Адрес' должно быть заполнено");
+        error('Ошибка', "Поле 'Поле 'Адрес' должно быть заполнено");
         return false;
     }
 
@@ -21,12 +25,12 @@ export function validateClinic(name: string, city: string, address: string): boo
 
 export function validateLogin(email: string, password: string): boolean {
     if (!email) {
-        error("Ошибка", "Поле 'Почта' должно быть заполнено");
+        error('Ошибка', "Поле 'Почта' должно быть заполнено");
         return false;
     }
 
     if (!password) {
-        error("Ошибка", "Поле 'Поле 'Пароль' должно быть заполнено");
+        error('Ошибка', "Поле 'Поле 'Пароль' должно быть заполнено");
         return false;
     }
 

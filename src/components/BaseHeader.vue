@@ -5,7 +5,7 @@
                 alt="Symptom logo"
                 src="@/assets/logo-auth.png"
                 @click="$router.push('/')"
-            >
+            />
             <p-button
                 class="p-button-raised p-button-outlined p-button-text"
                 icon="pi pi-sign-out"
@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import PButton from "primevue/button";
+import PButton from 'primevue/button';
 </script>
 
 <style scoped>

@@ -9,28 +9,28 @@
 </template>
 
 <script setup lang="ts">
-import BaseHeader from "@/components/BaseHeader.vue";
-import CabinetSideBar from "./components/CabinetSideBar.vue";
+import BaseHeader from '@/components/BaseHeader.vue';
+import CabinetSideBar from './components/CabinetSideBar.vue';
 
-import { onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 onMounted(() => {
     const router = useRouter();
-    router.push("/client-cabinet/main");
+    router.push('/client-cabinet/main');
 });
 
 const clientViews = ref([
     {
-        label: "Главная",
-        icon: "pi pi-fw pi-book",
-        to: "/client-cabinet/main"
+        label: 'Главная',
+        icon: 'pi pi-fw pi-book',
+        to: '/client-cabinet/main',
     },
     {
-        label: "Настройки",
-        icon: "pi pi-fw pi-exclamation-circle",
-        to: "/client-cabinet/settings"
-    }
+        label: 'Настройки',
+        icon: 'pi pi-fw pi-exclamation-circle',
+        to: '/client-cabinet/settings',
+    },
 ]);
 </script>
 

@@ -2,13 +2,11 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-symptom">
-                <h2 @click="openAdminLoginPopup">
-Symptom
-</h2>
+                <h2 @click="openAdminLoginPopup">Symptom</h2>
             </div>
             <div class="footer-info">
                 <a
-                    v-for="(link,index) in links"
+                    v-for="(link, index) in links"
                     :key="index"
                     class="static-buttons"
                     @click="scrollToElement(link.htmlClass)"
@@ -41,11 +39,11 @@ Symptom
 </template>
 
 <script lang="ts" setup>
-import AdminLogin from "../popup/AdminLogin.vue";
-import { useDialog } from "primevue/usedialog";
-import { useHomeStore } from "../store/home.store";
-import { storeToRefs } from "pinia";
-import { scrollToElement } from "@/utils/scroll";
+import AdminLogin from '../popup/AdminLogin.vue';
+import { useDialog } from 'primevue/usedialog';
+import { useHomeStore } from '../store/home.store';
+import { storeToRefs } from 'pinia';
+import { scrollToElement } from '@/utils/scroll';
 
 const dialog = useDialog();
 const homeStore = useHomeStore();
@@ -55,12 +53,12 @@ const { links } = storeToRefs(homeStore);
 function openAdminLoginPopup(): void {
     dialog.open(AdminLogin, {
         props: {
-            header: "Введите логин и пароль",
+            header: 'Введите логин и пароль',
             style: {
-                width: "25%"
+                width: '25%',
             },
-            modal: true
-        }
+            modal: true,
+        },
     });
 }
 </script>

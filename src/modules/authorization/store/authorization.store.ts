@@ -1,28 +1,43 @@
-import { clientRegistration, postLogin } from "../services/authorization.refbooks";
-import type { ClientRegistration } from "../types/authorization";
-import { useRouter } from "vue-router";
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import {
+    clientRegistration,
+    postLogin,
+} from '../services/authorization.refbooks';
+import type { ClientRegistration } from '../types/authorization';
+import { useRouter } from 'vue-router';
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export const useAuthorizationStore = defineStore("authorization", () => {
+export const useAuthorizationStore = defineStore('authorization', () => {
     const router = useRouter();
     const isWrong = ref(false);
 
-    async function postLoginDoctor(email: string, password: string): Promise<void> {
+    async function postLoginDoctor(
+        email: string,
+        password: string
+    ): Promise<void> {
         const res = await postLogin(email, password);
         if (res) {
-            localStorage.setItem("doctorToken", JSON.stringify(res.data.data.token));
-            router.push("/doctor-cabinet");
+            localStorage.setItem(
+                'doctorToken',
+                JSON.stringify(res.data.data.token)
+            );
+            router.push('/doctor-cabinet');
         } else {
             isWrong.value = true;
         }
     }
 
-    async function postLoginClient(email: string, password: string): Promise<void> {
+    async function postLoginClient(
+        email: string,
+        password: string
+    ): Promise<void> {
         const res = await postLogin(email, password);
         if (res) {
-            localStorage.setItem("clientToken", JSON.stringify(res.data.data.token));
-            router.push("/client-cabinet");
+            localStorage.setItem(
+                'clientToken',
+                JSON.stringify(res.data.data.token)
+            );
+            router.push('/client-cabinet');
         } else {
             isWrong.value = true;
         }
@@ -39,6 +54,6 @@ export const useAuthorizationStore = defineStore("authorization", () => {
         isWrong,
         postLoginDoctor,
         postLoginClient,
-        clientRegistrationData
+        clientRegistrationData,
     };
 });

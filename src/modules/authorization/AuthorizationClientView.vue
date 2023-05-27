@@ -2,65 +2,55 @@
     <authorization>
         <div class="authorization-client">
             <form class="authorization-form p-fluid">
-                <img
-                    alt="Symptom logo"
-                    src="@/assets/logo-auth.png"
-                >
+                <img alt="Symptom logo" src="@/assets/logo-auth.png" />
                 <div>
                     <h4>Почта <span>*</span></h4>
                     <input-text v-model="email" />
                 </div>
                 <div>
                     <h4>Пароль <span>*</span></h4>
-                    <p-password
-                        v-model="password"
-                        toggle-mask
-                    />
+                    <p-password v-model="password" toggle-mask />
                 </div>
 
                 <inline-message v-if="isWrong">
-Неверный пароль или почта
-</inline-message>
-                <p-button
-                    label="Вход"
-                    @click="checkClient"
-                />
-                <p-button
-                    label="Забыли пароль?"
-                    link
-                    @click="resetPassword"
-                />
+                    Неверный пароль или почта
+                </inline-message>
+                <p-button label="Вход" @click="checkClient" />
+                <p-button label="Забыли пароль?" link @click="resetPassword" />
             </form>
         </div>
 
         <div class="registration-client">
-            <p>Нет аккаунта? Вы можете <strong @click="clientRegistration">Зарегистрироваться</strong></p>
+            <p>
+                Нет аккаунта? Вы можете
+                <strong @click="clientRegistration">Зарегистрироваться</strong>
+            </p>
         </div>
     </authorization>
 </template>
 
 <script setup lang="ts">
-import Authorization from "./components/Authorization.vue";
-import ClientRegistration from "./components/popup/ClientRegistration.vue";
+import Authorization from './components/Authorization.vue';
+import ClientRegistration from './components/popup/ClientRegistration.vue';
 
-import { useAuthorizationStore } from "./store/authorization.store";
-import { validateLogin } from "@/utils/validation";
-import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { useAuthorizationStore } from './store/authorization.store';
+import { validateLogin } from '@/utils/validation';
+import { storeToRefs } from 'pinia';
+import { ref } from 'vue';
 
-import { useDialog } from "primevue/usedialog";
-import PButton from "primevue/button";
-import InputText from "primevue/inputtext";
-import PPassword from "primevue/password";
-import InlineMessage from "primevue/inlinemessage";
+import { useDialog } from 'primevue/usedialog';
+import PButton from 'primevue/button';
+import InputText from 'primevue/inputtext';
+import PPassword from 'primevue/password';
+import InlineMessage from 'primevue/inlinemessage';
 
 const authorizationStore = useAuthorizationStore();
 
 const { isWrong } = storeToRefs(authorizationStore);
 
 const dialog = useDialog();
-const password = ref("");
-const email = ref("");
+const password = ref('');
+const email = ref('');
 
 function checkClient(): void {
     if (validateLogin(email.value, password.value)) {
@@ -69,18 +59,18 @@ function checkClient(): void {
 }
 
 function resetPassword() {
-  // TODO reset password
+    // TODO reset password
 }
 
 function clientRegistration() {
     dialog.open(ClientRegistration, {
         props: {
-            header: "Регистрация",
+            header: 'Регистрация',
             style: {
-                width: "40%"
+                width: '40%',
             },
-            modal: true
-        }
+            modal: true,
+        },
     });
 }
 </script>

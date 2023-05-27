@@ -4,12 +4,12 @@
 </template>
 
 <script setup lang="ts">
-import { Survey } from "survey-knockout-ui";
-import { computed, onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
-import { useSurveyStore } from "./store/survey.store.js";
+import { Survey } from 'survey-knockout-ui';
+import { computed, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useSurveyStore } from './store/survey.store.js';
 
-import ProgressBar from "primevue/progressbar";
+import ProgressBar from 'primevue/progressbar';
 
 const router = useRouter();
 const surveyStore = useSurveyStore();
@@ -19,17 +19,19 @@ const surveyJson = computed(() => surveyStore.questions);
 
 onMounted(() => {
     const survey = new Survey(surveyJson.value);
-    survey.locale = "ru";
+    survey.locale = 'ru';
 
-    function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
+    function onSurveyComplete(sender: {
+        data: Record<string, string[]>;
+    }): void {
         const newData: Record<string, string[]> = {};
         for (const key in sender.data) {
             if (Array.isArray(sender.data[key])) {
                 // Если ответ массив
                 newData[key] = sender.data[key];
-            } else if (typeof sender.data[key] === "object") {
+            } else if (typeof sender.data[key] === 'object') {
                 // Если ответ объект
-                let result = "";
+                let result = '';
 
                 for (const [item, value] of Object.entries(sender.data[key])) {
                     result += `${item}: ${value}, `;
@@ -41,11 +43,11 @@ onMounted(() => {
                 newData[key] = [`${sender.data[key]}`];
             }
 
-            if (newData[key].includes("none")) {
-                newData[key] = ["Без особенностей"];
+            if (newData[key].includes('none')) {
+                newData[key] = ['Без особенностей'];
             }
 
-            if (newData[key].includes("other")) {
+            if (newData[key].includes('other')) {
                 // Если выбрали Другое
                 const commentKey = `${key}-Comment`;
                 const value = sender.data[commentKey];
@@ -56,7 +58,7 @@ onMounted(() => {
         progress.value = 0;
         surveyStore.postAnswersDataChatGPT({ answers: newData });
         router.push({
-            path: "/result"
+            path: '/result',
         });
     }
 
@@ -78,6 +80,6 @@ onMounted(() => {
 
     survey.onCurrentPageChanged.add(onPageChange);
     survey.onComplete.add(onSurveyComplete);
-    survey.render("survey");
+    survey.render('survey');
 });
 </script>

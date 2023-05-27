@@ -1,12 +1,7 @@
 <template>
-    <div
-        v-if="recommendationsChatGPT"
-        class="recomindation-ai-result"
-    >
+    <div v-if="recommendationsChatGPT" class="recomindation-ai-result">
         <card>
-            <template #title>
-Рекомендации от SymptomAi
-</template>
+            <template #title> Рекомендации от SymptomAi </template>
             <template #content>
                 <panel
                     v-for="(value, title) in recommendationsChatGPT"
@@ -16,20 +11,14 @@
                 >
                     <div v-if="Array.isArray(value)">
                         <ul>
-                            <li
-                                v-for="(item, index) in value"
-                                :key="index"
-                            >
+                            <li v-for="(item, index) in value" :key="index">
                                 {{ item }}
                             </li>
                         </ul>
                     </div>
                     <div v-else>
                         <ul>
-                            <li
-                                v-for="(item, index) in value"
-                                :key="index"
-                            >
+                            <li v-for="(item, index) in value" :key="index">
                                 {{ index }}: {{ item }}
                             </li>
                         </ul>
@@ -37,10 +26,7 @@
                 </panel>
             </template>
 
-            <template
-                v-if="isButtonsVisible"
-                #footer
-            >
+            <template v-if="isButtonsVisible" #footer>
                 <p-button
                     class="p-button-raised"
                     label="Открыть в PDF"
@@ -52,12 +38,12 @@
 </template>
 
 <script setup lang="ts">
-import { useSurveyStore } from "@/modules/survey/store/survey.store";
-import { storeToRefs } from "pinia";
+import { useSurveyStore } from '@/modules/survey/store/survey.store';
+import { storeToRefs } from 'pinia';
 
-import Card from "primevue/card";
-import Panel from "primevue/panel";
-import PButton from "primevue/button";
+import Card from 'primevue/card';
+import Panel from 'primevue/panel';
+import PButton from 'primevue/button';
 
 const surveyStore = useSurveyStore();
 const { recommendationsChatGPT, isButtonsVisible } = storeToRefs(surveyStore);

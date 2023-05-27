@@ -24,23 +24,10 @@
                     </div>
                 </div>
             </template>
-            <column
-                field="id"
-                header="Id"
-                header-style="width: 2%"
-            />
-            <column
-                field="attributes.name"
-                header="Название"
-            />
-            <column
-                field="attributes.city"
-                header="Город"
-            />
-            <column
-                field="attributes.address"
-                header="Адрес"
-            />
+            <column field="id" header="Id" header-style="width: 2%" />
+            <column field="attributes.name" header="Название" />
+            <column field="attributes.city" header="Город" />
+            <column field="attributes.address" header="Адрес" />
             <column header-style="width: 6%">
                 <template #body="slotProps">
                     <p-button
@@ -84,11 +71,7 @@
                     </div>
                 </div>
             </template>
-            <column
-                field="id"
-                header="Id"
-                header-style="width: 2%"
-            />
+            <column field="id" header="Id" header-style="width: 2%" />
             <column header="ФИО">
                 <template #body="slotProps">
                     {{ slotProps.data.attributes.firstName }}
@@ -96,14 +79,8 @@
                     {{ slotProps.data.attributes.midName }}
                 </template>
             </column>
-            <column
-                field="attributes.specialization"
-                header="Специализация"
-            />
-            <column
-                field="attributes.experience"
-                header="Опыт"
-            />
+            <column field="attributes.specialization" header="Специализация" />
+            <column field="attributes.experience" header="Опыт" />
             <column header-style="width: 6%">
                 <template #body="slotProps">
                     <p-button
@@ -126,26 +103,27 @@
 </template>
 
 <script lang="ts" setup>
-import CreateClinic from "./popup/CreateClinic.vue";
-import ChangeClinic from "./popup/ChangeClinic.vue";
-import CreateDoctor from "./popup/CreateDoctor.vue";
-import ChangeDoctor from "./popup/ChangeDoctor.vue";
-import type { Clinics, Doctors } from "../types/clinics";
-import { useClinicsStore } from "../stores/clinics.store";
-import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
+import CreateClinic from './popup/CreateClinic.vue';
+import ChangeClinic from './popup/ChangeClinic.vue';
+import CreateDoctor from './popup/CreateDoctor.vue';
+import ChangeDoctor from './popup/ChangeDoctor.vue';
+import type { Clinics, Doctors } from '../types/clinics';
+import { useClinicsStore } from '../stores/clinics.store';
+import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
 
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
-import PButton from "primevue/button";
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import PButton from 'primevue/button';
 // import { useConfirm } from "primevue/useconfirm";
-import { useDialog } from "primevue/usedialog";
+import { useDialog } from 'primevue/usedialog';
 
 const clinicsStore = useClinicsStore();
 const dialog = useDialog();
 // const confirm = useConfirm();
 
-const { clinics, doctors, selectedClinic, selectedDoctor } = storeToRefs(clinicsStore);
+const { clinics, doctors, selectedClinic, selectedDoctor } =
+    storeToRefs(clinicsStore);
 
 onMounted(() => {
     clinicsStore.getCitiesData();
@@ -155,24 +133,24 @@ onMounted(() => {
 function createClinic(): void {
     dialog.open(CreateClinic, {
         props: {
-            header: "Добавление новой клиники",
+            header: 'Добавление новой клиники',
             style: {
-                width: "30%"
+                width: '30%',
             },
-            modal: true
-        }
+            modal: true,
+        },
     });
 }
 
 function createDoctor(): void {
     dialog.open(CreateDoctor, {
         props: {
-            header: "Добавление нового врача",
+            header: 'Добавление нового врача',
             style: {
-                width: "30%"
+                width: '30%',
             },
-            modal: true
-        }
+            modal: true,
+        },
     });
 }
 
@@ -180,12 +158,12 @@ function changeClinic(data: Clinics): void {
     selectedClinic.value = data;
     dialog.open(ChangeClinic, {
         props: {
-            header: "Изменение клинки",
+            header: 'Изменение клинки',
             style: {
-                width: "30%"
+                width: '30%',
             },
-            modal: true
-        }
+            modal: true,
+        },
     });
 }
 
@@ -193,12 +171,12 @@ function changeDoctor(data: Doctors): void {
     selectedDoctor.value = data;
     dialog.open(ChangeDoctor, {
         props: {
-            header: "Изменение врача",
+            header: 'Изменение врача',
             style: {
-                width: "30%"
+                width: '30%',
             },
-            modal: true
-        }
+            modal: true,
+        },
     });
 }
 </script>

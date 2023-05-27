@@ -14,32 +14,29 @@
         </div>
 
         <div class="image">
-            <img
-                alt="logo"
-                src="@/assets/phone.png"
-            >
+            <img alt="logo" src="@/assets/phone.png" />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useHomeStore } from "../store/home.store";
-import { computed } from "vue";
+import { storeToRefs } from 'pinia';
+import { useHomeStore } from '../store/home.store';
+import { computed } from 'vue';
 
 const homeStore = useHomeStore();
 const { isDoctor } = storeToRefs(homeStore);
 
 const advantagesInfoFirst = computed(() => {
     return isDoctor.value
-        ? "В работу интегрирован искусственный интеллект от OpenAI–ChatGPT, который успешно сдал медицинский экзамен на лицензирование врачей в США"
-        : "Опросник составлен на основе опыта практикующих врачей, которые знают, какие жалобы требуют повышенного внимания";
+        ? 'В работу интегрирован искусственный интеллект от OpenAI–ChatGPT, который успешно сдал медицинский экзамен на лицензирование врачей в США'
+        : 'Опросник составлен на основе опыта практикующих врачей, которые знают, какие жалобы требуют повышенного внимания';
 });
 
 const advantagesInfoSecond = computed(() => {
     return isDoctor.value
-        ? "Для составления рекомендаций используются проверенные источники, которые являются золотым стандартом доказательной медицины - BMJ Best Practice, NCCN, UptoDate и клинические рекомендации США и Европы. Протестировано на клинических кейсах от ресурсов Access Medicine"
-        : "Медицинская команда проекта использует только доказательную медицину";
+        ? 'Для составления рекомендаций используются проверенные источники, которые являются золотым стандартом доказательной медицины - BMJ Best Practice, NCCN, UptoDate и клинические рекомендации США и Европы. Протестировано на клинических кейсах от ресурсов Access Medicine'
+        : 'Медицинская команда проекта использует только доказательную медицину';
 });
 </script>
 

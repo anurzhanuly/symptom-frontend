@@ -16,10 +16,7 @@
                 </div>
                 <div>
                     <h3>Опыт (число)</h3>
-                    <input-text
-                        v-model="changeDoctorExp"
-                        type="number"
-                    />
+                    <input-text v-model="changeDoctorExp" type="number" />
                 </div>
                 <div>
                     <h3>Специализация</h3>
@@ -45,24 +42,30 @@
 </template>
 
 <script lang="ts" setup>
-import { useClinicsStore } from "../../stores/clinics.store";
-import { inject, ref } from "vue";
+import { useClinicsStore } from '../../stores/clinics.store';
+import { inject, ref } from 'vue';
 
-import PButton from "primevue/button";
-import Dropdown from "primevue/dropdown";
-import InputText from "primevue/inputtext";
-import { storeToRefs } from "pinia";
+import PButton from 'primevue/button';
+import Dropdown from 'primevue/dropdown';
+import InputText from 'primevue/inputtext';
+import { storeToRefs } from 'pinia';
 
 const clinicStore = useClinicsStore();
-const dialogRef = inject<any>("dialogRef");
+const dialogRef = inject<any>('dialogRef');
 
 const { specializations, selectedDoctor } = storeToRefs(clinicStore);
 
-const changeDoctorFirstName = ref<string>(selectedDoctor.value?.attributes.firstName!);
-const changeDoctorLastName = ref<string>(selectedDoctor.value?.attributes.firstName!);
-const changeDoctorMidName = ref<string>(selectedDoctor.value?.attributes.midName!);
-const changeDoctorspecId = ref<string>("");
-const changeDoctorExp = ref<string>("");
+const changeDoctorFirstName = ref<string>(
+    selectedDoctor.value?.attributes.firstName!
+);
+const changeDoctorLastName = ref<string>(
+    selectedDoctor.value?.attributes.firstName!
+);
+const changeDoctorMidName = ref<string>(
+    selectedDoctor.value?.attributes.midName!
+);
+const changeDoctorspecId = ref<string>('');
+const changeDoctorExp = ref<string>('');
 
 async function changeDoctor(): Promise<void> {
     // if (

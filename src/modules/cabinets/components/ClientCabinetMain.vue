@@ -18,20 +18,17 @@
                     </div>
 
                     <div>
-            <span class="p-input-icon-left">
-              <i class="pi pi-search" />
-              <input-text
-                  v-model="searchString"
-                  placeholder="Поиск"
-              />
-            </span>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search" />
+                            <input-text
+                                v-model="searchString"
+                                placeholder="Поиск"
+                            />
+                        </span>
                     </div>
                 </div>
             </template>
-            <column
-                field="attributes.name"
-                header="Дата опроса"
-            />
+            <column field="attributes.name" header="Дата опроса" />
             <column style="width: 7%">
                 <template #body="slotProps">
                     <p-button
@@ -46,14 +43,14 @@
 </template>
 
 <script setup lang="ts">
-import { useCabinetsStore } from "../store/cabinets.store";
-import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
+import { useCabinetsStore } from '../store/cabinets.store';
+import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
 
-import InputText from "primevue/inputtext";
-import PButton from "primevue/button";
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
+import InputText from 'primevue/inputtext';
+import PButton from 'primevue/button';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 
 const cabinetsStore = useCabinetsStore();
 

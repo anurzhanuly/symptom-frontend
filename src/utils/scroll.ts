@@ -1,4 +1,4 @@
- /**
+/**
  * Подскрол к элементу
  */
 export function scrollToElement(selector: string) {
@@ -15,7 +15,7 @@ export function scrollToElement(selector: string) {
     }
 
     window.scroll({
-        top:      0,
+        top: 0,
         behavior: 'smooth',
     });
 }

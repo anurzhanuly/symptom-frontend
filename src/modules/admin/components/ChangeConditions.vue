@@ -33,10 +33,7 @@
                     </div>
                 </panel>
             </div>
-            <div
-                v-if="selectedRecommendation"
-                class="conditions-actions"
-            >
+            <div v-if="selectedRecommendation" class="conditions-actions">
                 <toolbar>
                     <template #start>
                         <p-button
@@ -55,7 +52,9 @@
                 <panel
                     v-for="(condition, index) in conditions"
                     :key="index"
-                    :header="`${index + 1} -  ${selectedRecommendation.attributes.name}`"
+                    :header="`${index + 1} -  ${
+                        selectedRecommendation.attributes.name
+                    }`"
                 >
                     <template #icons>
                         <p-button
@@ -80,7 +79,9 @@
                             selection-mode="single"
                             show-gridlines
                             :value="condition"
-                            @cell-edit-complete="adminStore.updateCondition($event, index)"
+                            @cell-edit-complete="
+                                adminStore.updateCondition($event, index)
+                            "
                         >
                             <column
                                 v-for="(column, idx) in conditionColumns"
@@ -91,14 +92,18 @@
                                 <template #editor="{ data, field }">
                                     <div v-if="column.field === 'value'">
                                         <p-multi-select
-                                            v-if="checkOptions(data.questionName)"
+                                            v-if="
+                                                checkOptions(data.questionName)
+                                            "
                                             v-model="data[field]"
                                             :empty-filter-message="'Ничего не найдено'"
                                             :empty-message="'Ничего не найдено'"
                                             filter
                                             filter-placeholder="Поиск"
                                             lazy
-                                            :options="checkOptions(data.questionName)"
+                                            :options="
+                                                checkOptions(data.questionName)
+                                            "
                                             placeholder="Выберите..."
                                         />
                                         <p-textarea
@@ -111,7 +116,11 @@
                                         v-else-if="column.header === 'Удаление'"
                                         icon="pi pi-times"
                                         severity="danger"
-                                        @click="adminStore.deleteConditionItem(index)"
+                                        @click="
+                                            adminStore.deleteConditionItem(
+                                                index
+                                            )
+                                        "
                                     />
                                     <dropdown
                                         v-else-if="column.hasDropdown"
@@ -125,7 +134,11 @@
                                         option-value="value"
                                         :options="column?.options"
                                         placeholder="Выберите..."
-                                        @change="field === 'questionName' ? (data.value = '') : null"
+                                        @change="
+                                            field === 'questionName'
+                                                ? (data.value = '')
+                                                : null
+                                        "
                                     />
                                     <input-text
                                         v-else
@@ -143,22 +156,22 @@
 </template>
 
 <script lang="ts" setup>
-import { useAdminStore } from "@/modules/admin/stores/admin.store";
-import { storeToRefs } from "pinia";
-import { computed } from "vue";
+import { useAdminStore } from '@/modules/admin/stores/admin.store';
+import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
 
-import { useConfirm } from "primevue/useconfirm";
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
-import PButton from "primevue/button";
-import PMultiSelect from "primevue/multiselect";
-import InputText from "primevue/inputtext";
-import PTextarea from "primevue/textarea";
-import Dropdown from "primevue/dropdown";
-import Listbox from "primevue/listbox";
-import Toolbar from "primevue/toolbar";
-import Panel from "primevue/panel";
-import BlockUI from "primevue/blockui";
+import { useConfirm } from 'primevue/useconfirm';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import PButton from 'primevue/button';
+import PMultiSelect from 'primevue/multiselect';
+import InputText from 'primevue/inputtext';
+import PTextarea from 'primevue/textarea';
+import Dropdown from 'primevue/dropdown';
+import Listbox from 'primevue/listbox';
+import Toolbar from 'primevue/toolbar';
+import Panel from 'primevue/panel';
+import BlockUI from 'primevue/blockui';
 
 const adminStore = useAdminStore();
 const confirm = useConfirm();
@@ -171,13 +184,13 @@ const {
     recomindationDeleteName,
     recomindationNewName,
     vals,
-    isLoading
+    isLoading,
 } = storeToRefs(adminStore);
 
 const conditionColumns = computed(() => adminStore.conditionColumns || []);
 
 function checkOptions(name: string) {
-    const options = vals.value.filter(item => item.title === name);
+    const options = vals.value.filter((item) => item.title === name);
 
     if (options.length && options[0].choices) {
         return options[0].choices;
@@ -189,11 +202,11 @@ function checkOptions(name: string) {
 function deleteConditionConfirm(event: any, index: number): void {
     confirm.require({
         target: event.currentTarget,
-        message: "Вы уверены?",
-        acceptLabel: "Да",
-        rejectLabel: "Нет",
-        icon: "pi pi-exclamation-triangle",
-        accept: () => adminStore.deleteCondition(index)
+        message: 'Вы уверены?',
+        acceptLabel: 'Да',
+        rejectLabel: 'Нет',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => adminStore.deleteCondition(index),
     });
 }
 </script>

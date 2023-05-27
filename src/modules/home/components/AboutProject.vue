@@ -1,14 +1,8 @@
 <template>
-    <div
-        id="test"
-        class="about"
-    >
+    <div id="test" class="about">
         <div class="about-container">
             <div class="image">
-                <img
-                    alt="logo"
-                    src="@/assets/onboarding/onboard2.png"
-                >
+                <img alt="logo" src="@/assets/onboarding/onboard2.png" />
             </div>
             <div class="info">
                 <h3>О проекте</h3>
@@ -27,50 +21,49 @@
     </div>
     <div class="about-action">
         <h4>{{ actionInfo }}</h4>
-        <p-button
-            :label="buttonLabel"
-            @click="direct"
-        />
+        <p-button :label="buttonLabel" @click="direct" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useHomeStore } from "../store/home.store";
-import { useRouter } from "vue-router";
-import { computed } from "vue";
+import { storeToRefs } from 'pinia';
+import { useHomeStore } from '../store/home.store';
+import { useRouter } from 'vue-router';
+import { computed } from 'vue';
 
-import PButton from "primevue/button";
+import PButton from 'primevue/button';
 
 const homeStore = useHomeStore();
 const { isDoctor } = storeToRefs(homeStore);
 const router = useRouter();
 
 const actionInfo = computed(() => {
-    return isDoctor.value ? "Оставьте заявку в Symptom уже сейчас" : "Определить состояние здоровья уже сейчас";
+    return isDoctor.value
+        ? 'Оставьте заявку в Symptom уже сейчас'
+        : 'Определить состояние здоровья уже сейчас';
 });
 
 const buttonLabel = computed(() => {
-    return isDoctor.value ? "Оставить заявку" : "Пройти опрос";
+    return isDoctor.value ? 'Оставить заявку' : 'Пройти опрос';
 });
 
 const projectInfoFirst = computed(() => {
     return isDoctor.value
-        ? "С помощью опросника, работающего на базе искусственного интеллекта, Symptom собирает структурированную историю болезни"
-        : "С помощью опросника, работающего на базе искусственного интеллекта, Symptom собирает структурированную историю болезни и формирует рекомендации по необходимым обследованиям и анализам";
+        ? 'С помощью опросника, работающего на базе искусственного интеллекта, Symptom собирает структурированную историю болезни'
+        : 'С помощью опросника, работающего на базе искусственного интеллекта, Symptom собирает структурированную историю болезни и формирует рекомендации по необходимым обследованиям и анализам';
 });
 
 const projectInfoSecond = computed(() => {
     return isDoctor.value
-        ? "С помощью опросника, работающего на базе искусственного интеллекта, Symptom собирает структурированную историю болезни"
-        : "Опросник состоит из вопросов, составленных профессиональными врачами. Его заполнение опросника занимает от 5 до 15 минут в зависимости от вашего состояния.";
+        ? 'С помощью опросника, работающего на базе искусственного интеллекта, Symptom собирает структурированную историю болезни'
+        : 'Опросник состоит из вопросов, составленных профессиональными врачами. Его заполнение опросника занимает от 5 до 15 минут в зависимости от вашего состояния.';
 });
 
 function direct(): void {
     if (isDoctor.value) {
         // TODO registration
     } else {
-        router.push("/agreement");
+        router.push('/agreement');
     }
 }
 </script>

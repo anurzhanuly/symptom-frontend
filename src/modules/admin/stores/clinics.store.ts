@@ -1,4 +1,11 @@
-import type { City, Clinics, Doctors, NewClinic, NewDoctor, Specialization } from "../types/clinics";
+import type {
+    City,
+    Clinics,
+    Doctors,
+    NewClinic,
+    NewDoctor,
+    Specialization,
+} from '../types/clinics';
 import {
     getCities,
     getClinics,
@@ -7,12 +14,12 @@ import {
     postChangeClinic,
     postChangeDoctor,
     postNewClinic,
-    postNewDoctor
-} from "../services/clinics.refbooks";
-import { defineStore } from "pinia";
-import { onMounted, ref } from "vue";
+    postNewDoctor,
+} from '../services/clinics.refbooks';
+import { defineStore } from 'pinia';
+import { onMounted, ref } from 'vue';
 
-export const useClinicsStore = defineStore("clinics", () => {
+export const useClinicsStore = defineStore('clinics', () => {
     const clinics = ref<Clinics[]>([]);
     const doctors = ref<Doctors[]>([]);
     const doctorsFIO = ref<any>([]);
@@ -46,10 +53,13 @@ export const useClinicsStore = defineStore("clinics", () => {
         return 0;
     }
 
-    async function changeClinicData(id: string, newClinic: NewClinic): Promise<number> {
+    async function changeClinicData(
+        id: string,
+        newClinic: NewClinic
+    ): Promise<number> {
         const res = await postChangeClinic(id, newClinic);
         if (res) {
-            const index = clinics.value.findIndex(elem => elem.id === id);
+            const index = clinics.value.findIndex((elem) => elem.id === id);
             clinics.value[index] = res.data;
             return res.status;
         }
@@ -57,10 +67,13 @@ export const useClinicsStore = defineStore("clinics", () => {
         return 0;
     }
 
-    async function changeDoctorData(id: string, newClinic: NewDoctor): Promise<number> {
+    async function changeDoctorData(
+        id: string,
+        newClinic: NewDoctor
+    ): Promise<number> {
         const res = await postChangeDoctor(id, newClinic);
         if (res) {
-            const index = clinics.value.findIndex(elem => elem.id === id);
+            const index = clinics.value.findIndex((elem) => elem.id === id);
             doctors.value[index] = res.data;
             return res.status;
         }
@@ -73,9 +86,9 @@ export const useClinicsStore = defineStore("clinics", () => {
         if (res) {
             doctors.value = res.data.data;
 
-            doctorsFIO.value = doctors.value.map(doctor => ({
+            doctorsFIO.value = doctors.value.map((doctor) => ({
                 id: doctor.id,
-                name: `${doctor.attributes.firstName} ${doctor.attributes.lastName} ${doctor.attributes.midName}`
+                name: `${doctor.attributes.firstName} ${doctor.attributes.lastName} ${doctor.attributes.midName}`,
             }));
         }
     }
@@ -119,6 +132,6 @@ export const useClinicsStore = defineStore("clinics", () => {
         getSpecializationsData,
         createClinicData,
         getDoctorsData,
-        getClinicsData
+        getClinicsData,
     };
 });

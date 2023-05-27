@@ -1,9 +1,6 @@
 <template>
     <section>
-        <progress-bar
-            v-if="isLoading"
-            mode="indeterminate"
-        />
+        <progress-bar v-if="isLoading" mode="indeterminate" />
         <base-header v-if="isButtonsVisible" />
         <result-patient-card />
         <result-recomindation />
@@ -12,15 +9,15 @@
 </template>
 
 <script lang="ts" setup>
-import { useSurveyStore } from "./store/survey.store";
-import { storeToRefs } from "pinia";
+import { useSurveyStore } from './store/survey.store';
+import { storeToRefs } from 'pinia';
 
-import BaseHeader from "@/components/BaseHeader.vue";
-import ResultPatientCard from "./components/ResultPatientCard.vue";
-import ResultRecomindation from "./components/ResultRecomindation.vue";
-import ResultRecomindationAi from "./components/ResultRecomindationAi.vue";
+import BaseHeader from '@/components/BaseHeader.vue';
+import ResultPatientCard from './components/ResultPatientCard.vue';
+import ResultRecomindation from './components/ResultRecomindation.vue';
+import ResultRecomindationAi from './components/ResultRecomindationAi.vue';
 
-import ProgressBar from "primevue/progressbar";
+import ProgressBar from 'primevue/progressbar';
 
 const surveyStore = useSurveyStore();
 const { isLoading, isButtonsVisible } = storeToRefs(surveyStore);

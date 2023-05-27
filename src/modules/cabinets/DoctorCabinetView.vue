@@ -9,32 +9,32 @@
 </template>
 
 <script setup lang="ts">
-import CabinetSideBar from "./components/CabinetSideBar.vue";
-import BaseHeader from "@/components/BaseHeader.vue";
-import { RouterView, useRouter } from "vue-router";
-import { onMounted, ref } from "vue";
+import CabinetSideBar from './components/CabinetSideBar.vue';
+import BaseHeader from '@/components/BaseHeader.vue';
+import { RouterView, useRouter } from 'vue-router';
+import { onMounted, ref } from 'vue';
 
 onMounted(() => {
     const router = useRouter();
-    router.push("/doctor-cabinet/main");
+    router.push('/doctor-cabinet/main');
 });
 
 const doctorViews = ref([
     {
-        label: "Главная",
-        icon: "pi pi-fw pi-book",
-        to: "/doctor-cabinet/main"
+        label: 'Главная',
+        icon: 'pi pi-fw pi-book',
+        to: '/doctor-cabinet/main',
     },
     {
-        label: "Пациенты",
-        icon: "pi pi-fw pi-users",
-        to: "/doctor-cabinet/patients"
+        label: 'Пациенты',
+        icon: 'pi pi-fw pi-users',
+        to: '/doctor-cabinet/patients',
     },
     {
-        label: "Настройки",
-        icon: "pi pi-fw pi-exclamation-circle",
-        to: "/doctor-cabinet/settings"
-    }
+        label: 'Настройки',
+        icon: 'pi pi-fw pi-exclamation-circle',
+        to: '/doctor-cabinet/settings',
+    },
 ]);
 </script>
 

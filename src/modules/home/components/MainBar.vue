@@ -2,20 +2,17 @@
     <div class="main-container">
         <div class="main-information">
             <h1>Что Вас беспокоит?</h1>
-            <h3>Пройдите опрос, узнайте о состоянии вашего здоровья и начните приём с нами</h3>
-            <div
-                v-if="isDoctor"
-                class="main-container-button"
-            >
+            <h3>
+                Пройдите опрос, узнайте о состоянии вашего здоровья и начните
+                приём с нами
+            </h3>
+            <div v-if="isDoctor" class="main-container-button">
                 <p-button
                     label="Войти в кабинет врача"
                     @click="$router.push('doctor-sign-in')"
                 />
             </div>
-            <div
-                v-else
-                class="main-container-buttons"
-            >
+            <div v-else class="main-container-buttons">
                 <p-button
                     label="Пройти опрос"
                     @click="$router.push('agreement')"
@@ -28,21 +25,18 @@
             </div>
         </div>
         <div class="main-image">
-            <img
-                alt="logo"
-                src="@/assets/main.png"
-            >
+            <img alt="logo" src="@/assets/main.png" />
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted } from "vue";
-import { useSurveyStore } from "../../survey/store/survey.store.js";
-import { useHomeStore } from "../store/home.store.js";
+import { computed, onMounted } from 'vue';
+import { useSurveyStore } from '../../survey/store/survey.store.js';
+import { useHomeStore } from '../store/home.store.js';
 
-import PButton from "primevue/button";
-import { storeToRefs } from "pinia";
+import PButton from 'primevue/button';
+import { storeToRefs } from 'pinia';
 
 const surveyStore = useSurveyStore();
 const homeStore = useHomeStore();
@@ -53,7 +47,9 @@ onMounted(() => {
     surveyStore.getQuestionsData();
 });
 
-const isMobileDevice = computed(() => /Mobi/.test(navigator.userAgent) && !/iPad/.test(navigator.userAgent));
+const isMobileDevice = computed(
+    () => /Mobi/.test(navigator.userAgent) && !/iPad/.test(navigator.userAgent)
+);
 </script>
 
 <style scoped>

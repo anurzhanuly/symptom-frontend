@@ -1,10 +1,10 @@
-import type { Recommendation } from "../types/recommendations";
-import type { AxiosResponse } from "axios";
-import { useSymptomApi } from "@/services/api";
+import type { Recommendation } from '../types/recommendations';
+import type { AxiosResponse } from 'axios';
+import { useSymptomApi } from '@/services/api';
 
 export async function getQuestionsJson() {
     try {
-        const res = await useSymptomApi.get("/questionnaires/latest");
+        const res = await useSymptomApi.get('/questionnaires/latest');
         return res.data || null;
     } catch (error) {
         console.error(error);
@@ -14,14 +14,18 @@ export async function getQuestionsJson() {
 
 export async function getRecommendations(): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.get<Recommendation[]>("/admin/recommendations/");
+        return await useSymptomApi.get<Recommendation[]>(
+            '/admin/recommendations/'
+        );
     } catch (error) {
         console.error(error);
         return null;
     }
 }
 
-export async function getRecommendationDetail(id: string): Promise<AxiosResponse | null> {
+export async function getRecommendationDetail(
+    id: string
+): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.get<any>(`/admin/recommendations/${id}`);
     } catch (error) {
@@ -30,7 +34,9 @@ export async function getRecommendationDetail(id: string): Promise<AxiosResponse
     }
 }
 
-export async function deleteRecommendation(id: string): Promise<AxiosResponse | null> {
+export async function deleteRecommendation(
+    id: string
+): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.post(`/admin/recommendations/${id}/delete`);
     } catch (error) {
@@ -39,14 +45,16 @@ export async function deleteRecommendation(id: string): Promise<AxiosResponse | 
     }
 }
 
-export async function createRecommendation(name: string): Promise<AxiosResponse | null> {
+export async function createRecommendation(
+    name: string
+): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.post(`/admin/recommendations/create`, {
+        return await useSymptomApi.post('/admin/recommendations/create', {
             data: {
                 name: name,
                 tests: {},
-                conditions: []
-            }
+                conditions: [],
+            },
         });
     } catch (error) {
         console.error(error);
@@ -65,8 +73,8 @@ export async function updateRecommendation(
             data: {
                 name: name,
                 tests: tests,
-                conditions: conditions
-            }
+                conditions: conditions,
+            },
         });
     } catch (error) {
         console.error(error);

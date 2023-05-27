@@ -1,22 +1,25 @@
-import type { Condition, Recommendation } from "@/modules/admin/types/recommendations.js";
-import type { DataTableCellEditCompleteEvent } from "primevue/datatable";
-import type { Questions } from "../types/questions.js";
-import { computed, onMounted, ref, watch } from "vue";
-import { defineStore } from "pinia";
+import type {
+    Condition,
+    Recommendation,
+} from '@/modules/admin/types/recommendations.js';
+import type { DataTableCellEditCompleteEvent } from 'primevue/datatable';
+import type { Questions } from '../types/questions.js';
+import { computed, onMounted, ref, watch } from 'vue';
+import { defineStore } from 'pinia';
 import {
     createRecommendation,
     deleteRecommendation,
     getQuestionsJson,
     getRecommendationDetail,
     getRecommendations,
-    updateRecommendation
-} from "../services/admin.refbooks.js";
-import { success } from "@/utils/toast.js";
-import { useDialog } from "primevue/usedialog";
+    updateRecommendation,
+} from '../services/admin.refbooks.js';
+import { success } from '@/utils/toast.js';
+import { useDialog } from 'primevue/usedialog';
 
-import CreateConditions from "../components/popup/CreateConditions.vue";
+import CreateConditions from '../components/popup/CreateConditions.vue';
 
-export const useAdminStore = defineStore("admin", () => {
+export const useAdminStore = defineStore('admin', () => {
     const allRecommendations = ref<Recommendation[]>([]);
     const selectedRecommendation = ref<Recommendation | null>();
     const questions = ref<Questions[]>([]);
@@ -29,8 +32,8 @@ export const useAdminStore = defineStore("admin", () => {
 
     const tests = ref();
     const lastTestKey = ref(1);
-    const recomindationDeleteName = ref("");
-    const recomindationNewName = ref("");
+    const recomindationDeleteName = ref('');
+    const recomindationNewName = ref('');
 
     const dialog = useDialog();
 
@@ -44,13 +47,15 @@ export const useAdminStore = defineStore("admin", () => {
         }
     });
 
-    watch(selectedRecommendation, async newRecommendationName => {
+    watch(selectedRecommendation, async (newRecommendationName) => {
         const res = await getRecommendationDetail(newRecommendationName?.id!);
 
         if (res) {
             tests.value = res.data.data.attributes.tests;
             const keys = Object.keys(tests.value);
-            lastTestKey.value = keys[keys.length - 1] ? Number(keys[keys.length - 1]) + 1 : 1;
+            lastTestKey.value = keys[keys.length - 1]
+                ? Number(keys[keys.length - 1]) + 1
+                : 1;
 
             conditions.value = res.data.data.attributes.conditions;
         }
@@ -58,42 +63,42 @@ export const useAdminStore = defineStore("admin", () => {
 
     const conditionColumns = [
         {
-            header: "Наименование вопроса",
-            field: "questionName",
+            header: 'Наименование вопроса',
+            field: 'questionName',
             hasDropdown: true,
-            options: computed(() => questionsNames.value)
+            options: computed(() => questionsNames.value),
         },
         {
-            header: "Условие",
-            field: "compare",
+            header: 'Условие',
+            field: 'compare',
             hasDropdown: true,
             options: [
-                { value: "exact" },
-                { value: "except" },
-                { value: "greater" },
-                { value: "less" },
-                { value: "range" },
-                { value: "optional" }
-            ]
+                { value: 'exact' },
+                { value: 'except' },
+                { value: 'greater' },
+                { value: 'less' },
+                { value: 'range' },
+                { value: 'optional' },
+            ],
         },
         {
-            header: "Значение",
-            field: "value",
+            header: 'Значение',
+            field: 'value',
             hasDropdown: false,
-            options: []
+            options: [],
         },
         {
-            header: "Номер рекомендации",
-            field: "testCase",
+            header: 'Номер рекомендации',
+            field: 'testCase',
             hasDropdown: false,
-            options: []
+            options: [],
         },
         {
-            header: "Удаление",
-            field: "",
+            header: 'Удаление',
+            field: '',
             hasDropdown: false,
-            options: []
-        }
+            options: [],
+        },
     ];
 
     async function getQuestionsData(): Promise<void> {
@@ -133,11 +138,14 @@ export const useAdminStore = defineStore("admin", () => {
         }
     }
 
-    function updateCondition(event: DataTableCellEditCompleteEvent, tableIndex: number): void {
+    function updateCondition(
+        event: DataTableCellEditCompleteEvent,
+        tableIndex: number
+    ): void {
         const updated = { ...event.newData };
 
-        if (typeof updated.value === "string") {
-            updated.value = updated.value.split(",");
+        if (typeof updated.value === 'string') {
+            updated.value = updated.value.split(',');
         }
 
         if (event.newValue && event.value !== event.newValue) {
@@ -146,9 +154,14 @@ export const useAdminStore = defineStore("admin", () => {
     }
 
     function deleteCondition(indexToDelete: number): void {
-        conditions.value = conditions.value.filter((_: any, index: number) => index !== indexToDelete);
+        conditions.value = conditions.value.filter(
+            (_: any, index: number) => index !== indexToDelete
+        );
 
-        success("Удаление блока условии", "Блок условии удален, не забудьте сохранить");
+        success(
+            'Удаление блока условии',
+            'Блок условии удален, не забудьте сохранить'
+        );
     }
 
     function createBlockCondition() {
@@ -159,41 +172,45 @@ export const useAdminStore = defineStore("admin", () => {
         conditionIndex.value = index;
         dialog.open(CreateConditions, {
             props: {
-                header: "Создание нового условия для блока",
+                header: 'Создание нового условия для блока',
                 style: {
-                    width: "60%"
+                    width: '60%',
                 },
-                modal: true
-            }
+                modal: true,
+            },
         });
     }
 
     function deleteConditionItem(tableIndex: number): void {
-        const filteredConditions: any = (conditions.value[tableIndex] as unknown as Condition[]).filter(
-            item => item !== selectedCondition.value
-        );
+        const filteredConditions: any = (
+            conditions.value[tableIndex] as unknown as Condition[]
+        ).filter((item) => item !== selectedCondition.value);
 
         conditions.value[tableIndex] = filteredConditions;
 
-        success("Удаление условия", "Условие удалено, не забудьте сохранить");
+        success('Удаление условия', 'Условие удалено, не забудьте сохранить');
     }
 
     async function createRecommendationData(): Promise<void> {
         const res = await createRecommendation(recomindationNewName.value);
         if (res) {
             allRecommendations.value.push(res.data.data);
-            recomindationNewName.value = "";
+            recomindationNewName.value = '';
         }
     }
 
     async function deleteRecommendationData(): Promise<void> {
-        const foundedObject = allRecommendations.value.find(item => item.attributes.name === recomindationDeleteName.value);
+        const foundedObject = allRecommendations.value.find(
+            (item) => item.attributes.name === recomindationDeleteName.value
+        );
         const res = await deleteRecommendation(foundedObject?.id!);
         if (res) {
-            allRecommendations.value = allRecommendations.value.filter(item => item.id !== foundedObject?.id);
+            allRecommendations.value = allRecommendations.value.filter(
+                (item) => item.id !== foundedObject?.id
+            );
 
-            success("Удаление рекоминдации", res.data.message);
-            recomindationDeleteName.value = "";
+            success('Удаление рекоминдации', res.data.message);
+            recomindationDeleteName.value = '';
             selectedRecommendation.value = null;
         }
     }
@@ -207,7 +224,7 @@ export const useAdminStore = defineStore("admin", () => {
         );
 
         if (res) {
-            success("Изменения рекоминдации", "Все изменения сохранены");
+            success('Изменения рекоминдации', 'Все изменения сохранены');
         }
     }
 
@@ -224,13 +241,15 @@ export const useAdminStore = defineStore("admin", () => {
 
         tests.value = newObj;
         const newKeys = Object.keys(tests.value);
-        lastTestKey.value = newKeys[newKeys.length - 1] ? Number(newKeys[newKeys.length - 1]) + 1 : 1;
+        lastTestKey.value = newKeys[newKeys.length - 1]
+            ? Number(newKeys[newKeys.length - 1]) + 1
+            : 1;
 
-        success("Удаление теста", "Тест удален, не забудьте сохранить");
+        success('Удаление теста', 'Тест удален, не забудьте сохранить');
     }
 
     function createTest(): void {
-        tests.value[lastTestKey.value.toString()] = "";
+        tests.value[lastTestKey.value.toString()] = '';
 
         lastTestKey.value++;
     }
@@ -260,6 +279,6 @@ export const useAdminStore = defineStore("admin", () => {
         deleteRecommendationData,
         updateRecommendationData,
         deleteTest,
-        createTest
+        createTest,
     };
 });

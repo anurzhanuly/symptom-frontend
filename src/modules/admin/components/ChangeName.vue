@@ -1,9 +1,6 @@
 <template>
     <panel header="Наименование вопроса в рекомендациях">
-        <input-text
-            v-model="beforeQuestName"
-            placeholder="До"
-        />
+        <input-text v-model="beforeQuestName" placeholder="До" />
         <dropdown
             v-model="afterQuestName"
             :empty-filter-message="'Ничего не найдено'"
@@ -25,41 +22,45 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
-import { useAdminStore } from "@/modules/admin/stores/admin.store";
-import { useConfirm } from "primevue/useconfirm";
+import { computed, ref } from 'vue';
+import { useAdminStore } from '@/modules/admin/stores/admin.store';
+import { useConfirm } from 'primevue/useconfirm';
 
-import InputText from "primevue/inputtext";
-import Dropdown from "primevue/dropdown";
-import PButton from "primevue/button";
-import Panel from "primevue/panel";
+import InputText from 'primevue/inputtext';
+import Dropdown from 'primevue/dropdown';
+import PButton from 'primevue/button';
+import Panel from 'primevue/panel';
 
 const adminStore = useAdminStore();
 const confirm = useConfirm();
 
-const beforeQuestName = ref("");
-const afterQuestName = ref("");
+const beforeQuestName = ref('');
+const afterQuestName = ref('');
 
 const isReadyToChange = computed(() => {
     return beforeQuestName.value && afterQuestName.value ? true : false;
 });
 const recommendationsJSON = computed(() => adminStore.allRecommendations || []);
-const questionNameOptions = computed(() => adminStore.conditionColumns[0].options || {});
+const questionNameOptions = computed(
+    () => adminStore.conditionColumns[0].options || {}
+);
 
 function changeQuestName(): void {
     const recommendationStr = JSON.stringify(recommendationsJSON.value);
-    const newRecommendation = recommendationStr.split(beforeQuestName.value).join(afterQuestName.value);
+    const newRecommendation = recommendationStr
+        .split(beforeQuestName.value)
+        .join(afterQuestName.value);
 }
 
 function confirmChange(event: any): void {
     confirm.require({
         target: event.currentTarget,
-        message: "Вы уверены?",
-        acceptLabel: "Да",
-        rejectLabel: "Нет",
-        icon: "pi pi-info-circle",
-        acceptClass: "p-button-danger",
-        accept: changeQuestName
+        message: 'Вы уверены?',
+        acceptLabel: 'Да',
+        rejectLabel: 'Нет',
+        icon: 'pi pi-info-circle',
+        acceptClass: 'p-button-danger',
+        accept: changeQuestName,
     });
 }
 </script>

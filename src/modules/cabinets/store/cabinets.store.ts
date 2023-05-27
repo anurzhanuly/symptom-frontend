@@ -1,12 +1,20 @@
-import { getClientConsultations, getDoctorConsultations, getResult } from "../services/cabinets.refbooks";
-import type { Consultation, ConsultationResult, PatientAnswers } from "../types/cabinets";
-import type { DataTableFilterMeta } from "primevue/datatable";
-import { useRouter } from "vue-router";
-import { defineStore } from "pinia";
-import { warn } from "@/utils/toast";
-import { ref } from "vue";
+import {
+    getClientConsultations,
+    getDoctorConsultations,
+    getResult,
+} from '../services/cabinets.refbooks';
+import type {
+    Consultation,
+    ConsultationResult,
+    PatientAnswers,
+} from '../types/cabinets';
+import type { DataTableFilterMeta } from 'primevue/datatable';
+import { useRouter } from 'vue-router';
+import { defineStore } from 'pinia';
+import { warn } from '@/utils/toast';
+import { ref } from 'vue';
 
-export const useCabinetsStore = defineStore("cabinet", () => {
+export const useCabinetsStore = defineStore('cabinet', () => {
     const myConsultation = ref<Consultation[]>([]);
     const consultationResult = ref<ConsultationResult>();
     const patientResult = ref<ConsultationResult>();
@@ -16,9 +24,9 @@ export const useCabinetsStore = defineStore("cabinet", () => {
 
     const router = useRouter();
 
-    const searchString = ref("");
+    const searchString = ref('');
     const filters = ref<DataTableFilterMeta>({
-        global: { matchMode: "contains", value: searchString }
+        global: { matchMode: 'contains', value: searchString },
     });
 
     async function getDoctorConsultationsData(): Promise<void> {
@@ -26,7 +34,7 @@ export const useCabinetsStore = defineStore("cabinet", () => {
         if (res) {
             myConsultation.value = res.data.included;
         } else {
-            router.push("/doctor-sign-in");
+            router.push('/doctor-sign-in');
         }
     }
 
@@ -42,15 +50,19 @@ export const useCabinetsStore = defineStore("cabinet", () => {
     async function getDoctorResultData(Id: string): Promise<void> {
         const res = await getResult(Id);
         if (res) {
-            patientResult.value = res.data.included.filter((item: { type: string }) => item.type === "patient")[0];
-            doctorResult.value = res.data.included.filter((item: { type: string }) => item.type === "doctor")[0];
+            patientResult.value = res.data.included.filter(
+                (item: { type: string }) => item.type === 'patient'
+            )[0];
+            doctorResult.value = res.data.included.filter(
+                (item: { type: string }) => item.type === 'doctor'
+            )[0];
 
             patientAnswer.value = res.data.data.attributes.patient_answers;
             recommendations.value = res.data.data.attributes.recommendations;
 
             router.push(`/doctor-cabinet/result/${Id}`);
         } else {
-            warn("Не найдено", "Результаты не найдены");
+            warn('Не найдено', 'Результаты не найдены');
             // router.push("/doctor-sign-in");
         }
     }
@@ -58,15 +70,19 @@ export const useCabinetsStore = defineStore("cabinet", () => {
     async function getClientResultData(Id: string): Promise<void> {
         const res = await getResult(Id);
         if (res) {
-            patientResult.value = res.data.included.filter((item: { type: string }) => item.type === "patient")[0];
-            doctorResult.value = res.data.included.filter((item: { type: string }) => item.type === "doctor")[0];
+            patientResult.value = res.data.included.filter(
+                (item: { type: string }) => item.type === 'patient'
+            )[0];
+            doctorResult.value = res.data.included.filter(
+                (item: { type: string }) => item.type === 'doctor'
+            )[0];
 
             patientAnswer.value = res.data.data.attributes.patient_answers;
             recommendations.value = res.data.data.attributes.recommendations;
 
             router.push(`/client-cabinet/result/${Id}`);
         } else {
-            warn("Не найдено", "Результаты не найдены");
+            warn('Не найдено', 'Результаты не найдены');
         }
     }
 
@@ -82,6 +98,6 @@ export const useCabinetsStore = defineStore("cabinet", () => {
         getDoctorConsultationsData,
         getClientConsultationsData,
         getDoctorResultData,
-        getClientResultData
+        getClientResultData,
     };
 });

@@ -6,19 +6,20 @@
                     <div class="result-card-content">
                         <div>
                             <h3>
-                                Пациент: {{ patientResult?.attributes.firstName }} {{ patientResult?.attributes.lastName
-                                }}
+                                Пациент:
+                                {{ patientResult?.attributes.firstName }}
+                                {{ patientResult?.attributes.lastName }}
                             </h3>
-                            <p>Номер телефона: {{ patientResult?.attributes.phone }}</p>
+                            <p>
+                                Номер телефона:
+                                {{ patientResult?.attributes.phone }}
+                            </p>
                         </div>
 
                         <divider layout="vertical" />
 
                         <div>
-                            <p-button
-                                label="Результаты в PDF"
-                                outlined
-                            />
+                            <p-button label="Результаты в PDF" outlined />
                         </div>
                     </div>
                 </template>
@@ -26,10 +27,7 @@
         </div>
 
         <div class="result-patient-answer">
-            <panel
-                header="Ответы пациента"
-                toggleable
-            >
+            <panel header="Ответы пациента" toggleable>
                 <ul>
                     <li
                         v-for="(answer, question) in patientAnswer"
@@ -42,10 +40,7 @@
         </div>
 
         <div class="result-recommendations">
-            <panel
-                header="Рекомендации"
-                toggleable
-            >
+            <panel header="Рекомендации" toggleable>
                 <ul>
                     <li
                         v-for="(recommendation, index) in recommendations"
@@ -60,17 +55,18 @@
 </template>
 
 <script setup lang="ts">
-import { useCabinetsStore } from "../store/cabinets.store";
-import { storeToRefs } from "pinia";
+import { useCabinetsStore } from '../store/cabinets.store';
+import { storeToRefs } from 'pinia';
 
-import Card from "primevue/card";
-import PButton from "primevue/button";
-import Divider from "primevue/divider";
-import Panel from "primevue/panel";
+import Card from 'primevue/card';
+import PButton from 'primevue/button';
+import Divider from 'primevue/divider';
+import Panel from 'primevue/panel';
 
 const cabinetsStore = useCabinetsStore();
 
-const { patientResult, doctorResult, patientAnswer, recommendations } = storeToRefs(cabinetsStore);
+const { patientResult, doctorResult, patientAnswer, recommendations } =
+    storeToRefs(cabinetsStore);
 </script>
 
 <style scoped>

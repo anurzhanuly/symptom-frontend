@@ -1,26 +1,31 @@
-import type { NewClinic, NewDoctor } from "./../types/clinics";
-import type { AxiosResponse } from "axios";
-import { useSymptomApi } from "@/services/api";
+import type { NewClinic, NewDoctor } from './../types/clinics';
+import type { AxiosResponse } from 'axios';
+import { useSymptomApi } from '@/services/api';
 
 export async function getClinics(): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.get("/clinics");
+        return await useSymptomApi.get('/clinics');
     } catch (error) {
         console.error(error);
         return null;
     }
 }
 
-export async function postNewClinic(newClinic: NewClinic): Promise<AxiosResponse | null> {
+export async function postNewClinic(
+    newClinic: NewClinic
+): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.post("/clinics/new", newClinic);
+        return await useSymptomApi.post('/clinics/new', newClinic);
     } catch (error) {
         console.error(error);
         return null;
     }
 }
 
-export async function postChangeClinic(id: string, newClinic: NewClinic): Promise<AxiosResponse | null> {
+export async function postChangeClinic(
+    id: string,
+    newClinic: NewClinic
+): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.post(`/clinics/${id}/update`, newClinic);
     } catch (error) {
@@ -29,7 +34,10 @@ export async function postChangeClinic(id: string, newClinic: NewClinic): Promis
     }
 }
 
-export async function postChangeDoctor(id: string, newDoctor: NewDoctor): Promise<AxiosResponse | null> {
+export async function postChangeDoctor(
+    id: string,
+    newDoctor: NewDoctor
+): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.post(`/doctors/${id}/update`, newDoctor);
     } catch (error) {
@@ -38,9 +46,11 @@ export async function postChangeDoctor(id: string, newDoctor: NewDoctor): Promis
     }
 }
 
-export async function postNewDoctor(newDoctor: NewDoctor): Promise<AxiosResponse | null> {
+export async function postNewDoctor(
+    newDoctor: NewDoctor
+): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.post("/doctors/new", newDoctor);
+        return await useSymptomApi.post('/doctors/new', newDoctor);
     } catch (error) {
         console.error(error);
         return null;
@@ -49,7 +59,7 @@ export async function postNewDoctor(newDoctor: NewDoctor): Promise<AxiosResponse
 
 export async function getDoctors(): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.get("/doctors");
+        return await useSymptomApi.get('/doctors');
     } catch (error) {
         console.error(error);
         return null;
@@ -58,7 +68,7 @@ export async function getDoctors(): Promise<AxiosResponse | null> {
 
 export async function getCities(): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.get("/cities");
+        return await useSymptomApi.get('/cities');
     } catch (error) {
         console.error(error);
         return null;
@@ -67,7 +77,7 @@ export async function getCities(): Promise<AxiosResponse | null> {
 
 export async function getSpecializations(): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.get("/specializations");
+        return await useSymptomApi.get('/specializations');
     } catch (error) {
         console.error(error);
         return null;

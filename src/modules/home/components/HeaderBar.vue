@@ -2,14 +2,10 @@
     <header>
         <div class="header-container">
             <RouterLink to="/">
-                <img
-                    alt="logo"
-                    class="header-image"
-                    src="@/assets/logo.png"
-                >
+                <img alt="logo" class="header-image" src="@/assets/logo.png" />
             </RouterLink>
             <a
-                v-for="(link,index) in links"
+                v-for="(link, index) in links"
                 :key="index"
                 class="static-buttons"
                 @click="scrollToElement(link.htmlClass)"
@@ -17,10 +13,7 @@
                 {{ link.name }}
             </a>
             <div>
-                <p
-                    class="dynamic-button"
-                    @click="isDoctor = !isDoctor"
-                >
+                <p class="dynamic-button" @click="isDoctor = !isDoctor">
                     {{ label }}
                 </p>
             </div>
@@ -29,16 +22,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useHomeStore } from "../store/home.store";
-import { storeToRefs } from "pinia";
-import { scrollToElement } from "@/utils/scroll"
+import { computed } from 'vue';
+import { useHomeStore } from '../store/home.store';
+import { storeToRefs } from 'pinia';
+import { scrollToElement } from '@/utils/scroll';
 const homeStore = useHomeStore();
 
 const { isDoctor, links } = storeToRefs(homeStore);
 
 const label = computed(() => {
-    return isDoctor.value ? "Для пациента" : "Для врача";
+    return isDoctor.value ? 'Для пациента' : 'Для врача';
 });
 </script>
 
