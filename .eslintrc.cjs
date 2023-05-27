@@ -7,7 +7,7 @@ module.exports = {
         browser: true,
         es2021: true
     },
-    extends: ["plugin:vue/recommended", "eslint:recommended"],
+    extends: ["plugin:vue/recommended", '@vue/typescript/recommended'],
     parserOptions: {
         ecmaVersion: "latest",
         parser: "@typescript-eslint/parser",
@@ -17,19 +17,20 @@ module.exports = {
     rules: {
         "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
         "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-        "import/prefer-default-export": "off",
-        "jsdoc/require-param-description": "off",
-        "jsdoc/no-undefined-types": "off",
-        "vue/multi-word-component-names": "off",
-        "vue/max-attributes-per-line": ["error", { singleline: 1 }],
-        "vue/no-reserved-component-names": ["warn"],
-        "no-underscore-dangle": "warn",
-        "vue/no-multiple-template-root": "off",
+        'vue/no-multiple-template-root':   0,
+        'vue/multi-word-component-names':  0,
+        'vue/no-v-html':                   0,
+        'vue/no-reserved-component-names': 'warn',
+        'import/no-unresolved':            0,
+        'no-param-reassign':               ['error', {
+            props: false,
+        }],
+        'no-shadow':                    'off',
+        '@typescript-eslint/no-shadow': ['error'],
+        'vue/no-v-model-argument':      'off',
+        'import/prefer-default-export':    0,
+        'no-magic-numbers':                0,
         "vue/html-indent": 0,
-        "@typescript-eslint/ban-ts-comment": "off",
-        "@typescript-eslint/explicit-function-return-type": "warn",
-        "@typescript-eslint/no-unused-vars": "error",
-        "vue/singleline-html-element-content-newline": 0,
         "max-len": ["error", { code: 170, ignoreComments: true }],
         "vue/block-lang": [
             "error",
@@ -55,34 +56,7 @@ module.exports = {
                     "EVENTS", // '@click="functionCall"', 'v-on="event"'
                     "CONTENT" // 'v-text', 'v-html'
                 ],
-                alphabetical: false
-            }
-        ],
-        "vue/html-self-closing": [
-            "error",
-            {
-                html: {
-                    void: "any",
-                    normal: "always",
-                    component: "always"
-                },
-                svg: "always",
-                math: "always"
-            }
-        ],
-        "vue/component-name-in-template-casing": [
-            "error",
-            "kebab-case",
-            {
-                registeredComponentsOnly: true
-            }
-        ],
-        "vue/component-definition-name-casing": ["error", "PascalCase"],
-        "vue/match-component-file-name": [
-            "error",
-            {
-                extensions: ["vue"],
-                shouldMatchCase: true
+                alphabetical: true
             }
         ],
         "vue/order-in-components": [

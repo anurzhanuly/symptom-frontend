@@ -4,9 +4,9 @@
             <div class="recommendations-list">
                 <listbox
                     v-model="selectedRecommendation"
-                    :options="allRecommendations"
-                    option-label="attributes.name"
                     filter
+                    option-label="attributes.name"
+                    :options="allRecommendations"
                 />
             </div>
             <div
@@ -34,9 +34,9 @@
                     <template #icons>
                         <p-button
                             label="Удалить тест"
-                            severity="danger"
                             raised
                             rounded
+                            severity="danger"
                             @click="deleteTestConfirm($event, key)"
                         />
                     </template>

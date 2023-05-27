@@ -4,18 +4,18 @@
             <div class="conditions-list">
                 <listbox
                     v-model="selectedRecommendation"
-                    :options="allRecommendations"
                     filter
                     option-label="attributes.name"
+                    :options="allRecommendations"
                 />
                 <panel>
                     <div class="recommendations-block">
                         <div>
                             <input-text v-model="recomindationNewName" />
                             <p-button
+                                :disabled="!recomindationNewName"
                                 label="Добавить рекомендацию"
                                 raised
-                                :disabled="!recomindationNewName"
                                 @click="adminStore.createRecommendationData"
                             />
                         </div>
@@ -23,10 +23,10 @@
                         <div>
                             <input-text v-model="recomindationDeleteName" />
                             <p-button
+                                :disabled="!recomindationDeleteName"
                                 label="Удалить рекомендацию"
                                 raised
                                 severity="danger"
-                                :disabled="!recomindationDeleteName"
                                 @click="adminStore.deleteRecommendationData"
                             />
                         </div>
@@ -46,8 +46,8 @@
                         />
                         <p-button
                             label="Сохранить изменения"
-                            severity="success"
                             raised
+                            severity="success"
                             @click="adminStore.updateRecommendationData"
                         />
                     </template>
@@ -60,46 +60,46 @@
                     <template #icons>
                         <p-button
                             label="Удалить блок"
-                            severity="danger"
                             raised
                             rounded
+                            severity="danger"
                             @click="deleteConditionConfirm($event, index)"
                         />
                         <p-button
                             label="Добавить условие блоку"
-                            severity="success"
-                            rounded
                             raised
+                            rounded
+                            severity="success"
                             @click="adminStore.createConditionItem(index)"
                         />
                     </template>
                     <block-u-i :blocked="isLoading">
                         <data-table
                             v-model:selection="selectedCondition"
-                            selection-mode="single"
-                            :value="condition"
-                            show-gridlines
                             edit-mode="cell"
+                            selection-mode="single"
+                            show-gridlines
+                            :value="condition"
                             @cell-edit-complete="adminStore.updateCondition($event, index)"
                         >
                             <column
                                 v-for="(column, idx) in conditionColumns"
                                 :key="idx"
-                                :header="column.header"
                                 :field="column.field"
+                                :header="column.header"
                             >
                                 <template #editor="{ data, field }">
                                     <div v-if="column.field === 'value'">
                                         <p-multi-select
                                             v-if="checkOptions(data.questionName)"
                                             v-model="data[field]"
-                                            :options="checkOptions(data.questionName)"
-                                            placeholder="Выберите..."
-                                            filter-placeholder="Поиск"
-                                            filter
-                                            lazy
                                             :empty-filter-message="'Ничего не найдено'"
                                             :empty-message="'Ничего не найдено'"
+                                            filter
+                                            filter-placeholder="Поиск"
+                                            lazy
+                                            :options="checkOptions(data.questionName)"
+                                            placeholder="Выберите..."
                                         />
                                         <p-textarea
                                             v-else
@@ -116,15 +116,15 @@
                                     <dropdown
                                         v-else-if="column.hasDropdown"
                                         v-model="data[field]"
-                                        :options="column?.options"
-                                        option-value="value"
-                                        option-label="value"
-                                        placeholder="Выберите..."
-                                        filter-placeholder="Поиск"
-                                        lazy
-                                        filter
                                         :empty-filter-message="'Ничего не найдено'"
                                         :empty-message="'Ничего не найдено'"
+                                        filter
+                                        filter-placeholder="Поиск"
+                                        lazy
+                                        option-label="value"
+                                        option-value="value"
+                                        :options="column?.options"
+                                        placeholder="Выберите..."
                                         @change="field === 'questionName' ? (data.value = '') : null"
                                     />
                                     <input-text

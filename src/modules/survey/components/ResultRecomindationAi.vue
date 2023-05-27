@@ -4,7 +4,9 @@
         class="recomindation-ai-result"
     >
         <card>
-            <template #title>Рекомендации от SymptomAi</template>
+            <template #title>
+Рекомендации от SymptomAi
+</template>
             <template #content>
                 <panel
                     v-for="(value, title) in recommendationsChatGPT"
@@ -40,8 +42,8 @@
                 #footer
             >
                 <p-button
-                    label="Открыть в PDF"
                     class="p-button-raised"
+                    label="Открыть в PDF"
                     @click="surveyStore.resultPDF"
                 />
             </template>

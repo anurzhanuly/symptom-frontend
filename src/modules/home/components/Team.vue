@@ -2,11 +2,11 @@
     <div class="team-container">
         <div class="team-carousel">
             <carousel
-                :value="team"
-                :num-visible="4"
-                :num-scroll="4"
-                :responsive-options="responsiveOptions"
                 :autoplay-interval="3000"
+                :num-scroll="4"
+                :num-visible="4"
+                :responsive-options="responsiveOptions"
+                :value="team"
             >
                 <template #header>
                     <div class="team-carousel-header">
@@ -16,9 +16,9 @@
                 <template #item="slotProps">
                     <div class="team-carousel-info">
                         <img
-                            :src="getImageUrl(slotProps.data.photo)"
                             alt="logo"
-                        />
+                            :src="getImageUrl(slotProps.data.photo)"
+                        >
                         <h3>{{ slotProps.data.name }}</h3>
                         <p>{{ slotProps.data.info }}</p>
                     </div>
@@ -52,9 +52,9 @@
         </div>
         <div class="questions-img">
             <img
-                src="@/assets/onboarding/onboard1.png"
                 alt="logo"
-            />
+                src="@/assets/onboarding/onboard1.png"
+            >
         </div>
     </div>
 </template>

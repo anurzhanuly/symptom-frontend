@@ -6,9 +6,9 @@
         <div class="about-container">
             <div class="image">
                 <img
-                    src="@/assets/onboarding/onboard2.png"
                     alt="logo"
-                />
+                    src="@/assets/onboarding/onboard2.png"
+                >
             </div>
             <div class="info">
                 <h3>О проекте</h3>

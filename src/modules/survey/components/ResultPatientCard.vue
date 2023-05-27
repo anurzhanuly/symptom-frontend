@@ -1,7 +1,9 @@
 <template>
     <div v-if="isResultVisible">
         <card>
-            <template #title>Карточка пациента</template>
+            <template #title>
+Карточка пациента
+</template>
             <template #content>
                 <panel
                     v-for="(info, title) in pationsCard"

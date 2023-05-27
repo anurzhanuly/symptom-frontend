@@ -8,15 +8,15 @@
                 <h3>{{ column.header }}</h3>
                 <dropdown
                     v-model="newRecord[column.field]"
-                    :options="column?.options"
-                    option-value="value"
-                    option-label="value"
-                    placeholder="Выберите..."
-                    filter-placeholder="Поиск"
-                    filter
-                    lazy
                     :empty-filter-message="'Ничего не найдено'"
                     :empty-message="'Ничего не найдено'"
+                    filter
+                    filter-placeholder="Поиск"
+                    lazy
+                    option-label="value"
+                    option-value="value"
+                    :options="column?.options"
+                    placeholder="Выберите..."
                     @change="addValueOptions"
                 />
             </div>
@@ -25,15 +25,15 @@
                 <h3>{{ column.header }}</h3>
                 <dropdown
                     v-model="newRecord[column.field]"
-                    :options="column?.options"
-                    option-value="value"
-                    option-label="value"
-                    placeholder="Выберите..."
-                    filter-placeholder="Поиск"
-                    filter
-                    lazy
                     :empty-filter-message="'Ничего не найдено'"
                     :empty-message="'Ничего не найдено'"
+                    filter
+                    filter-placeholder="Поиск"
+                    lazy
+                    option-label="value"
+                    option-value="value"
+                    :options="column?.options"
+                    placeholder="Выберите..."
                 />
             </div>
 
@@ -46,10 +46,10 @@
                     <h3>{{ column.header }}</h3>
                     <p-multi-select
                         v-model="newRecord[column.field]"
+                        filter
+                        filter-placeholder="Поиск"
                         :options="valueOptions"
                         placeholder="Выберите..."
-                        filter-placeholder="Поиск"
-                        filter
                     />
                 </div>
             </div>
@@ -60,9 +60,9 @@
             </div>
         </div>
         <p-button
+            autofocus
             label="Создать"
             severity="success"
-            autofocus
             @click="createCondition"
         />
     </div>

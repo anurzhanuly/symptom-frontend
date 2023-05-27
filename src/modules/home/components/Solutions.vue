@@ -9,9 +9,9 @@
                 class="solutions"
             >
                 <img
-                    :src="getImageUrl(solution.img)"
                     alt="logo"
-                />
+                    :src="getImageUrl(solution.img)"
+                >
                 <p>{{ solution.info }}</p>
             </div>
         </div>

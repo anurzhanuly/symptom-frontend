@@ -25,9 +25,9 @@
                     <h3>Специализация</h3>
                     <dropdown
                         v-model="newDoctorspecId"
-                        :options="specializations"
                         option-label="attributes.name"
                         option-value="id"
+                        :options="specializations"
                         placeholder="Выберите специализацию"
                     />
                 </div>
@@ -36,8 +36,8 @@
 
         <div class="clinic-list-popup-action">
             <p-button
-                label="Сохранить"
                 class="p-button-success"
+                label="Сохранить"
                 @click="createDoctor"
             />
         </div>

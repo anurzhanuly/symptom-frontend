@@ -15,9 +15,9 @@
 
         <div class="image">
             <img
-                src="@/assets/phone.png"
                 alt="logo"
-            />
+                src="@/assets/phone.png"
+            >
         </div>
     </div>
 </template>

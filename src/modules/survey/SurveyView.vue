@@ -23,7 +23,7 @@ onMounted(() => {
 
     function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
         const newData: Record<string, string[]> = {};
-        for (let key in sender.data) {
+        for (const key in sender.data) {
             if (Array.isArray(sender.data[key])) {
                 // Если ответ массив
                 newData[key] = sender.data[key];

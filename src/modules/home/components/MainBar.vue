@@ -21,17 +21,17 @@
                     @click="$router.push('agreement')"
                 />
                 <p-button
-                    label="Войти в личный кабинет"
                     class="p-button-outlined"
+                    label="Войти в личный кабинет"
                     @click="$router.push('client-sign-in')"
                 />
             </div>
         </div>
         <div class="main-image">
             <img
-                src="@/assets/main.png"
                 alt="logo"
-            />
+                src="@/assets/main.png"
+            >
         </div>
     </div>
 </template>

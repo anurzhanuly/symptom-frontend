@@ -2,34 +2,48 @@
     <div>
         <form class="authorization-form p-fluid">
             <img
-                src="@/assets/logo-auth.png"
                 alt="Symptom logo"
-            />
+                src="@/assets/logo-auth.png"
+            >
             <div>
                 <h4>Имя <span>*</span></h4>
-                <inline-message v-if="!isFirstName">Поле 'Имя' обязательно для заполнено</inline-message>
+                <inline-message v-if="!isFirstName">
+Поле 'Имя' обязательно для заполнено
+</inline-message>
                 <input-text v-model="firstName" />
             </div>
             <div>
                 <h4>Фамилия <span>*</span></h4>
-                <inline-message v-if="!isLastName">Поле 'Фамилия' обязательно для заполнено</inline-message>
+                <inline-message v-if="!isLastName">
+Поле 'Фамилия' обязательно для заполнено
+</inline-message>
                 <input-text v-model="lastName" />
             </div>
             <div>
                 <h4>Почта <span>*</span></h4>
-                <inline-message v-if="!isEmail">Поле 'Почта' обязательно для заполнения</inline-message>
-                <inline-message v-if="!isCorrectEmail">Не корректная почта</inline-message>
+                <inline-message v-if="!isEmail">
+Поле 'Почта' обязательно для заполнения
+</inline-message>
+                <inline-message v-if="!isCorrectEmail">
+Не корректная почта
+</inline-message>
                 <input-text v-model="email" />
             </div>
             <div>
                 <h4>Номер телефона <span>*</span></h4>
-                <inline-message v-if="!isPhoneNumber">Поле 'Номер телефона' обязательно для заполнения</inline-message>
-                <inline-message v-if="!isCorrectPhoneNumber">Не корректный номер телефона</inline-message>
+                <inline-message v-if="!isPhoneNumber">
+Поле 'Номер телефона' обязательно для заполнения
+</inline-message>
+                <inline-message v-if="!isCorrectPhoneNumber">
+Не корректный номер телефона
+</inline-message>
                 <input-text v-model="phoneNumber" />
             </div>
             <div>
                 <h4>Пароль <span>*</span></h4>
-                <inline-message v-if="!isPassword">Поле 'Пароль' обязательно для заполнения</inline-message>
+                <inline-message v-if="!isPassword">
+Поле 'Пароль' обязательно для заполнения
+</inline-message>
                 <p-password
                     v-model="password"
                     toggle-mask
@@ -37,7 +51,9 @@
             </div>
             <div>
                 <h4>Подтверждение пароля <span>*</span></h4>
-                <inline-message v-if="!isConfirmPassword">Пароли не совпадают!</inline-message>
+                <inline-message v-if="!isConfirmPassword">
+Пароли не совпадают!
+</inline-message>
                 <p-password
                     v-model="passwordConfirm"
                     :feedback="false"

@@ -3,10 +3,10 @@
         <div class="header-container">
             <RouterLink to="/">
                 <img
-                    src="@/assets/logo.png"
-                    class="header-image"
                     alt="logo"
-                />
+                    class="header-image"
+                    src="@/assets/logo.png"
+                >
             </RouterLink>
             <a
                 v-for="(link,index) in links"

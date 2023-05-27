@@ -10,9 +10,9 @@
                     <h3>Город</h3>
                     <dropdown
                         v-model="changeClinicCityId"
-                        :options="cities"
                         option-label="attributes.city"
                         option-value="id"
+                        :options="cities"
                         placeholder="Выберите город"
                     />
                 </div>
@@ -25,8 +25,8 @@
 
         <div class="clinic-list-popup-action">
             <p-button
-                label="Изменить"
                 class="p-button-success"
+                label="Изменить"
                 @click="changeClinic"
             />
         </div>

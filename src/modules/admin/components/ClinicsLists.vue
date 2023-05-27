@@ -1,14 +1,14 @@
 <template>
     <div class="clinic-list">
         <data-table
-            selection-mode="single"
-            :value="clinics"
             class="p-datatable-sm"
-            striped-rows
+            edit-mode="cell"
             reorderable-columns
             resizable-columns
+            selection-mode="single"
             show-gridlines
-            edit-mode="cell"
+            striped-rows
+            :value="clinics"
         >
             <template #header>
                 <div class="clinics-list-table-header">
@@ -17,29 +17,29 @@
                     </div>
                     <div>
                         <p-button
-                            label="Добавить клинику"
                             class="p-button-success"
+                            label="Добавить клинику"
                             @click="createClinic"
                         />
                     </div>
                 </div>
             </template>
             <column
-                header="Id"
                 field="id"
+                header="Id"
                 header-style="width: 2%"
             />
             <column
-                header="Название"
                 field="attributes.name"
+                header="Название"
             />
             <column
-                header="Город"
                 field="attributes.city"
+                header="Город"
             />
             <column
-                header="Адрес"
                 field="attributes.address"
+                header="Адрес"
             />
             <column header-style="width: 6%">
                 <template #body="slotProps">
@@ -52,23 +52,23 @@
             <column header-style="width: 6%">
                 <template #body>
                     <p-button
-                        label="Удалить"
                         class="p-button-danger"
                         :disabled="true"
+                        label="Удалить"
                     />
                 </template>
             </column>
         </data-table>
 
         <data-table
-            selection-mode="single"
-            :value="doctors"
             class="p-datatable-sm"
-            striped-rows
+            edit-mode="cell"
             reorderable-columns
             resizable-columns
+            selection-mode="single"
             show-gridlines
-            edit-mode="cell"
+            striped-rows
+            :value="doctors"
         >
             <template #header>
                 <div class="clinics-list-table-header">
@@ -77,16 +77,16 @@
                     </div>
                     <div>
                         <p-button
-                            label="Добавить врача"
                             class="p-button-success"
+                            label="Добавить врача"
                             @click="createDoctor"
                         />
                     </div>
                 </div>
             </template>
             <column
-                header="Id"
                 field="id"
+                header="Id"
                 header-style="width: 2%"
             />
             <column header="ФИО">
@@ -97,12 +97,12 @@
                 </template>
             </column>
             <column
-                header="Специализация"
                 field="attributes.specialization"
+                header="Специализация"
             />
             <column
-                header="Опыт"
                 field="attributes.experience"
+                header="Опыт"
             />
             <column header-style="width: 6%">
                 <template #body="slotProps">
@@ -115,9 +115,9 @@
             <column header-style="width: 6%">
                 <template #body>
                     <p-button
-                        label="Удалить"
                         class="p-button-danger"
                         :disabled="true"
+                        label="Удалить"
                     />
                 </template>
             </column>

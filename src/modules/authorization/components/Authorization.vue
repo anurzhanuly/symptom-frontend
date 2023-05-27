@@ -5,9 +5,9 @@
         </div>
         <div class="authorization-main">
             <p-button
+                icon="pi pi-arrow-left"
                 label="Назад"
                 link
-                icon="pi pi-arrow-left"
                 @click="$router.push('/')"
             />
             <div>

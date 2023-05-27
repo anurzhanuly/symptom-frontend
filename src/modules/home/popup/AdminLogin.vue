@@ -11,15 +11,15 @@
             <h3>Пароль</h3>
             <input-text
                 v-model="password"
-                type="password"
                 style="width: 100%"
+                type="password"
             />
         </div>
         <p-button
-            label="Ввести"
-            icon="pi pi-check"
-            class="p-button-success"
             autofocus
+            class="p-button-success"
+            icon="pi pi-check"
+            label="Ввести"
             style="margin-top: 20px; width: 100%"
             @click="checkAdmin()"
         />

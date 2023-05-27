@@ -1,18 +1,18 @@
 <template>
     <div class="base-carousel">
         <carousel
-            :value="items"
-            :num-visible="1"
-            :num-scroll="1"
-            circular
             :autoplay-interval="5000"
+            circular
+            :num-scroll="1"
+            :num-visible="1"
+            :value="items"
         >
             <template #item="slotProps">
                 <div class="base-carousel-content">
                     <img
-                        :src="getImageUrl(slotProps.data.photo)"
                         alt="logo"
-                    />
+                        :src="getImageUrl(slotProps.data.photo)"
+                    >
                     <h2>{{ slotProps.data.header }}</h2>
                     <p>{{ slotProps.data.text }}</p>
                 </div>

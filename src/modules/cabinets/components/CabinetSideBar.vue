@@ -3,19 +3,19 @@
         <label
             v-for="(view, index) in props.views"
             :key="index"
-            :for="`${index}`"
             class="label"
             :class="{ selected: selectedPage === view.label }"
+            :for="`${index}`"
             @click="$router.push(view.to)"
         >
             <i :class="view.icon" />
             <input
                 :id="`${index}`"
                 v-model="selectedPage"
-                type="radio"
                 class="hidden"
+                type="radio"
                 :value="view.label"
-            />
+            >
             {{ view.label }}
         </label>
     </div>

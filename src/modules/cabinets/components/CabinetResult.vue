@@ -6,24 +6,9 @@
                     <div class="result-card-content">
                         <div>
                             <h3>
-                                Врач: {{ doctorResult?.attributes.firstName }} {{ doctorResult?.attributes.lastName }}
-                                {{ doctorResult?.attributes.midName }}
-                            </h3>
-
-                            <p>
-                                Специализация: {{ doctorResult?.attributes.specialization }} | Опыт:
-                                {{ doctorResult?.attributes.experience }}
-                            </p>
-                        </div>
-
-                        <divider layout="vertical" />
-
-                        <div>
-                            <h3>
                                 Пациент: {{ patientResult?.attributes.firstName }} {{ patientResult?.attributes.lastName
                                 }}
                             </h3>
-
                             <p>Номер телефона: {{ patientResult?.attributes.phone }}</p>
                         </div>
 

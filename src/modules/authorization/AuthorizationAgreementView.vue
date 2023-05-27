@@ -3,9 +3,11 @@
         <div class="agreement">
             <card>
                 <template #header>
-                    <img src="@/assets/logo.png" />
+                    <img src="@/assets/logo.png">
                 </template>
-                <template #title><h3>Условия использования</h3></template>
+                <template #title>
+<h3>Условия использования</h3>
+</template>
                 <template #content>
                     <p>Дорогой пациент!</p>
                     <ul>
@@ -37,7 +39,7 @@
                         >
                             Примите Условия использования.
                         </inline-message>
-                        <br />
+                        <br>
 
                         <checkbox
                             v-model="isProvicy"

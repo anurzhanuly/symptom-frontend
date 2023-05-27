@@ -3,9 +3,9 @@
         <div class="authorization-client">
             <form class="authorization-form p-fluid">
                 <img
-                    src="@/assets/logo-auth.png"
                     alt="Symptom logo"
-                />
+                    src="@/assets/logo-auth.png"
+                >
                 <div>
                     <h4>Почта <span>*</span></h4>
                     <input-text v-model="email" />
@@ -18,14 +18,16 @@
                     />
                 </div>
 
-                <inline-message v-if="isWrong">Неверный пароль или почта</inline-message>
+                <inline-message v-if="isWrong">
+Неверный пароль или почта
+</inline-message>
                 <p-button
                     label="Вход"
                     @click="checkClient"
                 />
                 <p-button
-                    link
                     label="Забыли пароль?"
+                    link
                     @click="resetPassword"
                 />
             </form>

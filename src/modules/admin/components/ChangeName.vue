@@ -6,19 +6,19 @@
         />
         <dropdown
             v-model="afterQuestName"
-            :options="questionNameOptions"
-            option-value="value"
-            option-label="value"
-            placeholder="После"
-            filter-placeholder="Поиск"
-            filter
-            lazy
             :empty-filter-message="'Ничего не найдено'"
             :empty-message="'Ничего не найдено'"
+            filter
+            filter-placeholder="Поиск"
+            lazy
+            option-label="value"
+            option-value="value"
+            :options="questionNameOptions"
+            placeholder="После"
         />
         <p-button
-            label="Изменить"
             :disabled="!isReadyToChange"
+            label="Изменить"
             @click="confirmChange($event)"
         />
     </panel>

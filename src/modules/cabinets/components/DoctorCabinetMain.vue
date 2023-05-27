@@ -1,14 +1,14 @@
 <template>
     <data-table
-        selection-mode="single"
-        :value="myConsultation"
         class="p-datatable-sm"
-        reorderable-columns
         column-resize-mode="expand"
-        striped-rows
         data-key="id"
         :filters="filters"
         :global-filter-fields="['attributes.name']"
+        reorderable-columns
+        selection-mode="single"
+        striped-rows
+        :value="myConsultation"
     >
         <template #header>
             <div class="request-table-header">
@@ -28,14 +28,14 @@
             </div>
         </template>
         <column
-            header="Дата опроса"
             field="attributes.name"
+            header="Дата опроса"
         />
         <column style="width: 7%">
             <template #body="slotProps">
                 <p-button
-                    icon="pi pi-credit-card"
                     class="p-button-text"
+                    icon="pi pi-credit-card"
                     @click="checkResult(slotProps.data.id)"
                 />
             </template>

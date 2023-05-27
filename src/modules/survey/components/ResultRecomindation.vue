@@ -1,7 +1,9 @@
 <template>
     <div>
         <card>
-            <template #title>Рекомендации</template>
+            <template #title>
+Рекомендации
+</template>
             <template #content>
                 <panel
                     v-for="(recommendation, index) in recommendations"
