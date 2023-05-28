@@ -32,6 +32,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         password: string
     ): Promise<void> {
         const res = await postLogin(email, password);
+
         if (res) {
             localStorage.setItem(
                 'clientToken',

@@ -11,7 +11,7 @@ import type {
 import type { DataTableFilterMeta } from 'primevue/datatable';
 import { useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
-import { warn } from '@/utils/toast';
+import { error, warn } from '@/utils/toast';
 import { ref } from 'vue';
 
 export const useCabinetsStore = defineStore('cabinet', () => {
@@ -32,18 +32,22 @@ export const useCabinetsStore = defineStore('cabinet', () => {
     async function getDoctorConsultationsData(): Promise<void> {
         const res = await getDoctorConsultations();
         if (res) {
-            myConsultation.value = res.data.included;
+            myConsultation.value = res.data.included ?? [];
         } else {
+            error('Ошибка', 'Попробуйте снова');
             router.push('/doctor-sign-in');
         }
     }
 
     async function getClientConsultationsData(): Promise<void> {
         const res = await getClientConsultations();
+
         if (res) {
-            myConsultation.value = res.data.included;
+            myConsultation.value = res.data.included ?? [];
+            localStorage.setItem('patientId', res.data.data.id);
         } else {
-            // router.push("/client-sign-in");
+            error('Ошибка', 'Попробуйте снова');
+            router.push('/client-sign-in');
         }
     }
 
@@ -63,7 +67,6 @@ export const useCabinetsStore = defineStore('cabinet', () => {
             router.push(`/doctor-cabinet/result/${Id}`);
         } else {
             warn('Не найдено', 'Результаты не найдены');
-            // router.push("/doctor-sign-in");
         }
     }
 

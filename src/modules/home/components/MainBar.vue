@@ -20,7 +20,7 @@
                 <p-button
                     class="p-button-outlined"
                     label="Войти в личный кабинет"
-                    @click="$router.push('client-sign-in')"
+                    @click="goToCabinet"
                 />
             </div>
         </div>
@@ -32,12 +32,14 @@
 
 <script lang="ts" setup>
 import { computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { useSurveyStore } from '../../survey/store/survey.store.js';
 import { useHomeStore } from '../store/home.store.js';
 
 import PButton from 'primevue/button';
 import { storeToRefs } from 'pinia';
 
+const router = useRouter();
 const surveyStore = useSurveyStore();
 const homeStore = useHomeStore();
 
@@ -46,6 +48,17 @@ const { isDoctor } = storeToRefs(homeStore);
 onMounted(() => {
     surveyStore.getQuestionsData();
 });
+
+function goToCabinet() {
+    const clientToken = localStorage.getItem('clientToken');
+
+    if (clientToken) {
+        router.push('/client-cabinet');
+
+        return;
+    }
+    router.push('/client-sign-in');
+}
 
 const isMobileDevice = computed(
     () => /Mobi/.test(navigator.userAgent) && !/iPad/.test(navigator.userAgent)

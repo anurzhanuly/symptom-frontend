@@ -56,7 +56,10 @@ onMounted(() => {
         }
 
         progress.value = 0;
-        surveyStore.postAnswersDataChatGPT({ answers: newData });
+        surveyStore.postAnswersDataChatGPT({
+            answers: newData,
+            patientID: +(localStorage.getItem('patientId') ?? 0),
+        });
         router.push({
             path: '/result',
         });

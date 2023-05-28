@@ -55,9 +55,7 @@ import Column from 'primevue/column';
 const cabinetsStore = useCabinetsStore();
 
 onMounted(() => {
-    if (!myConsultation.value.length) {
-        cabinetsStore.getClientConsultationsData();
-    }
+    cabinetsStore.getClientConsultationsData();
 });
 
 const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);

@@ -25,12 +25,14 @@ export const useSurveyStore = defineStore('survey', () => {
 
     async function postAnswersDataChatGPT(data: {
         answers: Record<string, string[]>;
+        patientID: number;
     }) {
         isLoading.value = true;
         resultAnswersChatGPT.value = data.answers;
         try {
             // TODO: Переписать
             const res = await postAnswersToChatGPT(data);
+
             if (!axios.isAxiosError(res)) {
                 pationsCard.value = res.data.patientCard;
                 recommendations.value = res.data.recommendations;
