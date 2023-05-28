@@ -45,7 +45,7 @@ const label = computed(() => {
 }
 
 .dynamic-button {
-    font-size: 18px;
+    font-size: 16px;
     color: #276ef1;
     border-bottom: 1px solid #276ef1;
     cursor: pointer;
