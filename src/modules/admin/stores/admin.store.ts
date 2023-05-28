@@ -51,13 +51,13 @@ export const useAdminStore = defineStore('admin', () => {
         const res = await getRecommendationDetail(newRecommendationName?.id!);
 
         if (res) {
-            tests.value = res.data.attributes.tests;
+            tests.value = res.data.data.attributes.tests;
             const keys = Object.keys(tests.value);
             lastTestKey.value = keys[keys.length - 1]
                 ? Number(keys[keys.length - 1]) + 1
                 : 1;
 
-            conditions.value = res.data.attributes.conditions;
+            conditions.value = res.data.data.attributes.conditions;
         }
     });
 

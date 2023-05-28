@@ -57,8 +57,8 @@ export const useCabinetsStore = defineStore('cabinet', () => {
                 (item: { type: string }) => item.type === 'doctor'
             )[0];
 
-            patientAnswer.value = res.data.attributes.patient_answers;
-            recommendations.value = res.data.attributes.recommendations;
+            patientAnswer.value = res.data.data.attributes.patient_answers;
+            recommendations.value = res.data.data.attributes.recommendations;
 
             router.push(`/doctor-cabinet/result/${Id}`);
         } else {
@@ -77,8 +77,8 @@ export const useCabinetsStore = defineStore('cabinet', () => {
                 (item: { type: string }) => item.type === 'doctor'
             )[0];
 
-            patientAnswer.value = res.data.attributes.patient_answers;
-            recommendations.value = res.data.attributes.recommendations;
+            patientAnswer.value = res.data.data.attributes.patient_answers;
+            recommendations.value = res.data.data.attributes.recommendations;
 
             router.push(`/client-cabinet/result/${Id}`);
         } else {
