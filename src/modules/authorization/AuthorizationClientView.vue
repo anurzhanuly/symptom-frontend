@@ -9,11 +9,7 @@
                 </div>
                 <div>
                     <h4>Пароль <span>*</span></h4>
-                    <p-password
-                        v-model="password"
-                        :feedback="false"
-                        toggle-mask
-                    />
+                    <p-password v-model="password" toggle-mask />
                 </div>
 
                 <inline-message v-if="isWrong">

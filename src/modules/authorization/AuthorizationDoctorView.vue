@@ -8,7 +8,7 @@
                 <input-text v-model="email" type="mail" />
 
                 <h4>Пароль <span>*</span></h4>
-                <p-password v-model="password" :feedback="false" toggle-mask />
+                <p-password v-model="password" toggle-mask />
 
                 <inline-message v-if="isWrong">
                     Неверный пароль или почта
