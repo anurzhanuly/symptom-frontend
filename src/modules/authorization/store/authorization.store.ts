@@ -19,7 +19,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         if (res) {
             localStorage.setItem(
                 'doctorToken',
-                JSON.stringify(res.data.data.token)
+                JSON.stringify(res.data.token)
             );
             router.push('/doctor-cabinet');
         } else {
@@ -33,10 +33,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
     ): Promise<void> {
         const res = await postLogin(email, password);
         if (res) {
-            localStorage.setItem(
-                'clientToken',
-                JSON.stringify(res.data.data.token)
-            );
+            localStorage.setItem('clientToken', JSON.stringify(res.data.token));
             router.push('/client-cabinet');
         } else {
             isWrong.value = true;
@@ -46,7 +43,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
     async function clientRegistrationData(clientData: ClientRegistration) {
         const res = await clientRegistration(clientData);
         if (res) {
-            return res.data.data.token;
+            return res.data.token;
         }
     }
 
