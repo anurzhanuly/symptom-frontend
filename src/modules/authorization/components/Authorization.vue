@@ -48,6 +48,7 @@ import PButton from 'primevue/button';
 
     .authorization-main {
         width: 100%;
+        padding-top: 20px;
     }
 }
 </style>

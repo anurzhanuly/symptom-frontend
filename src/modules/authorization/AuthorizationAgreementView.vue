@@ -158,7 +158,7 @@ function checkAgreement(): void {
 
 <style scoped>
 .agreement {
-    padding: 15px;
+    padding: 12px;
 }
 
 .agreement__title {

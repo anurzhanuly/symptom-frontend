@@ -43,7 +43,6 @@ export const useCabinetsStore = defineStore('cabinet', () => {
 
     async function getClientConsultationsData(): Promise<void> {
         const res = await getClientConsultations();
-        console.log(res);
 
         if (res) {
             myConsultation.value = res.data.included ?? [];
