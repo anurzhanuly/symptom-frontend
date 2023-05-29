@@ -8,8 +8,9 @@
             </h3>
             <div v-if="isDoctor" class="main-container-button">
                 <p-button
+                    v-if="!doctorToken"
                     label="Войти в кабинет врача"
-                    @click="$router.push('doctor-sign-in')"
+                    @click="goToDoctorCabinet"
                 />
             </div>
             <div v-else class="main-container-buttons">
@@ -18,9 +19,10 @@
                     @click="$router.push('agreement')"
                 />
                 <p-button
+                    v-if="!clientToken"
                     class="p-button-outlined"
                     label="Войти в личный кабинет"
-                    @click="goToCabinet"
+                    @click="goToClientCabinet"
                 />
             </div>
         </div>
@@ -31,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSurveyStore } from '../../survey/store/survey.store.js';
 import { useHomeStore } from '../store/home.store.js';
@@ -45,15 +47,29 @@ const homeStore = useHomeStore();
 
 const { isDoctor } = storeToRefs(homeStore);
 
+const clientToken = ref('');
+const doctorToken = ref('');
+
 onMounted(() => {
     surveyStore.getQuestionsData();
 });
 
-function goToCabinet() {
-    const clientToken = localStorage.getItem('clientToken');
+function goToClientCabinet() {
+    clientToken.value = localStorage.getItem('clientToken') ?? '';
 
-    if (clientToken) {
+    if (clientToken.value) {
         router.push('/client-cabinet');
+
+        return;
+    }
+    router.push('/client-sign-in');
+}
+
+function goToDoctorCabinet() {
+    doctorToken.value = localStorage.getItem('doctorToken') ?? '';
+
+    if (doctorToken.value) {
+        router.push('/doctor-cabinet');
 
         return;
     }

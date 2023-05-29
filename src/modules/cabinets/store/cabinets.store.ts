@@ -31,8 +31,10 @@ export const useCabinetsStore = defineStore('cabinet', () => {
 
     async function getDoctorConsultationsData(): Promise<void> {
         const res = await getDoctorConsultations();
+
         if (res) {
             myConsultation.value = res.data.included ?? [];
+            localStorage.setItem('doctorId', res.data.data.id);
         } else {
             error('Ошибка', 'Попробуйте снова');
             router.push('/doctor-sign-in');
@@ -41,6 +43,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
 
     async function getClientConsultationsData(): Promise<void> {
         const res = await getClientConsultations();
+        console.log(res);
 
         if (res) {
             myConsultation.value = res.data.included ?? [];

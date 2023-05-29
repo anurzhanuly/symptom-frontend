@@ -12,11 +12,9 @@
             >
                 {{ link.name }}
             </a>
-            <div>
-                <p class="dynamic-button" @click="isDoctor = !isDoctor">
-                    {{ label }}
-                </p>
-            </div>
+            <p class="dynamic-button" @click="isDoctor = !isDoctor">
+                {{ label }}
+            </p>
         </div>
     </header>
 </template>
