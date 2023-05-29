@@ -26,7 +26,10 @@ import PButton from 'primevue/button';
 .authorization {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+}
+
+.authorization-main {
+    padding-top: 40px;
 }
 
 .authorization-onboarding,

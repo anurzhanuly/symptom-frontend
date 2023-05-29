@@ -1,9 +1,9 @@
 <template>
     <header>
         <div class="header-container">
-            <RouterLink to="/">
+            <router-link to="/">
                 <img alt="logo" class="header-image" src="@/assets/logo.png" />
-            </RouterLink>
+            </router-link>
             <a
                 v-for="(link, index) in links"
                 :key="index"

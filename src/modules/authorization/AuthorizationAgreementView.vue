@@ -2,33 +2,32 @@
     <authorization>
         <div class="agreement">
             <card>
-                <template #header>
-                    <img src="@/assets/logo.png" />
-                </template>
                 <template #title>
                     <h3>Условия использования</h3>
                 </template>
                 <template #content>
-                    <p>Дорогой пациент!</p>
-                    <ul>
-                        <li>
+                    <p class="agreement__title">Дорогой пациент!</p>
+                    <ul class="agreement__info-block">
+                        <li class="agreement__info">
                             <strong>
                                 Данный опрос и результаты не является
                                 диагностикой, лечением и заменой врача.
                             </strong>
+                            <br />
                             Оно предназначено исключительно для общего сведения
                             и не является квалифицированным медицинским
                             заключением.
                         </li>
-                        <li>
+                        <li class="agreement__info">
                             <strong>
                                 Это обследование не предназначено для экстренных
                                 случаев.
                             </strong>
+                            <br />
                             В случае неотложного состояния немедленно позвоните
                             103
                         </li>
-                        <li>Мне есть 18 лет</li>
+                        <li class="agreement__info">Мне есть 18 лет</li>
                     </ul>
 
                     <div class="agreement-check">
@@ -36,9 +35,9 @@
                         <span
                             >Я прочитал(а) и принимаю
                             <strong @click="termsOfUse = true"
-                                >Условия использования.</strong
-                            ></span
-                        >
+                                >Условия использования.
+                            </strong>
+                        </span>
                         <inline-message v-if="isNotUse" severity="error">
                             Примите Условия использования.
                         </inline-message>
@@ -50,9 +49,9 @@
                             здоровье для прохождения опроса. Полная информация
                             доступна в
                             <strong @click="privacyPolicy = true"
-                                >Политика конфиденциальности.</strong
-                            ></span
-                        >
+                                >Политике конфиденциальности.
+                            </strong>
+                        </span>
                         <inline-message v-if="isNotPrivacy" severity="error">
                             Пожалуйста, согласитесь с Политикой
                             конфиденциальности и обработкой информации о ваших
@@ -162,9 +161,16 @@ function checkAgreement(): void {
     padding: 15px;
 }
 
-.agreement p,
-.agreement li {
-    margin-top: 8px;
+.agreement__title {
+    margin-bottom: 16px;
+}
+
+.agreement__info-block {
+    margin-bottom: 16px;
+}
+
+.agreement__info:not(:last-child) {
+    margin-bottom: 8px;
 }
 
 .agreement-check .p-checkbox {
@@ -180,10 +186,5 @@ function checkAgreement(): void {
 .p-button {
     margin-top: 12px;
     width: 100%;
-}
-
-.p-card-header img {
-    width: 80%;
-    padding: 8% 2%;
 }
 </style>
