@@ -45,7 +45,7 @@
                         :options="doctorsFIO"
                     />
                 </div>
-                <p-button label="Пройти опрос" @click="goToSurvey" />
+                <p-button label="Далее" @click="goToSurvey" />
             </form>
         </div>
     </authorization>
@@ -81,7 +81,7 @@ const userLoginData = ref<any>({}); // TODO: Сделать тип как буд
 
 const goToSurvey = (): void => {
     if (validateRegisterForm()) {
-        router.push('survey');
+        router.push('agreement');
     }
 };
 

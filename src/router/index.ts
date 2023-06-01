@@ -11,6 +11,12 @@ const router = createRouter({
             component: HomeView,
         },
         {
+            path: '/client-test-auth',
+            name: 'client-test-auth',
+            component: (): Component =>
+                import('@/modules/authorization/ClientTestAuthorization.vue'),
+        },
+        {
             path: '/client-sign-in',
             name: 'client-sign-in',
             component: (): Component =>

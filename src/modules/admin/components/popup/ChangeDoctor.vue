@@ -42,8 +42,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useClinicsStore } from '../../stores/clinics.store';
 import { inject, ref } from 'vue';
+import { success, error } from '@/utils/toast';
+import { useClinicsStore } from '../../stores/clinics.store';
 
 import PButton from 'primevue/button';
 import Dropdown from 'primevue/dropdown';
@@ -56,38 +57,41 @@ const dialogRef = inject<any>('dialogRef');
 const { specializations, selectedDoctor } = storeToRefs(clinicStore);
 
 const changeDoctorFirstName = ref<string>(
-    selectedDoctor.value?.attributes.firstName!
+    selectedDoctor.value?.attributes.firstName ?? ''
 );
 const changeDoctorLastName = ref<string>(
-    selectedDoctor.value?.attributes.firstName!
+    selectedDoctor.value?.attributes.lastName ?? ''
 );
 const changeDoctorMidName = ref<string>(
-    selectedDoctor.value?.attributes.midName!
+    selectedDoctor.value?.attributes.midName ?? ''
 );
 const changeDoctorspecId = ref<string>('');
 const changeDoctorExp = ref<string>('');
 
 async function changeDoctor(): Promise<void> {
-    // if (
-    //   validateDoctor(
-    //     changeDoctorFirstName.value,
-    //     changeDoctorLastName.value,
-    //     changeDoctorExp.value,
-    //     changeDoctorspecId.value,
-    //   )
-    // ) {
-    //   const res = await clinicStore.changeDoctorData(selectedDoctor.value?.id!, {
-    //     first_name: changeDoctorFirstName.value,
-    //     last_name: changeDoctorLastName.value,
-    //     middle_name: changeDoctorMidName.value,
-    //     experience: changeDoctorExp.value,
-    //     specialization_id: changeDoctorspecId.value,
-    //   });
-    //   if (res === 200) {
-    //     success("Успешно", `Врач изменен`);
-    //     dialogRef.value.close();
-    //   }
-    // }
+    if (
+        changeDoctorFirstName.value &&
+        changeDoctorLastName.value &&
+        changeDoctorExp.value &&
+        changeDoctorspecId.value
+    ) {
+        const res = await clinicStore.changeDoctorData(
+            selectedDoctor.value?.id ?? '',
+            {
+                first_name: changeDoctorFirstName.value,
+                last_name: changeDoctorLastName.value,
+                middle_name: changeDoctorMidName.value,
+                experience: changeDoctorExp.value,
+                specialization_id: changeDoctorspecId.value,
+            }
+        );
+        if (res === 200) {
+            success('Успешно', `Врач изменен`);
+            dialogRef.value.close();
+        }
+    } else {
+        error('Ошибка', `Не хватает данных`);
+    }
 }
 </script>
 

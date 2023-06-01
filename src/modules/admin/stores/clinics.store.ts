@@ -83,6 +83,7 @@ export const useClinicsStore = defineStore('clinics', () => {
 
     async function getDoctorsData(): Promise<void> {
         const res = await getDoctors();
+        console.log(res);
         if (res) {
             doctors.value = res.data.data;
 
