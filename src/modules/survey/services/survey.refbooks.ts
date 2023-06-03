@@ -4,6 +4,7 @@ import { useSymptomApi } from '@/services/api';
 export const postAnswersToChatGPT = async (data: {
     answers: Record<string, string[]>;
     patientID: number;
+    doctorID: number;
 }): Promise<any> => {
     try {
         return await useSymptomApi.post(

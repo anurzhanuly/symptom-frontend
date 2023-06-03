@@ -19,12 +19,17 @@ const surveyJson = computed(() => surveyStore.questions);
 
 onMounted(() => {
     const survey = new Survey(surveyJson.value);
+
     survey.locale = 'ru';
 
     function onSurveyComplete(sender: {
         data: Record<string, string[]>;
     }): void {
         const newData: Record<string, string[]> = {};
+        const doctorId = +(localStorage.getItem('doctorId') ?? 0);
+
+        localStorage.removeItem('doctorId');
+
         for (const key in sender.data) {
             if (Array.isArray(sender.data[key])) {
                 // Если ответ массив
@@ -59,7 +64,9 @@ onMounted(() => {
         surveyStore.postAnswersDataChatGPT({
             answers: newData,
             patientID: +(localStorage.getItem('patientId') ?? 0),
+            doctorID: doctorId,
         });
+
         router.push({
             path: '/result',
         });

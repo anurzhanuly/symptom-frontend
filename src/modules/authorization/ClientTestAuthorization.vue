@@ -36,7 +36,7 @@
                 <div>
                     <h4>Выберите врача</h4>
                     <dropdown
-                        v-model="doctor"
+                        v-model="doctorId"
                         :empty-message="'Ничего не найдено'"
                         filter
                         filter-placeholder="Поиск"
@@ -77,7 +77,7 @@ const lastName = ref('');
 const middleName = ref('');
 const phone = ref('');
 const сlinic = ref('');
-const doctor = ref('');
+const doctorId = ref('');
 const userRegisterData = ref<any>({}); // TODO: Сделать тип как будет авторизация
 
 const goToSurvey = (): void => {
@@ -160,12 +160,10 @@ const validateRegisterForm = (): boolean => {
         middleName: middleName.value,
         phone: phone.value,
         сlinic: сlinic.value,
-        doctor: doctor.value,
+        doctor: doctorId.value,
     };
 
-    if (doctor.value) {
-        localStorage.setItem('doctorId', doctor.value);
-    }
+    localStorage.setItem('doctorId', doctorId.value);
 
     return true;
 };

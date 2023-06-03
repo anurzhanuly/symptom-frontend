@@ -106,7 +106,11 @@ async function clientRegistration() {
             success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
             dialogRef.value.close();
             router.push('/client-cabinet');
+
+            return;
         }
+
+        dialogRef.value.close();
     }
 }
 

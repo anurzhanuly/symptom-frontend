@@ -73,7 +73,7 @@ function goToDoctorCabinet() {
 
         return;
     }
-    router.push('/client-sign-in');
+    router.push('/doctor-sign-in');
 }
 
 const isMobileDevice = computed(
