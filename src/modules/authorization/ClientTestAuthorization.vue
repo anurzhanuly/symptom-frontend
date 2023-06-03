@@ -30,7 +30,7 @@
                         option-label="attributes.name"
                         option-value="id"
                         :options="clinics"
-                        @change="getDoctors($event.value as any)"
+                        @change="getDoctors($event)"
                     />
                 </div>
                 <div>
@@ -86,7 +86,8 @@ const goToSurvey = (): void => {
     }
 };
 
-async function getDoctors(id: string) {
+async function getDoctors(event: any) {
+    const id = event.value;
     await authorizationStore.getDoctorsData(id);
 }
 
