@@ -28,8 +28,9 @@
                         filter-placeholder="Поиск"
                         lazy
                         option-label="attributes.name"
-                        option-value="attributes.name"
+                        option-value="id"
                         :options="clinics"
+                        @change="getDoctors($event.value)"
                     />
                 </div>
                 <div>
@@ -42,7 +43,7 @@
                         lazy
                         option-label="name"
                         option-value="id"
-                        :options="doctorsFIO"
+                        :options="doctors"
                     />
                 </div>
                 <p-button label="Далее" @click="goToSurvey" />
@@ -54,6 +55,7 @@
 <script setup lang="ts">
 import Authorization from './components/Authorization.vue';
 import { useClinicsStore } from '@/modules/admin/stores/clinics.store';
+import { useAuthorizationStore } from '@/modules/authorization/store/authorization.store';
 import { useRouter } from 'vue-router';
 import { warn } from '@/utils/toast';
 import { storeToRefs } from 'pinia';
@@ -65,8 +67,10 @@ import Dropdown from 'primevue/dropdown';
 
 const router = useRouter();
 const clinicStore = useClinicsStore();
+const authorizationStore = useAuthorizationStore();
 
-const { clinics, doctorsFIO } = storeToRefs(clinicStore);
+const { clinics } = storeToRefs(clinicStore);
+const { doctors } = storeToRefs(authorizationStore);
 
 const firstName = ref('');
 const lastName = ref('');
@@ -74,10 +78,7 @@ const middleName = ref('');
 const phone = ref('');
 const сlinic = ref('');
 const doctor = ref('');
-const loginPhone = ref('');
-const password = ref('');
 const userRegisterData = ref<any>({}); // TODO: Сделать тип как будет авторизация
-const userLoginData = ref<any>({}); // TODO: Сделать тип как будет авторизация
 
 const goToSurvey = (): void => {
     if (validateRegisterForm()) {
@@ -85,11 +86,9 @@ const goToSurvey = (): void => {
     }
 };
 
-const goToPatientCab = (): void => {
-    if (validateLoginForm()) {
-    }
-    router.push('/patientcab/main');
-};
+async function getDoctors(id: string) {
+    await authorizationStore.getDoctorsData(id);
+}
 
 const validateRegisterForm = (): boolean => {
     const cyrillicPattern = /^[\u0400-\u04FF]+$/;
@@ -164,24 +163,9 @@ const validateRegisterForm = (): boolean => {
         doctor: doctor.value,
     };
 
-    return true;
-};
-
-const validateLoginForm = (): boolean => {
-    const phonePattern = /^8[0-9]{10}$/;
-
-    if (!phonePattern.test(phone.value)) {
-        warn(
-            'Внимание',
-            "Номер телефона' должен начинаеться с 8 и иметь 11 символов"
-        );
-        return false;
+    if (doctor.value) {
+        localStorage.setItem('doctorId', doctor.value);
     }
-
-    userLoginData.value = {
-        loginPhone: loginPhone.value,
-        password: password.value,
-    };
 
     return true;
 };

@@ -32,7 +32,6 @@ export const useClinicsStore = defineStore('clinics', () => {
         // TODO: Переписать норм
         if (!clinics.value.length) {
             getClinicsData();
-            getDoctorsData();
         }
     });
 

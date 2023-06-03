@@ -1,3 +1,5 @@
+import type { Attributes, Relationships } from '@/modules/admin/types/clinics';
+
 export interface ClientRegistration {
     email: string;
     password: string;
@@ -6,4 +8,11 @@ export interface ClientRegistration {
     first_name: string;
     last_name: string;
     phone: string;
+}
+
+export interface Doctors {
+    type: string;
+    id: string;
+    attributes: Attributes;
+    relationships?: Relationships;
 }
