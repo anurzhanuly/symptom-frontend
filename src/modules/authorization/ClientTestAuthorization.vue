@@ -30,7 +30,7 @@
                         option-label="attributes.name"
                         option-value="id"
                         :options="clinics"
-                        @change="getDoctors($event.value)"
+                        @change="getDoctors($event.value as any)"
                     />
                 </div>
                 <div>
