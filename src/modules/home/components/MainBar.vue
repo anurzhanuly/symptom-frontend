@@ -33,26 +33,20 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useSurveyStore } from '../../survey/store/survey.store.js';
 import { useHomeStore } from '../store/home.store.js';
 
 import PButton from 'primevue/button';
 import { storeToRefs } from 'pinia';
 
 const router = useRouter();
-const surveyStore = useSurveyStore();
 const homeStore = useHomeStore();
 
 const { isDoctor } = storeToRefs(homeStore);
 
 const clientToken = ref('');
 const doctorToken = ref('');
-
-onMounted(() => {
-    surveyStore.getQuestionsData();
-});
 
 function goToClientCabinet() {
     clientToken.value = localStorage.getItem('clientToken') ?? '';
