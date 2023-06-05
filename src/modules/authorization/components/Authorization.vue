@@ -8,7 +8,7 @@
                 icon="pi pi-arrow-left"
                 label="Назад"
                 link
-                @click="$router.push('/')"
+                @click="$router.back()"
             />
             <div>
                 <slot />

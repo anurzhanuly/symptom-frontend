@@ -94,17 +94,20 @@ async function getDoctors(event: any) {
 const validateRegisterForm = (): boolean => {
     const cyrillicPattern = /^[\u0400-\u04FF]+$/;
     const phonePattern = /^8[0-9]{10}$/;
+    console.log(firstName.value);
 
     if (!firstName.value) {
         warn('Внимание', "Поле 'Имя' должно быть заполнено");
         return false;
     }
 
-    if (firstName.value.length > 2 && !cyrillicPattern.test(firstName.value)) {
-        warn(
-            'Внимание',
-            "Поле 'Имя' должно быть на кириллице и больше 2 символов"
-        );
+    if (firstName.value.length < 2) {
+        warn('Внимание', "Поле 'Имя' должно быть больше 2 символов");
+        return false;
+    }
+
+    if (!cyrillicPattern.test(firstName.value)) {
+        warn('Внимание', "Поле 'Имя' должно быть на кириллице");
         return false;
     }
 
@@ -113,11 +116,13 @@ const validateRegisterForm = (): boolean => {
         return false;
     }
 
-    if (lastName.value.length > 2 && !cyrillicPattern.test(lastName.value)) {
-        warn(
-            'Внимание',
-            "Поле 'Фамилия' должно быть на кириллице и больше 2 символов"
-        );
+    if (!cyrillicPattern.test(lastName.value)) {
+        warn('Внимание', "Поле 'Фамилия' должно быть на кириллице");
+        return false;
+    }
+
+    if (lastName.value.length < 2) {
+        warn('Внимание', "Поле 'Фамилия' должно быть больше 2 символов");
         return false;
     }
 
@@ -172,7 +177,7 @@ const validateRegisterForm = (): boolean => {
 
 <style scoped>
 .authorization-client {
-    padding: 17%;
+    padding: 50px;
 }
 
 .authorization-form span {
