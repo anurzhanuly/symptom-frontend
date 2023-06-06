@@ -2,19 +2,10 @@
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import compression from 'vite-plugin-compression';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [
-        vue(),
-        compression({
-            ext: '.gz', // compressed file ext
-            deleteOriginFile: false, // delete original files
-            algorithm: 'gzip', // compression type, default is 'gzip'
-            threshold: 10240, // only compress files bigger than this size (in bytes)
-        }),
-    ],
+    plugins: [vue()],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
