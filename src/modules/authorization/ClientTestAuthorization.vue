@@ -92,47 +92,46 @@ async function getDoctors(event: any) {
 }
 
 const validateRegisterForm = (): boolean => {
-    const cyrillicPattern = /^[\u0400-\u04FF]+$/;
-    const phonePattern = /^8[0-9]{10}$/;
-    console.log(firstName.value);
+    // const cyrillicPattern = /^[\u0400-\u04FF]+$/;
+    // const phonePattern = /^8[0-9]{10}$/;
 
     if (!firstName.value) {
         warn('Внимание', "Поле 'Имя' должно быть заполнено");
         return false;
     }
 
-    if (firstName.value.length < 2) {
-        warn('Внимание', "Поле 'Имя' должно быть больше 2 символов");
-        return false;
-    }
-
-    if (!cyrillicPattern.test(firstName.value)) {
-        warn('Внимание', "Поле 'Имя' должно быть на кириллице");
-        return false;
-    }
-
-    if (!lastName.value) {
-        warn('Внимание', "Поле 'Фамилия' должно быть заполнено");
-        return false;
-    }
-
-    if (!cyrillicPattern.test(lastName.value)) {
-        warn('Внимание', "Поле 'Фамилия' должно быть на кириллице");
-        return false;
-    }
-
-    if (lastName.value.length < 2) {
-        warn('Внимание', "Поле 'Фамилия' должно быть больше 2 символов");
-        return false;
-    }
-
-    if (!phonePattern.test(phone.value)) {
-        warn(
-            'Внимание',
-            "Поле 'Номер телефона' должен начинаеться с 8 и иметь 11 символов"
-        );
-        return false;
-    }
+    // if (firstName.value.length < 2) {
+    //     warn('Внимание', "Поле 'Имя' должно быть больше 2 символов");
+    //     return false;
+    // }
+    //
+    // if (!cyrillicPattern.test(firstName.value)) {
+    //     warn('Внимание', "Поле 'Имя' должно быть на кириллице");
+    //     return false;
+    // }
+    //
+    // if (!lastName.value) {
+    //     warn('Внимание', "Поле 'Фамилия' должно быть заполнено");
+    //     return false;
+    // }
+    //
+    // if (!cyrillicPattern.test(lastName.value)) {
+    //     warn('Внимание', "Поле 'Фамилия' должно быть на кириллице");
+    //     return false;
+    // }
+    //
+    // if (lastName.value.length < 2) {
+    //     warn('Внимание', "Поле 'Фамилия' должно быть больше 2 символов");
+    //     return false;
+    // }
+    //
+    // if (!phonePattern.test(phone.value)) {
+    //     warn(
+    //         'Внимание',
+    //         "Поле 'Номер телефона' должен начинаеться с 8 и иметь 11 символов"
+    //     );
+    //     return false;
+    // }
 
     if (middleName.value) {
         middleName.value = middleName.value
