@@ -143,21 +143,25 @@ const validateRegisterForm = (): boolean => {
             .join(' ');
     }
 
-    firstName.value = firstName.value
-        .split(' ')
-        .map(
-            (word: string) =>
-                word[0].toUpperCase() + word.slice(1).toLowerCase()
-        )
-        .join(' ');
+    if (firstName.value) {
+        firstName.value = firstName.value
+            .split(' ')
+            .map(
+                (word: string) =>
+                    word[0].toUpperCase() + word.slice(1).toLowerCase()
+            )
+            .join(' ');
+    }
 
-    lastName.value = lastName.value
-        .split(' ')
-        .map(
-            (word: string) =>
-                word[0].toUpperCase() + word.slice(1).toLowerCase()
-        )
-        .join(' ');
+    if (lastName.value) {
+        lastName.value = lastName.value
+            .split(' ')
+            .map(
+                (word: string) =>
+                    word[0].toUpperCase() + word.slice(1).toLowerCase()
+            )
+            .join(' ');
+    }
 
     userRegisterData.value = {
         firstName: firstName.value,
