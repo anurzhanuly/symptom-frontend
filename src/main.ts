@@ -26,7 +26,7 @@ app.use(ToastService);
 app.use(DialogService);
 app.use(ConfirmationService);
 app.use(VueYandexMetrika, {
-    id: '93868095',
+    id: 93868095,
     router: router,
     // env: process.env.NODE_ENV, // не обязательно, но рекомендуется для различения разработки и продакшна
 });
