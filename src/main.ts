@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router';
+import VueYandexMetrika from 'vue-yandex-metrika';
 import PrimeVue from 'primevue/config';
 import ConfirmationService from 'primevue/confirmationservice';
 import DialogService from 'primevue/dialogservice';
@@ -24,5 +25,10 @@ app.use(PrimeVue);
 app.use(ToastService);
 app.use(DialogService);
 app.use(ConfirmationService);
+app.use(VueYandexMetrika, {
+    id: '93868095',
+    router: router,
+    // env: process.env.NODE_ENV, // не обязательно, но рекомендуется для различения разработки и продакшна
+});
 
 app.mount('#app');
