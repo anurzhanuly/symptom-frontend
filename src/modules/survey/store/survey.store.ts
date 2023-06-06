@@ -20,7 +20,7 @@ export const useSurveyStore = defineStore('survey', () => {
         const res = await getQuestionsJson();
 
         if (res) {
-            questions.value = res.data.attributes.questionnaire;
+            questions.value = res.data;
         }
     }
 

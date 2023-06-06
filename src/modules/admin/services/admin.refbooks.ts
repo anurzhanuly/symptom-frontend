@@ -2,10 +2,9 @@ import type { Recommendation } from '../types/recommendations';
 import type { AxiosResponse } from 'axios';
 import { useSymptomApi } from '@/services/api';
 
-export async function getQuestionsJson() {
+export async function getQuestionsJson(): Promise<AxiosResponse | null> {
     try {
-        const res = await useSymptomApi.get('/questionnaires/latest');
-        return res.data || null;
+        return await useSymptomApi.get('/v1/questionnaires/latest');
     } catch (error) {
         console.error(error);
         return null;

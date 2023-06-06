@@ -106,7 +106,7 @@ export const useAdminStore = defineStore('admin', () => {
         const res = await getQuestionsJson();
 
         if (res) {
-            const pages = res.data.attributes.questionnaire.pages;
+            const pages = res.data.pages;
             const elements = [];
             const names = [];
             const test = [];
