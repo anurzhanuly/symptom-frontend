@@ -30,7 +30,7 @@ export const useAdminStore = defineStore('admin', () => {
     const isLoading = ref(false);
     const vals = ref<any[]>([]); // TODO: исправить типизацию
 
-    const tests = ref();
+    const tests = ref(<{ [key: string]: string[] }>{});
     const lastTestKey = ref(1);
     const recomindationDeleteName = ref('');
     const recomindationNewName = ref('');
@@ -249,7 +249,7 @@ export const useAdminStore = defineStore('admin', () => {
     }
 
     function createTest(): void {
-        tests.value[lastTestKey.value.toString()] = '';
+        tests.value[lastTestKey.value.toString()] = [''];
 
         lastTestKey.value++;
     }
