@@ -30,7 +30,7 @@ app.use(ConfirmationService);
 app.use(VueYandexMetrika, {
     id: 93868095,
     router: router,
-    env: 'production', // не обязательно, но рекомендуется для различения разработки и продакшна
+    env: process.env.NODE_ENV, // не обязательно, но рекомендуется для различения разработки и продакшна
 });
 
 app.mount('#app');
