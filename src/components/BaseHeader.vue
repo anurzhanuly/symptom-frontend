@@ -1,17 +1,15 @@
 <template>
     <div class="base-header">
-        <div class="base-header-content">
-            <img
-                alt="Symptom logo"
-                src="@/assets/logo-auth.png"
-                @click="$router.push('/')"
-            />
-            <p-button
-                class="p-button-raised p-button-outlined p-button-text"
-                icon="pi pi-sign-out"
-                @click="$router.push('/')"
-            />
-        </div>
+        <img
+            alt="Symptom logo"
+            src="@/assets/logo-auth.png"
+            @click="$router.push('/')"
+        />
+        <p-button
+            class="p-button-raised p-button-outlined p-button-text"
+            label="На главную"
+            @click="$router.push('/')"
+        />
     </div>
 </template>
 
@@ -22,11 +20,11 @@ import PButton from 'primevue/button';
 <style scoped>
 .base-header {
     border-bottom: 1px solid #cacaca;
+    padding: 16px;
+    display: flex;
 }
 
-.base-header-content {
-    display: flex;
-    justify-content: space-between;
-    margin: 15px 15px;
+.p-button-text {
+    margin-left: auto;
 }
 </style>
