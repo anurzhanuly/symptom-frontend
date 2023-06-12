@@ -8,7 +8,7 @@
             :value="items"
         >
             <template #item="slotProps">
-                <div class="base-carousel-content">
+                <div class="base-carousel__content">
                     <img alt="logo" :src="getImageUrl(slotProps.data.photo)" />
                     <h2>{{ slotProps.data.header }}</h2>
                     <p>{{ slotProps.data.text }}</p>
@@ -46,29 +46,29 @@ function getImageUrl(name: string): string {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .base-carousel {
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
     height: 100vh;
     width: 100%;
-}
 
-.base-carousel-content {
-    text-align: center;
-}
+    &__content {
+        text-align: center;
+    }
 
-.base-carousel-content img {
-    margin-top: 15px;
-    max-width: 100%;
-}
+    &__content img {
+        margin-top: 15px;
+        max-width: 100%;
+    }
 
-.base-carousel-content h2 {
-    margin: 22px 0;
-    font-size: 25px;
-}
+    &__content h2 {
+        margin: 22px 0;
+        font-size: 25px;
+    }
 
-.base-carousel-content p {
-    margin: 25px 0;
-    font-size: 19px;
+    &__content p {
+        margin: 25px 0;
+        font-size: 19px;
+    }
 }
 </style>

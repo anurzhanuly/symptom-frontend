@@ -1,10 +1,9 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import App from './App.vue';
+import './styles/main.scss';
 import router from './router';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import VueYandexMetrika from 'vue3-yandex-metrika';
+
 import PrimeVue from 'primevue/config';
 import ConfirmationService from 'primevue/confirmationservice';
 import DialogService from 'primevue/dialogservice';
@@ -16,6 +15,10 @@ import 'primeicons/primeicons.css';
 import { StylesManager } from 'survey-core';
 import 'survey-core/defaultV2.min.css';
 import 'survey-core/survey.i18n';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import VueYandexMetrika from 'vue3-yandex-metrika';
 
 StylesManager.applyTheme('defaultV2');
 
