@@ -5,6 +5,7 @@
             <template #content>
                 <panel
                     v-for="(info, title) in pationsCard"
+                    :key="title"
                     :header="surveyStore.stringTitle(title)"
                     toggleable
                 >

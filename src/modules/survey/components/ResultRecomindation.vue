@@ -8,7 +8,7 @@
                     :key="index"
                     :header="(index + 1).toString()"
                 >
-                    <li>{{ recommendation }}</li>
+                    <p v-html="recommendation" />
                 </panel>
             </template>
             <template v-if="isButtonsVisible" #footer>
