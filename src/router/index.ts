@@ -11,6 +11,12 @@ const router = createRouter({
             component: HomeView,
         },
         {
+            path: '/choose-survey-type',
+            name: 'choose-survey-type',
+            component: (): Component =>
+                import('@/modules/authorization/ChooseSurveyType.vue'),
+        },
+        {
             path: '/client-test-auth',
             name: 'client-test-auth',
             component: (): Component =>

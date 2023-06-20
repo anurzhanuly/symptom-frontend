@@ -63,7 +63,7 @@ function direct(): void {
     if (isDoctor.value) {
         // TODO registration
     } else {
-        router.push('client-test-auth');
+        router.push('choose-survey-type');
     }
 }
 </script>
