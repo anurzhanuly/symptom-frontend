@@ -7,6 +7,11 @@
                 link
                 @click="$router.push('/')"
             />
+            <img
+                alt="Symptom logo"
+                class="header__logo"
+                src="@/assets/logo-auth.png"
+            />
         </header>
     </div>
 </template>
@@ -15,16 +20,19 @@
 import PButton from 'primevue/button';
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .header {
+    padding: 20px 16px;
+    display: flex;
+    justify-content: space-between;
+
+    &__logo {
+        max-width: 100px;
+    }
 }
 
 .p-button {
     padding: 0;
-}
-
-.p-button-label {
-    text-decoration: underline;
 }
 
 .pi {
