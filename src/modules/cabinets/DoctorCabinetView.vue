@@ -26,11 +26,6 @@ const doctorViews = ref([
         to: '/doctor-cabinet/main',
     },
     {
-        label: 'Пациенты',
-        icon: 'pi pi-fw pi-users',
-        to: '/doctor-cabinet/patients',
-    },
-    {
         label: 'Настройки',
         icon: 'pi pi-fw pi-exclamation-circle',
         to: '/doctor-cabinet/settings',

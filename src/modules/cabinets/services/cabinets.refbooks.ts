@@ -35,3 +35,26 @@ export async function getResult(Id: string): Promise<AxiosResponse | null> {
         return null;
     }
 }
+
+export async function postPassword(
+    password: string
+): Promise<AxiosResponse | null> {
+    try {
+        return await useSymptomApi.post(
+            '/users/update',
+            {
+                password,
+            },
+            {
+                headers: {
+                    'auth-token': JSON.parse(
+                        localStorage.getItem('doctorToken')!
+                    ),
+                },
+            }
+        );
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
