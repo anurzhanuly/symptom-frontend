@@ -9,25 +9,15 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, DefineComponent, shallowRef } from 'vue';
+import { onMounted, shallowRef } from 'vue';
 import { useSurveyStore } from '@/modules/survey/store/survey.store';
 import { storeToRefs } from 'pinia';
 
-interface Components {
-    HeaderBar: DefineComponent | null;
-    MainBar: DefineComponent | null;
-    AboutProject: DefineComponent | null;
-    Solutions: DefineComponent | null;
-    Advantages: DefineComponent | null;
-    Team: DefineComponent | null;
-    FooterBar: DefineComponent | null;
-}
-
-const isMobile = shallowRef(window.matchMedia('(max-width: 800px)').matches);
+const isMobile = window.innerWidth < 800;
 const surveyStore = useSurveyStore();
 const { questions } = storeToRefs(surveyStore);
 
-const components = shallowRef<Components>({
+const components = shallowRef<any>({
     HeaderBar: null,
     MainBar: null,
     AboutProject: null,
@@ -42,7 +32,7 @@ onMounted(async () => {
         surveyStore.getQuestionsData();
     }
 
-    switch (isMobile.value) {
+    switch (isMobile) {
         case true:
             components.value = {
                 HeaderBar: (await import('./mobile/HeaderBar.vue')).default,

@@ -1,30 +1,32 @@
 <template>
     <component :is="components.headerComponent" />
+    <component :is="components.buttonsComponent" />
 </template>
 
 <script setup lang="ts">
-import { onMounted, DefineComponent, shallowRef } from 'vue';
+import { onMounted, shallowRef } from 'vue';
 
-interface Components {
-    headerComponent: DefineComponent | null;
-}
+const isMobile = window.innerWidth < 800;
 
-const isMobile = shallowRef(window.matchMedia('(max-width: 800px)').matches);
-
-const components = shallowRef<Components>({
+const components = shallowRef<any>({
     headerComponent: null,
+    buttonsComponent: null,
 });
 
 onMounted(async () => {
-    switch (isMobile.value) {
+    switch (isMobile) {
         case true:
             components.value = {
                 headerComponent: (await import('./mobile/Header.vue')).default,
+                buttonsComponent: (await import('./mobile/FlowButtons.vue'))
+                    .default,
             };
             break;
         case false:
             components.value = {
                 headerComponent: (await import('./desktop/Header.vue')).default,
+                buttonsComponent: (await import('./mobile/FlowButtons.vue'))
+                    .default,
             };
             break;
         default:

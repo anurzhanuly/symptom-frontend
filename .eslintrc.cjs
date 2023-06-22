@@ -27,6 +27,7 @@ module.exports = {
         'vue/no-v-html': 0,
         'vue/no-reserved-component-names': 'warn',
         'import/no-unresolved': 0,
+        'vue/no-v-text-v-html-on-component': 0,
         'no-param-reassign': [
             'error',
             {

@@ -1,7 +1,41 @@
 <template>
-    <div>Desktop</div>
+    <div>
+        <header class="header">
+            <p-button
+                icon="pi pi-angle-left header__button"
+                label="Назад"
+                link
+                @click="$router.push('/')"
+            />
+            <img
+                alt="Symptom logo"
+                class="header__logo"
+                src="@/assets/logo-auth.png"
+            />
+        </header>
+    </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import PButton from 'primevue/button';
+</script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.header {
+    padding: 20px 16px;
+    display: flex;
+    justify-content: space-between;
+
+    &__logo {
+        max-width: 100px;
+    }
+}
+
+.p-button {
+    padding: 0;
+}
+
+.pi {
+    font-weight: bold;
+}
+</style>
