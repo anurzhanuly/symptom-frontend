@@ -104,6 +104,7 @@ const validateRegisterForm = (): boolean => {
 
     if (middleName.value) {
         middleName.value = middleName.value
+            .trim()
             .split(' ')
             .map(
                 (word: string) =>
@@ -114,6 +115,7 @@ const validateRegisterForm = (): boolean => {
 
     if (firstName.value) {
         firstName.value = firstName.value
+            .trim()
             .split(' ')
             .map(
                 (word: string) =>
@@ -124,6 +126,7 @@ const validateRegisterForm = (): boolean => {
 
     if (lastName.value) {
         lastName.value = lastName.value
+            .trim()
             .split(' ')
             .map(
                 (word: string) =>
