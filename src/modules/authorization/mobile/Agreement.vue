@@ -116,7 +116,7 @@
 
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import Authorization from '../components/Authorization.vue';
 import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
 
@@ -136,10 +136,6 @@ const isNotPrivacy = ref(false);
 const termsOfUse = ref(false);
 const privacyPolicy = ref(false);
 
-onMounted(() => {
-    console.log(route.params);
-});
-console.log(route.params);
 function checkAgreement(): void {
     if (!isUse.value && !isProvicy.value) {
         isNotUse.value = true;
@@ -157,7 +153,11 @@ function checkAgreement(): void {
         return;
     }
 
-    router.push('survey');
+    if (route.params.register) {
+        router.push({ name: 'client-test-auth' });
+    } else {
+        router.push({ name: 'survey' });
+    }
 }
 </script>
 

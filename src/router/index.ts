@@ -35,7 +35,7 @@ const router = createRouter({
                 import('@/modules/authorization/AuthorizationDoctorView.vue'),
         },
         {
-            path: '/agreement',
+            path: '/agreement/:register?',
             name: 'agreement',
             component: (): Component =>
                 import(

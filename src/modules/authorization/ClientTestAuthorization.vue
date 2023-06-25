@@ -82,7 +82,7 @@ const userRegisterData = ref<any>({}); // TODO: Сделать тип как б�
 
 const goToSurvey = (): void => {
     if (validateRegisterForm()) {
-        router.push('agreement');
+        router.push('survey');
     }
 };
 

@@ -6,7 +6,7 @@
             @click="
                 $router.push({
                     name: 'agreement',
-                    params: { withoutRegister: 1 },
+                    params: { register: '' },
                 })
             "
             v-html="'Для себя <br>(без регистрации)'"
@@ -18,7 +18,7 @@
             @click="
                 $router.push({
                     name: 'agreement',
-                    params: { withoutRegister: 0 },
+                    params: { register: '1' },
                 })
             "
         />

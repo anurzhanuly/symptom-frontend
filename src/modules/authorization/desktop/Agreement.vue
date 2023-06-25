@@ -152,7 +152,7 @@ function checkAgreement(): void {
         return;
     }
 
-    router.push('survey');
+    router.push('client-test-auth');
 }
 </script>
 
