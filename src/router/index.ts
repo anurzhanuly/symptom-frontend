@@ -11,10 +11,10 @@ const router = createRouter({
             component: HomeView,
         },
         {
-            path: '/choose-survey-type',
-            name: 'choose-survey-type',
+            path: '/choose-survey-flow',
+            name: 'choose-survey-flow',
             component: (): Component =>
-                import('@/modules/authorization/ChooseSurveyType.vue'),
+                import('@/modules/authorization/ChooseSurveyFlow.vue'),
         },
         {
             path: '/client-test-auth',

@@ -3,9 +3,25 @@
         <h2 class="buttons__title">Пройти опрос</h2>
         <p-button
             class="buttons__item"
+            @click="
+                $router.push({
+                    name: 'agreement',
+                    params: { withoutRegister: 1 },
+                })
+            "
             v-html="'Для себя <br>(без регистрации)'"
         />
-        <p-button label="Назад" outlined />
+        <p-button
+            class="buttons__item"
+            label="Для врача"
+            outlined
+            @click="
+                $router.push({
+                    name: 'agreement',
+                    params: { withoutRegister: 0 },
+                })
+            "
+        />
     </div>
 </template>
 
@@ -21,11 +37,13 @@ import PButton from 'primevue/button';
 
     &__title {
         text-align: center;
-        margin-bottom: 12px;
+        margin-bottom: 24px;
     }
 
     &__item {
-        margin-bottom: 12px;
+        margin-bottom: 16px;
+        justify-content: center;
+        padding: 16px 0;
     }
 }
 </style>
