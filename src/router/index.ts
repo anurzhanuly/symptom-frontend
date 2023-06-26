@@ -101,30 +101,22 @@ const router = createRouter({
                 {
                     path: 'main',
                     component: (): Component =>
-                        import(
-                            '@/modules/cabinets/components/DoctorCabinetMain.vue'
-                        ),
+                        import('@/modules/cabinets/DoctorCabinetMain.vue'),
                 },
                 {
                     path: 'patients',
                     component: (): Component =>
-                        import(
-                            '@/modules/cabinets/components/DoctorCabinetPatients.vue'
-                        ),
+                        import('@/modules/cabinets/DoctorCabinetPatients.vue'),
                 },
                 {
                     path: 'settings',
                     component: (): Component =>
-                        import(
-                            '@/modules/cabinets/components/DoctorCabinetSettings.vue'
-                        ),
+                        import('@/modules/cabinets/DoctorCabinetSettings.vue'),
                 },
                 {
                     path: 'result/:id',
                     component: (): Component =>
-                        import(
-                            '@/modules/cabinets/components/CabinetResult.vue'
-                        ),
+                        import('@/modules/cabinets/CabinetResult.vue'),
                 },
             ],
         },
@@ -137,23 +129,12 @@ const router = createRouter({
                 {
                     path: 'main',
                     component: (): Component =>
-                        import(
-                            '@/modules/cabinets/components/ClientCabinetMain.vue'
-                        ),
-                },
-                {
-                    path: 'settings',
-                    component: (): Component =>
-                        import(
-                            '@/modules/cabinets/components/ClientCabinetSettings.vue'
-                        ),
+                        import('@/modules/cabinets/ClientCabinetMain.vue'),
                 },
                 {
                     path: 'result/:id',
                     component: (): Component =>
-                        import(
-                            '@/modules/cabinets/components/CabinetResult.vue'
-                        ),
+                        import('@/modules/cabinets/CabinetResult.vue'),
                 },
             ],
         },

@@ -37,7 +37,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
             localStorage.setItem('doctorId', res.data.data.id);
         } else {
             error('Ошибка', 'Попробуйте снова');
-            // router.push('/doctor-sign-in');
+            router.push('/doctor-sign-in');
         }
     }
 

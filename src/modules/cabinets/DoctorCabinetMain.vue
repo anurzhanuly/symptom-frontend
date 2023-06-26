@@ -27,14 +27,14 @@
                 </div>
             </div>
         </template>
-        <column field="attributes.name" header="Дата опроса" />
-        <column style="width: 7%">
+        <column header="Дата опроса">
             <template #body="slotProps">
                 <p-button
                     class="p-button-text"
-                    icon="pi pi-credit-card"
                     @click="checkResult(slotProps.data.id)"
-                />
+                >
+                    {{ slotProps.data.attributes.name }}
+                </p-button>
             </template>
         </column>
     </data-table>

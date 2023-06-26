@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import BaseHeader from '@/components/BaseHeader.vue';
-import CabinetSideBar from './components/CabinetSideBar.vue';
+import CabinetSideBar from './desktop/CabinetSideBar.vue';
 
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -25,11 +25,6 @@ const clientViews = ref([
         label: 'Главная',
         icon: 'pi pi-fw pi-book',
         to: '/client-cabinet/main',
-    },
-    {
-        label: 'Настройки',
-        icon: 'pi pi-fw pi-exclamation-circle',
-        to: '/client-cabinet/settings',
     },
 ]);
 </script>

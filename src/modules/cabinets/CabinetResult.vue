@@ -55,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { useCabinetsStore } from '../store/cabinets.store';
+import { useCabinetsStore } from './store/cabinets.store';
 import { storeToRefs } from 'pinia';
 
 import Card from 'primevue/card';
@@ -65,7 +65,7 @@ import Panel from 'primevue/panel';
 
 const cabinetsStore = useCabinetsStore();
 
-const { patientResult, doctorResult, patientAnswer, recommendations } =
+const { patientResult, patientAnswer, recommendations } =
     storeToRefs(cabinetsStore);
 </script>
 

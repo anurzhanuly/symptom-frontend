@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import CabinetSideBar from './components/CabinetSideBar.vue';
+import CabinetSideBar from './desktop/CabinetSideBar.vue';
 import BaseHeader from '@/components/BaseHeader.vue';
 import { RouterView, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';

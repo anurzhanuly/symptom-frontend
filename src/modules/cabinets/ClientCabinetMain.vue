@@ -28,14 +28,14 @@
                     </div>
                 </div>
             </template>
-            <column field="attributes.name" header="Дата опроса" />
-            <column style="width: 7%">
+            <column header="Дата опроса">
                 <template #body="slotProps">
                     <p-button
                         class="p-button-text"
-                        icon="pi pi-credit-card"
                         @click="checkResult(slotProps.data.id)"
-                    />
+                    >
+                        {{ slotProps.data.attributes.name }}
+                    </p-button>
                 </template>
             </column>
         </data-table>
@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { useCabinetsStore } from '../store/cabinets.store';
+import { useCabinetsStore } from './store/cabinets.store';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 
@@ -74,5 +74,9 @@ function checkResult(Id: string) {
 
 .request-table-header .p-inputtext {
     margin-right: 5px;
+}
+
+.p-button-text {
+    width: 100%;
 }
 </style>
