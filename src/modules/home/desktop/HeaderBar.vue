@@ -1,9 +1,7 @@
 <template>
     <header>
         <div class="header-container">
-            <router-link to="/">
-                <img alt="logo" class="header-image" src="@/assets/logo.png" />
-            </router-link>
+            <img alt="logo" class="header-image" src="@/assets/logo.png" />
             <a
                 v-for="(link, index) in links"
                 :key="index"
@@ -58,7 +56,7 @@ const label = computed(() => {
 }
 
 .header-image {
-    width: 250px;
+    max-width: 200px;
 }
 
 @media (max-width: 1350px) {
