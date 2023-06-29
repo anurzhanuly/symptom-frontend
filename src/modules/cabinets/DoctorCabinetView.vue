@@ -7,15 +7,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { RouterView, useRouter } from 'vue-router';
+import { ref } from 'vue';
+import { RouterView } from 'vue-router';
 import TabMenu from 'primevue/tabmenu';
 import BaseHeader from '@/components/BaseHeader.vue';
-
-onMounted(() => {
-    const router = useRouter();
-    router.push('/doctor-cabinet/main');
-});
 
 const doctorViews = ref([
     {

@@ -97,6 +97,9 @@ const router = createRouter({
             name: 'doctor-cabinet',
             component: (): Component =>
                 import('@/modules/cabinets/DoctorCabinetView.vue'),
+            redirect: () => {
+                return { path: '/doctor-cabinet/main' };
+            },
             children: [
                 {
                     path: 'main',
