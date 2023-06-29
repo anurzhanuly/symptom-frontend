@@ -128,6 +128,9 @@ const router = createRouter({
             name: '/client-cabinet',
             component: (): Component =>
                 import('@/modules/cabinets/ClientCabinetView.vue'),
+            redirect: () => {
+                return { path: '/client-cabinet/main' };
+            },
             children: [
                 {
                     path: 'main',

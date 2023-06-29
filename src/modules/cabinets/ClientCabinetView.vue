@@ -1,24 +1,15 @@
 <template>
     <base-header />
-    <div class="client-cabinet">
-        <cabinet-side-bar :views="clientViews" />
-        <div class="client-view">
-            <router-view />
-        </div>
+    <tab-menu :model="clientViews" />
+    <div class="client-view">
+        <router-view />
     </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import BaseHeader from '@/components/BaseHeader.vue';
-import CabinetSideBar from './desktop/CabinetSideBar.vue';
-
-import { onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
-
-onMounted(() => {
-    const router = useRouter();
-    router.push('/client-cabinet/main');
-});
+import TabMenu from 'primevue/tabmenu';
 
 const clientViews = ref([
     {
