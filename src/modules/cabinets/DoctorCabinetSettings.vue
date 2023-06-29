@@ -30,7 +30,7 @@ async function changePassword() {
 
 <style lang="scss" scoped>
 .settings {
-    padding-left: 30px;
+    padding: 30px 16px 30px;
 
     &__header {
         margin-bottom: 30px;

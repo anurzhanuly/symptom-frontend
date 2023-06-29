@@ -12,19 +12,11 @@
     >
         <template #header>
             <div class="request-table-header">
-                <div>
-                    <h2>Назначенные консультации</h2>
-                </div>
-
-                <div>
-                    <span class="p-input-icon-left">
-                        <i class="pi pi-search" />
-                        <input-text
-                            v-model="searchString"
-                            placeholder="Поиск"
-                        />
-                    </span>
-                </div>
+                <h2 class="request-table-title">Назначенные консультации</h2>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search" />
+                    <input-text v-model="searchString" placeholder="Поиск" />
+                </span>
             </div>
         </template>
         <column header="Дата опроса">
@@ -67,8 +59,11 @@ function checkResult(Id: string) {
 <style scoped>
 .request-table-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+}
+
+.request-table-title {
+    margin-bottom: 16px;
 }
 
 .request-table-header .p-inputtext {

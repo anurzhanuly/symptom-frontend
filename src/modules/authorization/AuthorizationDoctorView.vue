@@ -45,7 +45,7 @@ function checkDoctor(): void {
 
 <style scoped>
 .authorization-doctor {
-    padding: 32%;
+    padding: 16% 32%;
 }
 
 .authorization-form span {

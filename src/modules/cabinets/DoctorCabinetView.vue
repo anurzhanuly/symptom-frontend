@@ -1,18 +1,16 @@
 <template>
     <base-header />
-    <div class="doctor-cabinet">
-        <cabinet-side-bar :views="doctorViews" />
-        <div class="doctor-view">
-            <router-view />
-        </div>
+    <tab-menu :model="doctorViews" />
+    <div class="doctor-view">
+        <router-view />
     </div>
 </template>
 
 <script setup lang="ts">
-import CabinetSideBar from './desktop/CabinetSideBar.vue';
-import BaseHeader from '@/components/BaseHeader.vue';
-import { RouterView, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
+import { RouterView, useRouter } from 'vue-router';
+import TabMenu from 'primevue/tabmenu';
+import BaseHeader from '@/components/BaseHeader.vue';
 
 onMounted(() => {
     const router = useRouter();
@@ -34,10 +32,6 @@ const doctorViews = ref([
 </script>
 
 <style scoped>
-.doctor-cabinet {
-    display: flex;
-}
-
 .doctor-view {
     width: -webkit-fill-available;
 }
