@@ -71,7 +71,7 @@ function clientRegistration() {
         props: {
             header: 'Регистрация',
             style: {
-                width: '40%',
+                width: '80%',
             },
             modal: true,
         },
