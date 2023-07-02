@@ -5,7 +5,7 @@
                 icon="pi pi-angle-left"
                 label="Назад"
                 link
-                @click="$router.push('/')"
+                @click="$router.back()"
             />
             <img
                 alt="Symptom logo"
