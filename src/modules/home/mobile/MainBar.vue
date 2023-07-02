@@ -196,7 +196,7 @@ h1 {
     }
 
     h3 {
-        font-size: 17px;
+        font-size: 16px;
     }
 
     .main-container-button .p-button,
