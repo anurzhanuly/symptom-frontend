@@ -1,4 +1,5 @@
 <template>
+    <component :is="components.headerComponent" />
     <component :is="components.agreementComponent" />
 </template>
 
@@ -9,12 +10,14 @@ const isMobile = window.innerWidth < 800;
 
 const components = shallowRef<any>({
     agreementComponent: null,
+    headerComponent: null,
 });
 
 onMounted(async () => {
     switch (isMobile) {
         case true:
             components.value = {
+                headerComponent: (await import('./mobile/Header.vue')).default,
                 agreementComponent: (await import('./mobile/Agreement.vue'))
                     .default,
             };

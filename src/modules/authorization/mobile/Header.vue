@@ -2,7 +2,7 @@
     <div>
         <header class="header">
             <p-button
-                icon="pi pi-angle-left header__button"
+                icon="pi pi-angle-left"
                 label="Назад"
                 link
                 @click="$router.push('/')"

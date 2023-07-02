@@ -5,10 +5,10 @@
         </div>
         <div class="authorization-main">
             <p-button
-                icon="pi pi-arrow-left"
+                icon="pi pi-angle-left header__button"
                 label="Назад"
                 link
-                @click="$router.push('/')"
+                @click="$router.back()"
             />
             <div>
                 <slot />
@@ -35,10 +35,6 @@ import PButton from 'primevue/button';
 .authorization-onboarding,
 .authorization-main {
     width: 50%;
-}
-
-.authorization-main .p-button {
-    font-weight: 650;
 }
 
 @media only screen and (max-width: 750px) {
