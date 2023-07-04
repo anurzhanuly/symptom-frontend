@@ -37,7 +37,7 @@
                 </p>
             </div>
             <input-text v-model="name" placeholder="Ваше имя и фамилия" />
-            <input-text v-model="place" placeholder="Место работы" />
+            <input-text v-model="workplace" placeholder="Место работы" />
             <input-text v-model="phone" placeholder="Номер телефона" />
             <p-button label="Отправить" @click="sendRequest" />
         </div>
@@ -55,7 +55,7 @@ import { useHomeStore } from '../store/home.store';
 import Carousel from 'primevue/carousel';
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
-import { success } from '@/utils/toast';
+import { success, warn } from '@/utils/toast';
 import { postNpsRequest } from '@/modules/home/services/home.refbooks';
 
 const homeStore = useHomeStore();
@@ -151,6 +151,16 @@ function getImageUrl(name: string): string {
 }
 
 async function sendRequest() {
+    if (!name.value) {
+        warn('Ошибка', 'Введите имя');
+        return;
+    }
+
+    if (!phone.value) {
+        warn('Ошибка', 'Введите телефон');
+        return;
+    }
+
     const res = await postNpsRequest({
         name: name.value,
         workplace: workplace.value,
@@ -166,7 +176,6 @@ async function sendRequest() {
 <style scoped>
 .team-container {
     padding: 20px 150px;
-    font-family: 'Montserrat';
     font-style: normal;
 }
 
