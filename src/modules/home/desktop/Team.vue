@@ -39,7 +39,7 @@
             <input-text v-model="name" placeholder="Ваше имя и фамилия" />
             <input-text v-model="place" placeholder="Место работы" />
             <input-text v-model="phone" placeholder="Номер телефона" />
-            <p-button label="Отправить" />
+            <p-button label="Отправить" @click="sendRequest" />
         </div>
         <div class="questions-img">
             <img alt="logo" src="@/assets/onboarding/onboard1.png" />
@@ -48,19 +48,21 @@
 </template>
 
 <script setup lang="ts">
-import { useHomeStore } from '../store/home.store';
-import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useHomeStore } from '../store/home.store';
 
 import Carousel from 'primevue/carousel';
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
+import { success } from '@/utils/toast';
+import { postNpsRequest } from '@/modules/home/services/home.refbooks';
 
 const homeStore = useHomeStore();
 const { isDoctor } = storeToRefs(homeStore);
 
 const name = ref('');
-const place = ref('');
+const workplace = ref('');
 const phone = ref('');
 
 const responsiveOptions = ref([
@@ -146,6 +148,18 @@ const team = ref([
 
 function getImageUrl(name: string): string {
     return new URL(`../../../assets/team/${name}`, import.meta.url).href;
+}
+
+async function sendRequest() {
+    const res = await postNpsRequest({
+        name: name.value,
+        workplace: workplace.value,
+        phone: phone.value,
+    });
+
+    if (res) {
+        success('Успешно', 'Запрос отправлен');
+    }
 }
 </script>
 
