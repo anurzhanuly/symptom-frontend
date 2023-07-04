@@ -11,13 +11,6 @@
                     <p v-html="recommendation" />
                 </panel>
             </template>
-            <template v-if="isButtonsVisible" #footer>
-                <p-button
-                    label="Открыть в PDF"
-                    raised
-                    @click="surveyStore.resultPDF"
-                />
-            </template>
         </card>
     </div>
 </template>
@@ -27,9 +20,8 @@ import { useSurveyStore } from '@/modules/survey/store/survey.store';
 import { storeToRefs } from 'pinia';
 
 import Card from 'primevue/card';
-import PButton from 'primevue/button';
 import Panel from 'primevue/panel';
 
 const surveyStore = useSurveyStore();
-const { recommendations, isButtonsVisible } = storeToRefs(surveyStore);
+const { recommendations } = storeToRefs(surveyStore);
 </script>

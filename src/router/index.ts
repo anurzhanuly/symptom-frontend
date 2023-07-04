@@ -47,6 +47,25 @@ const router = createRouter({
             name: 'result',
             component: (): Component =>
                 import('@/modules/survey/ResultView.vue'),
+            redirect: () => {
+                return { path: '/result/recommendation' };
+            },
+            children: [
+                {
+                    path: 'recommendation',
+                    component: (): Component =>
+                        import(
+                            '@/modules/survey/components/ResultRecomindation.vue'
+                        ),
+                },
+                {
+                    path: 'card',
+                    component: (): Component =>
+                        import(
+                            '@/modules/survey/components/ResultPatientCard.vue'
+                        ),
+                },
+            ],
         },
         {
             path: '/survey',

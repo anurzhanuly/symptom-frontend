@@ -13,9 +13,6 @@ export const useSurveyStore = defineStore('survey', () => {
     const recommendations = ref();
     const isLoading = ref(false);
 
-    const isButtonsVisible = ref<boolean>(true);
-    const isResultVisible = ref<boolean>(true);
-
     async function getQuestionsData(): Promise<void> {
         const res = await getQuestionsJson();
 
@@ -58,29 +55,14 @@ export const useSurveyStore = defineStore('survey', () => {
         return title;
     }
 
-    function resultPDF() {
-        isButtonsVisible.value = false;
-        isResultVisible.value = false;
-        setTimeout(() => {
-            window.print();
-        });
-        setTimeout(() => {
-            isButtonsVisible.value = true;
-            isResultVisible.value = true;
-        }, 2000);
-    }
-
     return {
         questions,
         isLoading,
         pationsCard,
         recommendations,
         recommendationsChatGPT,
-        isButtonsVisible,
-        isResultVisible,
         postAnswersDataChatGPT,
         getQuestionsData,
         stringTitle,
-        resultPDF,
     };
 });
