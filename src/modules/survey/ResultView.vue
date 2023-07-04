@@ -1,7 +1,7 @@
 <template>
     <section>
         <progress-bar v-if="isLoading" mode="indeterminate" />
-        <base-header v-if="isButtonsVisible" />
+        <base-header />
         <tab-menu :model="surveyPages" />
         <router-view />
     </section>
@@ -17,7 +17,7 @@ import ProgressBar from 'primevue/progressbar';
 import TabMenu from 'primevue/tabmenu';
 
 const surveyStore = useSurveyStore();
-const { isLoading, isButtonsVisible } = storeToRefs(surveyStore);
+const { isLoading } = storeToRefs(surveyStore);
 
 const surveyPages = [
     {

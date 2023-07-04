@@ -25,14 +25,6 @@
                     </div>
                 </panel>
             </template>
-
-            <template v-if="isButtonsVisible" #footer>
-                <p-button
-                    class="p-button-raised"
-                    label="Открыть в PDF"
-                    @click="surveyStore.resultPDF"
-                />
-            </template>
         </card>
     </div>
 </template>
@@ -43,10 +35,9 @@ import { storeToRefs } from 'pinia';
 
 import Card from 'primevue/card';
 import Panel from 'primevue/panel';
-import PButton from 'primevue/button';
 
 const surveyStore = useSurveyStore();
-const { recommendationsChatGPT, isButtonsVisible } = storeToRefs(surveyStore);
+const { recommendationsChatGPT } = storeToRefs(surveyStore);
 </script>
 
 <style scoped>
