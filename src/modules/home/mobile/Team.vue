@@ -162,9 +162,11 @@ async function sendRequest() {
     }
 
     const res = await postNpsRequest({
-        name: name.value,
-        workplace: workplace.value,
-        phone: phone.value,
+        data: {
+            name: name.value,
+            workplace: workplace.value,
+            phone: phone.value,
+        },
     });
 
     if (res) {
