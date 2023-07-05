@@ -2,11 +2,11 @@ import { useSymptomApi } from '@/services/api';
 import type { AxiosResponse } from 'axios';
 
 export async function postNpsRequest(
-    request: object
+    data: object
 ): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.post('/nps/create', {
-            request,
+            data,
         });
     } catch (error) {
         console.error(error);
