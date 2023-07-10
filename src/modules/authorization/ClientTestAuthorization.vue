@@ -19,7 +19,7 @@
                     <h4>Номер телефона</h4>
                     <input-text v-model="phone" />
                 </div>
-                <div>
+                <div v-show="!doctorLink">
                     <h4>Выберите клинику</h4>
                     <dropdown
                         v-model="сlinic"
@@ -33,7 +33,7 @@
                         @change="getDoctors($event)"
                     />
                 </div>
-                <div>
+                <div v-show="!doctorLink">
                     <h4>Выберите врача</h4>
                     <dropdown
                         v-model="doctorId"
@@ -53,13 +53,14 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import Authorization from './components/Authorization.vue';
 import { useClinicsStore } from '@/modules/admin/stores/clinics.store';
 import { useAuthorizationStore } from '@/modules/authorization/store/authorization.store';
 import { useRouter } from 'vue-router';
 import { warn } from '@/utils/toast';
+import { getParameterByKey } from '@/utils/url';
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
 
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
@@ -78,7 +79,17 @@ const middleName = ref('');
 const phone = ref('');
 const сlinic = ref('');
 const doctorId = ref('');
+const doctorLink = ref(false);
 const userRegisterData = ref<any>({}); // TODO: Сделать тип как будет авторизация
+
+onMounted(() => {
+    const id = getParameterByKey('doc');
+
+    if (!id) return;
+
+    doctorId.value = id;
+    doctorLink.value = true;
+});
 
 const goToSurvey = (): void => {
     if (validateRegisterForm()) {
