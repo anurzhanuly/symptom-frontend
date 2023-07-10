@@ -117,7 +117,7 @@
 <script setup lang="ts">
 import Authorization from '../components/Authorization.vue';
 import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { ref } from 'vue';
 
 import InlineMessage from 'primevue/inlinemessage';
@@ -127,6 +127,7 @@ import Card from 'primevue/card';
 import Sidebar from 'primevue/sidebar';
 
 const router = useRouter();
+const route = useRoute();
 
 const isUse = ref(false);
 const isProvicy = ref(false);
@@ -152,7 +153,7 @@ function checkAgreement(): void {
         return;
     }
 
-    router.push('client-test-auth');
+    router.push({ name: 'client-test-auth', query: { ...route.query } });
 }
 </script>
 

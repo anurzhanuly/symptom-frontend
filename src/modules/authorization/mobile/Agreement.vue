@@ -141,7 +141,10 @@ function checkAgreement(): void {
     }
 
     if (route.params.register) {
-        router.push({ name: 'client-test-auth' });
+        router.push({
+            name: 'client-test-auth',
+            query: { ...route.query },
+        });
     } else {
         router.push({ name: 'survey' });
     }
