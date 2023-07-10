@@ -46,7 +46,11 @@
                         :options="doctors"
                     />
                 </div>
-                <p-button label="Далее" @click="goToSurvey" />
+                <p-button
+                    label="Далее"
+                    :loading="isLoading"
+                    @click="goToSurvey"
+                />
             </form>
         </div>
     </authorization>
@@ -54,13 +58,14 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
 import Authorization from './components/Authorization.vue';
 import { useClinicsStore } from '@/modules/admin/stores/clinics.store';
 import { useAuthorizationStore } from '@/modules/authorization/store/authorization.store';
-import { useRouter } from 'vue-router';
+import { useSurveyStore } from '@/modules/survey/store/survey.store';
 import { warn } from '@/utils/toast';
 import { getParameterByKey } from '@/utils/url';
-import { storeToRefs } from 'pinia';
 
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
@@ -69,7 +74,9 @@ import Dropdown from 'primevue/dropdown';
 const router = useRouter();
 const clinicStore = useClinicsStore();
 const authorizationStore = useAuthorizationStore();
+const surveyStore = useSurveyStore();
 
+const { isLoading, questions } = storeToRefs(surveyStore);
 const { clinics } = storeToRefs(clinicStore);
 const { doctors } = storeToRefs(authorizationStore);
 
@@ -83,6 +90,10 @@ const doctorLink = ref(false);
 const userRegisterData = ref<any>({}); // TODO: Сделать тип как будет авторизация
 
 onMounted(() => {
+    if (!questions.value) {
+        surveyStore.getQuestionsData();
+    }
+
     const id = getParameterByKey('doc');
 
     if (!id) return;

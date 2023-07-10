@@ -14,11 +14,15 @@ export const useSurveyStore = defineStore('survey', () => {
     const isLoading = ref(false);
 
     async function getQuestionsData(): Promise<void> {
+        isLoading.value = true;
+
         const res = await getQuestionsJson();
 
         if (res) {
             questions.value = res.data;
         }
+
+        isLoading.value = false;
     }
 
     async function postAnswersDataChatGPT(data: {

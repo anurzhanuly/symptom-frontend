@@ -10,12 +10,8 @@
 
 <script setup lang="ts">
 import { onMounted, shallowRef } from 'vue';
-import { useSurveyStore } from '@/modules/survey/store/survey.store';
-import { storeToRefs } from 'pinia';
 
 const isMobile = window.innerWidth < 800;
-const surveyStore = useSurveyStore();
-const { questions } = storeToRefs(surveyStore);
 
 const components = shallowRef<any>({
     HeaderBar: null,
@@ -28,10 +24,6 @@ const components = shallowRef<any>({
 });
 
 onMounted(async () => {
-    if (!questions.value) {
-        surveyStore.getQuestionsData();
-    }
-
     switch (isMobile) {
         case true:
             components.value = {
