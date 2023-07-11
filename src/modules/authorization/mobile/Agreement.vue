@@ -50,7 +50,11 @@
                     данных.
                 </inline-message>
             </div>
-            <p-button label="Начать опрос" @click="checkAgreement" />
+            <p-button
+                label="Начать опрос"
+                :loading="isLoading"
+                @click="checkAgreement"
+            />
         </div>
     </div>
 
@@ -105,16 +109,22 @@
 
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
 
 import InlineMessage from 'primevue/inlinemessage';
 import PButton from 'primevue/button';
 import Checkbox from 'primevue/checkbox';
 import Sidebar from 'primevue/sidebar';
+import { useSurveyStore } from '@/modules/survey/store/survey.store';
+import { storeToRefs } from 'pinia';
 
 const router = useRouter();
 const route = useRoute();
+
+const surveyStore = useSurveyStore();
+
+const { isLoading, questions } = storeToRefs(surveyStore);
 
 const isUse = ref(false);
 const isProvicy = ref(false);
@@ -122,6 +132,12 @@ const isNotUse = ref(false);
 const isNotPrivacy = ref(false);
 const termsOfUse = ref(false);
 const privacyPolicy = ref(false);
+
+onMounted(() => {
+    if (!questions.value && !route.params.register) {
+        surveyStore.getQuestionsData();
+    }
+});
 
 function checkAgreement(): void {
     if (!isUse.value && !isProvicy.value) {
