@@ -36,9 +36,20 @@ export async function clientRegistration(clientData: ClientRegistration) {
     }
 }
 
-export async function getDoctors(id: string): Promise<AxiosResponse | null> {
+export async function getClinicDoctors(
+    id: string
+): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.get(`/clinics/${id}`);
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export async function getDoctors(): Promise<AxiosResponse | null> {
+    try {
+        return await useSymptomApi.get('/doctors');
     } catch (error) {
         console.error(error);
         return null;

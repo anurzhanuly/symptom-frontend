@@ -1,6 +1,7 @@
 import {
     clientRegistration,
     postLogin,
+    getClinicDoctors,
     getDoctors,
 } from '../services/authorization.refbooks';
 import type { ClientRegistration, Doctors } from '../types/authorization';
@@ -54,12 +55,25 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         }
     }
 
-    async function getDoctorsData(id: string): Promise<void> {
-        const res = await getDoctors(id);
+    async function getClinicDoctorsData(id: string): Promise<void> {
+        const res = await getClinicDoctors(id);
 
         if (res) {
             doctors.value = res.data.included
                 ? res.data.included.map((doctor: Doctors) => ({
+                      id: doctor.id,
+                      name: `${doctor.attributes.firstName} ${doctor.attributes.lastName} ${doctor.attributes.midName}`,
+                  }))
+                : [];
+        }
+    }
+
+    async function getDoctorsData(): Promise<void> {
+        const res = await getDoctors();
+
+        if (res) {
+            doctors.value = res.data.data
+                ? res.data.data.map((doctor: Doctors) => ({
                       id: doctor.id,
                       name: `${doctor.attributes.firstName} ${doctor.attributes.lastName} ${doctor.attributes.midName}`,
                   }))
@@ -72,6 +86,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         postLoginDoctor,
         postLoginClient,
         clientRegistrationData,
+        getClinicDoctorsData,
         getDoctorsData,
         doctors,
     };

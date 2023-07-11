@@ -30,7 +30,7 @@
                         option-label="attributes.name"
                         option-value="id"
                         :options="clinics"
-                        @change="getDoctors($event)"
+                        @change="getClinicDoctors($event)"
                     />
                 </div>
                 <div v-show="!doctorLink">
@@ -94,6 +94,8 @@ onMounted(() => {
         surveyStore.getQuestionsData();
     }
 
+    authorizationStore.getDoctorsData();
+
     const id = getParameterByKey('doc');
 
     if (!id) return;
@@ -108,9 +110,9 @@ const goToSurvey = (): void => {
     }
 };
 
-async function getDoctors(event: any) {
+async function getClinicDoctors(event: any) {
     const id = event.value;
-    await authorizationStore.getDoctorsData(id);
+    await authorizationStore.getClinicDoctorsData(id);
 }
 
 const validateRegisterForm = (): boolean => {
