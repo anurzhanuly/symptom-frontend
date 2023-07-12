@@ -47,12 +47,16 @@ export const useAdminStore = defineStore('admin', () => {
         }
     });
 
-    watch(selectedRecommendation, async (newRecommendationName) => {
-        const res = await getRecommendationDetail(newRecommendationName?.id!);
+    watch(selectedRecommendation, async (newRecommendation) => {
+        if (!newRecommendation?.id) return;
+
+        const res = await getRecommendationDetail(newRecommendation?.id!);
 
         if (res) {
             tests.value = res.data.data.attributes.tests;
+
             const keys = Object.keys(tests.value);
+
             lastTestKey.value = keys[keys.length - 1]
                 ? Number(keys[keys.length - 1]) + 1
                 : 1;
@@ -193,6 +197,7 @@ export const useAdminStore = defineStore('admin', () => {
 
     async function createRecommendationData(): Promise<void> {
         const res = await createRecommendation(recomindationNewName.value);
+
         if (res) {
             allRecommendations.value.push(res.data.data);
             recomindationNewName.value = '';
@@ -249,7 +254,7 @@ export const useAdminStore = defineStore('admin', () => {
     }
 
     function createTest(): void {
-        tests.value[lastTestKey.value.toString()] = [''];
+        tests.value[`${lastTestKey.value}`] = [''];
 
         lastTestKey.value++;
     }
