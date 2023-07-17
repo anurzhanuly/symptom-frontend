@@ -65,12 +65,8 @@ function updateTest(): void {
     let isEmpty = false;
 
     for (const key in tests.value) {
-        if (!tests.value[key][0]) {
+        if (!tests.value[key]) {
             isEmpty = true;
-        }
-
-        if (typeof tests.value[key] === 'string') {
-            tests.value[key] = [`${tests.value[key]}`];
         }
 
         if (isEmpty) {

@@ -46,11 +46,15 @@ export async function deleteRecommendation(
     id: string
 ): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.post(`/admin/recommendations/${id}/delete`, {
-            headers: {
-                'auth-token': JSON.parse(localStorage.getItem('admToken')!),
-            },
-        });
+        return await useSymptomApi.post(
+            `/admin/recommendations/${id}/delete`,
+            {},
+            {
+                headers: {
+                    'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                },
+            }
+        );
     } catch (error) {
         console.error(error);
         return null;
@@ -61,16 +65,21 @@ export async function createRecommendation(
     name: string
 ): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.post('/admin/recommendations/create', {
-            data: {
-                name: name,
-                tests: {},
-                conditions: [],
+        return await useSymptomApi.post(
+            '/admin/recommendations/create',
+            {
+                data: {
+                    name: name,
+                    tests: {},
+                    conditions: [],
+                },
             },
-            headers: {
-                'auth-token': JSON.parse(localStorage.getItem('admToken')!),
-            },
-        });
+            {
+                headers: {
+                    'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                },
+            }
+        );
     } catch (error) {
         console.error(error);
         return null;
@@ -84,16 +93,21 @@ export async function updateRecommendation(
     conditions: any
 ): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.post(`/admin/recommendations/${id}/update`, {
-            data: {
-                name: name,
-                tests: tests,
-                conditions: conditions,
+        return await useSymptomApi.post(
+            `/admin/recommendations/${id}/update`,
+            {
+                data: {
+                    name: name,
+                    tests: tests,
+                    conditions: conditions,
+                },
             },
-            headers: {
-                'auth-token': JSON.parse(localStorage.getItem('admToken')!),
-            },
-        });
+            {
+                headers: {
+                    'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                },
+            }
+        );
     } catch (error) {
         console.error(error);
         return null;
