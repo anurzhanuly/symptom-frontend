@@ -18,7 +18,7 @@
             icon="pi pi-check"
             label="Ввести"
             style="margin-top: 20px; width: 100%"
-            @click="checkAdmin()"
+            @click="checkAdmin"
         />
     </div>
 </template>
@@ -43,6 +43,11 @@ async function checkAdmin() {
         const res = await postLogin(login.value.trim(), password.value.trim());
 
         if (res) {
+            sessionStorage.setItem(
+                'admToken',
+                JSON.stringify(res.data.data.token)
+            );
+
             router.push('/admin');
         }
     }

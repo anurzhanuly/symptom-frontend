@@ -5,10 +5,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 import BaseHeader from '@/components/BaseHeader.vue';
 import TabMenu from 'primevue/tabmenu';
+import router from '@/router';
 
 const adminPages = ref([
     {
@@ -37,4 +38,10 @@ const adminPages = ref([
         to: '/admin/clinics',
     },
 ]);
+
+onMounted(() => {
+    if (!sessionStorage.getItem('admToken')) {
+        router.replace({ name: 'home' });
+    }
+});
 </script>

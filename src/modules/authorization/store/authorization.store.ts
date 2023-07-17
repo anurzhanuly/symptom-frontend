@@ -41,6 +41,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
                 'clientToken',
                 JSON.stringify(res.data.data.token)
             );
+
             router.push('/client-cabinet');
         } else {
             isWrong.value = true;
