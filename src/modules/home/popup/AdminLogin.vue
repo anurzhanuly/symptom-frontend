@@ -43,7 +43,7 @@ async function checkAdmin() {
         const res = await postLogin(login.value.trim(), password.value.trim());
 
         if (res) {
-            sessionStorage.setItem(
+            localStorage.setItem(
                 'admToken',
                 JSON.stringify(res.data.data.token)
             );

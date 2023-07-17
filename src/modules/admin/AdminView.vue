@@ -40,7 +40,7 @@ const adminPages = ref([
 ]);
 
 onMounted(() => {
-    if (!sessionStorage.getItem('admToken')) {
+    if (!localStorage.getItem('admToken')) {
         router.replace({ name: 'home' });
     }
 });

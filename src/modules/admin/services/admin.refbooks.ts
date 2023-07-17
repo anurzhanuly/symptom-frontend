@@ -14,7 +14,12 @@ export async function getQuestionsJson(): Promise<AxiosResponse | null> {
 export async function getRecommendations(): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.get<Recommendation[]>(
-            '/admin/recommendations/'
+            '/admin/recommendations/',
+            {
+                headers: {
+                    'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                },
+            }
         );
     } catch (error) {
         console.error(error);
