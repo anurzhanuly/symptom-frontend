@@ -6,11 +6,7 @@
         </div>
         <div>
             <h3>Пароль</h3>
-            <input-text
-                v-model="password"
-                style="width: 100%"
-                type="password"
-            />
+            <p-password v-model="password" :feedback="false" toggle-mask />
         </div>
         <p-button
             autofocus
@@ -31,6 +27,7 @@ import { validateLogin } from '@/utils/validation';
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import { postLogin } from '@/modules/authorization/services/authorization.refbooks';
+import PPassword from 'primevue/password';
 
 const router = useRouter();
 

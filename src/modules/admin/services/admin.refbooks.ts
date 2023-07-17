@@ -31,7 +31,11 @@ export async function getRecommendationDetail(
     id: string
 ): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.get<any>(`/admin/recommendations/${id}`);
+        return await useSymptomApi.get<any>(`/admin/recommendations/${id}`, {
+            headers: {
+                'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+            },
+        });
     } catch (error) {
         console.error(error);
         return null;
@@ -42,7 +46,11 @@ export async function deleteRecommendation(
     id: string
 ): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.post(`/admin/recommendations/${id}/delete`);
+        return await useSymptomApi.post(`/admin/recommendations/${id}/delete`, {
+            headers: {
+                'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+            },
+        });
     } catch (error) {
         console.error(error);
         return null;
@@ -58,6 +66,9 @@ export async function createRecommendation(
                 name: name,
                 tests: {},
                 conditions: [],
+            },
+            headers: {
+                'auth-token': JSON.parse(localStorage.getItem('admToken')!),
             },
         });
     } catch (error) {
@@ -78,6 +89,9 @@ export async function updateRecommendation(
                 name: name,
                 tests: tests,
                 conditions: conditions,
+            },
+            headers: {
+                'auth-token': JSON.parse(localStorage.getItem('admToken')!),
             },
         });
     } catch (error) {
