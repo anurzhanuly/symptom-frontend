@@ -137,6 +137,7 @@ export const useAdminStore = defineStore('admin', () => {
 
     async function getRecommendationsData(): Promise<void> {
         const res = await getRecommendations();
+
         if (res) {
             allRecommendations.value = res.data.data;
         }

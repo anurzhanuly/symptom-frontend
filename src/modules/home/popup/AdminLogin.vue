@@ -24,40 +24,31 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
-import { error } from '@/utils/toast';
 import { inject, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { validateLogin } from '@/utils/validation';
 
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
+import { postLogin } from '@/modules/authorization/services/authorization.refbooks';
 
 const router = useRouter();
+
 const login = ref('');
 const password = ref('');
 const dialogRef = inject<any>('dialogRef');
 
-const checkAdminValidation = (): boolean => {
-    if (login.value !== 'symptom') {
-        error('Ошибка', 'Неверный логин или пароль');
-        return false;
+async function checkAdmin() {
+    if (validateLogin(login.value, password.value)) {
+        const res = await postLogin(login.value.trim(), password.value.trim());
+
+        if (res) {
+            router.push('/admin');
+        }
     }
 
-    if (password.value !== 'adam') {
-        error('Ошибка', 'Неверный логин или пароль');
-        return false;
-    }
-
-    return true;
-};
-
-const checkAdmin = (): void => {
-    if (checkAdminValidation()) {
-        router.push({
-            name: 'admin',
-        });
-        dialogRef.value.close();
-    }
-};
+    dialogRef.value.close();
+}
 </script>
 
 <style scoped>
