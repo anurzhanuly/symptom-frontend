@@ -7,6 +7,7 @@
                     v-for="(recommendation, index) in recommendations"
                     :key="index"
                     :header="(index + 1).toString()"
+                    toggleable
                 >
                     <p v-html="recommendation" />
                 </panel>
