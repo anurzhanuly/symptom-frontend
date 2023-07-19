@@ -20,6 +20,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
     const patientResult = ref<ConsultationResult>();
     const doctorResult = ref<ConsultationResult>();
     const patientAnswer = ref<PatientAnswers>();
+    const patientCard = ref();
     const recommendations = ref<string[]>([]);
 
     const router = useRouter();
@@ -55,6 +56,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
 
     async function getDoctorResultData(Id: string): Promise<void> {
         const res = await getResult(Id);
+
         if (res) {
             patientResult.value = res.data.included.filter(
                 (item: { type: string }) => item.type === 'patient'
@@ -64,6 +66,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
             )[0];
 
             patientAnswer.value = res.data.data.attributes.patient_answers;
+            patientCard.value = res.data.data.attributes.patient_card;
             recommendations.value = res.data.data.attributes.recommendations;
 
             router.push(`/doctor-cabinet/result/${Id}`);
@@ -99,6 +102,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
         patientResult,
         doctorResult,
         patientAnswer,
+        patientCard,
         recommendations,
         getDoctorConsultationsData,
         getClientConsultationsData,

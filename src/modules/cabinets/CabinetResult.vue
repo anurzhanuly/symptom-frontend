@@ -15,41 +15,43 @@
                                 {{ patientResult?.attributes.phone }}
                             </p>
                         </div>
-
-                        <divider layout="vertical" />
-
-                        <div>
-                            <p-button label="Результаты в PDF" outlined />
-                        </div>
                     </div>
                 </template>
             </card>
         </div>
 
         <div class="result-patient-answer">
-            <panel header="Ответы пациента" toggleable>
-                <ul>
-                    <li
-                        v-for="(answer, question) in patientAnswer"
-                        :key="question"
+            <card>
+                <template #title> Карточка пациента </template>
+                <template #content>
+                    <panel
+                        v-for="(info, title) in patientCard"
+                        :key="title"
+                        :header="title.toString()"
+                        toggleable
                     >
-                        <strong>{{ question }}</strong> {{ answer[0] }}
-                    </li>
-                </ul>
-            </panel>
+                        <p v-for="(value, key) in info" :key="key">
+                            {{ key }} {{ value }}
+                        </p>
+                    </panel>
+                </template>
+            </card>
         </div>
 
         <div class="result-recommendations">
-            <panel header="Рекомендации" toggleable>
-                <ul>
-                    <li
+            <card>
+                <template #title> Рекомендации </template>
+                <template #content>
+                    <panel
                         v-for="(recommendation, index) in recommendations"
                         :key="index"
+                        :header="(index + 1).toString()"
+                        toggleable
                     >
-                        <strong>{{ index + 1 }}:</strong> {{ recommendation }}
-                    </li>
-                </ul>
-            </panel>
+                        <p v-html="recommendation" />
+                    </panel>
+                </template>
+            </card>
         </div>
     </div>
 </template>
@@ -65,7 +67,7 @@ import Panel from 'primevue/panel';
 
 const cabinetsStore = useCabinetsStore();
 
-const { patientResult, patientAnswer, recommendations } =
+const { patientResult, patientCard, recommendations } =
     storeToRefs(cabinetsStore);
 </script>
 
@@ -92,5 +94,9 @@ const { patientResult, patientAnswer, recommendations } =
 .result-recommendations li,
 .result-patient-answer li {
     margin-top: 3px;
+}
+
+.p-panel {
+    margin-bottom: 10px;
 }
 </style>
