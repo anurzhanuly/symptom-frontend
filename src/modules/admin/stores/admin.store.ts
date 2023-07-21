@@ -239,7 +239,7 @@ export const useAdminStore = defineStore('admin', () => {
 
         const keys = Object.keys(tests.value);
         const sortedKeys = keys.sort((a: any, b: any) => a - b);
-        const newObj: Record<string, string> = {};
+        const newObj: Record<string, Record<string, string>> = {};
 
         for (let i = 0; i < sortedKeys.length; i++) {
             newObj[i + 1] = tests.value[sortedKeys[i]];
