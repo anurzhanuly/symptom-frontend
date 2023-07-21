@@ -37,7 +37,10 @@
                             @click="deleteTestConfirm($event, key)"
                         />
                     </template>
-                    <p-textarea v-model="tests[key]" rows="2" />
+                    <p>Title</p>
+                    <input-text v-model="tests[key].title" />
+                    <p>Text</p>
+                    <p-textarea v-model="tests[key].recommendation" rows="4" />
                 </panel>
             </div>
         </div>
@@ -55,6 +58,7 @@ import PTextarea from 'primevue/textarea';
 import Listbox from 'primevue/listbox';
 import Panel from 'primevue/panel';
 import Toolbar from 'primevue/toolbar';
+import InputText from 'primevue/inputtext';
 
 const confirm = useConfirm();
 const adminStore = useAdminStore();
@@ -95,7 +99,6 @@ function deleteTestConfirm(event: any, key: string): void {
 
 <style scoped>
 .p-inputtextarea {
-    margin-top: 10px;
     width: 100%;
 }
 

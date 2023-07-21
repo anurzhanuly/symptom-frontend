@@ -61,8 +61,6 @@ import { useCabinetsStore } from './store/cabinets.store';
 import { storeToRefs } from 'pinia';
 
 import Card from 'primevue/card';
-import PButton from 'primevue/button';
-import Divider from 'primevue/divider';
 import Panel from 'primevue/panel';
 
 const cabinetsStore = useCabinetsStore();

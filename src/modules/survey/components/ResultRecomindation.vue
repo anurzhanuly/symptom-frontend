@@ -4,12 +4,12 @@
             <template #title> Рекомендации </template>
             <template #content>
                 <panel
-                    v-for="(recommendation, index) in recommendations"
+                    v-for="(item, index) in recommendations"
                     :key="index"
-                    :header="(index + 1).toString()"
+                    :header="item.title"
                     toggleable
                 >
-                    <p v-html="recommendation" />
+                    <p v-html="item.recommendation" />
                 </panel>
             </template>
         </card>
