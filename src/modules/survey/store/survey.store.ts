@@ -39,13 +39,10 @@ export const useSurveyStore = defineStore('survey', () => {
             if (!axios.isAxiosError(res)) {
                 pationsCard.value = res.data.patientCard;
                 recommendations.value = res.data.recommendations;
-                const JSONstring = JSON.parse(res.data.symptomAi);
-                const JSONstring2 = JSONstring.replace(/«|»/g, '"');
-                recommendationsChatGPT.value = JSON.parse(JSONstring2);
+                recommendationsChatGPT.value = res.data.symptomAi;
             }
         } catch (e) {
             console.error(e);
-            recommendationsChatGPT.value = null;
         } finally {
             isLoading.value = false;
         }
