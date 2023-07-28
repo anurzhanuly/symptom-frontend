@@ -42,14 +42,27 @@
             <card>
                 <template #title> Рекомендации </template>
                 <template #content>
-                    <panel
-                        v-for="(recommendation, index) in recommendations"
-                        :key="index"
-                        :header="(index + 1).toString()"
-                        toggleable
-                    >
-                        <p v-html="recommendation" />
-                    </panel>
+                    <div v-if="typeof recommendation === 'string'">
+                        <panel
+                            v-for="(recommendation, index) in recommendations"
+                            :key="index"
+                            :header="(index + 1).toString()"
+                            toggleable
+                        >
+                            <p v-html="recommendation" />
+                        </panel>
+                    </div>
+                    <div v-else>
+                        <panel
+                            v-for="(item, index) in recommendations"
+                            :key="index"
+                            class="recommendation__panel"
+                            :header="item.title"
+                            toggleable
+                        >
+                            <p v-html="item.recommendation" />
+                        </panel>
+                    </div>
                 </template>
             </card>
         </div>
