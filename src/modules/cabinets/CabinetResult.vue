@@ -42,7 +42,7 @@
             <card>
                 <template #title> Рекомендации </template>
                 <template #content>
-                    <div v-if="typeof recommendation === 'string'">
+                    <div v-if="typeof recommendations[0]?.recommendation === 'string'">
                         <panel
                             v-for="(recommendation, index) in recommendations"
                             :key="index"
