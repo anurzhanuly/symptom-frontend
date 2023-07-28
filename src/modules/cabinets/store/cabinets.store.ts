@@ -21,7 +21,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
     const doctorResult = ref<ConsultationResult>();
     const patientAnswer = ref<PatientAnswers>();
     const patientCard = ref();
-    const recommendations = ref<string[]>([]);
+    const recommendations = ref<any>([]); //TODO POPRAVIT
 
     const router = useRouter();
 
