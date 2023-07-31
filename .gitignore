@@ -8,3 +8,4 @@ dist/
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/symptom-frontend.iml
 /.idea/vcs.xml
+watcherTasks.xml
