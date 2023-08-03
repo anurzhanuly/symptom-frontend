@@ -22,7 +22,7 @@
                 <div v-show="!doctorLink">
                     <h4>Выберите клинику</h4>
                     <dropdown
-                        v-model="сlinic"
+                        v-model="clinic"
                         :empty-message="'Ничего не найдено'"
                         filter
                         filter-placeholder="Поиск"
@@ -84,7 +84,7 @@ const firstName = ref('');
 const lastName = ref('');
 const middleName = ref('');
 const phone = ref('');
-const сlinic = ref('');
+const clinic = ref('');
 const doctorId = ref('');
 const doctorLink = ref(false);
 const userRegisterData = ref<any>({}); // TODO: Сделать тип как будет авторизация
@@ -164,7 +164,7 @@ const validateRegisterForm = (): boolean => {
         lastName: lastName.value,
         middleName: middleName.value,
         phone: phone.value,
-        сlinic: сlinic.value,
+        clinic: clinic.value,
         doctor: doctorId.value,
     };
 

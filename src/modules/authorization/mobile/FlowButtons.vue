@@ -3,30 +3,36 @@
         <h2 class="buttons__title">Пройти опрос</h2>
         <p-button
             class="buttons__item"
-            @click="
-                $router.push({
-                    name: 'agreement',
-                    params: { register: '' },
-                })
-            "
-            v-html="'Для себя <br>(без регистрации)'"
+            label="Без регистрации"
+            :loading="isLoading"
+            @click="$router.push({ name: 'survey' })"
         />
         <p-button
             class="buttons__item"
             label="Для врача"
             outlined
-            @click="
-                $router.push({
-                    name: 'agreement',
-                    params: { register: '1' },
-                })
-            "
+            @click="$router.push({ name: 'client-test-auth' })"
         />
     </div>
 </template>
 
 <script lang="ts" setup>
+import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
 import PButton from 'primevue/button';
+import { useSurveyStore } from '@/modules/survey/store/survey.store';
+
+const surveyStore = useSurveyStore();
+
+const { isLoading, questions } = storeToRefs(surveyStore);
+
+onMounted(() => {
+    console.log(isLoading.value);
+    console.log(questions.value);
+    if (!questions.value) {
+        surveyStore.getQuestionsData();
+    }
+});
 </script>
 
 <style lang="scss" scoped>

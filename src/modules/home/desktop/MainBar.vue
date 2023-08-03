@@ -16,7 +16,7 @@
             <div v-else class="main-container-buttons">
                 <p-button
                     label="Пройти опрос"
-                    @click="$router.push('agreement')"
+                    @click="$router.push({ name: 'client-test-auth' })"
                 />
                 <p-button
                     v-if="!clientToken"
