@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import BaseCarousel from '@/components/BaseCarousel.vue';
+import PButton from 'primevue/button';
+</script>
+
 <template>
     <div class="authorization">
         <div class="authorization-onboarding">
@@ -16,11 +21,6 @@
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-import BaseCarousel from '@/components/BaseCarousel.vue';
-import PButton from 'primevue/button';
-</script>
 
 <style scoped>
 .authorization {

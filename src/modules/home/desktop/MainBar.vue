@@ -1,37 +1,3 @@
-<template>
-    <div class="main-container">
-        <div class="main-information">
-            <h1>Что Вас беспокоит?</h1>
-            <h3>
-                Пройдите опрос, узнайте о состоянии вашего здоровья и начните
-                приём с нами
-            </h3>
-            <div v-if="isDoctor" class="main-container-button">
-                <p-button
-                    v-if="!doctorToken"
-                    label="Войти в кабинет врача"
-                    @click="goToDoctorCabinet"
-                />
-            </div>
-            <div v-else class="main-container-buttons">
-                <p-button
-                    label="Пройти опрос"
-                    @click="$router.push({ name: 'client-test-auth' })"
-                />
-                <p-button
-                    v-if="!clientToken"
-                    class="p-button-outlined"
-                    label="Войти в личный кабинет"
-                    @click="goToClientCabinet"
-                />
-            </div>
-        </div>
-        <div class="main-image">
-            <img alt="logo" src="@/assets/main.png" />
-        </div>
-    </div>
-</template>
-
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -69,11 +35,50 @@ function goToDoctorCabinet() {
     }
     router.push('/doctor-sign-in');
 }
-
-const isMobileDevice = computed(
-    () => /Mobi/.test(navigator.userAgent) && !/iPad/.test(navigator.userAgent)
-);
 </script>
+
+<template>
+    <div class="main-container">
+        <div class="main-information">
+            <h1>Что Вас беспокоит?</h1>
+            <h3>
+                Пройдите опрос, узнайте о состоянии вашего здоровья и начните
+                приём с нами
+            </h3>
+            <div
+                v-if="isDoctor"
+                class="main-container-button"
+            >
+                <p-button
+                    v-if="!doctorToken"
+                    label="Войти в кабинет врача"
+                    @click="goToDoctorCabinet"
+                />
+            </div>
+            <div
+                v-else
+                class="main-container-buttons"
+            >
+                <p-button
+                    label="Пройти опрос"
+                    @click="$router.push({ name: 'client-test-auth' })"
+                />
+                <p-button
+                    v-if="!clientToken"
+                    class="p-button-outlined"
+                    label="Войти в личный кабинет"
+                    @click="goToClientCabinet"
+                />
+            </div>
+        </div>
+        <div class="main-image">
+            <img
+                alt="logo"
+                src="@/assets/main.png"
+            >
+        </div>
+    </div>
+</template>
 
 <style scoped>
 .main-container {

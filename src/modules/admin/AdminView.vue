@@ -1,11 +1,5 @@
-<template>
-    <base-header />
-    <tab-menu :model="adminPages" />
-    <router-view />
-</template>
-
 <script lang="ts" setup>
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 import BaseHeader from '@/components/BaseHeader.vue';
 import TabMenu from 'primevue/tabmenu';
@@ -45,3 +39,9 @@ onBeforeMount(() => {
     }
 });
 </script>
+
+<template>
+    <base-header />
+    <tab-menu :model="adminPages" />
+    <router-view />
+</template>

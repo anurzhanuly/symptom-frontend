@@ -1,11 +1,3 @@
-<template>
-    <base-header />
-    <tab-menu :model="clientViews" />
-    <div class="client-view">
-        <router-view />
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue';
 import BaseHeader from '@/components/BaseHeader.vue';
@@ -19,6 +11,14 @@ const clientViews = ref([
     },
 ]);
 </script>
+
+<template>
+    <base-header />
+    <tab-menu :model="clientViews" />
+    <div class="client-view">
+        <router-view />
+    </div>
+</template>
 
 <style scoped>
 .client-cabinet {

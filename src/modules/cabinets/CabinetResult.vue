@@ -1,3 +1,16 @@
+<script setup lang="ts">
+import { useCabinetsStore } from './store/cabinets.store';
+import { storeToRefs } from 'pinia';
+
+import Card from 'primevue/card';
+import Panel from 'primevue/panel';
+
+const cabinetsStore = useCabinetsStore();
+
+const { patientResult, patientCard, recommendations } =
+    storeToRefs(cabinetsStore);
+</script>
+
 <template>
     <div class="result">
         <div class="result-card">
@@ -22,7 +35,9 @@
 
         <div class="result-patient-answer">
             <card>
-                <template #title> Карточка пациента </template>
+                <template #title>
+                    Карточка пациента
+                </template>
                 <template #content>
                     <panel
                         v-for="(info, title) in patientCard"
@@ -30,7 +45,10 @@
                         :header="title.toString()"
                         toggleable
                     >
-                        <p v-for="(value, key) in info" :key="key">
+                        <p
+                            v-for="(value, key) in info"
+                            :key="key"
+                        >
                             {{ key }} {{ value }}
                         </p>
                     </panel>
@@ -40,7 +58,9 @@
 
         <div class="result-recommendations">
             <card>
-                <template #title> Рекомендации </template>
+                <template #title>
+                    Рекомендации
+                </template>
                 <template #content>
                     <div v-if="typeof recommendations[0] === 'object'">
                         <panel
@@ -68,19 +88,6 @@
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-import { useCabinetsStore } from './store/cabinets.store';
-import { storeToRefs } from 'pinia';
-
-import Card from 'primevue/card';
-import Panel from 'primevue/panel';
-
-const cabinetsStore = useCabinetsStore();
-
-const { patientResult, patientCard, recommendations } =
-    storeToRefs(cabinetsStore);
-</script>
 
 <style scoped>
 .result {

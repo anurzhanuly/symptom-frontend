@@ -1,61 +1,3 @@
-<template>
-    <authorization>
-        <div class="authorization-client">
-            <form class="authorization-form p-fluid">
-                <img alt="Symptom logo" src="@/assets/logo-auth.png" />
-                <div>
-                    <h4>Имя <span>*</span></h4>
-                    <input-text v-model="firstName" />
-                </div>
-                <div>
-                    <h4>Фамилия <span>*</span></h4>
-                    <input-text v-model="lastName" />
-                </div>
-                <div>
-                    <h4>Отчество</h4>
-                    <input-text v-model="middleName" />
-                </div>
-                <div>
-                    <h4>Номер телефона</h4>
-                    <input-text v-model="phone" />
-                </div>
-                <div v-show="!doctorLink">
-                    <h4>Выберите клинику</h4>
-                    <dropdown
-                        v-model="clinic"
-                        :empty-message="'Ничего не найдено'"
-                        filter
-                        filter-placeholder="Поиск"
-                        lazy
-                        option-label="attributes.name"
-                        option-value="id"
-                        :options="clinics"
-                        @change="getClinicDoctors($event)"
-                    />
-                </div>
-                <div v-show="!doctorLink">
-                    <h4>Выберите врача</h4>
-                    <dropdown
-                        v-model="doctorId"
-                        :empty-message="'Ничего не найдено'"
-                        filter
-                        filter-placeholder="Поиск"
-                        lazy
-                        option-label="name"
-                        option-value="id"
-                        :options="doctors"
-                    />
-                </div>
-                <p-button
-                    label="Далее"
-                    :loading="isLoading"
-                    @click="goToSurvey"
-                />
-            </form>
-        </div>
-    </authorization>
-</template>
-
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -173,6 +115,67 @@ const validateRegisterForm = (): boolean => {
     return true;
 };
 </script>
+
+<template>
+    <authorization>
+        <div class="authorization-client">
+            <form class="authorization-form p-fluid">
+                <img
+                    alt="Symptom logo"
+                    src="@/assets/logo-auth.png"
+                >
+                <div>
+                    <h4>Имя <span>*</span></h4>
+                    <input-text v-model="firstName" />
+                </div>
+                <div>
+                    <h4>Фамилия <span>*</span></h4>
+                    <input-text v-model="lastName" />
+                </div>
+                <div>
+                    <h4>Отчество</h4>
+                    <input-text v-model="middleName" />
+                </div>
+                <div>
+                    <h4>Номер телефона</h4>
+                    <input-text v-model="phone" />
+                </div>
+                <div v-show="!doctorLink">
+                    <h4>Выберите клинику</h4>
+                    <dropdown
+                        v-model="clinic"
+                        :empty-message="'Ничего не найдено'"
+                        filter
+                        filter-placeholder="Поиск"
+                        lazy
+                        option-label="attributes.name"
+                        option-value="id"
+                        :options="clinics"
+                        @change="getClinicDoctors($event)"
+                    />
+                </div>
+                <div v-show="!doctorLink">
+                    <h4>Выберите врача</h4>
+                    <dropdown
+                        v-model="doctorId"
+                        :empty-message="'Ничего не найдено'"
+                        filter
+                        filter-placeholder="Поиск"
+                        lazy
+                        option-label="name"
+                        option-value="id"
+                        :options="doctors"
+                    />
+                </div>
+                <p-button
+                    label="Далее"
+                    :loading="isLoading"
+                    @click="goToSurvey"
+                />
+            </form>
+        </div>
+    </authorization>
+</template>
 
 <style scoped>
 .authorization-client {

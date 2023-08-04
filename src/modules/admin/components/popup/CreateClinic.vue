@@ -1,38 +1,3 @@
-<template>
-    <div>
-        <div class="clinic-list-popup p-fluid">
-            <form class="clinic-list-popup-form">
-                <div>
-                    <h3>Название клиники</h3>
-                    <input-text v-model="newClinicName" />
-                </div>
-                <div>
-                    <h3>Город</h3>
-                    <dropdown
-                        v-model="newClinicCityId"
-                        option-label="attributes.city"
-                        option-value="id"
-                        :options="cities"
-                        placeholder="Выберите город"
-                    />
-                </div>
-                <div>
-                    <h3>Адрес</h3>
-                    <input-text v-model="newClinicAddress" />
-                </div>
-            </form>
-        </div>
-
-        <div class="clinic-list-popup-action">
-            <p-button
-                class="p-button-success"
-                label="Сохранить"
-                @click="createClinic"
-            />
-        </div>
-    </div>
-</template>
-
 <script lang="ts" setup>
 import { useClinicsStore } from '../../stores/clinics.store';
 import { validateClinic } from '@/utils/validation';
@@ -74,6 +39,41 @@ async function createClinic(): Promise<void> {
     }
 }
 </script>
+
+<template>
+    <div>
+        <div class="clinic-list-popup p-fluid">
+            <form class="clinic-list-popup-form">
+                <div>
+                    <h3>Название клиники</h3>
+                    <input-text v-model="newClinicName" />
+                </div>
+                <div>
+                    <h3>Город</h3>
+                    <dropdown
+                        v-model="newClinicCityId"
+                        option-label="attributes.city"
+                        option-value="id"
+                        :options="cities"
+                        placeholder="Выберите город"
+                    />
+                </div>
+                <div>
+                    <h3>Адрес</h3>
+                    <input-text v-model="newClinicAddress" />
+                </div>
+            </form>
+        </div>
+
+        <div class="clinic-list-popup-action">
+            <p-button
+                class="p-button-success"
+                label="Сохранить"
+                @click="createClinic"
+            />
+        </div>
+    </div>
+</template>
 
 <style scoped>
 .clinic-list-popup {

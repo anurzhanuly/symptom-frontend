@@ -1,107 +1,3 @@
-<template>
-    <div class="clinic-list">
-        <data-table
-            class="p-datatable-sm"
-            edit-mode="cell"
-            reorderable-columns
-            resizable-columns
-            selection-mode="single"
-            show-gridlines
-            striped-rows
-            :value="clinics"
-        >
-            <template #header>
-                <div class="clinics-list-table-header">
-                    <div>
-                        <h2>Все клиники</h2>
-                    </div>
-                    <div>
-                        <p-button
-                            class="p-button-success"
-                            label="Добавить клинику"
-                            @click="createClinic"
-                        />
-                    </div>
-                </div>
-            </template>
-            <column field="id" header="Id" header-style="width: 2%" />
-            <column field="attributes.name" header="Название" />
-            <column field="attributes.city" header="Город" />
-            <column field="attributes.address" header="Адрес" />
-            <column header-style="width: 6%">
-                <template #body="slotProps">
-                    <p-button
-                        label="Изменить"
-                        @click="changeClinic(slotProps.data)"
-                    />
-                </template>
-            </column>
-            <column header-style="width: 6%">
-                <template #body>
-                    <p-button
-                        class="p-button-danger"
-                        :disabled="true"
-                        label="Удалить"
-                    />
-                </template>
-            </column>
-        </data-table>
-
-        <data-table
-            class="p-datatable-sm"
-            edit-mode="cell"
-            reorderable-columns
-            resizable-columns
-            selection-mode="single"
-            show-gridlines
-            striped-rows
-            :value="doctors"
-        >
-            <template #header>
-                <div class="clinics-list-table-header">
-                    <div>
-                        <h2>Все врачи</h2>
-                    </div>
-                    <div>
-                        <p-button
-                            class="p-button-success"
-                            label="Добавить врача"
-                            @click="createDoctor"
-                        />
-                    </div>
-                </div>
-            </template>
-            <column field="id" header="Id" header-style="width: 2%" />
-            <column header="ФИО">
-                <template #body="slotProps">
-                    {{ slotProps.data.attributes.firstName }}
-                    {{ slotProps.data.attributes.lastName }}
-                    {{ slotProps.data.attributes.midName }}
-                </template>
-            </column>
-            <column field="attributes.specialization" header="Специализация" />
-            <column field="attributes.experience" header="Опыт" />
-            <column header-style="width: 6%">
-                <template #body="slotProps">
-                    <p-button
-                        label="Изменить"
-                        @click="changeDoctor(slotProps.data)"
-                    />
-                </template>
-            </column>
-            <column header-style="width: 6%">
-                <template #body>
-                    <p-button
-                        class="p-button-danger"
-                        :disabled="true"
-                        label="Удалить"
-                    />
-                </template>
-            </column>
-        </data-table>
-    </div>
-</template>
-
 <script lang="ts" setup>
 import CreateClinic from './popup/CreateClinic.vue';
 import ChangeClinic from './popup/ChangeClinic.vue';
@@ -180,6 +76,133 @@ function changeDoctor(data: Doctors): void {
     });
 }
 </script>
+
+<template>
+    <div class="clinic-list">
+        <data-table
+            class="p-datatable-sm"
+            edit-mode="cell"
+            reorderable-columns
+            resizable-columns
+            selection-mode="single"
+            show-gridlines
+            striped-rows
+            :value="clinics"
+        >
+            <template #header>
+                <div class="clinics-list-table-header">
+                    <div>
+                        <h2>Все клиники</h2>
+                    </div>
+                    <div>
+                        <p-button
+                            class="p-button-success"
+                            label="Добавить клинику"
+                            @click="createClinic"
+                        />
+                    </div>
+                </div>
+            </template>
+            <column
+                field="id"
+                header="Id"
+                header-style="width: 2%"
+            />
+            <column
+                field="attributes.name"
+                header="Название"
+            />
+            <column
+                field="attributes.city"
+                header="Город"
+            />
+            <column
+                field="attributes.address"
+                header="Адрес"
+            />
+            <column header-style="width: 6%">
+                <template #body="slotProps">
+                    <p-button
+                        label="Изменить"
+                        @click="changeClinic(slotProps.data)"
+                    />
+                </template>
+            </column>
+            <column header-style="width: 6%">
+                <template #body>
+                    <p-button
+                        class="p-button-danger"
+                        :disabled="true"
+                        label="Удалить"
+                    />
+                </template>
+            </column>
+        </data-table>
+
+        <data-table
+            class="p-datatable-sm"
+            edit-mode="cell"
+            reorderable-columns
+            resizable-columns
+            selection-mode="single"
+            show-gridlines
+            striped-rows
+            :value="doctors"
+        >
+            <template #header>
+                <div class="clinics-list-table-header">
+                    <div>
+                        <h2>Все врачи</h2>
+                    </div>
+                    <div>
+                        <p-button
+                            class="p-button-success"
+                            label="Добавить врача"
+                            @click="createDoctor"
+                        />
+                    </div>
+                </div>
+            </template>
+            <column
+                field="id"
+                header="Id"
+                header-style="width: 2%"
+            />
+            <column header="ФИО">
+                <template #body="slotProps">
+                    {{ slotProps.data.attributes.firstName }}
+                    {{ slotProps.data.attributes.lastName }}
+                    {{ slotProps.data.attributes.midName }}
+                </template>
+            </column>
+            <column
+                field="attributes.specialization"
+                header="Специализация"
+            />
+            <column
+                field="attributes.experience"
+                header="Опыт"
+            />
+            <column header-style="width: 6%">
+                <template #body="slotProps">
+                    <p-button
+                        label="Изменить"
+                        @click="changeDoctor(slotProps.data)"
+                    />
+                </template>
+            </column>
+            <column header-style="width: 6%">
+                <template #body>
+                    <p-button
+                        class="p-button-danger"
+                        :disabled="true"
+                        label="Удалить"
+                    />
+                </template>
+            </column>
+        </data-table>
+    </div>
+</template>
 
 <style scoped>
 .clinics-list-table-header {

@@ -1,17 +1,3 @@
-<template>
-    <div class="solution-container">
-        <div>
-            <h1>Какие проблемы решает Symptom</h1>
-        </div>
-        <div class="solution">
-            <div v-for="solution in solutions" class="solutions">
-                <img alt="logo" :src="getImageUrl(solution.img)" />
-                <p>{{ solution.info }}</p>
-            </div>
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
 const solutions = [
     {
@@ -44,6 +30,27 @@ function getImageUrl(name: string) {
     return new URL(`../../../assets/solutions/${name}`, import.meta.url).href;
 }
 </script>
+
+<template>
+    <div class="solution-container">
+        <div>
+            <h1>Какие проблемы решает Symptom</h1>
+        </div>
+        <div class="solution">
+            <div
+                v-for="(solution, index) in solutions"
+                :key="index"
+                class="solutions"
+            >
+                <img
+                    alt="logo"
+                    :src="getImageUrl(solution.img)"
+                >
+                <p>{{ solution.info }}</p>
+            </div>
+        </div>
+    </div>
+</template>
 
 <style scoped>
 .solution-container {

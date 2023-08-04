@@ -1,3 +1,48 @@
+<script lang="ts" setup>
+import { useClinicsStore } from '../../stores/clinics.store';
+import { validateClinic } from '@/utils/validation';
+import { success } from '@/utils/toast';
+import { inject, ref } from 'vue';
+
+import PButton from 'primevue/button';
+import Dropdown from 'primevue/dropdown';
+import InputText from 'primevue/inputtext';
+import { storeToRefs } from 'pinia';
+
+const clinicStore = useClinicsStore();
+const dialogRef = inject<any>('dialogRef');
+
+const { cities, selectedClinic } = storeToRefs(clinicStore);
+
+const changeClinicName = ref<string>(selectedClinic.value?.attributes.name as string);
+const changeClinicCityId = ref<string>('');
+const changeClinicAddress = ref<string>(selectedClinic.value?.attributes.address as string);
+
+async function changeClinic(): Promise<void> {
+    if (
+        validateClinic(
+            changeClinicName.value,
+            changeClinicCityId.value,
+            changeClinicAddress.value
+        )
+    ) {
+        const res = await clinicStore.changeClinicData(
+            selectedClinic.value?.id as string,
+            {
+                name: changeClinicName.value,
+                address: changeClinicAddress.value,
+                city_id: changeClinicCityId.value,
+            }
+        );
+
+        if (res === 200) {
+            success('Успешно', 'Клиника изменена');
+            dialogRef.value.close();
+        }
+    }
+}
+</script>
+
 <template>
     <div>
         <div class="clinic-list-popup p-fluid">
@@ -32,53 +77,6 @@
         </div>
     </div>
 </template>
-
-<script lang="ts" setup>
-import { useClinicsStore } from '../../stores/clinics.store';
-import { validateClinic } from '@/utils/validation';
-import { success } from '@/utils/toast';
-import { inject, ref } from 'vue';
-
-import PButton from 'primevue/button';
-import Dropdown from 'primevue/dropdown';
-import InputText from 'primevue/inputtext';
-import { storeToRefs } from 'pinia';
-
-const clinicStore = useClinicsStore();
-const dialogRef = inject<any>('dialogRef');
-
-const { cities, selectedClinic } = storeToRefs(clinicStore);
-
-const changeClinicName = ref<string>(selectedClinic.value?.attributes.name!);
-const changeClinicCityId = ref<string>('');
-const changeClinicAddress = ref<string>(
-    selectedClinic.value?.attributes.address!
-);
-
-async function changeClinic(): Promise<void> {
-    if (
-        validateClinic(
-            changeClinicName.value,
-            changeClinicCityId.value,
-            changeClinicAddress.value
-        )
-    ) {
-        const res = await clinicStore.changeClinicData(
-            selectedClinic.value?.id!,
-            {
-                name: changeClinicName.value,
-                address: changeClinicAddress.value,
-                city_id: changeClinicCityId.value,
-            }
-        );
-
-        if (res === 200) {
-            success('Успешно', 'Клиника изменена');
-            dialogRef.value.close();
-        }
-    }
-}
-</script>
 
 <style scoped>
 .clinic-list-popup {

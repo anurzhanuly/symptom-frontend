@@ -1,13 +1,3 @@
-<template>
-    <div class="settings">
-        <h2 class="settings__header">Смена пароля</h2>
-        <div>
-            <input-text v-model="newPassword" placeholder="Новый пароль" />
-            <p-button label="Изменить" @click="changePassword" />
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue';
 import InputText from 'primevue/inputtext';
@@ -27,6 +17,24 @@ async function changePassword() {
     }
 }
 </script>
+
+<template>
+    <div class="settings">
+        <h2 class="settings__header">
+            Смена пароля
+        </h2>
+        <div>
+            <input-text
+                v-model="newPassword"
+                placeholder="Новый пароль"
+            />
+            <p-button
+                label="Изменить"
+                @click="changePassword"
+            />
+        </div>
+    </div>
+</template>
 
 <style lang="scss" scoped>
 .settings {

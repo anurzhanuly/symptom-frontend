@@ -1,12 +1,3 @@
-<template>
-    <section>
-        <progress-bar v-if="isLoading" mode="indeterminate" />
-        <base-header />
-        <tab-menu :model="surveyPages" />
-        <router-view />
-    </section>
-</template>
-
 <script lang="ts" setup>
 import { useSurveyStore } from './store/survey.store';
 import { storeToRefs } from 'pinia';
@@ -32,6 +23,18 @@ const surveyPages = [
     },
 ];
 </script>
+
+<template>
+    <section>
+        <progress-bar
+            v-if="isLoading"
+            mode="indeterminate"
+        />
+        <base-header />
+        <tab-menu :model="surveyPages" />
+        <router-view />
+    </section>
+</template>
 
 <style scoped>
 section {

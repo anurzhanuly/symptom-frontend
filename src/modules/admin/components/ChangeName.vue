@@ -1,26 +1,3 @@
-<template>
-    <panel header="Наименование вопроса в рекомендациях">
-        <input-text v-model="beforeQuestName" placeholder="До" />
-        <dropdown
-            v-model="afterQuestName"
-            :empty-filter-message="'Ничего не найдено'"
-            :empty-message="'Ничего не найдено'"
-            filter
-            filter-placeholder="Поиск"
-            lazy
-            option-label="value"
-            option-value="value"
-            :options="questionNameOptions"
-            placeholder="После"
-        />
-        <p-button
-            :disabled="!isReadyToChange"
-            label="Изменить"
-            @click="confirmChange($event)"
-        />
-    </panel>
-</template>
-
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import { useAdminStore } from '@/modules/admin/stores/admin.store';
@@ -64,6 +41,32 @@ function confirmChange(event: any): void {
     });
 }
 </script>
+
+<template>
+    <panel header="Наименование вопроса в рекомендациях">
+        <input-text
+            v-model="beforeQuestName"
+            placeholder="До"
+        />
+        <dropdown
+            v-model="afterQuestName"
+            :empty-filter-message="'Ничего не найдено'"
+            :empty-message="'Ничего не найдено'"
+            filter
+            filter-placeholder="Поиск"
+            lazy
+            option-label="value"
+            option-value="value"
+            :options="questionNameOptions"
+            placeholder="После"
+        />
+        <p-button
+            :disabled="!isReadyToChange"
+            label="Изменить"
+            @click="confirmChange($event)"
+        />
+    </panel>
+</template>
 
 <style scoped>
 .p-inputtext,

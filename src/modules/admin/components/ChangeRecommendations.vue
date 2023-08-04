@@ -1,52 +1,3 @@
-<template>
-    <panel header="Изменить рекомендации">
-        <div class="recommendations">
-            <div class="recommendations-list">
-                <listbox
-                    v-model="selectedRecommendation"
-                    filter
-                    option-label="attributes.name"
-                    :options="allRecommendations"
-                />
-            </div>
-            <div v-if="selectedRecommendation" class="recommendations-tests">
-                <toolbar>
-                    <template #start>
-                        <p-button
-                            label="Добавить тест"
-                            @click="adminStore.createTest"
-                        />
-                        <p-button
-                            label="Сохранить изменения"
-                            severity="success"
-                            @click="updateTest"
-                        />
-                    </template>
-                </toolbar>
-                <panel
-                    v-for="(key, _) in Object.keys(tests)"
-                    :key="_"
-                    :header="key"
-                >
-                    <template #icons>
-                        <p-button
-                            label="Удалить тест"
-                            raised
-                            rounded
-                            severity="danger"
-                            @click="deleteTestConfirm($event, key)"
-                        />
-                    </template>
-                    <p>Title</p>
-                    <input-text v-model="tests[key].title" />
-                    <p>Text</p>
-                    <p-textarea v-model="tests[key].recommendation" rows="4" />
-                </panel>
-            </div>
-        </div>
-    </panel>
-</template>
-
 <script lang="ts" setup>
 import { useAdminStore } from '@/modules/admin/stores/admin.store';
 import { storeToRefs } from 'pinia';
@@ -96,6 +47,61 @@ function deleteTestConfirm(event: any, key: string): void {
     });
 }
 </script>
+
+<template>
+    <panel header="Изменить рекомендации">
+        <div class="recommendations">
+            <div class="recommendations-list">
+                <listbox
+                    v-model="selectedRecommendation"
+                    filter
+                    option-label="attributes.name"
+                    :options="allRecommendations"
+                />
+            </div>
+            <div
+                v-if="selectedRecommendation"
+                class="recommendations-tests"
+            >
+                <toolbar>
+                    <template #start>
+                        <p-button
+                            label="Добавить тест"
+                            @click="adminStore.createTest"
+                        />
+                        <p-button
+                            label="Сохранить изменения"
+                            severity="success"
+                            @click="updateTest"
+                        />
+                    </template>
+                </toolbar>
+                <panel
+                    v-for="(key, _) in Object.keys(tests)"
+                    :key="_"
+                    :header="key"
+                >
+                    <template #icons>
+                        <p-button
+                            label="Удалить тест"
+                            raised
+                            rounded
+                            severity="danger"
+                            @click="deleteTestConfirm($event, key)"
+                        />
+                    </template>
+                    <p>Title</p>
+                    <input-text v-model="tests[key].title" />
+                    <p>Text</p>
+                    <p-textarea
+                        v-model="tests[key].recommendation"
+                        rows="4"
+                    />
+                </panel>
+            </div>
+        </div>
+    </panel>
+</template>
 
 <style scoped>
 .p-inputtextarea {

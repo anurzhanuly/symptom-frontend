@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import PButton from 'primevue/button';
+</script>
+
 <template>
     <div>
         <header class="header">
@@ -11,14 +15,10 @@
                 alt="Symptom logo"
                 class="header__logo"
                 src="@/assets/logo-auth.png"
-            />
+            >
         </header>
     </div>
 </template>
-
-<script setup lang="ts">
-import PButton from 'primevue/button';
-</script>
 
 <style lang="scss" scoped>
 .header {

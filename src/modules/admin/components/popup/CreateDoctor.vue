@@ -1,46 +1,3 @@
-<template>
-    <div>
-        <div class="clinic-list-popup p-fluid">
-            <form class="clinic-list-popup-form">
-                <div>
-                    <h3>Фамилия</h3>
-                    <input-text v-model="newDoctorFirstName" />
-                </div>
-                <div>
-                    <h3>Имя</h3>
-                    <input-text v-model="newDoctorLastName" />
-                </div>
-                <div>
-                    <h3>Отчество</h3>
-                    <input-text v-model="newDoctorMidName" />
-                </div>
-                <div>
-                    <h3>Опыт (число)</h3>
-                    <input-text v-model="newDoctorExp" type="number" />
-                </div>
-                <div>
-                    <h3>Специализация</h3>
-                    <dropdown
-                        v-model="newDoctorspecId"
-                        option-label="attributes.name"
-                        option-value="id"
-                        :options="specializations"
-                        placeholder="Выберите специализацию"
-                    />
-                </div>
-            </form>
-        </div>
-
-        <div class="clinic-list-popup-action">
-            <p-button
-                class="p-button-success"
-                label="Сохранить"
-                @click="createDoctor"
-            />
-        </div>
-    </div>
-</template>
-
 <script lang="ts" setup>
 import { inject, ref } from 'vue';
 import { success, error } from '@/utils/toast';
@@ -85,6 +42,52 @@ async function createDoctor(): Promise<void> {
     }
 }
 </script>
+
+<template>
+    <div>
+        <div class="clinic-list-popup p-fluid">
+            <form class="clinic-list-popup-form">
+                <div>
+                    <h3>Фамилия</h3>
+                    <input-text v-model="newDoctorFirstName" />
+                </div>
+                <div>
+                    <h3>Имя</h3>
+                    <input-text v-model="newDoctorLastName" />
+                </div>
+                <div>
+                    <h3>Отчество</h3>
+                    <input-text v-model="newDoctorMidName" />
+                </div>
+                <div>
+                    <h3>Опыт (число)</h3>
+                    <input-text
+                        v-model="newDoctorExp"
+                        type="number"
+                    />
+                </div>
+                <div>
+                    <h3>Специализация</h3>
+                    <dropdown
+                        v-model="newDoctorspecId"
+                        option-label="attributes.name"
+                        option-value="id"
+                        :options="specializations"
+                        placeholder="Выберите специализацию"
+                    />
+                </div>
+            </form>
+        </div>
+
+        <div class="clinic-list-popup-action">
+            <p-button
+                class="p-button-success"
+                label="Сохранить"
+                @click="createDoctor"
+            />
+        </div>
+    </div>
+</template>
 
 <style scoped>
 .clinic-list-popup {

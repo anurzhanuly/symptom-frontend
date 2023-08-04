@@ -1,22 +1,3 @@
-<template>
-    <header>
-        <div class="header-container">
-            <img alt="logo" class="header-image" src="@/assets/logo.png" />
-            <a
-                v-for="(link, index) in links"
-                :key="index"
-                class="static-buttons"
-                @click="scrollToElement(link.htmlClass)"
-            >
-                {{ link.name }}
-            </a>
-            <p class="dynamic-button" @click="isDoctor = !isDoctor">
-                {{ label }}
-            </p>
-        </div>
-    </header>
-</template>
-
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useHomeStore } from '../store/home.store';
@@ -30,6 +11,32 @@ const label = computed(() => {
     return isDoctor.value ? 'Для пациента' : 'Для врача';
 });
 </script>
+
+<template>
+    <header>
+        <div class="header-container">
+            <img
+                alt="logo"
+                class="header-image"
+                src="@/assets/logo.png"
+            >
+            <a
+                v-for="(link, index) in links"
+                :key="index"
+                class="static-buttons"
+                @click="scrollToElement(link.htmlClass)"
+            >
+                {{ link.name }}
+            </a>
+            <p
+                class="dynamic-button"
+                @click="isDoctor = !isDoctor"
+            >
+                {{ label }}
+            </p>
+        </div>
+    </header>
+</template>
 
 <style scoped>
 .header-container {

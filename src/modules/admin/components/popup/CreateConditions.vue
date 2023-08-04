@@ -1,70 +1,3 @@
-<template>
-    <div>
-        <div v-for="(column, idx) in conditionColumns" :key="idx">
-            <div v-if="column.field === 'questionName'">
-                <h3>{{ column.header }}</h3>
-                <dropdown
-                    v-model="newRecord[column.field]"
-                    :empty-filter-message="'Ничего не найдено'"
-                    :empty-message="'Ничего не найдено'"
-                    filter
-                    filter-placeholder="Поиск"
-                    lazy
-                    option-label="value"
-                    option-value="value"
-                    :options="column?.options"
-                    placeholder="Выберите..."
-                    @change="addValueOptions"
-                />
-            </div>
-
-            <div v-else-if="column.hasDropdown">
-                <h3>{{ column.header }}</h3>
-                <dropdown
-                    v-model="newRecord[column.field]"
-                    :empty-filter-message="'Ничего не найдено'"
-                    :empty-message="'Ничего не найдено'"
-                    filter
-                    filter-placeholder="Поиск"
-                    lazy
-                    option-label="value"
-                    option-value="value"
-                    :options="column?.options"
-                    placeholder="Выберите..."
-                />
-            </div>
-
-            <div v-else-if="column.field === 'value'">
-                <div v-if="!isValueHasChoices">
-                    <h3>{{ column.header }}</h3>
-                    <input-text v-model="conditionValue" />
-                </div>
-                <div v-if="isValueHasChoices">
-                    <h3>{{ column.header }}</h3>
-                    <p-multi-select
-                        v-model="newRecord[column.field]"
-                        filter
-                        filter-placeholder="Поиск"
-                        :options="valueOptions"
-                        placeholder="Выберите..."
-                    />
-                </div>
-            </div>
-
-            <div v-else-if="column.field === 'testCase'">
-                <h3>{{ column.header }}</h3>
-                <input-text v-model="newRecord[column.field]" />
-            </div>
-        </div>
-        <p-button
-            autofocus
-            label="Создать"
-            severity="success"
-            @click="createCondition"
-        />
-    </div>
-</template>
-
 <script lang="ts" setup>
 import type { Condition } from '@/modules/admin/types/recommendations';
 import { useAdminStore } from '@/modules/admin/stores/admin.store';
@@ -158,6 +91,76 @@ const addValueOptions = () => {
     }
 };
 </script>
+
+<template>
+    <div>
+        <div
+            v-for="(column, idx) in conditionColumns"
+            :key="idx"
+        >
+            <div v-if="column.field === 'questionName'">
+                <h3>{{ column.header }}</h3>
+                <dropdown
+                    v-model="newRecord[column.field]"
+                    :empty-filter-message="'Ничего не найдено'"
+                    :empty-message="'Ничего не найдено'"
+                    filter
+                    filter-placeholder="Поиск"
+                    lazy
+                    option-label="value"
+                    option-value="value"
+                    :options="column?.options"
+                    placeholder="Выберите..."
+                    @change="addValueOptions"
+                />
+            </div>
+
+            <div v-else-if="column.hasDropdown">
+                <h3>{{ column.header }}</h3>
+                <dropdown
+                    v-model="newRecord[column.field]"
+                    :empty-filter-message="'Ничего не найдено'"
+                    :empty-message="'Ничего не найдено'"
+                    filter
+                    filter-placeholder="Поиск"
+                    lazy
+                    option-label="value"
+                    option-value="value"
+                    :options="column?.options"
+                    placeholder="Выберите..."
+                />
+            </div>
+
+            <div v-else-if="column.field === 'value'">
+                <div v-if="!isValueHasChoices">
+                    <h3>{{ column.header }}</h3>
+                    <input-text v-model="conditionValue" />
+                </div>
+                <div v-if="isValueHasChoices">
+                    <h3>{{ column.header }}</h3>
+                    <p-multi-select
+                        v-model="newRecord[column.field]"
+                        filter
+                        filter-placeholder="Поиск"
+                        :options="valueOptions"
+                        placeholder="Выберите..."
+                    />
+                </div>
+            </div>
+
+            <div v-else-if="column.field === 'testCase'">
+                <h3>{{ column.header }}</h3>
+                <input-text v-model="newRecord[column.field]" />
+            </div>
+        </div>
+        <p-button
+            autofocus
+            label="Создать"
+            severity="success"
+            @click="createCondition"
+        />
+    </div>
+</template>
 
 <style scoped>
 .p-dropdown,

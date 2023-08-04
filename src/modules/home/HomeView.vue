@@ -1,13 +1,3 @@
-<template>
-    <component :is="components.HeaderBar" />
-    <component :is="components.MainBar" />
-    <component :is="components.AboutProject" />
-    <component :is="components.Solutions" />
-    <component :is="components.Advantages" />
-    <component :is="components.Team" />
-    <component :is="components.FooterBar" />
-</template>
-
 <script setup lang="ts">
 import { onMounted, shallowRef } from 'vue';
 
@@ -55,3 +45,13 @@ onMounted(async () => {
     }
 });
 </script>
+
+<template>
+    <component :is="components.HeaderBar" />
+    <component :is="components.MainBar" />
+    <component :is="components.AboutProject" />
+    <component :is="components.Solutions" />
+    <component :is="components.Advantages" />
+    <component :is="components.Team" />
+    <component :is="components.FooterBar" />
+</template>
