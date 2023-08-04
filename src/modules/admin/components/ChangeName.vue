@@ -27,6 +27,7 @@ function changeQuestName(): void {
     const newRecommendation = recommendationStr
         .split(beforeQuestName.value)
         .join(afterQuestName.value);
+    console.log(newRecommendation)
 }
 
 function confirmChange(event: any): void {
