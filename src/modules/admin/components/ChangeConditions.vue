@@ -89,7 +89,10 @@ function deleteConditionConfirm(event: any, index: number): void {
                     </div>
                 </panel>
             </div>
-            <div v-if="selectedRecommendation" class="conditions-actions">
+            <div
+                v-if="selectedRecommendation"
+                class="conditions-actions"
+            >
                 <toolbar>
                     <template #start>
                         <p-button

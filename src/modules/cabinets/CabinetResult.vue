@@ -35,7 +35,9 @@ const { patientResult, patientCard, recommendations } =
 
         <div class="result-patient-answer">
             <card>
-                <template #title> Карточка пациента </template>
+                <template #title>
+                    Карточка пациента
+                </template>
                 <template #content>
                     <panel
                         v-for="(info, title) in patientCard"
@@ -43,7 +45,10 @@ const { patientResult, patientCard, recommendations } =
                         :header="title.toString()"
                         toggleable
                     >
-                        <p v-for="(value, key) in info" :key="key">
+                        <p
+                            v-for="(value, key) in info"
+                            :key="key"
+                        >
                             {{ key }} {{ value }}
                         </p>
                     </panel>
@@ -53,7 +58,9 @@ const { patientResult, patientCard, recommendations } =
 
         <div class="result-recommendations">
             <card>
-                <template #title> Рекомендации </template>
+                <template #title>
+                    Рекомендации
+                </template>
                 <template #content>
                     <div v-if="typeof recommendations[0] === 'object'">
                         <panel

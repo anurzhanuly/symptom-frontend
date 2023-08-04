@@ -54,10 +54,6 @@ export interface Relationships {
     results?: Results;
 }
 
-export interface Doctors {
-    data: any[];
-}
-
 export interface Results {
     data: any[];
 }

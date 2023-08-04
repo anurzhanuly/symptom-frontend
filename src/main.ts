@@ -34,6 +34,9 @@ app.use(ConfirmationService);
 app.use(VueYandexMetrika, {
     id: 93868095,
     router: router,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line no-undef
     env: process.env.NODE_ENV, // не обязательно, но рекомендуется для различения разработки и продакшна
 });
 app.use(VueGtag, {

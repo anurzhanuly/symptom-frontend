@@ -27,7 +27,9 @@ function openAdminLoginPopup(): void {
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-symptom">
-                <h2 @click="openAdminLoginPopup">Symptom</h2>
+                <h2 @click="openAdminLoginPopup">
+                    Symptom
+                </h2>
             </div>
             <div class="footer-info">
                 <a
