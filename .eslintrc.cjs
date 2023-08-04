@@ -45,64 +45,21 @@ module.exports = {
                 },
             },
         ],
-        'vue/attributes-order': [
+        'vue/component-tags-order': [
             'error',
             {
                 order: [
-                    'DEFINITION', // 'is', 'v-is'
-                    'LIST_RENDERING', // 'v-for item in items'
-                    'CONDITIONALS', // 'v-if', 'v-else-if', 'v-else', 'v-show', 'v-cloak'
-                    'RENDER_MODIFIERS', // 'v-once', 'v-pre'
-                    'GLOBAL', // 'id'
-                    ['UNIQUE', 'SLOT'], // 'ref', 'key', 'v-slot', 'slot'
-                    'TWO_WAY_BINDING', // 'v-model'
-                    'OTHER_DIRECTIVES', // 'v-custom-directive'
-                    'OTHER_ATTR', // 'custom-prop="foo"', 'v-bind:prop="foo"', ':prop="foo"'
-                    'EVENTS', // '@click="functionCall"', 'v-on="event"'
-                    'CONTENT', // 'v-text', 'v-html'
-                ],
-                alphabetical: true,
-            },
-        ],
-        'vue/order-in-components': [
-            'error',
-            {
-                order: [
-                    'el',
-                    'name',
-                    'key',
-                    'parent',
-                    'functional',
-                    ['delimiters', 'comments'],
-                    ['components', 'directives', 'filters'],
-                    'extends',
-                    'mixins',
-                    ['provide', 'inject'],
-                    'ROUTER_GUARDS',
-                    'layout',
-                    'middleware',
-                    'validate',
-                    'scrollToTop',
-                    'transition',
-                    'loading',
-                    'inheritAttrs',
-                    'model',
-                    ['props', 'propsData'],
-                    'emits',
-                    'setup',
-                    'asyncData',
-                    'data',
-                    'fetch',
-                    'head',
-                    'computed',
-                    'watch',
-                    'watchQuery',
-                    'LIFECYCLE_HOOKS',
-                    'methods',
-                    ['template', 'render'],
-                    'renderError',
+                    'script[setup]',
+                    'template',
+                    'script:not([setup])',
+                    'style',
                 ],
             },
         ],
+        'vue/attributes-order': 'error',
+        'vue/first-attribute-linebreak': 'error',
+        'vue/html-closing-bracket-newline': 'error',
+        'vue/mustache-interpolation-spacing': 'error',
+        'vue/multiline-html-element-content-newline': 'error',
     },
 };
