@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+import VueGtag from 'vue-gtag-next';
 import App from './App.vue';
 import './styles/main.scss';
 import router from './router';
@@ -34,6 +35,11 @@ app.use(VueYandexMetrika, {
     id: 93868095,
     router: router,
     env: process.env.NODE_ENV, // не обязательно, но рекомендуется для различения разработки и продакшна
+});
+app.use(VueGtag, {
+    property: {
+        id: 'G-DN8BB75PFS',
+    },
 });
 
 app.mount('#app');

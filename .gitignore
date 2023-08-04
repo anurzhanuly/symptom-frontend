@@ -9,3 +9,4 @@ dist/
 /.idea/symptom-frontend.iml
 /.idea/vcs.xml
 watcherTasks.xml
+package-lock.json

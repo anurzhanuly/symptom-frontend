@@ -1,6 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '@/modules/home/HomeView.vue';
 import type { Component } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import { trackRouter } from 'vue-gtag-next';
+import HomeView from '@/modules/home/HomeView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -157,5 +158,7 @@ const router = createRouter({
         },
     ],
 });
+
+trackRouter(router);
 
 export default router;
