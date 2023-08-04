@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import { useSurveyStore } from '@/modules/survey/store/survey.store';
+import { storeToRefs } from 'pinia';
+
+import Card from 'primevue/card';
+import Panel from 'primevue/panel';
+
+const surveyStore = useSurveyStore();
+const { recommendationsChatGPT } = storeToRefs(surveyStore);
+</script>
+
 <template>
     <div v-if="recommendationsChatGPT" class="recomindation-ai-result">
         <card>
@@ -28,17 +39,6 @@
         </card>
     </div>
 </template>
-
-<script setup lang="ts">
-import { useSurveyStore } from '@/modules/survey/store/survey.store';
-import { storeToRefs } from 'pinia';
-
-import Card from 'primevue/card';
-import Panel from 'primevue/panel';
-
-const surveyStore = useSurveyStore();
-const { recommendationsChatGPT } = storeToRefs(surveyStore);
-</script>
 
 <style scoped>
 .recomindation-ai-result {

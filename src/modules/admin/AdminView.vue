@@ -1,9 +1,3 @@
-<template>
-    <base-header />
-    <tab-menu :model="adminPages" />
-    <router-view />
-</template>
-
 <script lang="ts" setup>
 import { onBeforeMount, onMounted, ref } from 'vue';
 
@@ -45,3 +39,9 @@ onBeforeMount(() => {
     }
 });
 </script>
+
+<template>
+    <base-header />
+    <tab-menu :model="adminPages" />
+    <router-view />
+</template>

@@ -1,8 +1,3 @@
-<template>
-    <component :is="components.headerComponent" />
-    <component :is="components.buttonsComponent" />
-</template>
-
 <script setup lang="ts">
 import { onMounted, shallowRef } from 'vue';
 
@@ -35,3 +30,8 @@ onMounted(async () => {
     }
 });
 </script>
+
+<template>
+    <component :is="components.headerComponent" />
+    <component :is="components.buttonsComponent" />
+</template>

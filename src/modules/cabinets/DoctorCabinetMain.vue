@@ -1,3 +1,27 @@
+<script setup lang="ts">
+import { useCabinetsStore } from '@/modules/cabinets/store/cabinets.store';
+import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
+
+import InputText from 'primevue/inputtext';
+import PButton from 'primevue/button';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+
+const cabinetsStore = useCabinetsStore();
+
+onMounted(() => {
+    // TODO: Сделать рефакторинг
+    cabinetsStore.getDoctorConsultationsData();
+});
+
+const { myConsultation, filters, searchString } = storeToRefs(cabinetsStore);
+
+function checkResult(Id: string) {
+    cabinetsStore.getDoctorResultData(Id);
+}
+</script>
+
 <template>
     <data-table
         class="p-datatable-sm"
@@ -31,30 +55,6 @@
         </column>
     </data-table>
 </template>
-
-<script setup lang="ts">
-import { useCabinetsStore } from '@/modules/cabinets/store/cabinets.store';
-import { storeToRefs } from 'pinia';
-import { onMounted } from 'vue';
-
-import InputText from 'primevue/inputtext';
-import PButton from 'primevue/button';
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-
-const cabinetsStore = useCabinetsStore();
-
-onMounted(() => {
-    // TODO: Сделать рефакторинг
-    cabinetsStore.getDoctorConsultationsData();
-});
-
-const { myConsultation, filters, searchString } = storeToRefs(cabinetsStore);
-
-function checkResult(Id: string) {
-    cabinetsStore.getDoctorResultData(Id);
-}
-</script>
 
 <style scoped>
 .request-table-header {

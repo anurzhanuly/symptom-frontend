@@ -1,3 +1,14 @@
+<script lang="ts" setup>
+import { useSurveyStore } from '../../survey/store/survey.store';
+import { storeToRefs } from 'pinia';
+
+import Card from 'primevue/card';
+import Panel from 'primevue/panel';
+
+const surveyStore = useSurveyStore();
+const { pationsCard } = storeToRefs(surveyStore);
+</script>
+
 <template>
     <card>
         <template #title> Карточка пациента </template>
@@ -15,17 +26,6 @@
         </template>
     </card>
 </template>
-
-<script lang="ts" setup>
-import { useSurveyStore } from '../../survey/store/survey.store';
-import { storeToRefs } from 'pinia';
-
-import Card from 'primevue/card';
-import Panel from 'primevue/panel';
-
-const surveyStore = useSurveyStore();
-const { pationsCard } = storeToRefs(surveyStore);
-</script>
 
 <style scoped>
 .p-panel {

@@ -1,30 +1,3 @@
-<template>
-    <div id="test" class="about">
-        <div class="about-container">
-            <div class="image">
-                <img alt="logo" src="@/assets/onboarding/onboard2.png" />
-            </div>
-            <div class="info">
-                <h3>О проекте</h3>
-                <div>
-                    <div class="project-info">
-                        <h1>01</h1>
-                        <p>{{ projectInfoFirst }}</p>
-                    </div>
-                    <div class="project-info">
-                        <h1>02</h1>
-                        <p>{{ projectInfoSecond }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="about-action">
-        <h4>{{ actionInfo }}</h4>
-        <p-button :label="buttonLabel" @click="direct" />
-    </div>
-</template>
-
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useHomeStore } from '../store/home.store';
@@ -67,6 +40,33 @@ function direct(): void {
     }
 }
 </script>
+
+<template>
+    <div id="test" class="about">
+        <div class="about-container">
+            <div class="image">
+                <img alt="logo" src="@/assets/onboarding/onboard2.png" />
+            </div>
+            <div class="info">
+                <h3>О проекте</h3>
+                <div>
+                    <div class="project-info">
+                        <h1>01</h1>
+                        <p>{{ projectInfoFirst }}</p>
+                    </div>
+                    <div class="project-info">
+                        <h1>02</h1>
+                        <p>{{ projectInfoSecond }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-action">
+        <h4>{{ actionInfo }}</h4>
+        <p-button :label="buttonLabel" @click="direct" />
+    </div>
+</template>
 
 <style scoped>
 h4 {

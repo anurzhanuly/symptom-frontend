@@ -1,21 +1,3 @@
-<template>
-    <div class="buttons">
-        <h2 class="buttons__title">Пройти опрос</h2>
-        <p-button
-            class="buttons__item"
-            label="Без регистрации"
-            :loading="isLoading"
-            @click="$router.push({ name: 'survey' })"
-        />
-        <p-button
-            class="buttons__item"
-            label="Для врача"
-            outlined
-            @click="$router.push({ name: 'client-test-auth' })"
-        />
-    </div>
-</template>
-
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
@@ -34,6 +16,24 @@ onMounted(() => {
     }
 });
 </script>
+
+<template>
+    <div class="buttons">
+        <h2 class="buttons__title">Пройти опрос</h2>
+        <p-button
+            class="buttons__item"
+            label="Без регистрации"
+            :loading="isLoading"
+            @click="$router.push({ name: 'survey' })"
+        />
+        <p-button
+            class="buttons__item"
+            label="Для врача"
+            outlined
+            @click="$router.push({ name: 'client-test-auth' })"
+        />
+    </div>
+</template>
 
 <style lang="scss" scoped>
 .buttons {

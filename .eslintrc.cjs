@@ -7,9 +7,9 @@ module.exports = {
     },
     parser: 'vue-eslint-parser',
     parserOptions: {
-        ecmaVersion: "latest",
-        parser: "@typescript-eslint/parser",
-        sourceType: "module"
+        ecmaVersion: 'latest',
+        parser: '@typescript-eslint/parser',
+        sourceType: 'module',
     },
     extends: [
         'plugin:vue/strongly-recommended',
@@ -28,6 +28,13 @@ module.exports = {
         'vue/no-reserved-component-names': 'warn',
         'import/no-unresolved': 0,
         'vue/no-v-text-v-html-on-component': 0,
+        'max-len': [
+            'warn',
+            {
+                code: 120,
+                ignoreComments: true,
+            },
+        ],
         'no-param-reassign': [
             'error',
             {

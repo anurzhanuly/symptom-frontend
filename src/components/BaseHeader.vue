@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import PButton from 'primevue/button';
+</script>
+
 <template>
     <div class="base-header">
         <img
@@ -12,10 +16,6 @@
         />
     </div>
 </template>
-
-<script setup lang="ts">
-import PButton from 'primevue/button';
-</script>
 
 <style scoped>
 .base-header {

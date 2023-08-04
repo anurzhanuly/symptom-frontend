@@ -1,11 +1,3 @@
-<template>
-    <base-header />
-    <tab-menu :model="doctorViews" />
-    <div class="doctor-view">
-        <router-view />
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterView } from 'vue-router';
@@ -25,6 +17,14 @@ const doctorViews = ref([
     },
 ]);
 </script>
+
+<template>
+    <base-header />
+    <tab-menu :model="doctorViews" />
+    <div class="doctor-view">
+        <router-view />
+    </div>
+</template>
 
 <style scoped>
 .doctor-view {

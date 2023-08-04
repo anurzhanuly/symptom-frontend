@@ -1,52 +1,3 @@
-<template>
-    <div class="team-container">
-        <div class="team-carousel">
-            <carousel
-                :autoplay-interval="3000"
-                :num-scroll="4"
-                :num-visible="4"
-                :responsive-options="responsiveOptions"
-                :value="team"
-            >
-                <template #header>
-                    <div class="team-carousel-header">
-                        <h1>Наша команда</h1>
-                    </div>
-                </template>
-                <template #item="slotProps">
-                    <div class="team-carousel-info">
-                        <img
-                            alt="logo"
-                            :src="getImageUrl(slotProps.data.photo)"
-                        />
-                        <h3>{{ slotProps.data.name }}</h3>
-                        <p>{{ slotProps.data.info }}</p>
-                    </div>
-                </template>
-            </carousel>
-        </div>
-    </div>
-
-    <div v-if="isDoctor" class="questions">
-        <div class="questions-actions">
-            <div>
-                <h1>Остались вопросы?</h1>
-                <p>
-                    Оставьте контактные данные, чтобы мы могли перезвонить вам и
-                    проконсультровать
-                </p>
-            </div>
-            <input-text v-model="name" placeholder="Ваше имя и фамилия" />
-            <input-text v-model="workplace" placeholder="Место работы" />
-            <input-text v-model="phone" placeholder="Номер телефона" />
-            <p-button label="Отправить" @click="sendRequest" />
-        </div>
-        <div class="questions-img">
-            <img alt="logo" src="@/assets/onboarding/onboard1.png" />
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
@@ -172,6 +123,55 @@ async function sendRequest() {
     }
 }
 </script>
+
+<template>
+    <div class="team-container">
+        <div class="team-carousel">
+            <carousel
+                :autoplay-interval="3000"
+                :num-scroll="4"
+                :num-visible="4"
+                :responsive-options="responsiveOptions"
+                :value="team"
+            >
+                <template #header>
+                    <div class="team-carousel-header">
+                        <h1>Наша команда</h1>
+                    </div>
+                </template>
+                <template #item="slotProps">
+                    <div class="team-carousel-info">
+                        <img
+                            alt="logo"
+                            :src="getImageUrl(slotProps.data.photo)"
+                        />
+                        <h3>{{ slotProps.data.name }}</h3>
+                        <p>{{ slotProps.data.info }}</p>
+                    </div>
+                </template>
+            </carousel>
+        </div>
+    </div>
+
+    <div v-if="isDoctor" class="questions">
+        <div class="questions-actions">
+            <div>
+                <h1>Остались вопросы?</h1>
+                <p>
+                    Оставьте контактные данные, чтобы мы могли перезвонить вам и
+                    проконсультровать
+                </p>
+            </div>
+            <input-text v-model="name" placeholder="Ваше имя и фамилия" />
+            <input-text v-model="workplace" placeholder="Место работы" />
+            <input-text v-model="phone" placeholder="Номер телефона" />
+            <p-button label="Отправить" @click="sendRequest" />
+        </div>
+        <div class="questions-img">
+            <img alt="logo" src="@/assets/onboarding/onboard1.png" />
+        </div>
+    </div>
+</template>
 
 <style scoped>
 .team-container {

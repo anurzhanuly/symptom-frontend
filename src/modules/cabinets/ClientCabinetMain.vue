@@ -1,3 +1,26 @@
+<script setup lang="ts">
+import { useCabinetsStore } from './store/cabinets.store';
+import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
+
+import InputText from 'primevue/inputtext';
+import PButton from 'primevue/button';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+
+const cabinetsStore = useCabinetsStore();
+
+onMounted(() => {
+    cabinetsStore.getClientConsultationsData();
+});
+
+const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);
+
+function checkResult(Id: string) {
+    cabinetsStore.getClientResultData(Id);
+}
+</script>
+
 <template>
     <div>
         <data-table
@@ -36,29 +59,6 @@
         </data-table>
     </div>
 </template>
-
-<script setup lang="ts">
-import { useCabinetsStore } from './store/cabinets.store';
-import { storeToRefs } from 'pinia';
-import { onMounted } from 'vue';
-
-import InputText from 'primevue/inputtext';
-import PButton from 'primevue/button';
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-
-const cabinetsStore = useCabinetsStore();
-
-onMounted(() => {
-    cabinetsStore.getClientConsultationsData();
-});
-
-const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);
-
-function checkResult(Id: string) {
-    cabinetsStore.getClientResultData(Id);
-}
-</script>
 
 <style scoped>
 .request-table-header {

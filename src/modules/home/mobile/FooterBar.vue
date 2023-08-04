@@ -1,3 +1,28 @@
+<script lang="ts" setup>
+import AdminLogin from '../popup/AdminLogin.vue';
+import { useDialog } from 'primevue/usedialog';
+import { useHomeStore } from '../store/home.store';
+import { storeToRefs } from 'pinia';
+import { scrollToElement } from '@/utils/scroll';
+
+const dialog = useDialog();
+const homeStore = useHomeStore();
+
+const { links } = storeToRefs(homeStore);
+
+function openAdminLoginPopup(): void {
+    dialog.open(AdminLogin, {
+        props: {
+            header: 'Введите логин и пароль',
+            style: {
+                width: '70%',
+            },
+            modal: true,
+        },
+    });
+}
+</script>
+
 <template>
     <footer class="footer">
         <div class="footer-container">
@@ -37,31 +62,6 @@
         </div>
     </footer>
 </template>
-
-<script lang="ts" setup>
-import AdminLogin from '../popup/AdminLogin.vue';
-import { useDialog } from 'primevue/usedialog';
-import { useHomeStore } from '../store/home.store';
-import { storeToRefs } from 'pinia';
-import { scrollToElement } from '@/utils/scroll';
-
-const dialog = useDialog();
-const homeStore = useHomeStore();
-
-const { links } = storeToRefs(homeStore);
-
-function openAdminLoginPopup(): void {
-    dialog.open(AdminLogin, {
-        props: {
-            header: 'Введите логин и пароль',
-            style: {
-                width: '70%',
-            },
-            modal: true,
-        },
-    });
-}
-</script>
 
 <style scoped>
 .footer {

@@ -50,7 +50,7 @@ export const useAdminStore = defineStore('admin', () => {
     watch(selectedRecommendation, async (newRecommendation) => {
         if (!newRecommendation?.id) return;
 
-        const res = await getRecommendationDetail(newRecommendation?.id!);
+        const res = await getRecommendationDetail(newRecommendation?.id);
 
         if (res) {
             tests.value = res.data.data.attributes.tests;
@@ -209,7 +209,7 @@ export const useAdminStore = defineStore('admin', () => {
         const foundedObject = allRecommendations.value.find(
             (item) => item.attributes.name === recomindationDeleteName.value
         );
-        const res = await deleteRecommendation(foundedObject?.id!);
+        const res = await deleteRecommendation(foundedObject?.id);
         if (res) {
             allRecommendations.value = allRecommendations.value.filter(
                 (item) => item.id !== foundedObject?.id
@@ -223,8 +223,8 @@ export const useAdminStore = defineStore('admin', () => {
 
     async function updateRecommendationData(): Promise<void> {
         const res = await updateRecommendation(
-            selectedRecommendation.value?.id!,
-            selectedRecommendation.value?.attributes.name!,
+            selectedRecommendation.value?.id,
+            selectedRecommendation.value?.attributes.name,
             tests.value,
             conditions.value
         );

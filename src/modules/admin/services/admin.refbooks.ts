@@ -1,6 +1,7 @@
 import type { Recommendation } from '../types/recommendations';
 import type { AxiosResponse } from 'axios';
 import { useSymptomApi } from '@/services/api';
+import type { UnwrapRef } from 'vue';
 
 export async function getQuestionsJson(): Promise<AxiosResponse | null> {
     try {
@@ -28,7 +29,7 @@ export async function getRecommendations(): Promise<AxiosResponse | null> {
 }
 
 export async function getRecommendationDetail(
-    id: string
+    id: string | undefined
 ): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.get<any>(`/admin/recommendations/${id}`, {
@@ -43,7 +44,7 @@ export async function getRecommendationDetail(
 }
 
 export async function deleteRecommendation(
-    id: string
+    id: UnwrapRef<Recommendation['id']> | undefined
 ): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.post(
@@ -87,8 +88,8 @@ export async function createRecommendation(
 }
 
 export async function updateRecommendation(
-    id: string,
-    name: string,
+    id: string | undefined,
+    name: string | undefined,
     tests: any,
     conditions: any
 ): Promise<AxiosResponse | null> {

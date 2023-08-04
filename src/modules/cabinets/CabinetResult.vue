@@ -1,3 +1,16 @@
+<script setup lang="ts">
+import { useCabinetsStore } from './store/cabinets.store';
+import { storeToRefs } from 'pinia';
+
+import Card from 'primevue/card';
+import Panel from 'primevue/panel';
+
+const cabinetsStore = useCabinetsStore();
+
+const { patientResult, patientCard, recommendations } =
+    storeToRefs(cabinetsStore);
+</script>
+
 <template>
     <div class="result">
         <div class="result-card">
@@ -68,19 +81,6 @@
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-import { useCabinetsStore } from './store/cabinets.store';
-import { storeToRefs } from 'pinia';
-
-import Card from 'primevue/card';
-import Panel from 'primevue/panel';
-
-const cabinetsStore = useCabinetsStore();
-
-const { patientResult, patientCard, recommendations } =
-    storeToRefs(cabinetsStore);
-</script>
 
 <style scoped>
 .result {

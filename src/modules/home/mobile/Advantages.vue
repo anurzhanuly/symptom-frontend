@@ -1,24 +1,3 @@
-<template>
-    <div class="advantages-container">
-        <div class="advantages-info">
-            <h3>Наши приемущества</h3>
-            <div>
-                <h1>01</h1>
-                <p>{{ advantagesInfoFirst }}</p>
-            </div>
-            <div>
-                <h1>02</h1>
-                <p>{{ advantagesInfoSecond }}</p>
-            </div>
-            <div />
-        </div>
-
-        <div class="image">
-            <img alt="logo" src="@/assets/phone.png" />
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useHomeStore } from '../store/home.store';
@@ -39,6 +18,27 @@ const advantagesInfoSecond = computed(() => {
         : 'Медицинская команда проекта использует только доказательную медицину';
 });
 </script>
+
+<template>
+    <div class="advantages-container">
+        <div class="advantages-info">
+            <h3>Наши приемущества</h3>
+            <div>
+                <h1>01</h1>
+                <p>{{ advantagesInfoFirst }}</p>
+            </div>
+            <div>
+                <h1>02</h1>
+                <p>{{ advantagesInfoSecond }}</p>
+            </div>
+            <div />
+        </div>
+
+        <div class="image">
+            <img alt="logo" src="@/assets/phone.png" />
+        </div>
+    </div>
+</template>
 
 <style scoped>
 .advantages-container {

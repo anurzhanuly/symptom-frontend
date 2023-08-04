@@ -1,3 +1,82 @@
+<script lang="ts" setup>
+import CreateClinic from './popup/CreateClinic.vue';
+import ChangeClinic from './popup/ChangeClinic.vue';
+import CreateDoctor from './popup/CreateDoctor.vue';
+import ChangeDoctor from './popup/ChangeDoctor.vue';
+import type { Clinics, Doctors } from '../types/clinics';
+import { useClinicsStore } from '../stores/clinics.store';
+import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
+
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import PButton from 'primevue/button';
+// import { useConfirm } from "primevue/useconfirm";
+import { useDialog } from 'primevue/usedialog';
+
+const clinicsStore = useClinicsStore();
+const dialog = useDialog();
+// const confirm = useConfirm();
+
+const { clinics, doctors, selectedClinic, selectedDoctor } =
+    storeToRefs(clinicsStore);
+
+onMounted(() => {
+    clinicsStore.getCitiesData();
+    clinicsStore.getSpecializationsData();
+});
+
+function createClinic(): void {
+    dialog.open(CreateClinic, {
+        props: {
+            header: 'Добавление новой клиники',
+            style: {
+                width: '30%',
+            },
+            modal: true,
+        },
+    });
+}
+
+function createDoctor(): void {
+    dialog.open(CreateDoctor, {
+        props: {
+            header: 'Добавление нового врача',
+            style: {
+                width: '30%',
+            },
+            modal: true,
+        },
+    });
+}
+
+function changeClinic(data: Clinics): void {
+    selectedClinic.value = data;
+    dialog.open(ChangeClinic, {
+        props: {
+            header: 'Изменение клинки',
+            style: {
+                width: '30%',
+            },
+            modal: true,
+        },
+    });
+}
+
+function changeDoctor(data: Doctors): void {
+    selectedDoctor.value = data;
+    dialog.open(ChangeDoctor, {
+        props: {
+            header: 'Изменение врача',
+            style: {
+                width: '30%',
+            },
+            modal: true,
+        },
+    });
+}
+</script>
+
 <template>
     <div class="clinic-list">
         <data-table
@@ -101,85 +180,6 @@
         </data-table>
     </div>
 </template>
-
-<script lang="ts" setup>
-import CreateClinic from './popup/CreateClinic.vue';
-import ChangeClinic from './popup/ChangeClinic.vue';
-import CreateDoctor from './popup/CreateDoctor.vue';
-import ChangeDoctor from './popup/ChangeDoctor.vue';
-import type { Clinics, Doctors } from '../types/clinics';
-import { useClinicsStore } from '../stores/clinics.store';
-import { storeToRefs } from 'pinia';
-import { onMounted } from 'vue';
-
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import PButton from 'primevue/button';
-// import { useConfirm } from "primevue/useconfirm";
-import { useDialog } from 'primevue/usedialog';
-
-const clinicsStore = useClinicsStore();
-const dialog = useDialog();
-// const confirm = useConfirm();
-
-const { clinics, doctors, selectedClinic, selectedDoctor } =
-    storeToRefs(clinicsStore);
-
-onMounted(() => {
-    clinicsStore.getCitiesData();
-    clinicsStore.getSpecializationsData();
-});
-
-function createClinic(): void {
-    dialog.open(CreateClinic, {
-        props: {
-            header: 'Добавление новой клиники',
-            style: {
-                width: '30%',
-            },
-            modal: true,
-        },
-    });
-}
-
-function createDoctor(): void {
-    dialog.open(CreateDoctor, {
-        props: {
-            header: 'Добавление нового врача',
-            style: {
-                width: '30%',
-            },
-            modal: true,
-        },
-    });
-}
-
-function changeClinic(data: Clinics): void {
-    selectedClinic.value = data;
-    dialog.open(ChangeClinic, {
-        props: {
-            header: 'Изменение клинки',
-            style: {
-                width: '30%',
-            },
-            modal: true,
-        },
-    });
-}
-
-function changeDoctor(data: Doctors): void {
-    selectedDoctor.value = data;
-    dialog.open(ChangeDoctor, {
-        props: {
-            header: 'Изменение врача',
-            style: {
-                width: '30%',
-            },
-            modal: true,
-        },
-    });
-}
-</script>
 
 <style scoped>
 .clinics-list-table-header {

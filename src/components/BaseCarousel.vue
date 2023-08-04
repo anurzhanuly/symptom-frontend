@@ -1,23 +1,3 @@
-<template>
-    <div class="base-carousel">
-        <carousel
-            :autoplay-interval="5000"
-            circular
-            :num-scroll="1"
-            :num-visible="1"
-            :value="items"
-        >
-            <template #item="slotProps">
-                <div class="base-carousel__content">
-                    <img alt="logo" :src="getImageUrl(slotProps.data.photo)" />
-                    <h2>{{ slotProps.data.header }}</h2>
-                    <p>{{ slotProps.data.text }}</p>
-                </div>
-            </template>
-        </carousel>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue';
 
@@ -45,6 +25,26 @@ function getImageUrl(name: string): string {
     return new URL(`../assets/onboarding/${name}`, import.meta.url).href;
 }
 </script>
+
+<template>
+    <div class="base-carousel">
+        <carousel
+            :autoplay-interval="5000"
+            circular
+            :num-scroll="1"
+            :num-visible="1"
+            :value="items"
+        >
+            <template #item="slotProps">
+                <div class="base-carousel__content">
+                    <img alt="logo" :src="getImageUrl(slotProps.data.photo)" />
+                    <h2>{{ slotProps.data.header }}</h2>
+                    <p>{{ slotProps.data.text }}</p>
+                </div>
+            </template>
+        </carousel>
+    </div>
+</template>
 
 <style lang="scss" scoped>
 .base-carousel {

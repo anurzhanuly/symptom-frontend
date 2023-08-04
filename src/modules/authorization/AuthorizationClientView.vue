@@ -1,38 +1,3 @@
-<template>
-    <authorization>
-        <div class="authorization-client">
-            <form class="authorization-form p-fluid">
-                <img alt="Symptom logo" src="@/assets/logo-auth.png" />
-                <div>
-                    <h4>Почта <span>*</span></h4>
-                    <input-text v-model="email" />
-                </div>
-                <div>
-                    <h4>Пароль <span>*</span></h4>
-                    <p-password
-                        v-model="password"
-                        :feedback="false"
-                        toggle-mask
-                    />
-                </div>
-
-                <inline-message v-if="isWrong">
-                    Неверный пароль или почта
-                </inline-message>
-                <p-button label="Вход" @click="checkClient" />
-                <p-button label="Забыли пароль?" link @click="resetPassword" />
-            </form>
-        </div>
-
-        <div class="registration-client">
-            <p>
-                Нет аккаунта? Вы можете
-                <strong @click="clientRegistration">Зарегистрироваться</strong>
-            </p>
-        </div>
-    </authorization>
-</template>
-
 <script setup lang="ts">
 import Authorization from './components/Authorization.vue';
 import ClientRegistration from './components/popup/ClientRegistration.vue';
@@ -78,6 +43,41 @@ function clientRegistration() {
     });
 }
 </script>
+
+<template>
+    <authorization>
+        <div class="authorization-client">
+            <form class="authorization-form p-fluid">
+                <img alt="Symptom logo" src="@/assets/logo-auth.png" />
+                <div>
+                    <h4>Почта <span>*</span></h4>
+                    <input-text v-model="email" />
+                </div>
+                <div>
+                    <h4>Пароль <span>*</span></h4>
+                    <p-password
+                        v-model="password"
+                        :feedback="false"
+                        toggle-mask
+                    />
+                </div>
+
+                <inline-message v-if="isWrong">
+                    Неверный пароль или почта
+                </inline-message>
+                <p-button label="Вход" @click="checkClient" />
+                <p-button label="Забыли пароль?" link @click="resetPassword" />
+            </form>
+        </div>
+
+        <div class="registration-client">
+            <p>
+                Нет аккаунта? Вы можете
+                <strong @click="clientRegistration">Зарегистрироваться</strong>
+            </p>
+        </div>
+    </authorization>
+</template>
 
 <style scoped>
 .authorization-client {

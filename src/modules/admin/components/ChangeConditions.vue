@@ -1,3 +1,59 @@
+<script lang="ts" setup>
+import { useAdminStore } from '@/modules/admin/stores/admin.store';
+import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
+
+import { useConfirm } from 'primevue/useconfirm';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import PButton from 'primevue/button';
+import PMultiSelect from 'primevue/multiselect';
+import InputText from 'primevue/inputtext';
+import PTextarea from 'primevue/textarea';
+import Dropdown from 'primevue/dropdown';
+import Listbox from 'primevue/listbox';
+import Toolbar from 'primevue/toolbar';
+import Panel from 'primevue/panel';
+import BlockUI from 'primevue/blockui';
+
+const adminStore = useAdminStore();
+const confirm = useConfirm();
+
+const {
+    allRecommendations,
+    selectedRecommendation,
+    conditions,
+    selectedCondition,
+    recomindationDeleteName,
+    recomindationNewName,
+    vals,
+    isLoading,
+} = storeToRefs(adminStore);
+
+const conditionColumns = computed(() => adminStore.conditionColumns || []);
+
+function checkOptions(name: string) {
+    const options = vals.value.filter((item) => item.title === name);
+
+    if (options.length && options[0].choices) {
+        return options[0].choices;
+    }
+
+    return;
+}
+
+function deleteConditionConfirm(event: any, index: number): void {
+    confirm.require({
+        target: event.currentTarget,
+        message: 'Вы уверены?',
+        acceptLabel: 'Да',
+        rejectLabel: 'Нет',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => adminStore.deleteCondition(index),
+    });
+}
+</script>
+
 <template>
     <panel header="Изменить условия рекомендаций">
         <div class="conditions">
@@ -154,62 +210,6 @@
         </div>
     </panel>
 </template>
-
-<script lang="ts" setup>
-import { useAdminStore } from '@/modules/admin/stores/admin.store';
-import { storeToRefs } from 'pinia';
-import { computed } from 'vue';
-
-import { useConfirm } from 'primevue/useconfirm';
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import PButton from 'primevue/button';
-import PMultiSelect from 'primevue/multiselect';
-import InputText from 'primevue/inputtext';
-import PTextarea from 'primevue/textarea';
-import Dropdown from 'primevue/dropdown';
-import Listbox from 'primevue/listbox';
-import Toolbar from 'primevue/toolbar';
-import Panel from 'primevue/panel';
-import BlockUI from 'primevue/blockui';
-
-const adminStore = useAdminStore();
-const confirm = useConfirm();
-
-const {
-    allRecommendations,
-    selectedRecommendation,
-    conditions,
-    selectedCondition,
-    recomindationDeleteName,
-    recomindationNewName,
-    vals,
-    isLoading,
-} = storeToRefs(adminStore);
-
-const conditionColumns = computed(() => adminStore.conditionColumns || []);
-
-function checkOptions(name: string) {
-    const options = vals.value.filter((item) => item.title === name);
-
-    if (options.length && options[0].choices) {
-        return options[0].choices;
-    }
-
-    return;
-}
-
-function deleteConditionConfirm(event: any, index: number): void {
-    confirm.require({
-        target: event.currentTarget,
-        message: 'Вы уверены?',
-        acceptLabel: 'Да',
-        rejectLabel: 'Нет',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => adminStore.deleteCondition(index),
-    });
-}
-</script>
 
 <style scoped>
 .conditions {

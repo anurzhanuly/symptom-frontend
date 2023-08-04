@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import { computed } from 'vue';
+import { useHomeStore } from '../store/home.store';
+import { storeToRefs } from 'pinia';
+import { scrollToElement } from '@/utils/scroll';
+const homeStore = useHomeStore();
+
+const { isDoctor, links } = storeToRefs(homeStore);
+
+const label = computed(() => {
+    return isDoctor.value ? 'Для пациента' : 'Для врача';
+});
+</script>
+
 <template>
     <header>
         <div class="header-container">
@@ -18,20 +32,6 @@
         </div>
     </header>
 </template>
-
-<script setup lang="ts">
-import { computed } from 'vue';
-import { useHomeStore } from '../store/home.store';
-import { storeToRefs } from 'pinia';
-import { scrollToElement } from '@/utils/scroll';
-const homeStore = useHomeStore();
-
-const { isDoctor, links } = storeToRefs(homeStore);
-
-const label = computed(() => {
-    return isDoctor.value ? 'Для пациента' : 'Для врача';
-});
-</script>
 
 <style scoped>
 .header-container {

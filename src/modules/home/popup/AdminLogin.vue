@@ -1,24 +1,3 @@
-<template>
-    <div class="popup">
-        <div>
-            <h3>Логин</h3>
-            <input-text v-model="login" style="width: 100%" />
-        </div>
-        <div>
-            <h3>Пароль</h3>
-            <p-password v-model="password" :feedback="false" toggle-mask />
-        </div>
-        <p-button
-            autofocus
-            class="p-button-success"
-            icon="pi pi-check"
-            label="Ввести"
-            style="margin-top: 20px; width: 100%"
-            @click="checkAdmin"
-        />
-    </div>
-</template>
-
 <script lang="ts" setup>
 import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -52,6 +31,27 @@ async function checkAdmin() {
     dialogRef.value.close();
 }
 </script>
+
+<template>
+    <div class="popup">
+        <div>
+            <h3>Логин</h3>
+            <input-text v-model="login" style="width: 100%" />
+        </div>
+        <div>
+            <h3>Пароль</h3>
+            <p-password v-model="password" :feedback="false" toggle-mask />
+        </div>
+        <p-button
+            autofocus
+            class="p-button-success"
+            icon="pi pi-check"
+            label="Ввести"
+            style="margin-top: 20px; width: 100%"
+            @click="checkAdmin"
+        />
+    </div>
+</template>
 
 <style scoped>
 .popup {

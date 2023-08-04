@@ -1,8 +1,3 @@
-<template>
-    <progress-bar :value="progress" />
-    <div id="survey" />
-</template>
-
 <script setup lang="ts">
 import { Survey } from 'survey-knockout-ui';
 import { computed, onMounted, ref } from 'vue';
@@ -93,3 +88,8 @@ onMounted(() => {
     survey.render('survey');
 });
 </script>
+
+<template>
+    <progress-bar :value="progress" />
+    <div id="survey" />
+</template>
