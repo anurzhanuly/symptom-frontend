@@ -94,7 +94,10 @@ const addValueOptions = () => {
 
 <template>
     <div>
-        <div v-for="(column, idx) in conditionColumns" :key="idx">
+        <div
+            v-for="(column, idx) in conditionColumns"
+            :key="idx"
+        >
             <div v-if="column.field === 'questionName'">
                 <h3>{{ column.header }}</h3>
                 <dropdown

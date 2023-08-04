@@ -120,7 +120,10 @@ const validateRegisterForm = (): boolean => {
     <authorization>
         <div class="authorization-client">
             <form class="authorization-form p-fluid">
-                <img alt="Symptom logo" src="@/assets/logo-auth.png" />
+                <img
+                    alt="Symptom logo"
+                    src="@/assets/logo-auth.png"
+                />
                 <div>
                     <h4>Имя <span>*</span></h4>
                     <input-text v-model="firstName" />

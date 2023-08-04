@@ -42,7 +42,10 @@ function getImageUrl(name: string) {
                 :key="index"
                 class="solutions"
             >
-                <img alt="logo" :src="getImageUrl(solution.img)" />
+                <img
+                    alt="logo"
+                    :src="getImageUrl(solution.img)"
+                />
                 <p>{{ solution.info }}</p>
             </div>
         </div>

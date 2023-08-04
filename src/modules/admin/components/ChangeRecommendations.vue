@@ -59,7 +59,10 @@ function deleteTestConfirm(event: any, key: string): void {
                     :options="allRecommendations"
                 />
             </div>
-            <div v-if="selectedRecommendation" class="recommendations-tests">
+            <div
+                v-if="selectedRecommendation"
+                class="recommendations-tests"
+            >
                 <toolbar>
                     <template #start>
                         <p-button
@@ -90,7 +93,10 @@ function deleteTestConfirm(event: any, key: string): void {
                     <p>Title</p>
                     <input-text v-model="tests[key].title" />
                     <p>Text</p>
-                    <p-textarea v-model="tests[key].recommendation" rows="4" />
+                    <p-textarea
+                        v-model="tests[key].recommendation"
+                        rows="4"
+                    />
                 </panel>
             </div>
         </div>

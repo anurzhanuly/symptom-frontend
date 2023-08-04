@@ -61,7 +61,10 @@ async function createDoctor(): Promise<void> {
                 </div>
                 <div>
                     <h3>Опыт (число)</h3>
-                    <input-text v-model="newDoctorExp" type="number" />
+                    <input-text
+                        v-model="newDoctorExp"
+                        type="number"
+                    />
                 </div>
                 <div>
                     <h3>Специализация</h3>

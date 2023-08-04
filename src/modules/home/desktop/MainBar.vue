@@ -49,14 +49,20 @@ const isMobileDevice = computed(
                 Пройдите опрос, узнайте о состоянии вашего здоровья и начните
                 приём с нами
             </h3>
-            <div v-if="isDoctor" class="main-container-button">
+            <div
+                v-if="isDoctor"
+                class="main-container-button"
+            >
                 <p-button
                     v-if="!doctorToken"
                     label="Войти в кабинет врача"
                     @click="goToDoctorCabinet"
                 />
             </div>
-            <div v-else class="main-container-buttons">
+            <div
+                v-else
+                class="main-container-buttons"
+            >
                 <p-button
                     label="Пройти опрос"
                     @click="$router.push({ name: 'client-test-auth' })"
@@ -70,7 +76,10 @@ const isMobileDevice = computed(
             </div>
         </div>
         <div class="main-image">
-            <img alt="logo" src="@/assets/main.png" />
+            <img
+                alt="logo"
+                src="@/assets/main.png"
+            />
         </div>
     </div>
 </template>

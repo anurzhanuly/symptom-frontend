@@ -103,10 +103,23 @@ function changeDoctor(data: Doctors): void {
                     </div>
                 </div>
             </template>
-            <column field="id" header="Id" header-style="width: 2%" />
-            <column field="attributes.name" header="Название" />
-            <column field="attributes.city" header="Город" />
-            <column field="attributes.address" header="Адрес" />
+            <column
+                field="id"
+                header="Id"
+                header-style="width: 2%"
+            />
+            <column
+                field="attributes.name"
+                header="Название"
+            />
+            <column
+                field="attributes.city"
+                header="Город"
+            />
+            <column
+                field="attributes.address"
+                header="Адрес"
+            />
             <column header-style="width: 6%">
                 <template #body="slotProps">
                     <p-button
@@ -150,7 +163,11 @@ function changeDoctor(data: Doctors): void {
                     </div>
                 </div>
             </template>
-            <column field="id" header="Id" header-style="width: 2%" />
+            <column
+                field="id"
+                header="Id"
+                header-style="width: 2%"
+            />
             <column header="ФИО">
                 <template #body="slotProps">
                     {{ slotProps.data.attributes.firstName }}
@@ -158,8 +175,14 @@ function changeDoctor(data: Doctors): void {
                     {{ slotProps.data.attributes.midName }}
                 </template>
             </column>
-            <column field="attributes.specialization" header="Специализация" />
-            <column field="attributes.experience" header="Опыт" />
+            <column
+                field="attributes.specialization"
+                header="Специализация"
+            />
+            <column
+                field="attributes.experience"
+                header="Опыт"
+            />
             <column header-style="width: 6%">
                 <template #body="slotProps">
                     <p-button

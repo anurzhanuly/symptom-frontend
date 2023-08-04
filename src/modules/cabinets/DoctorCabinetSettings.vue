@@ -22,8 +22,14 @@ async function changePassword() {
     <div class="settings">
         <h2 class="settings__header">Смена пароля</h2>
         <div>
-            <input-text v-model="newPassword" placeholder="Новый пароль" />
-            <p-button label="Изменить" @click="changePassword" />
+            <input-text
+                v-model="newPassword"
+                placeholder="Новый пароль"
+            />
+            <p-button
+                label="Изменить"
+                @click="changePassword"
+            />
         </div>
     </div>
 </template>

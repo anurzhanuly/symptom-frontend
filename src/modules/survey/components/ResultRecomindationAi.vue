@@ -10,7 +10,10 @@ const { recommendationsChatGPT } = storeToRefs(surveyStore);
 </script>
 
 <template>
-    <div v-if="recommendationsChatGPT" class="recomindation-ai-result">
+    <div
+        v-if="recommendationsChatGPT"
+        class="recomindation-ai-result"
+    >
         <card>
             <template #title> Рекомендации от SymptomAi </template>
             <template #content>
@@ -22,14 +25,20 @@ const { recommendationsChatGPT } = storeToRefs(surveyStore);
                 >
                     <div v-if="Array.isArray(value)">
                         <ul>
-                            <li v-for="(item, index) in value" :key="index">
+                            <li
+                                v-for="(item, index) in value"
+                                :key="index"
+                            >
                                 {{ item }}
                             </li>
                         </ul>
                     </div>
                     <div v-else>
                         <ul>
-                            <li v-for="(item, index) in value" :key="index">
+                            <li
+                                v-for="(item, index) in value"
+                                :key="index"
+                            >
                                 {{ index }}: {{ item }}
                             </li>
                         </ul>

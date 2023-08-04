@@ -37,7 +37,10 @@ function getImageUrl(name: string): string {
         >
             <template #item="slotProps">
                 <div class="base-carousel__content">
-                    <img alt="logo" :src="getImageUrl(slotProps.data.photo)" />
+                    <img
+                        alt="logo"
+                        :src="getImageUrl(slotProps.data.photo)"
+                    />
                     <h2>{{ slotProps.data.header }}</h2>
                     <p>{{ slotProps.data.text }}</p>
                 </div>

@@ -153,7 +153,10 @@ async function sendRequest() {
         </div>
     </div>
 
-    <div v-if="isDoctor" class="questions">
+    <div
+        v-if="isDoctor"
+        class="questions"
+    >
         <div class="questions-actions">
             <div>
                 <h1>Остались вопросы?</h1>
@@ -162,13 +165,28 @@ async function sendRequest() {
                     проконсультровать
                 </p>
             </div>
-            <input-text v-model="name" placeholder="Ваше имя и фамилия" />
-            <input-text v-model="workplace" placeholder="Место работы" />
-            <input-text v-model="phone" placeholder="Номер телефона" />
-            <p-button label="Отправить" @click="sendRequest" />
+            <input-text
+                v-model="name"
+                placeholder="Ваше имя и фамилия"
+            />
+            <input-text
+                v-model="workplace"
+                placeholder="Место работы"
+            />
+            <input-text
+                v-model="phone"
+                placeholder="Номер телефона"
+            />
+            <p-button
+                label="Отправить"
+                @click="sendRequest"
+            />
         </div>
         <div class="questions-img">
-            <img alt="logo" src="@/assets/onboarding/onboard1.png" />
+            <img
+                alt="logo"
+                src="@/assets/onboarding/onboard1.png"
+            />
         </div>
     </div>
 </template>

@@ -35,9 +35,7 @@ const { patientResult, patientCard, recommendations } =
 
         <div class="result-patient-answer">
             <card>
-                <template #title>
-                    Карточка пациента
-                </template>
+                <template #title> Карточка пациента </template>
                 <template #content>
                     <panel
                         v-for="(info, title) in patientCard"
@@ -58,9 +56,7 @@ const { patientResult, patientCard, recommendations } =
 
         <div class="result-recommendations">
             <card>
-                <template #title>
-                    Рекомендации
-                </template>
+                <template #title> Рекомендации </template>
                 <template #content>
                     <div v-if="typeof recommendations[0] === 'object'">
                         <panel

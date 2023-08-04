@@ -36,11 +36,18 @@ async function checkAdmin() {
     <div class="popup">
         <div>
             <h3>Логин</h3>
-            <input-text v-model="login" style="width: 100%" />
+            <input-text
+                v-model="login"
+                style="width: 100%"
+            />
         </div>
         <div>
             <h3>Пароль</h3>
-            <p-password v-model="password" :feedback="false" toggle-mask />
+            <p-password
+                v-model="password"
+                :feedback="false"
+                toggle-mask
+            />
         </div>
         <p-button
             autofocus

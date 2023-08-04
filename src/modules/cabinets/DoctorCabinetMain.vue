@@ -39,7 +39,10 @@ function checkResult(Id: string) {
                 <h2 class="request-table-title">Назначенные консультации</h2>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search" />
-                    <input-text v-model="searchString" placeholder="Поиск" />
+                    <input-text
+                        v-model="searchString"
+                        placeholder="Поиск"
+                    />
                 </span>
             </div>
         </template>

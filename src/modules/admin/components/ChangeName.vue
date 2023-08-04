@@ -44,7 +44,10 @@ function confirmChange(event: any): void {
 
 <template>
     <panel header="Наименование вопроса в рекомендациях">
-        <input-text v-model="beforeQuestName" placeholder="До" />
+        <input-text
+            v-model="beforeQuestName"
+            placeholder="До"
+        />
         <dropdown
             v-model="afterQuestName"
             :empty-filter-message="'Ничего не найдено'"

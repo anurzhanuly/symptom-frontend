@@ -26,7 +26,10 @@ const surveyPages = [
 
 <template>
     <section>
-        <progress-bar v-if="isLoading" mode="indeterminate" />
+        <progress-bar
+            v-if="isLoading"
+            mode="indeterminate"
+        />
         <base-header />
         <tab-menu :model="surveyPages" />
         <router-view />

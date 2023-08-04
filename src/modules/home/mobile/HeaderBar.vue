@@ -16,7 +16,11 @@ const label = computed(() => {
     <header>
         <div class="header-container">
             <router-link to="/">
-                <img alt="logo" class="header-image" src="@/assets/logo.png" />
+                <img
+                    alt="logo"
+                    class="header-image"
+                    src="@/assets/logo.png"
+                />
             </router-link>
             <a
                 v-for="(link, index) in links"
@@ -26,7 +30,10 @@ const label = computed(() => {
             >
                 {{ link.name }}
             </a>
-            <p class="dynamic-button" @click="isDoctor = !isDoctor">
+            <p
+                class="dynamic-button"
+                @click="isDoctor = !isDoctor"
+            >
                 {{ label }}
             </p>
         </div>

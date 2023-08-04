@@ -19,7 +19,10 @@ const { pationsCard } = storeToRefs(surveyStore);
                 :header="surveyStore.stringTitle(title)"
                 toggleable
             >
-                <p v-for="(value, key) in info" :key="key">
+                <p
+                    v-for="(value, key) in info"
+                    :key="key"
+                >
                     {{ key }} {{ value }}
                 </p>
             </panel>

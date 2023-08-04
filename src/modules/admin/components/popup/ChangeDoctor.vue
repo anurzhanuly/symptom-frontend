@@ -70,7 +70,10 @@ async function changeDoctor(): Promise<void> {
                 </div>
                 <div>
                     <h3>Опыт (число)</h3>
-                    <input-text v-model="changeDoctorExp" type="number" />
+                    <input-text
+                        v-model="changeDoctorExp"
+                        type="number"
+                    />
                 </div>
                 <div>
                     <h3>Специализация</h3>

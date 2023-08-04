@@ -42,10 +42,16 @@ function direct(): void {
 </script>
 
 <template>
-    <div id="test" class="about">
+    <div
+        id="test"
+        class="about"
+    >
         <div class="about-container">
             <div class="image">
-                <img alt="logo" src="@/assets/onboarding/onboard2.png" />
+                <img
+                    alt="logo"
+                    src="@/assets/onboarding/onboard2.png"
+                />
             </div>
             <div class="info">
                 <h3>О проекте</h3>
@@ -64,7 +70,10 @@ function direct(): void {
     </div>
     <div class="about-action">
         <h4>{{ actionInfo }}</h4>
-        <p-button :label="buttonLabel" @click="direct" />
+        <p-button
+            :label="buttonLabel"
+            @click="direct"
+        />
     </div>
 </template>
 

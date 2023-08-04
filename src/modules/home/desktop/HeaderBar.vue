@@ -15,7 +15,11 @@ const label = computed(() => {
 <template>
     <header>
         <div class="header-container">
-            <img alt="logo" class="header-image" src="@/assets/logo.png" />
+            <img
+                alt="logo"
+                class="header-image"
+                src="@/assets/logo.png"
+            />
             <a
                 v-for="(link, index) in links"
                 :key="index"
@@ -24,7 +28,10 @@ const label = computed(() => {
             >
                 {{ link.name }}
             </a>
-            <p class="dynamic-button" @click="isDoctor = !isDoctor">
+            <p
+                class="dynamic-button"
+                @click="isDoctor = !isDoctor"
+            >
                 {{ label }}
             </p>
         </div>

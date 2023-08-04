@@ -48,7 +48,10 @@ function clientRegistration() {
     <authorization>
         <div class="authorization-client">
             <form class="authorization-form p-fluid">
-                <img alt="Symptom logo" src="@/assets/logo-auth.png" />
+                <img
+                    alt="Symptom logo"
+                    src="@/assets/logo-auth.png"
+                />
                 <div>
                     <h4>Почта <span>*</span></h4>
                     <input-text v-model="email" />
@@ -65,8 +68,15 @@ function clientRegistration() {
                 <inline-message v-if="isWrong">
                     Неверный пароль или почта
                 </inline-message>
-                <p-button label="Вход" @click="checkClient" />
-                <p-button label="Забыли пароль?" link @click="resetPassword" />
+                <p-button
+                    label="Вход"
+                    @click="checkClient"
+                />
+                <p-button
+                    label="Забыли пароль?"
+                    link
+                    @click="resetPassword"
+                />
             </form>
         </div>
 

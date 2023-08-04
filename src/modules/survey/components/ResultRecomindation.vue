@@ -13,9 +13,7 @@ const { recommendations, recommendationsChatGPT } = storeToRefs(surveyStore);
     <div>
         <card v-if="recommendations">
             <template #content>
-                <h2 class="recommendation__title">
-                    Рекомендации
-                </h2>
+                <h2 class="recommendation__title">Рекомендации</h2>
                 <panel
                     v-for="(item, index) in recommendations"
                     :key="index"

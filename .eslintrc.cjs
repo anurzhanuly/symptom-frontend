@@ -19,7 +19,10 @@ module.exports = {
     ],
     plugins: ['@typescript-eslint', 'prettier'],
     rules: {
-        'prettier/prettier': ['error', { singleQuote: true }],
+        'prettier/prettier': [
+            'error',
+            { singleQuote: true, singleAttributePerLine: true },
+        ],
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'vue/no-multiple-template-root': 0,
@@ -64,8 +67,6 @@ module.exports = {
             },
         ],
         'vue/attributes-order': 'error',
-        'vue/first-attribute-linebreak': 'error',
-        'vue/html-closing-bracket-newline': 'error',
         'vue/mustache-interpolation-spacing': 'error',
         'vue/multiline-html-element-content-newline': 'error',
     },
