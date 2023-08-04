@@ -37,6 +37,7 @@ export const useClinicsStore = defineStore('clinics', () => {
 
     async function getClinicsData(): Promise<void> {
         const res = await getClinics();
+
         if (res) {
             clinics.value = res.data.data;
         }
@@ -44,6 +45,7 @@ export const useClinicsStore = defineStore('clinics', () => {
 
     async function createClinicData(newClinic: NewClinic): Promise<number> {
         const res = await postNewClinic(newClinic);
+
         if (res) {
             clinics.value.push(res.data.data);
             return res.status;
@@ -57,6 +59,7 @@ export const useClinicsStore = defineStore('clinics', () => {
         newClinic: NewClinic
     ): Promise<number> {
         const res = await postChangeClinic(id, newClinic);
+
         if (res) {
             const index = clinics.value.findIndex((elem) => elem.id === id);
             clinics.value[index] = res.data;
@@ -82,7 +85,7 @@ export const useClinicsStore = defineStore('clinics', () => {
 
     async function getDoctorsData(): Promise<void> {
         const res = await getDoctors();
-        console.log(res);
+
         if (res) {
             doctors.value = res.data.data;
 
@@ -95,6 +98,7 @@ export const useClinicsStore = defineStore('clinics', () => {
 
     async function createDoctorData(newDoctor: NewDoctor): Promise<number> {
         const res = await postNewDoctor(newDoctor);
+
         if (res) {
             doctors.value.push(res.data.data);
             return res.status;
@@ -105,6 +109,7 @@ export const useClinicsStore = defineStore('clinics', () => {
 
     async function getCitiesData(): Promise<void> {
         const res = await getCities();
+
         if (res) {
             cities.value = res.data.data;
         }
@@ -112,6 +117,7 @@ export const useClinicsStore = defineStore('clinics', () => {
 
     async function getSpecializationsData(): Promise<void> {
         const res = await getSpecializations();
+
         if (res) {
             specializations.value = res.data.data;
         }

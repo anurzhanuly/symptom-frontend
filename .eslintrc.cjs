@@ -14,8 +14,9 @@ module.exports = {
     extends: [
         'plugin:vue/vue3-recommended',
         '@vue/typescript/recommended',
+        'eslint:recommended',
     ],
-    plugins: ['vue'],
+    plugins: ['@typescript-eslint'],
     rules: {
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -43,6 +44,7 @@ module.exports = {
         ],
         'vue/no-v-model-argument': 'off',
         'import/prefer-default-export': 0,
+        'no-trailing-spaces': 'error',
         'no-magic-numbers': 0,
         'vue/block-lang': [
             'error',
