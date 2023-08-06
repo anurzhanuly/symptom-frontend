@@ -6,7 +6,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 export const useSurveyStore = defineStore('survey', () => {
-    const resultAnswersChatGPT = ref<Record<string, string[]>>();
+    const resultAnswersChatGPT = ref<Record<string, string[]>>({});
     const questions = ref<QuestionsContent>();
     const patientsCard = ref<any>();
     const recommendationsChatGPT = ref([]);
@@ -33,7 +33,7 @@ export const useSurveyStore = defineStore('survey', () => {
         isLoading.value = true;
         resultAnswersChatGPT.value = data.answers;
         try {
-            // TODO: Переписать
+            //TODO переделать
             const res = await postAnswersToChatGPT(data);
 
             if (!axios.isAxiosError(res)) {
@@ -62,6 +62,7 @@ export const useSurveyStore = defineStore('survey', () => {
         patientsCard,
         recommendations,
         recommendationsChatGPT,
+        resultAnswersChatGPT,
         postAnswersDataChatGPT,
         getQuestionsData,
         stringTitle,

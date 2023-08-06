@@ -3,18 +3,35 @@ import { useCabinetsStore } from './store/cabinets.store';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 
+import { useSurveyStore } from '@/modules/survey/store/survey.store';
+
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 
 const cabinetsStore = useCabinetsStore();
+const surveyStore = useSurveyStore();
+
+const { resultAnswersChatGPT } = storeToRefs(surveyStore);
+const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);
 
 onMounted(() => {
     cabinetsStore.getClientConsultationsData();
-});
 
-const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);
+    if (
+        localStorage.getItem('saveRec') &&
+        +(localStorage.getItem('patientId') ?? 0)
+    ) {
+        surveyStore.postAnswersDataChatGPT({
+            answers: resultAnswersChatGPT.value,
+            patientID: +(localStorage.getItem('patientId') ?? 0),
+            doctorID: +(localStorage.getItem('doctorId') ?? 0),
+        });
+
+        cabinetsStore.getClientConsultationsData(); //TODO переделать
+    }
+});
 
 function checkResult(Id: string) {
     cabinetsStore.getClientResultData(Id);

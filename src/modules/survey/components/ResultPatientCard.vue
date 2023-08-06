@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 import { useSurveyStore } from '../../survey/store/survey.store';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
 import Panel from 'primevue/panel';
+import PButton from 'primevue/button';
 
+const router = useRouter();
 const surveyStore = useSurveyStore();
 const { patientsCard } = storeToRefs(surveyStore);
 const test = {
@@ -29,6 +32,11 @@ const test = {
         'Опрос органов систем:': 'нет',
     },
 };
+
+function saveRecommendation() {
+    router.push({ name: 'client-sign-in' });
+    localStorage.setItem('saveRec', '1'); //TODO тупое быстрое решение
+}
 </script>
 
 <template>
@@ -48,6 +56,10 @@ const test = {
                 {{ key }} {{ value }}
             </p>
         </panel>
+        <p-button
+            label="Сохранить"
+            @click="saveRecommendation"
+        />
     </div>
 </template>
 
@@ -62,5 +74,9 @@ const test = {
     &__panel {
         margin-bottom: 16px;
     }
+}
+
+.p-button {
+    width: 100%;
 }
 </style>

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
 import { useHomeStore } from '../store/home.store.js';
 
 import PButton from 'primevue/button';
-import { storeToRefs } from 'pinia';
 
 const router = useRouter();
 const homeStore = useHomeStore();

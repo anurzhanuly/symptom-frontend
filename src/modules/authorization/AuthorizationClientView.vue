@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import Authorization from './components/Authorization.vue';
-import ClientRegistration from './components/popup/ClientRegistration.vue';
+import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
 
 import { useAuthorizationStore } from './store/authorization.store';
 import { validateLogin } from '@/utils/validation';
-import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
+
+import Authorization from './components/Authorization.vue';
+import ClientRegistration from './components/popup/ClientRegistration.vue';
 
 import { useDialog } from 'primevue/usedialog';
 import PButton from 'primevue/button';
@@ -91,7 +92,7 @@ function clientRegistration() {
 
 <style scoped>
 .authorization-client {
-    padding: 27%;
+    padding: 24px 16px 16px;
 }
 
 .authorization-form span {
@@ -127,16 +128,11 @@ function clientRegistration() {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 16px;
 }
 
 .registration-client strong {
     color: #2196f3;
     cursor: pointer;
-}
-
-@media only screen and (max-width: 750px) {
-    .authorization-client {
-        padding: 10%;
-    }
 }
 </style>

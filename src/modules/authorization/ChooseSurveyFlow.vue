@@ -28,6 +28,8 @@ onMounted(async () => {
             console.error('Unable to determine device type');
             break;
     }
+
+    localStorage.removeItem('doctorId'); //TODO Странное место для удаления, потом подумать как лучше
 });
 </script>
 

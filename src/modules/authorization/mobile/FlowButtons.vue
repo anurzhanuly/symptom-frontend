@@ -9,8 +9,6 @@ const surveyStore = useSurveyStore();
 const { isLoading, questions } = storeToRefs(surveyStore);
 
 onMounted(() => {
-    console.log(isLoading.value);
-    console.log(questions.value);
     if (!questions.value) {
         surveyStore.getQuestionsData();
     }

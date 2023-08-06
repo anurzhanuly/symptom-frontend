@@ -23,8 +23,6 @@ onMounted(() => {
         const newData: Record<string, string[]> = {};
         const doctorId = +(localStorage.getItem('doctorId') ?? 0);
 
-        localStorage.removeItem('doctorId');
-
         for (const key in sender.data) {
             if (Array.isArray(sender.data[key])) {
                 // Если ответ массив

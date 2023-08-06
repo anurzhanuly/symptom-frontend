@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useSurveyStore } from '@/modules/survey/store/survey.store';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
 import Panel from 'primevue/panel';
+import PButton from 'primevue/button';
 
+const router = useRouter();
 const surveyStore = useSurveyStore();
 const { recommendations, recommendationsChatGPT } = storeToRefs(surveyStore);
 const test = [
@@ -28,6 +31,11 @@ const test = [
             '1) В мире снов важен баланс: от 7 до 9 часов - ваша магическая формула здоровья.\n<br>2) Сделайте ваш рацион калейдоскопом вкуса: яркие овощи, сочные фрукты, питательные орехи и здоровые цельнозерновые. Прощайте соленые и копченые продукты, а конфеты и газировки замените на чистую воду - 2–3  литра ежедневно в вашем кувшине здоровья.\n<br>3) Благословите себя ежедневными мини-отпусками под открытым небом: 20 минут свежего воздуха для зарядки души и тела. Найдите время для медитации и удовольствий, отдайте себя в объятия семьи, друзей и хобби.\n<br>4) Ваша жизнь — это непрерывное приключение! Окунитесь в мир спорта: прогулки, плавание, танцы, велосипед - выбирайте любое и ощутите, как тревога и депрессия исчезают. Откройте для себя новых людей, новые места и новые ощущения. Заветные 150 минут умеренной или 75 минут интенсивной активности в неделю — это ваш билет в страну здоровья и долголетия. И помните, наша жизнь — это движение: перерывы для разминки, прогулки вместо поездок и меньше времени у экранов - ваш путь к полноценной жизни.',
     },
 ];
+
+function saveRecommendation() {
+    router.push({ name: 'client-sign-in' });
+    localStorage.setItem('saveRec', '1'); //TODO тупое быстрое решение
+}
 </script>
 
 <template>
@@ -52,6 +60,10 @@ const test = [
         >
             <p v-html="item.recommendation" />
         </panel>
+        <p-button
+            label="Сохранить"
+            @click="saveRecommendation"
+        />
     </div>
 </template>
 
@@ -66,5 +78,9 @@ const test = [
     &__panel {
         margin-bottom: 16px;
     }
+}
+
+.p-button {
+    width: 100%;
 }
 </style>
