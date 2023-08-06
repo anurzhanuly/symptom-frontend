@@ -42,8 +42,5 @@ section {
     border-radius: 5px;
     width: 100%;
     margin: 0 auto 40px;
-    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
 </style>

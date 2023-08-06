@@ -8,9 +8,9 @@ import axios from 'axios';
 export const useSurveyStore = defineStore('survey', () => {
     const resultAnswersChatGPT = ref<Record<string, string[]>>();
     const questions = ref<QuestionsContent>();
-    const pationsCard = ref<any>();
-    const recommendationsChatGPT = ref();
-    const recommendations = ref();
+    const patientsCard = ref<any>();
+    const recommendationsChatGPT = ref([]);
+    const recommendations = ref([]);
     const isLoading = ref(false);
 
     async function getQuestionsData(): Promise<void> {
@@ -37,7 +37,7 @@ export const useSurveyStore = defineStore('survey', () => {
             const res = await postAnswersToChatGPT(data);
 
             if (!axios.isAxiosError(res)) {
-                pationsCard.value = res.data.patientCard;
+                patientsCard.value = res.data.patientCard;
                 recommendations.value = res.data.recommendations;
                 recommendationsChatGPT.value = res.data.symptomAi;
             }
@@ -59,7 +59,7 @@ export const useSurveyStore = defineStore('survey', () => {
     return {
         questions,
         isLoading,
-        pationsCard,
+        patientsCard,
         recommendations,
         recommendationsChatGPT,
         postAnswersDataChatGPT,
