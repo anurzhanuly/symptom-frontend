@@ -39,7 +39,7 @@ const test = [
 
 function saveRecommendation() {
     router.push({ name: 'client-sign-in' });
-    localStorage.setItem('saveRec', '1'); //TODO тупое быстрое решение
+    sessionStorage.setItem('saveRec', '1'); //TODO тупое быстрое решение
 }
 </script>
 

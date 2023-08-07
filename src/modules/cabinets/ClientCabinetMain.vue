@@ -20,7 +20,7 @@ onMounted(async () => {
     await cabinetsStore.getClientConsultationsData();
 
     if (
-        localStorage.getItem('saveRec') &&
+        sessionStorage.getItem('saveRec') &&
         +(localStorage.getItem('patientId') ?? 0) //TODO переделать
     ) {
         await surveyStore.postAnswersDataChatGPT({
