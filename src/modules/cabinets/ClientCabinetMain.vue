@@ -16,20 +16,20 @@ const surveyStore = useSurveyStore();
 const { resultAnswersChatGPT } = storeToRefs(surveyStore);
 const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);
 
-onMounted(() => {
-    cabinetsStore.getClientConsultationsData();
+onMounted(async () => {
+    await cabinetsStore.getClientConsultationsData();
 
     if (
         localStorage.getItem('saveRec') &&
-        +(localStorage.getItem('patientId') ?? 0)
+        +(localStorage.getItem('patientId') ?? 0) //TODO переделать
     ) {
-        surveyStore.postAnswersDataChatGPT({
+        await surveyStore.postAnswersDataChatGPT({
             answers: resultAnswersChatGPT.value,
             patientID: +(localStorage.getItem('patientId') ?? 0),
             doctorID: +(localStorage.getItem('doctorId') ?? 0),
         });
 
-        cabinetsStore.getClientConsultationsData(); //TODO переделать
+        await cabinetsStore.getClientConsultationsData();
     }
 });
 
