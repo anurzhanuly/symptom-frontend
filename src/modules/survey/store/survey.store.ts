@@ -9,8 +9,18 @@ export const useSurveyStore = defineStore('survey', () => {
     const resultAnswersChatGPT = ref<Record<string, string[]>>({});
     const questions = ref<QuestionsContent>();
     const patientsCard = ref<any>();
-    const recommendationsChatGPT = ref([]);
-    const recommendations = ref([]);
+    const recommendationsChatGPT = ref<
+        {
+            title: string;
+            recommendation: string;
+        }[]
+    >([]);
+    const recommendations = ref<
+        {
+            title: string;
+            recommendation: string;
+        }[]
+    >([]);
     const isLoading = ref(false);
 
     async function getQuestionsData(): Promise<void> {

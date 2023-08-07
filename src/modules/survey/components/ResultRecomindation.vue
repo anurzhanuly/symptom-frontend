@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useSurveyStore } from '@/modules/survey/store/survey.store';
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { useSurveyStore } from '@/modules/survey/store/survey.store';
 
 import Panel from 'primevue/panel';
 import PButton from 'primevue/button';
@@ -9,6 +10,10 @@ import PButton from 'primevue/button';
 const router = useRouter();
 const surveyStore = useSurveyStore();
 const { recommendations, recommendationsChatGPT } = storeToRefs(surveyStore);
+
+const patientIdFromLocalStorage = computed(() =>
+    localStorage.getItem('patientId')
+);
 const test = [
     {
         title: 'Щит и Меч Здоровья',
@@ -61,7 +66,7 @@ function saveRecommendation() {
             <p v-html="item.recommendation" />
         </panel>
         <p-button
-            v-if="!localStorage.getItem('patientId')"
+            v-if="!patientIdFromLocalStorage"
             label="Сохранить"
             @click="saveRecommendation"
         />

@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import { useSurveyStore } from '../../survey/store/survey.store';
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+
+import { useSurveyStore } from '../../survey/store/survey.store';
 
 import Panel from 'primevue/panel';
 import PButton from 'primevue/button';
@@ -9,6 +11,10 @@ import PButton from 'primevue/button';
 const router = useRouter();
 const surveyStore = useSurveyStore();
 const { patientsCard } = storeToRefs(surveyStore);
+
+const patientIdFromLocalStorage = computed(() =>
+    localStorage.getItem('patientId')
+);
 const test = {
     'Общая информация': {
         'Вес:': '70',
@@ -57,7 +63,7 @@ function saveRecommendation() {
             </p>
         </panel>
         <p-button
-            v-if="!localStorage.getItem('patientId')"
+            v-if="!patientIdFromLocalStorage"
             label="Сохранить"
             @click="saveRecommendation"
         />
