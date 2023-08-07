@@ -61,6 +61,7 @@ function saveRecommendation() {
             <p v-html="item.recommendation" />
         </panel>
         <p-button
+            v-if="!localStorage.getItem('patientId')"
             label="Сохранить"
             @click="saveRecommendation"
         />
