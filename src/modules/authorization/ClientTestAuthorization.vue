@@ -2,6 +2,8 @@
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
+import { useGtag } from 'vue-gtag-next';
+
 import Authorization from './components/Authorization.vue';
 import { useClinicsStore } from '@/modules/admin/stores/clinics.store';
 import { useAuthorizationStore } from '@/modules/authorization/store/authorization.store';
@@ -14,6 +16,8 @@ import InputText from 'primevue/inputtext';
 import Dropdown from 'primevue/dropdown';
 
 const router = useRouter();
+const { event: gEvent } = useGtag();
+
 const clinicStore = useClinicsStore();
 const authorizationStore = useAuthorizationStore();
 const surveyStore = useSurveyStore();
@@ -48,6 +52,8 @@ onMounted(() => {
 
 const goToSurvey = (): void => {
     if (validateRegisterForm()) {
+        gEvent('survey_auth', { ...userRegisterData.value });
+
         router.push('survey');
     }
 };
