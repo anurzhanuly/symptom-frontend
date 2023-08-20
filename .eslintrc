@@ -4,9 +4,54 @@
         "@nuxtjs/eslint-config-typescript"
     ],
     "rules": {
-        "vue/multi-word-component-names": "off",
-        "vue/no-multiple-template-root": "off",
         "@typescript-eslint/no-unused-vars": "off",
-        "vue/html-indent": ["error", 4]
+        "import/no-unresolved": 0,
+        "import/prefer-default-export": 0,
+        "max-len": [
+            "warn",
+            {
+                "code": 120,
+                "ignoreComments": true
+            }
+        ],
+        "no-magic-numbers": 0,
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
+        "vue/attributes-order": "error",
+        "vue/block-lang": [
+            "error",
+            {
+                "script": {
+                    "lang": "ts"
+                }
+            }
+        ],
+        "vue/component-tags-order": [
+            "error",
+            {
+                "order": [
+                    "script[setup]",
+                    "template",
+                    "script:not([setup])",
+                    "style"
+                ]
+            }
+        ],
+        "vue/html-indent": [
+            "error",
+            4
+        ],
+        "vue/multi-word-component-names": 0,
+        "vue/multiline-html-element-content-newline": "error",
+        "vue/mustache-interpolation-spacing": "error",
+        "vue/no-multiple-template-root": 0,
+        "vue/no-reserved-component-names": "warn",
+        "vue/no-v-html": 0,
+        "vue/no-v-model-argument": "off",
+        "vue/no-v-text-v-html-on-component": 0
     }
 }
