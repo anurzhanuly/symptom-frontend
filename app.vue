@@ -1,7 +1,7 @@
+<script setup lang="ts">
+console.log(process)
+</script>
+
 <template>
     <NuxtWelcome />
-    <NuxtWelcome />
 </template>
-
-<script setup lang="ts">
-</script>
