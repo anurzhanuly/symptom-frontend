@@ -1,12 +1,24 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
 .DS_Store
-/node_modules
-dist/
-/.idea/.gitignore
-/.idea/jsLinters/eslint.xml
-/.idea/modules.xml
-/.idea/php.xml
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/symptom-frontend.iml
-/.idea/vcs.xml
-watcherTasks.xml
-package-lock.json
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
