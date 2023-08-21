@@ -1,23 +1,15 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useRouter } from 'vue-router';
 import { useSurveyStore } from '@/modules/survey/store/survey.store';
 import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
 
-import InlineMessage from 'primevue/inlinemessage';
 import PButton from 'primevue/button';
-import Checkbox from 'primevue/checkbox';
 import Sidebar from 'primevue/sidebar';
 
-const router = useRouter();
 const surveyStore = useSurveyStore();
 const { isLoading, questions } = storeToRefs(surveyStore);
 
-const isUse = ref(false);
-const isProvicy = ref(false);
-const isNotUse = ref(false);
-const isNotPrivacy = ref(false);
 const termsOfUse = ref(false);
 const privacyPolicy = ref(false);
 
@@ -26,26 +18,6 @@ onMounted(() => {
         surveyStore.getQuestionsData();
     }
 });
-
-function checkAgreement(): void {
-    if (!isUse.value && !isProvicy.value) {
-        isNotUse.value = true;
-        isNotPrivacy.value = true;
-        return;
-    }
-
-    if (!isUse.value) {
-        isNotUse.value = true;
-        return;
-    }
-
-    if (!isProvicy.value) {
-        isNotPrivacy.value = true;
-        return;
-    }
-
-    router.push({ name: 'survey' });
-}
 </script>
 
 <template>
@@ -72,50 +44,25 @@ function checkAgreement(): void {
                 </li>
                 <li class="agreement__info">Мне есть 18 лет</li>
             </ul>
-            <hr />
+            <hr class="agreement__separator" />
             <div class="agreement-check">
-                <checkbox
-                    v-model="isUse"
-                    :binary="true"
-                />
-                <span
-                    >Я прочитал(а) и принимаю
-                    <strong @click="termsOfUse = true"
-                        >Условия использования.
-                    </strong>
-                </span>
-                <inline-message
-                    v-if="isNotUse"
-                    severity="error"
-                >
-                    Примите Условия использования.
-                </inline-message>
+                Я прочитал(а) и принимаю
+                <strong @click="termsOfUse = true">
+                    Условия использования.
+                </strong>
                 <br />
-
-                <checkbox
-                    v-model="isProvicy"
-                    :binary="true"
-                />
-                <span
-                    >Я соглашаюсь на использование информации о моем здоровье
-                    для прохождения опроса. Полная информация доступна в
-                    <strong @click="privacyPolicy = true"
-                        >Политике конфиденциальности.
-                    </strong>
-                </span>
-                <inline-message
-                    v-if="isNotPrivacy"
-                    severity="error"
-                >
-                    Пожалуйста, согласитесь с Политикой конфиденциальности и
-                    обработкой информации о ваших персональных медицинских
-                    данных.
-                </inline-message>
+                Я соглашаюсь на использование информации о моем здоровье для
+                прохождения опроса.
+                <br />
+                Полная информация доступна в
+                <strong @click="privacyPolicy = true"
+                    >Политике конфиденциальности.
+                </strong>
             </div>
             <p-button
-                label="Начать опрос"
+                label="Принять и начать опрос"
                 :loading="isLoading"
-                @click="checkAgreement"
+                @click="$router.push({ name: 'survey' })"
             />
         </div>
     </div>
@@ -210,5 +157,8 @@ function checkAgreement(): void {
 }
 .p-button {
     margin: 12px 0;
+}
+.agreement__separator {
+    margin: 16px 0;
 }
 </style>

@@ -13,7 +13,7 @@ import PButton from 'primevue/button';
                 icon="pi pi-angle-left header__button"
                 label="Назад"
                 link
-                @click="$router.push({ name: 'home' })"
+                @click="$router.back()"
             />
             <div>
                 <slot />
