@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useHomeStore } from '../store/home.store.js';
 
@@ -35,10 +35,6 @@ function goToDoctorCabinet() {
     }
     router.push('/doctor-sign-in');
 }
-
-const isMobileDevice = computed(
-    () => /Mobi/.test(navigator.userAgent) && !/iPad/.test(navigator.userAgent)
-);
 </script>
 
 <template>
@@ -65,7 +61,7 @@ const isMobileDevice = computed(
             >
                 <p-button
                     label="Пройти опрос"
-                    @click="$router.push({ name: 'client-test-auth' })"
+                    @click="$router.push({ name: 'choose-survey-flow' })"
                 />
                 <p-button
                     v-if="!clientToken"

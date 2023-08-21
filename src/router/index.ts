@@ -18,6 +18,14 @@ const router = createRouter({
                 import('@/modules/authorization/ChooseSurveyFlow.vue'),
         },
         {
+            path: '/agreement/:register?',
+            name: 'agreement',
+            component: (): Component =>
+                import(
+                    '@/modules/authorization/AuthorizationAgreementView.vue'
+                ),
+        },
+        {
             path: '/client-test-auth',
             name: 'client-test-auth',
             component: (): Component =>

@@ -61,7 +61,7 @@ function goToDoctorCabinet() {
             >
                 <p-button
                     label="Пройти опрос"
-                    @click="$router.push('choose-survey-flow')"
+                    @click="$router.push({ name: 'choose-survey-flow' })"
                 />
                 <p-button
                     v-if="!clientToken"

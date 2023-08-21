@@ -50,11 +50,11 @@ onMounted(() => {
     doctorLink.value = true;
 });
 
-const goToSurvey = (): void => {
+const goToAgreement = (): void => {
     if (validateRegisterForm()) {
         gEvent('survey_auth', { ...userRegisterData.value });
 
-        router.push('survey');
+        router.push('agreement');
     }
 };
 
@@ -176,7 +176,7 @@ const validateRegisterForm = (): boolean => {
                 <p-button
                     label="Далее"
                     :loading="isLoading"
-                    @click="goToSurvey"
+                    @click="goToAgreement"
                 />
             </form>
         </div>

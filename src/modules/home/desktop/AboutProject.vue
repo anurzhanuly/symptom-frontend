@@ -36,7 +36,7 @@ function direct(): void {
     if (isDoctor.value) {
         // TODO registration
     } else {
-        router.push({ name: 'client-test-auth' });
+        router.push({ name: 'choose-survey-flow' });
     }
 }
 </script>

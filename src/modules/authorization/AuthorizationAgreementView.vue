@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { onMounted, shallowRef } from 'vue';
-
 const isMobile = window.innerWidth < 800;
-
 const components = shallowRef<any>({
+    agreementComponent: null,
     headerComponent: null,
-    buttonsComponent: null,
 });
 
 onMounted(async () => {
@@ -13,14 +11,13 @@ onMounted(async () => {
         case true:
             components.value = {
                 headerComponent: (await import('./mobile/Header.vue')).default,
-                buttonsComponent: (await import('./mobile/FlowButtons.vue'))
+                agreementComponent: (await import('./mobile/Agreement.vue'))
                     .default,
             };
             break;
         case false:
             components.value = {
-                headerComponent: null,
-                buttonsComponent: (await import('./desktop/FlowButtons.vue'))
+                agreementComponent: (await import('./desktop/Agreement.vue'))
                     .default,
             };
             break;
@@ -28,12 +25,10 @@ onMounted(async () => {
             console.error('Unable to determine device type');
             break;
     }
-
-    localStorage.removeItem('doctorId'); //TODO Странное место для удаления, потом подумать как лучше
 });
 </script>
 
 <template>
     <component :is="components.headerComponent" />
-    <component :is="components.buttonsComponent" />
+    <component :is="components.agreementComponent" />
 </template>

@@ -1,18 +1,5 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue';
-import { storeToRefs } from 'pinia';
 import PButton from 'primevue/button';
-import { useSurveyStore } from '@/modules/survey/store/survey.store';
-
-const surveyStore = useSurveyStore();
-
-const { isLoading, questions } = storeToRefs(surveyStore);
-
-onMounted(() => {
-    if (!questions.value) {
-        surveyStore.getQuestionsData();
-    }
-});
 </script>
 
 <template>
@@ -21,8 +8,7 @@ onMounted(() => {
         <p-button
             class="buttons__item"
             label="Без регистрации"
-            :loading="isLoading"
-            @click="$router.push({ name: 'survey' })"
+            @click="$router.push({ name: 'agreement' })"
         />
         <p-button
             class="buttons__item"
