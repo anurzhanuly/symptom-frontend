@@ -18,7 +18,7 @@ const router = createRouter({
                 import('@/modules/authorization/ChooseSurveyFlow.vue'),
         },
         {
-            path: '/agreement/:register?',
+            path: '/agreement',
             name: 'agreement',
             component: (): Component =>
                 import(
