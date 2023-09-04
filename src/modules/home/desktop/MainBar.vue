@@ -62,7 +62,8 @@ function goToDoctorCabinet() {
             >
                 <ui-button
                     label="Пройти опрос"
-                    @click="$router.push({ name: 'choose-survey-flow' })">
+                    @click="$router.push({ name: 'choose-survey-flow' })"
+                >
                     Пройти Опрос
                 </ui-button>
                 <ui-button
@@ -70,7 +71,8 @@ function goToDoctorCabinet() {
                     class="p-button-outlined"
                     label="Войти в личный кабинет"
                     @click="goToClientCabinet"
-                >Войти в личный кабинет
+                >
+                    Войти в личный кабинет
                 </ui-button>
             </div>
         </div>

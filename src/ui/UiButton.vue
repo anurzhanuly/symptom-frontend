@@ -1,9 +1,8 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
     <button class="button">
-      <slot></slot>
+        <slot></slot>
     </button>
 </template>
 
@@ -17,7 +16,7 @@
     width: 290px;
     border-radius: 10px;
     letter-spacing: 0.05em;
-    border: 1px solid #2196F3;
+    border: 1px solid #2196f3;
     text-decoration: none;
     margin-right: 10px;
     padding: 0.5rem 1.5rem;
@@ -26,6 +25,8 @@
     transition: all 0.22s;
     cursor: pointer;
     font-size: 1rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol';
 }
 </style>
