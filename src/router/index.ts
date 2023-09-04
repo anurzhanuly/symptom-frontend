@@ -71,8 +71,7 @@ const router = createRouter({
         {
             path: '/survey',
             name: 'survey',
-            component: (): Component =>
-                import('@/modules/survey/SurveyView.vue'),
+            component: (): Component => import('@/modules/survey/Survey.vue'),
         },
         {
             path: '/admin',

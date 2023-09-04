@@ -1,12 +1,13 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+import router from './router';
+import { surveyPlugin } from 'survey-vue3-ui';
 import VueGtag from 'vue-gtag-next';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import VueYandexMetrika from 'vue3-yandex-metrika';
-import App from './App.vue';
 import './styles/main.scss';
-import router from './router';
+import App from './App.vue';
 
 import PrimeVue from 'primevue/config';
 import ConfirmationService from 'primevue/confirmationservice';
@@ -16,11 +17,6 @@ import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 
-import { StylesManager } from 'survey-core';
-import 'survey-core/defaultV2.min.css';
-import 'survey-core/survey.i18n';
-
-StylesManager.applyTheme('defaultV2');
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 // eslint-disable-next-line no-undef
@@ -30,6 +26,7 @@ export const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);
+app.use(surveyPlugin);
 app.use(PrimeVue);
 app.use(ToastService);
 app.use(DialogService);
