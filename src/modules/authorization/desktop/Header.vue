@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 </script>
 
 <template>
     <div>
         <header class="header">
-            <p-button
-                icon="pi pi-angle-left header__button"
-                label="Назад"
+            <ui-button
+                is-white
+                is-back
+                show-icon
                 link
                 @click="$router.push('/')"
-            />
+            >
+                Назад
+            </ui-button>
             <img
                 alt="Symptom logo"
                 class="header__logo"

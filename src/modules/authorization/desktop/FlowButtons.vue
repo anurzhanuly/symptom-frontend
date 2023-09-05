@@ -1,23 +1,27 @@
 <script lang="ts" setup>
 import PButton from 'primevue/button';
 import Authorization from '@/modules/authorization/components/Authorization.vue';
+import UiButton from '@/ui/UiButton.vue';
 </script>
 
 <template>
     <authorization>
         <div class="buttons">
             <h2 class="buttons__title">Пройти опрос</h2>
-            <p-button
+            <ui-button
                 class="buttons__item"
-                label="Без регистрации"
                 @click="$router.push({ name: 'agreement' })"
-            />
-            <p-button
+            >
+                Без регистрации
+            </ui-button>
+            <ui-button
+                is-white
                 class="buttons__item"
-                label="Для врача"
                 outlined
                 @click="$router.push({ name: 'client-test-auth' })"
-            />
+            >
+                Для врача
+            </ui-button>
         </div>
     </authorization>
 </template>

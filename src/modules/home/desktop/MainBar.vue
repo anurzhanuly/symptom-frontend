@@ -61,6 +61,7 @@ function goToDoctorCabinet() {
                 class="main-container-buttons"
             >
                 <ui-button
+                    is-margin
                     label="Пройти опрос"
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
@@ -68,6 +69,7 @@ function goToDoctorCabinet() {
                 </ui-button>
                 <ui-button
                     v-if="!clientToken"
+                    is-white
                     class="p-button-outlined"
                     label="Войти в личный кабинет"
                     @click="goToClientCabinet"
@@ -119,17 +121,6 @@ h1 {
 .main-container-button {
     display: flex;
     flex-direction: column;
-}
-
-.button {
-    width: 300px;
-    margin-top: 1rem;
-    font-size: 1.2rem;
-}
-
-.button:last-child {
-    background: white;
-    color: #276ef1;
 }
 
 .main-container-button .p-button,

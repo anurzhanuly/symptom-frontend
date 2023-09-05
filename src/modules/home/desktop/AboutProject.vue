@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router';
 import { computed } from 'vue';
 
 import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 
 const homeStore = useHomeStore();
 const { isDoctor } = storeToRefs(homeStore);
@@ -70,10 +71,13 @@ function direct(): void {
     </div>
     <div class="about-action">
         <h4>{{ actionInfo }}</h4>
-        <p-button
+        <ui-button
+            is-action
             :label="buttonLabel"
             @click="direct"
-        />
+        >
+            Пройти Опрос
+        </ui-button>
     </div>
 </template>
 

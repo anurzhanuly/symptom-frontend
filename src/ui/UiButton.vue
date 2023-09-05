@@ -1,32 +1,64 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps({
+    isWhite: Boolean,
+    isMargin: Boolean,
+    isAction: Boolean,
+    isBack: Boolean,
+    showIcon: Boolean,
+});
+</script>
 
 <template>
-    <button class="button">
-        <slot></slot>
+    <button
+        :class="{
+            button: true,
+            'button--white': isWhite,
+            'button--margin': isMargin,
+            'button-action': isAction,
+            'button-back': isBack,
+            'pi pi-angle-left header__button': showIcon,
+        }"
+    >
+        <slot> </slot>
     </button>
 </template>
 
 <style lang="scss" scoped>
 .button {
-    background: #276ef1;
+    background-color: #276ef1;
     color: white;
-    position: relative;
-    place-content: center;
     place-items: center;
-    width: 290px;
+    width: 100%;
     border-radius: 10px;
-    letter-spacing: 0.05em;
     border: 1px solid #2196f3;
-    text-decoration: none;
-    margin-right: 10px;
-    padding: 0.5rem 1.5rem;
+    padding: 12px 20px;
+    letter-spacing: 1px;
     white-space: nowrap;
     outline: none;
     transition: all 0.22s;
     cursor: pointer;
-    font-size: 1rem;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-        Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol';
+
+    &-action {
+        width: 50%;
+        font-size: 20px;
+        letter-spacing: 2px;
+        padding: 20px;
+        white-space: pre-wrap;
+    }
+
+    &-back {
+        border: none;
+        width: 60px;
+        padding: 0 0 0 16px;
+    }
+
+    &--white {
+        background-color: white;
+        color: #276ef1;
+    }
+
+    &--margin {
+        margin: 12px 0;
+    }
 }
 </style>
