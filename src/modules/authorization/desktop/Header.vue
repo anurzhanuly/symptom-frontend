@@ -8,8 +8,6 @@ import UiButton from '@/ui/UiButton.vue';
         <header class="header">
             <ui-button
                 is-white
-                is-back
-                show-icon
                 link
                 @click="$router.push('/')"
             >

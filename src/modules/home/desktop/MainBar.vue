@@ -61,7 +61,7 @@ function goToDoctorCabinet() {
                 class="main-container-buttons"
             >
                 <ui-button
-                    is-margin
+                    class="button--margin"
                     label="Пройти опрос"
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
@@ -121,6 +121,10 @@ h1 {
 .main-container-button {
     display: flex;
     flex-direction: column;
+}
+
+.button--margin {
+    margin: 16px 0;
 }
 
 .main-container-button .p-button,

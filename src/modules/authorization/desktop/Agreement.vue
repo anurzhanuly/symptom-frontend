@@ -71,8 +71,8 @@ onMounted(() => {
                         </span>
                     </div>
                     <ui-button
-                        is-margin
-                        :loading="isLoading"
+                        is-full
+                        class="agreement-button"
                         @click="$router.push({ name: 'survey' })"
                     >
                         Принять и начать опрос
@@ -167,9 +167,8 @@ onMounted(() => {
     color: #1769aa;
     cursor: pointer;
 }
-.p-button {
+.agreement-button {
     margin-top: 12px;
-    width: 100%;
 }
 .agreement__separator {
     margin: 16px 0;

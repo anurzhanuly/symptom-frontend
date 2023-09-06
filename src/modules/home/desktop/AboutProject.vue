@@ -71,13 +71,15 @@ function direct(): void {
     </div>
     <div class="about-action">
         <h4>{{ actionInfo }}</h4>
-        <ui-button
-            is-action
-            :label="buttonLabel"
-            @click="direct"
-        >
-            Пройти Опрос
-        </ui-button>
+        <div class="about-action--button">
+            <ui-button
+                is-full
+                :label="buttonLabel"
+                @click="direct"
+            >
+                Пройти Опрос
+            </ui-button>
+        </div>
     </div>
 </template>
 
@@ -147,6 +149,10 @@ img {
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
 }
 
+.about-action--button {
+    width: 55%;
+}
+
 .p-button {
     width: 390px;
     font-size: 22px;
@@ -178,6 +184,10 @@ img {
 @media (max-width: 865px) {
     h4 {
         font-size: 25px;
+    }
+
+    .about-action--button {
+        width: 70%;
     }
 }
 
