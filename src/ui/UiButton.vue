@@ -20,8 +20,8 @@ defineProps({
         <span
             v-if="isLoading"
             class="button-loader"
-        ></span>
-        <i :class="icon"></i>
+        />
+        <i :class="icon" />
         <slot> </slot>
     </button>
 </template>
@@ -58,7 +58,7 @@ defineProps({
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 20px; /* Размер лоадера по вашему выбору */
+            width: 20px;
             height: 20px;
             border: 2px solid #fff;
             border-top: 2px solid transparent;

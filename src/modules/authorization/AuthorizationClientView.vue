@@ -13,6 +13,7 @@ import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
 import InlineMessage from 'primevue/inlinemessage';
+import UiButton from '@/ui/UiButton.vue';
 
 const authorizationStore = useAuthorizationStore();
 
@@ -69,15 +70,22 @@ function clientRegistration() {
                 <inline-message v-if="isWrong">
                     Неверный пароль или почта
                 </inline-message>
-                <p-button
-                    label="Вход"
+                <ui-button
+                    class="authorization__button"
+                    is-full
                     @click="checkClient"
-                />
-                <p-button
-                    label="Забыли пароль?"
+                >
+                    Вход
+                </ui-button>
+                <ui-button
+                    class="authorization__button"
+                    is-full
+                    is-white
                     link
                     @click="resetPassword"
-                />
+                >
+                    Забыли пароль?
+                </ui-button>
             </form>
         </div>
 
@@ -116,7 +124,7 @@ function clientRegistration() {
     width: 100%;
 }
 
-.authorization-form .p-button {
+.authorization-form .authorization__button {
     margin-top: 15px;
     height: 45px;
     font-weight: 600;

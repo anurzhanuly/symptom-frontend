@@ -71,10 +71,9 @@ function direct(): void {
     </div>
     <div class="about-action">
         <h4>{{ actionInfo }}</h4>
-        <div class="about-action--button">
+        <div class="about__button">
             <ui-button
                 is-full
-                :label="buttonLabel"
                 @click="direct"
             >
                 Пройти Опрос
@@ -149,7 +148,7 @@ img {
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
 }
 
-.about-action--button {
+.about__button {
     width: 55%;
 }
 

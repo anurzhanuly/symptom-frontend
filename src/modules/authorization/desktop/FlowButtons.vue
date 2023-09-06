@@ -17,7 +17,6 @@ import UiButton from '@/ui/UiButton.vue';
             <ui-button
                 is-white
                 class="buttons__item"
-                outlined
                 @click="$router.push({ name: 'client-test-auth' })"
             >
                 Для врача

@@ -5,7 +5,7 @@ import { useHomeStore } from '../store/home.store.js';
 
 import PButton from 'primevue/button';
 import { storeToRefs } from 'pinia';
-import UiButton from '../../../ui/UiButton.vue';
+import UiButton from '@/ui/UiButton.vue';
 
 const router = useRouter();
 const homeStore = useHomeStore();
@@ -50,11 +50,13 @@ function goToDoctorCabinet() {
                 v-if="isDoctor"
                 class="main-container-button"
             >
-                <p-button
+                <ui-button
                     v-if="!doctorToken"
-                    label="Войти в кабинет врача"
+                    class="button--margin"
                     @click="goToDoctorCabinet"
-                />
+                >
+                    Войти в кабинет врача
+                </ui-button>
             </div>
             <div
                 v-else
@@ -62,7 +64,6 @@ function goToDoctorCabinet() {
             >
                 <ui-button
                     class="button--margin"
-                    label="Пройти опрос"
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
                     Пройти Опрос
@@ -70,8 +71,6 @@ function goToDoctorCabinet() {
                 <ui-button
                     v-if="!clientToken"
                     is-white
-                    class="p-button-outlined"
-                    label="Войти в личный кабинет"
                     @click="goToClientCabinet"
                 >
                     Войти в личный кабинет
