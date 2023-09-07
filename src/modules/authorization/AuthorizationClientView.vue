@@ -57,18 +57,14 @@ function clientRegistration() {
                 />
                 <div>
                     <h4>Почта <span>*</span></h4>
-                    <ui-input
-                        v-model="email"
-                        type="email"
-                        is-required
-                    />
+                    <input-text v-model="email" />
                 </div>
                 <div>
                     <h4>Пароль <span>*</span></h4>
-                    <ui-input
+                    <p-password
                         v-model="password"
-                        type="password"
-                        is-required
+                        :feedback="false"
+                        toggle-mask
                     />
                 </div>
 
