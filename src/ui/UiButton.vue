@@ -21,8 +21,10 @@ defineProps({
             v-if="isLoading"
             class="button-loader"
         />
-        <i :class="icon" />
-        <slot> </slot>
+        <span v-else>
+            <i :class="icon" />
+            <slot> </slot>
+        </span>
     </button>
 </template>
 
@@ -52,7 +54,6 @@ defineProps({
         pointer-events: none;
         background-color: #5eadef;
         padding: 20px;
-        font-size: 0;
         .button-loader {
             position: absolute;
             top: 50%;
