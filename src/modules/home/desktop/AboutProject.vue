@@ -73,6 +73,7 @@ function direct(): void {
         <h4>{{ actionInfo }}</h4>
         <div class="about__button">
             <ui-button
+                is-big
                 is-full
                 @click="direct"
             >

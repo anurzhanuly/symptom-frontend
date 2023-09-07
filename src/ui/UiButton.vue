@@ -3,6 +3,7 @@ defineProps({
     isWhite: Boolean,
     isFull: Boolean,
     isLoading: Boolean,
+    isBig: Boolean,
     icon: {
         type: String,
         default: '',
@@ -17,6 +18,7 @@ defineProps({
             'button--white': isWhite,
             'button--full': isFull,
             'button--loading': isLoading,
+            'button--big': isBig,
         }"
         :disabled="isLoading"
     >
@@ -24,7 +26,10 @@ defineProps({
             v-if="isLoading"
             class="button-loader"
         />
-        <span v-else>
+        <span
+            v-else
+            class="button-content"
+        >
             <i :class="icon" />
             <slot />
         </span>
@@ -43,6 +48,12 @@ defineProps({
     letter-spacing: 1px;
     white-space: pre-wrap;
     cursor: pointer;
+    font-family: 'OpenSans', sans-serif;
+
+    &-content {
+        display: flex;
+        justify-content: center;
+    }
 
     &-loader {
         position: absolute;
@@ -70,6 +81,10 @@ defineProps({
     &--loading {
         pointer-events: none;
         background-color: #5eadef;
+    }
+
+    &--big {
+        font-size: 20px;
     }
 }
 
