@@ -4,7 +4,6 @@ import { useHomeStore } from '../store/home.store';
 import { useRouter } from 'vue-router';
 import { computed } from 'vue';
 
-import PButton from 'primevue/button';
 import UiButton from '@/ui/UiButton.vue';
 
 const homeStore = useHomeStore();
@@ -153,13 +152,6 @@ img {
     width: 55%;
 }
 
-.p-button {
-    width: 390px;
-    font-size: 22px;
-    background: #276ef1;
-    border-radius: 10px;
-}
-
 @media (max-width: 1350px) {
     h1 {
         font-size: 50px;
@@ -168,83 +160,11 @@ img {
     p {
         font-size: 18px;
     }
-
-    .p-button {
-        width: 265px;
-        font-size: 16px;
-    }
 }
 
 @media (max-width: 1200px) {
     .image {
         display: none;
-    }
-}
-
-@media (max-width: 865px) {
-    h4 {
-        font-size: 25px;
-    }
-
-    .about-action--button {
-        width: 70%;
-    }
-}
-
-@media (max-width: 595px) {
-    h4 {
-        font-size: 20px;
-    }
-
-    h3 {
-        font-size: 30px;
-        margin-left: 55px;
-    }
-
-    h1 {
-        font-size: 40px;
-    }
-
-    p {
-        font-size: 16px;
-    }
-
-    .project-info {
-        margin-top: 5px;
-    }
-
-    .about-container {
-        padding: 20px 45px;
-    }
-}
-
-@media (max-width: 490px) {
-    .about-container {
-        padding: 20px;
-    }
-
-    h4 {
-        font-size: 15px;
-    }
-
-    h3 {
-        font-size: 22px;
-    }
-}
-
-@media (max-width: 400px) {
-    h4 {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 330px) {
-    h4 {
-        font-size: 13px;
-    }
-
-    p {
-        font-size: 14px;
     }
 }
 </style>
