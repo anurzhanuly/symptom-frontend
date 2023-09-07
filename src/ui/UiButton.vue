@@ -3,7 +3,10 @@ defineProps({
     isWhite: Boolean,
     isFull: Boolean,
     isLoading: Boolean,
-    icon: String,
+    icon: {
+        type: String,
+        default: '',
+    },
 });
 </script>
 
@@ -30,6 +33,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .button {
+    position: relative;
     background-color: #276ef1;
     color: white;
     display: inline-block;
@@ -44,12 +48,12 @@ defineProps({
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
         width: 20px;
         height: 20px;
         border: 2px solid #fff;
         border-top: 2px solid transparent;
         border-radius: 50%;
+        transform: translate(-50%, -50%);
         animation: spin 1s linear infinite;
     }
 
@@ -62,11 +66,10 @@ defineProps({
     &--full {
         width: 100%;
     }
+
     &--loading {
-        position: relative;
         pointer-events: none;
         background-color: #5eadef;
-        padding: 20px;
     }
 }
 
