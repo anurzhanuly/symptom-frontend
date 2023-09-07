@@ -85,7 +85,7 @@ function checkDoctor(): void {
     margin-top: 8px;
 }
 
-.authorization-form .authorization__button {
+.authorization__button {
     margin-top: 15px;
 }
 
