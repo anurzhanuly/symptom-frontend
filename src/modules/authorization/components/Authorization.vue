@@ -34,9 +34,10 @@ import UiButton from '@/ui/UiButton.vue';
 
 .authorization-main {
     padding-top: 40px;
-    .authorization-button {
-        border: none;
-    }
+}
+
+.authorization-main .authorization-button {
+    border: none;
 }
 
 .authorization-onboarding,

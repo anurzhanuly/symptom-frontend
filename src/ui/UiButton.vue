@@ -23,7 +23,7 @@ defineProps({
         />
         <span v-else>
             <i :class="icon" />
-            <slot> </slot>
+            <slot />
         </span>
     </button>
 </template>
@@ -40,6 +40,19 @@ defineProps({
     white-space: pre-wrap;
     cursor: pointer;
 
+    &-loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        border: 2px solid #fff;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
     &--white {
         background-color: white;
         color: #276ef1;
@@ -54,18 +67,6 @@ defineProps({
         pointer-events: none;
         background-color: #5eadef;
         padding: 20px;
-        .button-loader {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            border: 2px solid #fff;
-            border-top: 2px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
     }
 }
 
