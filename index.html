@@ -9,17 +9,16 @@
     <title>Symptom</title>
 </head>
 <body>
-<div id="mobile"></div>
-<div id="desktop"></div>
-<script type="module">
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    <div id="mobile"></div>
+    <div id="desktop"></div>
+    <script type="module">
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-    if (isMobile) {
-        import('@mobile/main.ts').then(module => module.initMobileApp());
-    } else {
-        import('@desktop/main.ts').then(module => module.initDesktopApp());
-    }
-</script>
-
+        if (isMobile) {
+            import('@mobile/main.ts').then(module => module.initMobileApp());
+        } else {
+            import('@desktop/main.ts').then(module => module.initDesktopApp());
+        }
+    </script>
 </body>
 </html>
