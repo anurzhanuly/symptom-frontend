@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { onBeforeMount, ref } from 'vue';
 
-import BaseHeader from '@/components/BaseHeader.vue';
+import BaseHeader from '@desktop/components/BaseHeader.vue';
 import TabMenu from 'primevue/tabmenu';
-import router from '@/router';
+import router from '@desktop/router';
 
 const adminPages = ref([
     {

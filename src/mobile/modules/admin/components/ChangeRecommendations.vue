@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useAdminStore } from '@/modules/admin/stores/admin.store';
+import { useAdminStore } from '@mobile/modules/admin/stores/admin.store';
 import { storeToRefs } from 'pinia';
-import { warn } from '@/utils/toast';
+import { warn } from '@mobile/utils/toast';
 
 import { useConfirm } from 'primevue/useconfirm';
 import PButton from 'primevue/button';

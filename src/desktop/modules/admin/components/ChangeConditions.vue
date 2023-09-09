@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAdminStore } from '@/modules/admin/stores/admin.store';
+import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 

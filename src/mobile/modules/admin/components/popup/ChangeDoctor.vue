@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { inject, ref } from 'vue';
-import { success, error } from '@/utils/toast';
+import { success, error } from '@mobile/utils/toast';
 import { useClinicsStore } from '../../stores/clinics.store';
 
 import PButton from 'primevue/button';

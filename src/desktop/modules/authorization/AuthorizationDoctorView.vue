@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import Authorization from './components/Authorization.vue';
 import { useAuthorizationStore } from './store/authorization.store';
-import { validateLogin } from '@/utils/validation';
+import { validateLogin } from '@desktop/utils/validation';
 import { ref } from 'vue';
 
 import PButton from 'primevue/button';
 import PPassword from 'primevue/password';
 import InputText from 'primevue/inputtext';
 import { storeToRefs } from 'pinia';
-import UiButton from '@/ui/UiButton.vue';
+import UiButton from '@desktop/ui/UiButton.vue';
 
 const authorizationStore = useAuthorizationStore();
 const { isWrong } = storeToRefs(authorizationStore);
@@ -29,7 +29,7 @@ function checkDoctor(): void {
             <form class="authorization-form p-fluid">
                 <img
                     alt="Symptom logo"
-                    src="@/assets/logo-auth.png"
+                    src="@desktop/assets/logo-auth.png"
                 />
 
                 <h4>Почта <span>*</span></h4>

@@ -6,8 +6,8 @@ import { useHomeStore } from '../store/home.store';
 import Carousel from 'primevue/carousel';
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
-import { success, warn } from '@/utils/toast';
-import { postNpsRequest } from '@/modules/home/services/home.refbooks';
+import { success, warn } from '@desktop/utils/toast';
+import { postNpsRequest } from '@desktop/modules/home/services/home.refbooks';
 
 const homeStore = useHomeStore();
 const { isDoctor } = storeToRefs(homeStore);
@@ -185,7 +185,7 @@ async function sendRequest() {
         <div class="questions-img">
             <img
                 alt="logo"
-                src="@/assets/onboarding/onboard1.png"
+                src="@desktop/assets/onboarding/onboard1.png"
             />
         </div>
     </div>

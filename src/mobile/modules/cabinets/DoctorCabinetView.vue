@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { RouterView } from 'vue-router';
 import TabMenu from 'primevue/tabmenu';
-import BaseHeader from '@/components/BaseHeader.vue';
+import BaseHeader from '@mobile/components/BaseHeader.vue';
 
 const doctorViews = ref([
     {

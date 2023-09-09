@@ -3,7 +3,7 @@ import { useCabinetsStore } from './store/cabinets.store';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 
-import { useSurveyStore } from '@/modules/survey/store/survey.store';
+import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';

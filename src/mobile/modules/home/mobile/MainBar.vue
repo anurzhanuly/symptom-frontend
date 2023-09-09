@@ -74,7 +74,7 @@ function goToDoctorCabinet() {
         <div class="main-image">
             <img
                 alt="logo"
-                src="@/assets/main.png"
+                src="@mobile/assets/main.png"
             />
         </div>
     </div>

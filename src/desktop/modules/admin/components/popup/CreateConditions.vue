@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { Condition } from '@/modules/admin/types/recommendations';
-import { useAdminStore } from '@/modules/admin/stores/admin.store';
-import { createPopupFields } from '@/utils/popUp';
-import { error, success } from '@/utils/toast';
+import type { Condition } from '@desktop/modules/admin/types/recommendations';
+import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
+import { createPopupFields } from '@desktop/utils/popUp';
+import { error, success } from '@desktop/utils/toast';
 import { computed, inject, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 

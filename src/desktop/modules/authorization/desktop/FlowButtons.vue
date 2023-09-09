@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import PButton from 'primevue/button';
-import Authorization from '@/modules/authorization/components/Authorization.vue';
-import UiButton from '@/ui/UiButton.vue';
+import Authorization from '@desktop/modules/authorization/components/Authorization.vue';
+import UiButton from '@desktop/ui/UiButton.vue';
 </script>
 
 <template>

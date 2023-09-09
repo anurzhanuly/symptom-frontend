@@ -1,5 +1,5 @@
-import { getQuestionsJson } from '@/modules/admin/services/admin.refbooks';
-import type { QuestionsContent } from '@/modules/admin/types/questions';
+import { getQuestionsJson } from '@mobile/modules/admin/services/admin.refbooks';
+import type { QuestionsContent } from '@mobile/modules/admin/types/questions';
 import { postAnswersToChatGPT } from '../services/survey.refbooks';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';

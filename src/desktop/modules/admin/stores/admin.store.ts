@@ -1,7 +1,7 @@
 import type {
     Condition,
     Recommendation,
-} from '@/modules/admin/types/recommendations.js';
+} from '@desktop/modules/admin/types/recommendations.js';
 import type { DataTableCellEditCompleteEvent } from 'primevue/datatable';
 import type { Questions } from '../types/questions';
 import { computed, onMounted, ref, watch } from 'vue';
@@ -14,7 +14,7 @@ import {
     getRecommendations,
     updateRecommendation,
 } from '../services/admin.refbooks';
-import { success } from '@/utils/toast.js';
+import { success } from '@desktop/utils/toast.js';
 import { useDialog } from 'primevue/usedialog';
 
 import CreateConditions from '../components/popup/CreateConditions.vue';

@@ -50,7 +50,7 @@ function direct(): void {
             <div class="image">
                 <img
                     alt="logo"
-                    src="@/assets/onboarding/onboard2.png"
+                    src="@desktop/assets/onboarding/onboard2.png"
                 />
             </div>
             <div class="info">

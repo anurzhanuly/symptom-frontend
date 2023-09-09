@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCabinetsStore } from '@/modules/cabinets/store/cabinets.store';
+import { useCabinetsStore } from '@mobile/modules/cabinets/store/cabinets.store';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 

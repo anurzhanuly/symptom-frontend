@@ -6,7 +6,7 @@ import VueGtag from 'vue-gtag-next';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import VueYandexMetrika from 'vue3-yandex-metrika';
-import '@/styles/main.scss';
+import '@desktop/styles/main.scss';
 import App from './App.vue';
 
 import PrimeVue from 'primevue/config';

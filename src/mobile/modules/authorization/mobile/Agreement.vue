@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useSurveyStore } from '@/modules/survey/store/survey.store';
-import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
+import { useSurveyStore } from '@mobile/modules/survey/store/survey.store';
+import { PRIVACY_POLICY, TERMS_OF_USE } from '@mobile/utils/agreement';
 
 import PButton from 'primevue/button';
 import Sidebar from 'primevue/sidebar';

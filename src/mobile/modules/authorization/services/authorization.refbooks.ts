@@ -1,6 +1,6 @@
 import type { ClientRegistration } from '../types/authorization';
 import type { AxiosResponse } from 'axios';
-import { useSymptomApi } from '@/services/api';
+import { useSymptomApi } from '@mobile/services/api';
 
 export async function postLogin(
     email: string,

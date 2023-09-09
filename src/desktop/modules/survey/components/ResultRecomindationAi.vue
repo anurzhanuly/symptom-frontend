@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSurveyStore } from '@/modules/survey/store/survey.store';
+import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 import { storeToRefs } from 'pinia';
 
 import Card from 'primevue/card';

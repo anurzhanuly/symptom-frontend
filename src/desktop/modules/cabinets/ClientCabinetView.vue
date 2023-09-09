@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import BaseHeader from '@/components/BaseHeader.vue';
+import BaseHeader from '@desktop/components/BaseHeader.vue';
 import TabMenu from 'primevue/tabmenu';
 
 const clientViews = ref([

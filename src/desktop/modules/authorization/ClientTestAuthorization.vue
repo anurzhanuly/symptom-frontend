@@ -5,16 +5,16 @@ import { storeToRefs } from 'pinia';
 import { useGtag } from 'vue-gtag-next';
 
 import Authorization from './components/Authorization.vue';
-import { useClinicsStore } from '@/modules/admin/stores/clinics.store';
-import { useAuthorizationStore } from '@/modules/authorization/store/authorization.store';
-import { useSurveyStore } from '@/modules/survey/store/survey.store';
-import { warn } from '@/utils/toast';
-import { getParameterByKey } from '@/utils/url';
+import { useClinicsStore } from '@desktop/modules/admin/stores/clinics.store';
+import { useAuthorizationStore } from '@desktop/modules/authorization/store/authorization.store';
+import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
+import { warn } from '@desktop/utils/toast';
+import { getParameterByKey } from '@desktop/utils/url';
 
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Dropdown from 'primevue/dropdown';
-import UiButton from '@/ui/UiButton.vue';
+import UiButton from '@desktop/ui/UiButton.vue';
 
 const router = useRouter();
 const { event: gEvent } = useGtag();
@@ -129,7 +129,7 @@ const validateRegisterForm = (): boolean => {
             <form class="authorization-form p-fluid">
                 <img
                     alt="Symptom logo"
-                    src="@/assets/logo-auth.png"
+                    src="@desktop/assets/logo-auth.png"
                 />
                 <div>
                     <h4>Имя <span>*</span></h4>

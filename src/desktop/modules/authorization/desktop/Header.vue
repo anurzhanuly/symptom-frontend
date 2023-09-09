@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import PButton from 'primevue/button';
-import UiButton from '@/ui/UiButton.vue';
+import UiButton from '@desktop/ui/UiButton.vue';
 </script>
 
 <template>
@@ -16,7 +16,7 @@ import UiButton from '@/ui/UiButton.vue';
             <img
                 alt="Symptom logo"
                 class="header__logo"
-                src="@/assets/logo-auth.png"
+                src="@desktop/assets/logo-auth.png"
             />
         </header>
     </div>

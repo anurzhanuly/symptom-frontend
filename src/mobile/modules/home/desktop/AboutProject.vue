@@ -4,7 +4,7 @@ import { useHomeStore } from '../store/home.store';
 import { useRouter } from 'vue-router';
 import { computed } from 'vue';
 
-import UiButton from '@/ui/UiButton.vue';
+import UiButton from '@mobile/ui/UiButton.vue';
 
 const homeStore = useHomeStore();
 const { isDoctor } = storeToRefs(homeStore);
@@ -50,7 +50,7 @@ function direct(): void {
             <div class="image">
                 <img
                     alt="logo"
-                    src="@/assets/onboarding/onboard2.png"
+                    src="@mobile/assets/onboarding/onboard2.png"
                 />
             </div>
             <div class="info">

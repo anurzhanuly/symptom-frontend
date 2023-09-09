@@ -2,7 +2,7 @@
 import { useSurveyStore } from './store/survey.store';
 import { storeToRefs } from 'pinia';
 
-import BaseHeader from '@/components/BaseHeader.vue';
+import BaseHeader from '@desktop/components/BaseHeader.vue';
 
 import ProgressBar from 'primevue/progressbar';
 import TabMenu from 'primevue/tabmenu';

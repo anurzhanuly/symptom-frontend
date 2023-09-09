@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { validateLogin } from '@/utils/validation';
+import { validateLogin } from '@desktop/utils/validation';
 
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
-import { postLogin } from '@/modules/authorization/services/authorization.refbooks';
+import { postLogin } from '@desktop/modules/authorization/services/authorization.refbooks';
 import PPassword from 'primevue/password';
 
 const router = useRouter();

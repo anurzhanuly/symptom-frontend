@@ -3,7 +3,7 @@ import AdminLogin from '../popup/AdminLogin.vue';
 import { useDialog } from 'primevue/usedialog';
 import { useHomeStore } from '../store/home.store';
 import { storeToRefs } from 'pinia';
-import { scrollToElement } from '@/utils/scroll';
+import { scrollToElement } from '@mobile/utils/scroll';
 
 const dialog = useDialog();
 const homeStore = useHomeStore();

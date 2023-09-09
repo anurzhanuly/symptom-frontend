@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import 'survey-core/defaultV2.min.css';
 import 'survey-core/survey.i18n';
 import { Model } from 'survey-core';
-import { useSurveyStore } from '@/modules/survey/store/survey.store';
+import { useSurveyStore } from '@mobile/modules/survey/store/survey.store';
 import ProgressBar from 'primevue/progressbar';
 
 const router = useRouter();

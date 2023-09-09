@@ -2,9 +2,9 @@
 import type {
     QuestionsContent,
     ResQuestions,
-} from '@/modules/admin/types/questions';
+} from '@desktop/modules/admin/types/questions';
 import type { AxiosError, AxiosResponse } from 'axios';
-import { useSymptomApi } from '@/services/api';
+import { useSymptomApi } from '@desktop/services/api';
 import { ref } from 'vue';
 
 import Panel from 'primevue/panel';

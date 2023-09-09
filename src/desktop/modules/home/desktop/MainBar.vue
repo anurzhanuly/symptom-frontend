@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import { useHomeStore } from '../store/home.store';
 
 import { storeToRefs } from 'pinia';
-import UiButton from '@/ui/UiButton.vue';
+import UiButton from '@desktop/ui/UiButton.vue';
 
 const router = useRouter();
 const homeStore = useHomeStore();
@@ -82,7 +82,7 @@ function goToDoctorCabinet() {
         <div class="main-image">
             <img
                 alt="logo"
-                src="@/assets/main.png"
+                src="@desktop/assets/main.png"
             />
         </div>
     </div>

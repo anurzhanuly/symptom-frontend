@@ -1,7 +1,7 @@
 import type { Component } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import { trackRouter } from 'vue-gtag-next';
-import HomeView from '@/modules/home/HomeView.vue';
+import HomeView from '@desktop/modules/home/HomeView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,39 +15,45 @@ const router = createRouter({
             path: '/choose-survey-flow',
             name: 'choose-survey-flow',
             component: (): Component =>
-                import('@/modules/authorization/ChooseSurveyFlow.vue'),
+                import('@desktop/modules/authorization/ChooseSurveyFlow.vue'),
         },
         {
             path: '/agreement',
             name: 'agreement',
             component: (): Component =>
                 import(
-                    '@/modules/authorization/AuthorizationAgreementView.vue'
+                    '@desktop/modules/authorization/AuthorizationAgreementView.vue'
                 ),
         },
         {
             path: '/client-test-auth',
             name: 'client-test-auth',
             component: (): Component =>
-                import('@/modules/authorization/ClientTestAuthorization.vue'),
+                import(
+                    '@desktop/modules/authorization/ClientTestAuthorization.vue'
+                ),
         },
         {
             path: '/client-sign-in',
             name: 'client-sign-in',
             component: (): Component =>
-                import('@/modules/authorization/AuthorizationClientView.vue'),
+                import(
+                    '@desktop/modules/authorization/AuthorizationClientView.vue'
+                ),
         },
         {
             path: '/doctor-sign-in',
             name: 'doctor-sign-in',
             component: (): Component =>
-                import('@/modules/authorization/AuthorizationDoctorView.vue'),
+                import(
+                    '@desktop/modules/authorization/AuthorizationDoctorView.vue'
+                ),
         },
         {
             path: '/result',
             name: 'result',
             component: (): Component =>
-                import('@/modules/survey/ResultView.vue'),
+                import('@desktop/modules/survey/ResultView.vue'),
             redirect: () => {
                 return { path: '/result/recommendation' };
             },
@@ -56,14 +62,14 @@ const router = createRouter({
                     path: 'recommendation',
                     component: (): Component =>
                         import(
-                            '@/modules/survey/components/ResultRecomindation.vue'
+                            '@desktop/modules/survey/components/ResultRecomindation.vue'
                         ),
                 },
                 {
                     path: 'card',
                     component: (): Component =>
                         import(
-                            '@/modules/survey/components/ResultPatientCard.vue'
+                            '@desktop/modules/survey/components/ResultPatientCard.vue'
                         ),
                 },
             ],
@@ -71,43 +77,49 @@ const router = createRouter({
         {
             path: '/survey',
             name: 'survey',
-            component: (): Component => import('@/modules/survey/Survey.vue'),
+            component: (): Component =>
+                import('@desktop/modules/survey/Survey.vue'),
         },
         {
             path: '/admin',
             name: 'admin',
-            component: (): Component => import('@/modules/admin/AdminView.vue'),
+            component: (): Component =>
+                import('@desktop/modules/admin/AdminView.vue'),
             children: [
                 {
                     path: 'quest',
                     component: (): Component =>
                         import(
-                            '@/modules/admin/components/ChangeJSONQuestions.vue'
+                            '@desktop/modules/admin/components/ChangeJSONQuestions.vue'
                         ),
                 },
                 {
                     path: 'cond',
                     component: (): Component =>
                         import(
-                            '@/modules/admin/components/ChangeConditions.vue'
+                            '@desktop/modules/admin/components/ChangeConditions.vue'
                         ),
                 },
                 {
                     path: 'recom',
                     component: (): Component =>
                         import(
-                            '@/modules/admin/components/ChangeRecommendations.vue'
+                            '@desktop/modules/admin/components/ChangeRecommendations.vue'
                         ),
                 },
                 {
                     path: 'magic',
                     component: (): Component =>
-                        import('@/modules/admin/components/ChangeName.vue'),
+                        import(
+                            '@desktop/modules/admin/components/ChangeName.vue'
+                        ),
                 },
                 {
                     path: 'clinics',
                     component: (): Component =>
-                        import('@/modules/admin/components/ClinicsLists.vue'),
+                        import(
+                            '@desktop/modules/admin/components/ClinicsLists.vue'
+                        ),
                 },
             ],
         },
@@ -115,7 +127,7 @@ const router = createRouter({
             path: '/doctor-cabinet',
             name: 'doctor-cabinet',
             component: (): Component =>
-                import('@/modules/cabinets/DoctorCabinetView.vue'),
+                import('@desktop/modules/cabinets/DoctorCabinetView.vue'),
             redirect: () => {
                 return { path: '/doctor-cabinet/main' };
             },
@@ -123,22 +135,28 @@ const router = createRouter({
                 {
                     path: 'main',
                     component: (): Component =>
-                        import('@/modules/cabinets/DoctorCabinetMain.vue'),
+                        import(
+                            '@desktop/modules/cabinets/DoctorCabinetMain.vue'
+                        ),
                 },
                 {
                     path: 'patients',
                     component: (): Component =>
-                        import('@/modules/cabinets/DoctorCabinetPatients.vue'),
+                        import(
+                            '@desktop/modules/cabinets/DoctorCabinetPatients.vue'
+                        ),
                 },
                 {
                     path: 'settings',
                     component: (): Component =>
-                        import('@/modules/cabinets/DoctorCabinetSettings.vue'),
+                        import(
+                            '@desktop/modules/cabinets/DoctorCabinetSettings.vue'
+                        ),
                 },
                 {
                     path: 'result/:id',
                     component: (): Component =>
-                        import('@/modules/cabinets/CabinetResult.vue'),
+                        import('@desktop/modules/cabinets/CabinetResult.vue'),
                 },
             ],
         },
@@ -146,7 +164,7 @@ const router = createRouter({
             path: '/client-cabinet',
             name: '/client-cabinet',
             component: (): Component =>
-                import('@/modules/cabinets/ClientCabinetView.vue'),
+                import('@desktop/modules/cabinets/ClientCabinetView.vue'),
             redirect: () => {
                 return { path: '/client-cabinet/main' };
             },
@@ -154,12 +172,14 @@ const router = createRouter({
                 {
                     path: 'main',
                     component: (): Component =>
-                        import('@/modules/cabinets/ClientCabinetMain.vue'),
+                        import(
+                            '@desktop/modules/cabinets/ClientCabinetMain.vue'
+                        ),
                 },
                 {
                     path: 'result/:id',
                     component: (): Component =>
-                        import('@/modules/cabinets/CabinetResult.vue'),
+                        import('@desktop/modules/cabinets/CabinetResult.vue'),
                 },
             ],
         },

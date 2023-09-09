@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
-import { useSurveyStore } from '@/modules/survey/store/survey.store';
+import { useSurveyStore } from '@mobile/modules/survey/store/survey.store';
 
 import Panel from 'primevue/panel';
 import PButton from 'primevue/button';

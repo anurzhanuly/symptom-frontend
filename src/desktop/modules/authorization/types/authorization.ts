@@ -1,4 +1,7 @@
-import type { Attributes, Relationships } from '@/modules/admin/types/clinics';
+import type {
+    Attributes,
+    Relationships,
+} from '@desktop/modules/admin/types/clinics';
 
 export interface ClientRegistration {
     email: string;

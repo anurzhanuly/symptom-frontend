@@ -6,7 +6,7 @@ import PButton from 'primevue/button';
     <div class="base-header">
         <img
             alt="Symptom logo"
-            src="@/assets/logo-auth.png"
+            src="@mobile/assets/logo-auth.png"
             @click="$router.push('/')"
         />
         <p-button

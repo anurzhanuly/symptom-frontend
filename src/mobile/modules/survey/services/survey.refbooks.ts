@@ -1,5 +1,5 @@
 import type { AxiosError } from 'axios';
-import { useSymptomApi } from '@/services/api';
+import { useSymptomApi } from '@mobile/services/api';
 
 export const postAnswersToChatGPT = async (data: {
     answers: Record<string, string[]>;

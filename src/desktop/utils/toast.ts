@@ -1,5 +1,5 @@
 import { ToastSeverity } from 'primevue/api';
-import { app } from '@/main';
+import { app } from '@desktop/main';
 
 export function info(summary: string, detail: string, life = 2000): void {
     app.config.globalProperties.$toast.add({

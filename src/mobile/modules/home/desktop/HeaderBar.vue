@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { useHomeStore } from '../store/home.store';
 import { storeToRefs } from 'pinia';
-import { scrollToElement } from '@/utils/scroll';
+import { scrollToElement } from '@mobile/utils/scroll';
 const homeStore = useHomeStore();
 
 const { isDoctor, links } = storeToRefs(homeStore);
@@ -18,7 +18,7 @@ const label = computed(() => {
             <img
                 alt="logo"
                 class="header-image"
-                src="@/assets/logo.png"
+                src="@mobile/assets/logo.png"
             />
             <a
                 v-for="(link, index) in links"

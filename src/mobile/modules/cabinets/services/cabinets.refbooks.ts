@@ -1,4 +1,4 @@
-import { useSymptomApi } from '@/services/api';
+import { useSymptomApi } from '@mobile/services/api';
 import type { AxiosResponse } from 'axios';
 
 export async function getDoctorConsultations(): Promise<AxiosResponse | null> {

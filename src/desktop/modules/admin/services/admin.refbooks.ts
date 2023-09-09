@@ -1,6 +1,6 @@
 import type { Recommendation } from '../types/recommendations';
 import type { AxiosResponse } from 'axios';
-import { useSymptomApi } from '@/services/api';
+import { useSymptomApi } from '@desktop/services/api';
 import type { UnwrapRef } from 'vue';
 
 export async function getQuestionsJson(): Promise<AxiosResponse | null> {

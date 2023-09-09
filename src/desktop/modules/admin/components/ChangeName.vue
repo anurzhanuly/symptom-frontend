@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { useAdminStore } from '@/modules/admin/stores/admin.store';
+import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { useConfirm } from 'primevue/useconfirm';
 
 import InputText from 'primevue/inputtext';

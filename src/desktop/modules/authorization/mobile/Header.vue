@@ -14,7 +14,7 @@ import PButton from 'primevue/button';
             <img
                 alt="Symptom logo"
                 class="header__logo"
-                src="@/assets/logo-auth.png"
+                src="@desktop/assets/logo-auth.png"
             />
         </header>
     </div>
