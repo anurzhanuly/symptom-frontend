@@ -72,6 +72,7 @@ function direct(): void {
         <h4>{{ actionInfo }}</h4>
         <div class="about__button">
             <ui-button
+                is-big
                 is-full
                 @click="direct"
             >
@@ -164,73 +165,6 @@ img {
 @media (max-width: 1200px) {
     .image {
         display: none;
-    }
-}
-
-@media (max-width: 865px) {
-    h4 {
-        font-size: 25px;
-    }
-
-    .about-action--button {
-        width: 70%;
-    }
-}
-
-@media (max-width: 595px) {
-    h4 {
-        font-size: 20px;
-    }
-
-    h3 {
-        font-size: 30px;
-        margin-left: 55px;
-    }
-
-    h1 {
-        font-size: 40px;
-    }
-
-    p {
-        font-size: 16px;
-    }
-
-    .project-info {
-        margin-top: 5px;
-    }
-
-    .about-container {
-        padding: 20px 45px;
-    }
-}
-
-@media (max-width: 490px) {
-    .about-container {
-        padding: 20px;
-    }
-
-    h4 {
-        font-size: 15px;
-    }
-
-    h3 {
-        font-size: 22px;
-    }
-}
-
-@media (max-width: 400px) {
-    h4 {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 330px) {
-    h4 {
-        font-size: 13px;
-    }
-
-    p {
-        font-size: 14px;
     }
 }
 </style>

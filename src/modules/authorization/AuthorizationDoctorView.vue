@@ -50,6 +50,7 @@ function checkDoctor(): void {
                 </inline-message>
                 <ui-button
                     is-full
+                    is-big
                     class="authorization__button"
                     @click="checkDoctor"
                 >
@@ -84,12 +85,8 @@ function checkDoctor(): void {
     margin-top: 8px;
 }
 
-.authorization-form .authorization__button {
+.authorization__button {
     margin-top: 15px;
-    height: 45px;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 100%;
 }
 
 @media only screen and (max-width: 750px) {

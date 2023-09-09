@@ -7,6 +7,7 @@ defineProps({
         type: String,
         default: '',
     },
+    isBig: Boolean,
 });
 </script>
 
@@ -71,6 +72,10 @@ defineProps({
         pointer-events: none;
         background-color: #5eadef;
         padding: 20px;
+    }
+
+    &--big {
+        font-size: 20px;
     }
 }
 

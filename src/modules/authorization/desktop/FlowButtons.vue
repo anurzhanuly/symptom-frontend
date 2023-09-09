@@ -9,12 +9,14 @@ import UiButton from '@/ui/UiButton.vue';
             <h2 class="buttons__title">Пройти опрос</h2>
             <ui-button
                 class="buttons__item"
+                is-big
                 @click="$router.push({ name: 'agreement' })"
             >
                 Без регистрации
             </ui-button>
             <ui-button
                 is-white
+                is-big
                 class="buttons__item"
                 @click="$router.push({ name: 'client-test-auth' })"
             >

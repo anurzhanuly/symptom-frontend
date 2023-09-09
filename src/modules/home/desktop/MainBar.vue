@@ -51,7 +51,8 @@ function goToDoctorCabinet() {
             >
                 <ui-button
                     v-if="!doctorToken"
-                    class="button--margin"
+                    class="button"
+                    is-big
                     @click="goToDoctorCabinet"
                 >
                     Войти в кабинет врача
@@ -64,6 +65,7 @@ function goToDoctorCabinet() {
                 <ui-button
                     is-full
                     class="button"
+                    is-big
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
                     Пройти Опрос
@@ -72,6 +74,7 @@ function goToDoctorCabinet() {
                     v-if="!clientToken"
                     is-full
                     is-white
+                    is-big
                     @click="goToClientCabinet"
                 >
                     Войти в личный кабинет
@@ -121,10 +124,11 @@ h1 {
 .main-container-button {
     display: flex;
     flex-direction: column;
+    margin-top: 16px;
 }
 
 .button:not(:last-child) {
-    margin: 16px 0;
+    margin-bottom: 16px;
 }
 
 @media (max-width: 1900px) {
