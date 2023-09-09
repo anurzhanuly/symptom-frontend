@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAuthorizationStore } from '../../store/authorization.store';
-import { success } from '@mobile/utils/toast';
+import { success } from '@/utils/toast';
 import { useRouter } from 'vue-router';
 import { inject, ref } from 'vue';
 

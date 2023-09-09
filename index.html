@@ -10,6 +10,23 @@
     </head>
     <body>
         <div id="app"></div>
-        <script type="module" src="/src/main.ts"></script>
+        <script type="module">
+            import mainMobile from '@mobile/main.ts';
+            import mainDesktop from '@desktop/main.ts';
+
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+            switch (isMobile) {
+                case true:
+                    mainMobile();
+                    break;
+                case false:
+                    mainDesktop();
+                    break;
+                default:
+                    mainMobile();
+            }
+        </script>
+
     </body>
 </html>

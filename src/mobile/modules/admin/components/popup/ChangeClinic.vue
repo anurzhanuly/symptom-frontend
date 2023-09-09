@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useClinicsStore } from '../../stores/clinics.store';
-import { validateClinic } from '@mobile/utils/validation';
-import { success } from '@mobile/utils/toast';
+import { validateClinic } from '@/utils/validation';
+import { success } from '@/utils/toast';
 import { inject, ref } from 'vue';
 
 import PButton from 'primevue/button';

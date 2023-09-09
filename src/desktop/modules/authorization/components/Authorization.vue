@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BaseCarousel from '@desktop/components/BaseCarousel.vue';
 import PButton from 'primevue/button';
-import UiButton from '@desktop/ui/UiButton.vue';
+import UiButton from '@/ui/UiButton.vue';
 </script>
 
 <template>

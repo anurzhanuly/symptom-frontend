@@ -14,7 +14,7 @@ import {
     getRecommendations,
     updateRecommendation,
 } from '../services/admin.refbooks';
-import { success } from '@mobile/utils/toast.js';
+import { success } from '@/utils/toast.js';
 import { useDialog } from 'primevue/usedialog';
 
 import CreateConditions from '../components/popup/CreateConditions.vue';

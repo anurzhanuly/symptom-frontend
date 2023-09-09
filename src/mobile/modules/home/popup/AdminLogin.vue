@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { validateLogin } from '@mobile/utils/validation';
+import { validateLogin } from '@/utils/validation';
 
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';

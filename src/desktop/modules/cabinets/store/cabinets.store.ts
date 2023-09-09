@@ -11,7 +11,7 @@ import type {
 import type { DataTableFilterMeta } from 'primevue/datatable';
 import { useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
-import { error, warn } from '@desktop/utils/toast';
+import { error, warn } from '@/utils/toast';
 import { ref } from 'vue';
 
 export const useCabinetsStore = defineStore('cabinet', () => {

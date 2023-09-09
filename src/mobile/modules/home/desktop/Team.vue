@@ -6,7 +6,7 @@ import { useHomeStore } from '../store/home.store';
 import Carousel from 'primevue/carousel';
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
-import { success, warn } from '@mobile/utils/toast';
+import { success, warn } from '@/utils/toast';
 import { postNpsRequest } from '@mobile/modules/home/services/home.refbooks';
 
 const homeStore = useHomeStore();
@@ -185,7 +185,7 @@ async function sendRequest() {
         <div class="questions-img">
             <img
                 alt="logo"
-                src="@mobile/assets/onboarding/onboard1.png"
+                src="@/assets/onboarding/onboard1.png"
             />
         </div>
     </div>

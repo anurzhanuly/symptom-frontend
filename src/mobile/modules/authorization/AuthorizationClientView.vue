@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useAuthorizationStore } from './store/authorization.store';
-import { validateLogin } from '@mobile/utils/validation';
+import { validateLogin } from '@/utils/validation';
 
 import Authorization from './components/Authorization.vue';
 import ClientRegistration from './components/popup/ClientRegistration.vue';
@@ -13,8 +13,8 @@ import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
 import InlineMessage from 'primevue/inlinemessage';
-import UiButton from '@mobile/ui/UiButton.vue';
-import UiInput from '@mobile/ui/UiInput.vue';
+import UiButton from '@/ui/UiButton.vue';
+import UiInput from '@/ui/UiInput.vue';
 
 const authorizationStore = useAuthorizationStore();
 
@@ -53,7 +53,7 @@ function clientRegistration() {
             <form class="authorization-form p-fluid">
                 <img
                     alt="Symptom logo"
-                    src="@mobile/assets/logo-auth.png"
+                    src="@/assets/logo-auth.png"
                 />
                 <div>
                     <h4>Почта <span>*</span></h4>

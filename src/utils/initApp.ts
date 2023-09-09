@@ -1,13 +1,11 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import router from './router';
 import { surveyPlugin } from 'survey-vue3-ui';
 import VueGtag from 'vue-gtag-next';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import VueYandexMetrika from 'vue3-yandex-metrika';
 import '../styles/main.scss';
-import App from './App.vue';
 
 import PrimeVue from 'primevue/config';
 import ConfirmationService from 'primevue/confirmationservice';
@@ -22,25 +20,27 @@ import 'primeicons/primeicons.css';
 // eslint-disable-next-line no-undef
 const env = process.env.NODE_ENV;
 
-export const app = createApp(App);
+export function initApp(RootComponent: any, appRouter: any) {
+    const app = createApp(RootComponent);
 
-app.use(createPinia());
-app.use(router);
-app.use(surveyPlugin);
-app.use(PrimeVue);
-app.use(ToastService);
-app.use(DialogService);
-app.use(ConfirmationService);
-app.use(VueYandexMetrika, {
-    id: 93868095,
-    router: router,
-    env: env,
-});
-app.use(VueGtag, {
-    property: {
-        id: 'G-DN8BB75PFS',
-    },
-    isEnabled: env !== 'development',
-});
+    app.use(createPinia());
+    app.use(appRouter);
+    app.use(surveyPlugin);
+    app.use(PrimeVue);
+    app.use(ToastService);
+    app.use(DialogService);
+    app.use(ConfirmationService);
+    app.use(VueYandexMetrika, {
+        id: 93868095,
+        router: appRouter,
+        env: env,
+    });
+    app.use(VueGtag, {
+        property: {
+            id: 'G-DN8BB75PFS',
+        },
+        isEnabled: env !== 'development',
+    });
 
-app.mount('#app');
+    app.mount('#app');
+}

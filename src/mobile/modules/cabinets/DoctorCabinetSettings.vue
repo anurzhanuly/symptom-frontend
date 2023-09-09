@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import InputText from 'primevue/inputtext';
 import { postPassword } from '@mobile/modules/cabinets/services/cabinets.refbooks';
 import PButton from 'primevue/button';
-import { success, error } from '@mobile/utils/toast';
+import { success, error } from '@/utils/toast';
 
 const newPassword = ref('');
 

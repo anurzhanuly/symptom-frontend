@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
-import { PRIVACY_POLICY, TERMS_OF_USE } from '@desktop/utils/agreement';
+import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
 
 import PButton from 'primevue/button';
 import Sidebar from 'primevue/sidebar';

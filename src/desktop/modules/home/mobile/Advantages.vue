@@ -37,7 +37,7 @@ const advantagesInfoSecond = computed(() => {
         <div class="image">
             <img
                 alt="logo"
-                src="@desktop/assets/phone.png"
+                src="@/assets/phone.png"
             />
         </div>
     </div>
