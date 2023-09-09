@@ -6,6 +6,7 @@ import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
 import { useSurveyStore } from '@/modules/survey/store/survey.store';
 
 import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 import Card from 'primevue/card';
 import Sidebar from 'primevue/sidebar';
 
@@ -69,12 +70,13 @@ onMounted(() => {
                             </strong>
                         </span>
                     </div>
-
-                    <p-button
-                        label="Принять и начать опрос"
-                        :loading="isLoading"
+                    <ui-button
+                        is-full
+                        class="agreement-button"
                         @click="$router.push({ name: 'survey' })"
-                    />
+                    >
+                        Принять и начать опрос
+                    </ui-button>
                 </template>
             </card>
         </div>
@@ -165,9 +167,8 @@ onMounted(() => {
     color: #1769aa;
     cursor: pointer;
 }
-.p-button {
+.agreement-button {
     margin-top: 12px;
-    width: 100%;
 }
 .agreement__separator {
     margin: 16px 0;

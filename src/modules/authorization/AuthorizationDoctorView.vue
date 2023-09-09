@@ -8,6 +8,7 @@ import PButton from 'primevue/button';
 import PPassword from 'primevue/password';
 import InputText from 'primevue/inputtext';
 import { storeToRefs } from 'pinia';
+import UiButton from '@/ui/UiButton.vue';
 
 const authorizationStore = useAuthorizationStore();
 const { isWrong } = storeToRefs(authorizationStore);
@@ -47,10 +48,14 @@ function checkDoctor(): void {
                 <inline-message v-if="isWrong">
                     Неверный пароль или почта
                 </inline-message>
-                <p-button
-                    label="Вход"
+                <ui-button
+                    is-full
+                    is-big
+                    class="authorization__button"
                     @click="checkDoctor"
-                />
+                >
+                    Вход
+                </ui-button>
             </form>
         </div>
     </authorization>
@@ -80,12 +85,8 @@ function checkDoctor(): void {
     margin-top: 8px;
 }
 
-.authorization-form .p-button {
+.authorization__button {
     margin-top: 15px;
-    height: 45px;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 100%;
 }
 
 @media only screen and (max-width: 750px) {

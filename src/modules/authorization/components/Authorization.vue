@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BaseCarousel from '@/components/BaseCarousel.vue';
 import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 </script>
 
 <template>
@@ -9,12 +10,15 @@ import PButton from 'primevue/button';
             <base-carousel />
         </div>
         <div class="authorization-main">
-            <p-button
+            <ui-button
+                class="authorization-button"
+                is-white
                 icon="pi pi-angle-left header__button"
-                label="Назад"
                 link
                 @click="$router.push({ name: 'home' })"
-            />
+            >
+                Назад
+            </ui-button>
             <div>
                 <slot />
             </div>
@@ -30,6 +34,10 @@ import PButton from 'primevue/button';
 
 .authorization-main {
     padding-top: 40px;
+}
+
+.authorization-main .authorization-button {
+    border: none;
 }
 
 .authorization-onboarding,

@@ -14,6 +14,7 @@ import { getParameterByKey } from '@/utils/url';
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Dropdown from 'primevue/dropdown';
+import UiButton from '@/ui/UiButton.vue';
 
 const router = useRouter();
 const { event: gEvent } = useGtag();
@@ -173,11 +174,13 @@ const validateRegisterForm = (): boolean => {
                         :options="doctors"
                     />
                 </div>
-                <p-button
-                    label="Далее"
-                    :loading="isLoading"
+                <ui-button
+                    is-full
+                    class="authorization__button"
                     @click="goToAgreement"
-                />
+                >
+                    Далее
+                </ui-button>
             </form>
         </div>
     </authorization>
@@ -208,7 +211,7 @@ const validateRegisterForm = (): boolean => {
     width: 100%;
 }
 
-.authorization-form .p-button {
+.authorization-form .authorization__button {
     margin-top: 15px;
     height: 45px;
     font-weight: 600;
