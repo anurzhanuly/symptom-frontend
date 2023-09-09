@@ -43,4 +43,6 @@ export function initApp(RootComponent: any, appRouter: any) {
     });
 
     app.mount('#app');
+
+    return app;
 }
