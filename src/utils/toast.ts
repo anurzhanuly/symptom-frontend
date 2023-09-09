@@ -1,7 +1,8 @@
 import { ToastSeverity } from 'primevue/api';
-import { app } from '@desktop/main';
+import { getAppInstance } from '@/utils/appInstance';
 
 export function info(summary: string, detail: string, life = 2000): void {
+    const app = getAppInstance();
     app.config.globalProperties.$toast.add({
         severity: ToastSeverity.INFO as 'info',
         summary,
@@ -11,6 +12,7 @@ export function info(summary: string, detail: string, life = 2000): void {
 }
 
 export function warn(summary: string, detail: string, life = 2000): void {
+    const app = getAppInstance();
     app.config.globalProperties.$toast.add({
         severity: ToastSeverity.WARN as 'warn',
         summary,
@@ -20,6 +22,7 @@ export function warn(summary: string, detail: string, life = 2000): void {
 }
 
 export function success(summary: string, detail: string, life = 2000): void {
+    const app = getAppInstance();
     app.config.globalProperties.$toast.add({
         severity: ToastSeverity.SUCCESS as 'success',
         summary,
@@ -29,6 +32,7 @@ export function success(summary: string, detail: string, life = 2000): void {
 }
 
 export function error(summary: string, detail: string, life = 2000): void {
+    const app = getAppInstance();
     app.config.globalProperties.$toast.add({
         severity: ToastSeverity.ERROR as 'error',
         summary,

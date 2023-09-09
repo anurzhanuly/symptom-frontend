@@ -20,7 +20,11 @@ import 'primeicons/primeicons.css';
 // eslint-disable-next-line no-undef
 const env = process.env.NODE_ENV;
 
-export function initApp(RootComponent: any, appRouter: any) {
+export function initApp(
+    RootComponent: any,
+    appRouter: any,
+    mountComponent: string
+) {
     const app = createApp(RootComponent);
 
     app.use(createPinia());
@@ -42,7 +46,7 @@ export function initApp(RootComponent: any, appRouter: any) {
         isEnabled: env !== 'development',
     });
 
-    app.mount('#app');
+    app.mount(mountComponent);
 
     return app;
 }
