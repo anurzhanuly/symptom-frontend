@@ -10,5 +10,6 @@ export function getAppInstance(): App {
     if (!app) {
         throw new Error('App instance is not set.');
     }
+
     return app;
 }

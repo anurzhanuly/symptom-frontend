@@ -14,6 +14,7 @@ import ToastService from 'primevue/toastservice';
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
+import { getAppInstance, setAppInstance } from '@/utils/appInstance';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -46,7 +47,7 @@ export function initApp(
         isEnabled: env !== 'development',
     });
 
-    app.mount(mountComponent);
+    setAppInstance(app);
 
-    return app;
+    app.mount(mountComponent);
 }
