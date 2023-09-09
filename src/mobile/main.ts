@@ -1,5 +1,7 @@
 import router from './router';
 import App from './App.vue';
-import initApp from '@/utils/initApp';
+import { initApp } from '@/utils/initApp';
 
-initApp(App, router);
+const appInstance = initApp(App, router);
+
+export const app = appInstance;
