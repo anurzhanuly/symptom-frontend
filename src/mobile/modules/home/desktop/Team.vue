@@ -98,7 +98,7 @@ const team = ref([
 ]);
 
 function getImageUrl(name: string): string {
-    return new URL(`../../../assets/team/${name}`, import.meta.url).href;
+    return new URL(`../../../../assets/team/${name}`, import.meta.url).href;
 }
 
 async function sendRequest() {

@@ -27,7 +27,8 @@ const solutions = [
 ];
 
 function getImageUrl(name: string) {
-    return new URL(`../../../assets/solutions/${name}`, import.meta.url).href;
+    return new URL(`../../../../assets/solutions/${name}`, import.meta.url)
+        .href;
 }
 </script>
 
