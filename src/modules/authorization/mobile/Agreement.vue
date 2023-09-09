@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia';
 import { useSurveyStore } from '@/modules/survey/store/survey.store';
 import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
 
-import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 import Sidebar from 'primevue/sidebar';
 
 const surveyStore = useSurveyStore();
@@ -59,11 +59,12 @@ onMounted(() => {
                     >Политике конфиденциальности.
                 </strong>
             </div>
-            <p-button
-                label="Принять и начать опрос"
-                :loading="isLoading"
+            <ui-button
+                is-full
                 @click="$router.push({ name: 'survey' })"
-            />
+            >
+                Принять и начать опрос
+            </ui-button>
         </div>
     </div>
 
@@ -155,7 +156,7 @@ onMounted(() => {
     color: #1769aa;
     cursor: pointer;
 }
-.p-button {
+.button {
     margin: 12px 0;
 }
 .agreement__separator {

@@ -4,7 +4,6 @@ import { useHomeStore } from '../store/home.store';
 import { useRouter } from 'vue-router';
 import { computed } from 'vue';
 
-import PButton from 'primevue/button';
 import UiButton from '@/ui/UiButton.vue';
 
 const homeStore = useHomeStore();
@@ -152,13 +151,6 @@ img {
     width: 55%;
 }
 
-.p-button {
-    width: 390px;
-    font-size: 22px;
-    background: #276ef1;
-    border-radius: 10px;
-}
-
 @media (max-width: 1350px) {
     h1 {
         font-size: 50px;
@@ -166,11 +158,6 @@ img {
 
     p {
         font-size: 18px;
-    }
-
-    .p-button {
-        width: 265px;
-        font-size: 16px;
     }
 }
 

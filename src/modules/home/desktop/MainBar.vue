@@ -3,7 +3,6 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useHomeStore } from '../store/home.store.js';
 
-import PButton from 'primevue/button';
 import { storeToRefs } from 'pinia';
 import UiButton from '@/ui/UiButton.vue';
 
@@ -63,6 +62,7 @@ function goToDoctorCabinet() {
                 class="main-container-buttons"
             >
                 <ui-button
+                    is-full
                     class="button"
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
@@ -70,6 +70,7 @@ function goToDoctorCabinet() {
                 </ui-button>
                 <ui-button
                     v-if="!clientToken"
+                    is-full
                     is-white
                     @click="goToClientCabinet"
                 >
@@ -122,21 +123,8 @@ h1 {
     flex-direction: column;
 }
 
-.button:first-child {
+.button:not(:last-child) {
     margin: 16px 0;
-}
-
-.main-container-button .p-button,
-.main-container-buttons .p-button {
-    width: 365px;
-    font-size: 22px;
-    background: #276ef1;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-.main-container-buttons .p-button:last-child {
-    background-color: #ffffff;
 }
 
 @media (max-width: 1900px) {
@@ -164,12 +152,6 @@ h1 {
         font-size: 16px;
         line-height: 25px;
     }
-
-    .main-container-button .p-button,
-    .main-container-buttons .p-button {
-        width: 290px;
-        font-size: 18px;
-    }
 }
 
 @media (max-width: 1480px) {
@@ -186,12 +168,6 @@ h1 {
     h3 {
         font-size: 14px;
         line-height: 20px;
-    }
-
-    .main-container-button .p-button,
-    .main-container-buttons .p-button {
-        width: 265px;
-        font-size: 16px;
     }
 }
 
@@ -212,11 +188,6 @@ h1 {
 
     h3 {
         font-size: 17px;
-    }
-
-    .main-container-button .p-button,
-    .main-container-buttons .p-button {
-        width: 385px;
     }
 }
 
@@ -241,13 +212,6 @@ h1 {
 @media (max-width: 430px) {
     .main-information {
         width: 95%;
-    }
-}
-
-@media (max-width: 400px) {
-    .main-container-button .p-button,
-    .main-container-buttons .p-button {
-        width: 100%;
     }
 }
 </style>

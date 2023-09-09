@@ -1,12 +1,21 @@
 <script setup lang="ts">
 defineProps({
-    value: String,
+    value: {
+        type: String,
+        default: '',
+    },
     type: {
         type: String,
         default: 'text',
     },
-    name: String,
-    placeholder: String,
+    name: {
+        type: String,
+        default: '',
+    },
+    placeholder: {
+        type: String,
+        default: '',
+    },
     isRequired: Boolean,
 });
 </script>
@@ -27,6 +36,7 @@ defineProps({
 <style lang="scss" scoped>
 .input {
     width: 100%;
+    font-size: 16px;
     background-color: #f3f3f3;
     border: 1px solid #ced4da;
     transition: 0.1s;

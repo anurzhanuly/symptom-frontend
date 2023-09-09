@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router';
 import { inject, ref } from 'vue';
 
 import InlineMessage from 'primevue/inlinemessage';
-import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
 
@@ -171,10 +171,12 @@ function validateRegistratition(): boolean {
                 />
             </div>
 
-            <p-button
-                label="Зарегистрироваться"
+            <ui-button
+                is-full
                 @click="clientRegistration"
-            />
+            >
+                Зарегистрироваться
+            </ui-button>
         </form>
     </div>
 </template>
@@ -201,7 +203,7 @@ function validateRegistratition(): boolean {
     width: 100%;
 }
 
-.authorization-form .p-button {
+.authorization-form .button {
     margin-top: 15px;
     height: 45px;
     font-weight: 600;

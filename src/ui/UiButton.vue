@@ -3,7 +3,10 @@ defineProps({
     isWhite: Boolean,
     isFull: Boolean,
     isLoading: Boolean,
-    icon: String,
+    icon: {
+        type: String,
+        default: '',
+    },
 });
 </script>
 
@@ -36,9 +39,9 @@ defineProps({
     border-radius: 10px;
     border: 1px solid #276ef1;
     padding: 14px 20px;
-    letter-spacing: 1px;
     white-space: pre-wrap;
     cursor: pointer;
+    font-size: 16px;
 
     &-loader {
         position: absolute;
@@ -62,6 +65,7 @@ defineProps({
     &--full {
         width: 100%;
     }
+
     &--loading {
         position: relative;
         pointer-events: none;

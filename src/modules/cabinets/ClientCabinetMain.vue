@@ -6,6 +6,7 @@ import { onMounted } from 'vue';
 import { useSurveyStore } from '@/modules/survey/store/survey.store';
 
 import InputText from 'primevue/inputtext';
+import UiButton from '@/ui/UiButton.vue';
 import PButton from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';

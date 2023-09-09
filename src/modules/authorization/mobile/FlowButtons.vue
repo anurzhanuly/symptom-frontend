@@ -1,21 +1,22 @@
 <script lang="ts" setup>
-import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 </script>
 
 <template>
     <div class="buttons">
         <h2 class="buttons__title">Пройти опрос</h2>
-        <p-button
+        <ui-button
             class="buttons__item"
-            label="Без регистрации"
             @click="$router.push({ name: 'agreement' })"
-        />
-        <p-button
+        >
+            Без регистрации
+        </ui-button>
+        <ui-button
             class="buttons__item"
-            label="Для врача"
-            outlined
             @click="$router.push({ name: 'client-test-auth' })"
-        />
+        >
+            Для врача
+        </ui-button>
     </div>
 </template>
 
