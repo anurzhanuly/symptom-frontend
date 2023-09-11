@@ -24,12 +24,4 @@ export default defineConfig({
             ),
         },
     },
-    build: {
-        rollupOptions: {
-            input: {
-                desktop: '/src/desktop/main.ts',
-                mobile: '/src/mobile/main.ts',
-            },
-        },
-    },
 });

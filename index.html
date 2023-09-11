@@ -11,14 +11,6 @@
 <body>
     <div id="mobile"></div>
     <div id="desktop"></div>
-    <script type="module">
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-        if (isMobile) {
-            import('@mobile/main.ts').then(module => module.initMobileApp());
-        } else {
-            import('@desktop/main.ts').then(module => module.initDesktopApp());
-        }
-    </script>
+    <script type="module" src="src/main.ts"></script>
 </body>
 </html>
