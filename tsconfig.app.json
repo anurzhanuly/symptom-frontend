@@ -7,7 +7,9 @@
         "baseUrl": ".",
         "lib": ["esnext", "dom"],
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "@mobile*": ["./src/mobile*"],
+            "@desktop*": ["./src/desktop*"]
         },
         "jsx": "preserve"
     }

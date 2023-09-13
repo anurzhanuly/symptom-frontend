@@ -9,10 +9,18 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
-            '@shared': fileURLToPath(new URL('./src/shared', import.meta.url)),
             '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
-            '@modules': fileURLToPath(
-                new URL('./src/modules', import.meta.url)
+
+            '@mobile': fileURLToPath(new URL('./src/mobile', import.meta.url)),
+            '@mobileModules': fileURLToPath(
+                new URL('./src/mobile/modules', import.meta.url)
+            ),
+
+            '@desktop': fileURLToPath(
+                new URL('./src/desktop', import.meta.url)
+            ),
+            '@desktopModules': fileURLToPath(
+                new URL('./src/desktop/modules', import.meta.url)
             ),
         },
     },
