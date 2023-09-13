@@ -22,7 +22,7 @@ const items = ref([
 ]);
 
 function getImageUrl(name: string): string {
-    return new URL(`../assets/onboarding/${name}`, import.meta.url).href;
+    return new URL(`../../assets/onboarding/${name}`, import.meta.url).href;
 }
 </script>
 

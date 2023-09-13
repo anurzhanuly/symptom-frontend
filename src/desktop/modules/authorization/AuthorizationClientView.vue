@@ -9,7 +9,6 @@ import Authorization from './components/Authorization.vue';
 import ClientRegistration from './components/popup/ClientRegistration.vue';
 
 import { useDialog } from 'primevue/usedialog';
-import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
 import InlineMessage from 'primevue/inlinemessage';
