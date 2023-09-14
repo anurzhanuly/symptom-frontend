@@ -18,6 +18,7 @@ defineProps({
             'button--white': isWhite,
             'button--full': isFull,
             'button--loading': isLoading,
+            'button--big': isBig,
         }"
         :disabled="isLoading"
     >
@@ -25,7 +26,10 @@ defineProps({
             v-if="isLoading"
             class="button-loader"
         />
-        <span v-else>
+        <span
+            v-else
+            class="button-content"
+        >
             <i :class="icon" />
             <slot />
         </span>
@@ -34,6 +38,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .button {
+    position: relative;
     background-color: #276ef1;
     color: white;
     display: inline-block;
@@ -42,7 +47,7 @@ defineProps({
     padding: 14px 20px;
     white-space: pre-wrap;
     cursor: pointer;
-    font-size: 16px;
+    font-family: 'OpenSans', sans-serif;
 
     &-loader {
         position: absolute;
@@ -55,6 +60,10 @@ defineProps({
         border-top: 2px solid transparent;
         border-radius: 50%;
         animation: spin 1s linear infinite;
+    }
+    &-content {
+        display: flex;
+        justify-content: center;
     }
 
     &--white {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import AgreementVue from './desktop/Agreement.vue';
+import Agreement from './desktop/Agreement.vue';
 </script>
 
 <template>
-    <AgreementVue />
+    <Agreement />
 </template>
