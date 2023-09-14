@@ -86,4 +86,16 @@ survey.onComplete.add(onSurveyComplete);
 <template>
     <progress-bar :value="progress" />
     <SurveyComponent :model="survey" />
+    <div class="survey-background"></div>
 </template>
+
+<style scoped>
+.survey-background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #f9f9f9;
+    top: 0;
+    left: 0;
+}
+</style>
