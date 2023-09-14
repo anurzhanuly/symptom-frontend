@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import PButton from 'primevue/button';
 import UiButton from '@/ui/UiButton.vue';
 </script>
 

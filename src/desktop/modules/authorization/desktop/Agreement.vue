@@ -5,7 +5,6 @@ import Authorization from '../components/Authorization.vue';
 import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 
-import PButton from 'primevue/button';
 import UiButton from '@/ui/UiButton.vue';
 import Card from 'primevue/card';
 import Sidebar from 'primevue/sidebar';

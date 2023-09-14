@@ -63,6 +63,7 @@ function goToDoctorCabinet() {
                 class="main-container-buttons"
             >
                 <ui-button
+                    is-full
                     class="button"
                     is-big
                     @click="$router.push({ name: 'choose-survey-flow' })"
@@ -71,6 +72,7 @@ function goToDoctorCabinet() {
                 </ui-button>
                 <ui-button
                     v-if="!clientToken"
+                    is-full
                     is-white
                     is-big
                     @click="goToClientCabinet"
