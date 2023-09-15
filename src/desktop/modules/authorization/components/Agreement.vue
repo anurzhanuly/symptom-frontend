@@ -71,6 +71,8 @@ onMounted(() => {
                     </div>
                     <ui-button
                         is-full
+                        is-big
+                        :is-loading="isLoading"
                         class="agreement-button"
                         @click="$router.push({ name: 'survey' })"
                     >
