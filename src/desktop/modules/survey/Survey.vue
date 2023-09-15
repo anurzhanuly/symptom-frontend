@@ -84,8 +84,8 @@ survey.onComplete.add(onSurveyComplete);
 </script>
 
 <template>
-    <progress-bar :value="progress" />
     <div class="survey">
+        <progress-bar :value="progress" />
         <SurveyComponent :model="survey" />
     </div>
 </template>

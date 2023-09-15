@@ -4,7 +4,6 @@ import { useAuthorizationStore } from './store/authorization.store';
 import { validateLogin } from '@/utils/validation';
 import { ref } from 'vue';
 
-import PButton from 'primevue/button';
 import PPassword from 'primevue/password';
 import InputText from 'primevue/inputtext';
 import { storeToRefs } from 'pinia';

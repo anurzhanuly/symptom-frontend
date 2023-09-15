@@ -39,8 +39,8 @@ import UiButton from '@/ui/UiButton.vue';
 
     &__item {
         margin-bottom: 16px;
-        justify-content: center;
-        padding: 16px 0;
+        border-radius: 3px;
+        padding: 17px;
     }
 }
 </style>

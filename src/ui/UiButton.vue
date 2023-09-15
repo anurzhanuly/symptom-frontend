@@ -48,6 +48,7 @@ defineProps({
     white-space: pre-wrap;
     cursor: pointer;
     font-family: 'OpenSans', sans-serif;
+    letter-spacing: 1px;
 
     &-loader {
         position: absolute;
@@ -80,7 +81,7 @@ defineProps({
         position: relative;
         pointer-events: none;
         background-color: #5eadef;
-        padding: 20px;
+        padding: 22px;
     }
 
     &--big {

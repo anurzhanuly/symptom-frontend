@@ -170,6 +170,7 @@ onMounted(() => {
 }
 .agreement-button {
     margin-top: 12px;
+    border-radius: 3px;
 }
 .agreement__separator {
     margin: 16px 0;
