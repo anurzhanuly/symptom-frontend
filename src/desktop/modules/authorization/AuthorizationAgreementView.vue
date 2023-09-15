@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Agreement from './desktop/Agreement.vue';
+import Agreement from './components/Agreement.vue';
 </script>
 
 <template>
