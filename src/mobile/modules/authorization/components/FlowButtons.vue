@@ -6,12 +6,14 @@ import UiButton from '@/ui/UiButton.vue';
     <div class="buttons">
         <h2 class="buttons__title">Пройти опрос</h2>
         <ui-button
+            is-big
             is-full
             @click="$router.push({ name: 'agreement' })"
         >
             Без регистрации
         </ui-button>
         <ui-button
+            is-big
             is-full
             is-white
             @click="$router.push({ name: 'client-test-auth' })"
@@ -22,14 +24,8 @@ import UiButton from '@/ui/UiButton.vue';
 </template>
 
 <style lang="scss" scoped>
-.button {
-    margin-bottom: 16px;
-    border-radius: 3px;
-    padding: 17px;
-}
 .button:not(:last-child) {
     margin-bottom: 16px;
-    background-color: #2196f3;
 }
 .buttons {
     display: flex;

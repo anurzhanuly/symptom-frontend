@@ -7,6 +7,7 @@ import UiButton from '@/ui/UiButton.vue';
         <header class="header">
             <ui-button
                 is-white
+                is-outlined
                 icon="pi pi-angle-left"
                 @click="$router.back()"
             >
@@ -30,11 +31,6 @@ import UiButton from '@/ui/UiButton.vue';
     &__logo {
         max-width: 100px;
     }
-}
-
-.button {
-    padding: 0;
-    border: none;
 }
 
 .pi {

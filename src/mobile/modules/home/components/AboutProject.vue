@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router';
 import { computed } from 'vue';
 
 import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 
 const homeStore = useHomeStore();
 const { isDoctor } = storeToRefs(homeStore);
@@ -70,10 +71,15 @@ function direct(): void {
     </div>
     <div class="about-action">
         <h4>{{ actionInfo }}</h4>
-        <p-button
-            :label="buttonLabel"
-            @click="direct"
-        />
+        <div class="about-button">
+            <ui-button
+                is-full
+                is-big
+                @click="direct"
+            >
+                Пройти опрос
+            </ui-button>
+        </div>
     </div>
 </template>
 
@@ -143,11 +149,8 @@ img {
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
 }
 
-.p-button {
-    width: 390px;
-    font-size: 22px;
-    background: #276ef1;
-    border-radius: 10px;
+.about-button {
+    width: 80%;
 }
 
 @media (max-width: 1350px) {

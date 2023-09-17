@@ -160,8 +160,6 @@ onMounted(() => {
 }
 .button {
     margin-top: 12px;
-    border-radius: 3px;
-    background-color: #2196f3;
 }
 .agreement__separator {
     margin: 16px 0;

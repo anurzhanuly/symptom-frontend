@@ -125,10 +125,6 @@ function clientRegistration() {
 
 .button {
     margin-top: 15px;
-    height: 45px;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 100%;
 }
 
 .registration-client {
