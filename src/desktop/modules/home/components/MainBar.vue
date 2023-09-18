@@ -74,6 +74,7 @@ function goToDoctorCabinet() {
                     v-if="!clientToken"
                     is-full
                     is-white
+                    is-border
                     is-big
                     @click="goToClientCabinet"
                 >

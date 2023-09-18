@@ -73,6 +73,7 @@ function clientRegistration() {
                 <ui-button
                     class="authorization__button"
                     is-full
+                    is-big
                     @click="checkClient"
                 >
                     Вход
@@ -80,7 +81,9 @@ function clientRegistration() {
                 <ui-button
                     class="authorization__button"
                     is-full
+                    is-big
                     is-white
+                    is-border
                     @click="resetPassword"
                 >
                     Забыли пароль?

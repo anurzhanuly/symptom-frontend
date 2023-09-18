@@ -8,7 +8,7 @@ defineProps({
         default: '',
     },
     isBig: Boolean,
-    isOutlined: Boolean,
+    isBorder: Boolean,
 });
 </script>
 
@@ -20,7 +20,7 @@ defineProps({
             'button--full': isFull,
             'button--loading': isLoading,
             'button--big': isBig,
-            'button--outlined': isOutlined,
+            'button--border': isBorder,
         }"
         :disabled="isLoading"
     >
@@ -45,7 +45,7 @@ defineProps({
     color: white;
     display: inline-block;
     border-radius: 3px;
-    border: 1px solid #2196f3;
+    border: none;
     padding: 14px 20px;
     white-space: pre-wrap;
     cursor: pointer;
@@ -69,9 +69,8 @@ defineProps({
         justify-content: center;
     }
 
-    &--outlined {
-        border: none;
-        padding: 0;
+    &--border {
+        border: 1px solid #2196f3;
     }
 
     &--white {

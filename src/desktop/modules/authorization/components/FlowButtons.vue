@@ -16,6 +16,7 @@ import UiButton from '@/ui/UiButton.vue';
             </ui-button>
             <ui-button
                 is-white
+                is-border
                 is-big
                 class="buttons__item"
                 @click="$router.push({ name: 'client-test-auth' })"

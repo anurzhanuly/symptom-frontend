@@ -75,6 +75,7 @@ function goToDoctorCabinet() {
                     is-full
                     is-big
                     is-white
+                    is-border
                     class="main__button"
                     @click="goToClientCabinet"
                 >

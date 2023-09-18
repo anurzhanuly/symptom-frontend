@@ -81,6 +81,7 @@ function clientRegistration() {
                     class="authorization__button"
                     is-full
                     is-white
+                    is-border
                     @click="resetPassword"
                 >
                     Забыли пароль?
