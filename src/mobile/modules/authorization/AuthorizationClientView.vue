@@ -9,7 +9,6 @@ import Authorization from './components/Authorization.vue';
 import ClientRegistration from './components/popup/ClientRegistration.vue';
 
 import { useDialog } from 'primevue/usedialog';
-import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
 import InlineMessage from 'primevue/inlinemessage';
@@ -72,14 +71,14 @@ function clientRegistration() {
                     Неверный пароль или почта
                 </inline-message>
                 <ui-button
-                    class="button"
+                    class="authorization__button"
                     is-full
                     @click="checkClient"
                 >
                     Вход
                 </ui-button>
                 <ui-button
-                    class="button"
+                    class="authorization__button"
                     is-full
                     is-white
                     @click="resetPassword"
@@ -124,12 +123,8 @@ function clientRegistration() {
     width: 100%;
 }
 
-.button {
+.authorization__button {
     margin-top: 15px;
-    height: 45px;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 100%;
 }
 
 .registration-client {

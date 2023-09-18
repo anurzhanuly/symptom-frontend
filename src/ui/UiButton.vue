@@ -8,6 +8,7 @@ defineProps({
         default: '',
     },
     isBig: Boolean,
+    isOutlined: Boolean,
 });
 </script>
 
@@ -19,6 +20,7 @@ defineProps({
             'button--full': isFull,
             'button--loading': isLoading,
             'button--big': isBig,
+            'button--outlined': isOutlined,
         }"
         :disabled="isLoading"
     >
@@ -39,15 +41,16 @@ defineProps({
 <style lang="scss" scoped>
 .button {
     position: relative;
-    background-color: #276ef1;
+    background-color: #2196f3;
     color: white;
     display: inline-block;
-    border-radius: 10px;
-    border: 1px solid #276ef1;
+    border-radius: 3px;
+    border: 1px solid #2196f3;
     padding: 14px 20px;
     white-space: pre-wrap;
     cursor: pointer;
     font-family: 'OpenSans', sans-serif;
+    letter-spacing: 1px;
 
     &-loader {
         position: absolute;
@@ -66,9 +69,14 @@ defineProps({
         justify-content: center;
     }
 
+    &--outlined {
+        border: none;
+        padding: 0;
+    }
+
     &--white {
         background-color: white;
-        color: #276ef1;
+        color: #2196f3;
         border: 1px solid #2196f3;
     }
 
@@ -80,7 +88,7 @@ defineProps({
         position: relative;
         pointer-events: none;
         background-color: #5eadef;
-        padding: 20px;
+        padding: 22px;
     }
 
     &--big {

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import PButton from 'primevue/button';
 import UiButton from '@/ui/UiButton.vue';
 </script>
 
@@ -8,8 +7,9 @@ import UiButton from '@/ui/UiButton.vue';
         <header class="header">
             <ui-button
                 is-white
-                link
-                @click="$router.push('/')"
+                is-outlined
+                icon="pi pi-angle-left"
+                @click="$router.back()"
             >
                 Назад
             </ui-button>
@@ -31,10 +31,6 @@ import UiButton from '@/ui/UiButton.vue';
     &__logo {
         max-width: 100px;
     }
-}
-
-.p-button {
-    padding: 0;
 }
 
 .pi {

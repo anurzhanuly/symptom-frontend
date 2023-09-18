@@ -212,10 +212,6 @@ const validateRegisterForm = (): boolean => {
 
 .authorization-form .authorization__button {
     margin-top: 15px;
-    height: 45px;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 100%;
 }
 
 @media only screen and (max-width: 750px) {

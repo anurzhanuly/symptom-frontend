@@ -84,6 +84,15 @@ survey.onComplete.add(onSurveyComplete);
 </script>
 
 <template>
-    <progress-bar :value="progress" />
-    <SurveyComponent :model="survey" />
+    <div class="survey">
+        <progress-bar :value="progress" />
+        <SurveyComponent :model="survey" />
+    </div>
 </template>
+
+<style scoped>
+.survey {
+    min-height: 100vh;
+    background-color: #f3f3f3;
+}
+</style>

@@ -1,21 +1,27 @@
 <script lang="ts" setup>
-import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 </script>
 
 <template>
     <div class="buttons">
         <h2 class="buttons__title">Пройти опрос</h2>
-        <p-button
+        <ui-button
+            is-big
+            is-full
             class="buttons__item"
-            label="Без регистрации"
             @click="$router.push({ name: 'agreement' })"
-        />
-        <p-button
+        >
+            Без регистрации
+        </ui-button>
+        <ui-button
+            is-big
+            is-full
+            is-white
             class="buttons__item"
-            label="Для врача"
-            outlined
             @click="$router.push({ name: 'client-test-auth' })"
-        />
+        >
+            Для врача
+        </ui-button>
     </div>
 </template>
 
@@ -30,10 +36,8 @@ import PButton from 'primevue/button';
         margin-bottom: 24px;
     }
 
-    &__item {
+    &__item:not(:last-child) {
         margin-bottom: 16px;
-        justify-content: center;
-        padding: 16px 0;
     }
 }
 </style>

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
 import { useHomeStore } from '../store/home.store';
 
-import { storeToRefs } from 'pinia';
 import UiButton from '@/ui/UiButton.vue';
 
 const router = useRouter();
@@ -51,7 +51,7 @@ function goToDoctorCabinet() {
             >
                 <ui-button
                     v-if="!doctorToken"
-                    class="button"
+                    is-full
                     is-big
                     @click="goToDoctorCabinet"
                 >
@@ -63,16 +63,19 @@ function goToDoctorCabinet() {
                 class="main-container-buttons"
             >
                 <ui-button
-                    class="button"
+                    is-full
                     is-big
+                    class="main__button"
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
-                    Пройти Опрос
+                    Пройти опрос
                 </ui-button>
                 <ui-button
                     v-if="!clientToken"
-                    is-white
+                    is-full
                     is-big
+                    is-white
+                    class="main__button"
                     @click="goToClientCabinet"
                 >
                     Войти в личный кабинет
@@ -122,11 +125,10 @@ h1 {
 .main-container-button {
     display: flex;
     flex-direction: column;
-    margin-top: 16px;
 }
 
-.button:not(:last-child) {
-    margin-bottom: 16px;
+.main__button {
+    margin-top: 10px;
 }
 
 @media (max-width: 1900px) {
@@ -189,7 +191,7 @@ h1 {
     }
 
     h3 {
-        font-size: 17px;
+        font-size: 16px;
     }
 }
 

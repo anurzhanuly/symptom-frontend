@@ -10,7 +10,7 @@ import UiButton from '@/ui/UiButton.vue';
         </div>
         <div class="authorization-main">
             <ui-button
-                class="authorization-button"
+                is-outlined
                 is-white
                 icon="pi pi-angle-left header__button"
                 link
@@ -33,10 +33,6 @@ import UiButton from '@/ui/UiButton.vue';
 
 .authorization-main {
     padding-top: 40px;
-}
-
-.authorization-main .authorization-button {
-    border: none;
 }
 
 .authorization-onboarding,

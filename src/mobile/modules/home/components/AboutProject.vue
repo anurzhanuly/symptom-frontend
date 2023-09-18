@@ -4,6 +4,7 @@ import { useHomeStore } from '../store/home.store';
 import { useRouter } from 'vue-router';
 import { computed } from 'vue';
 
+import PButton from 'primevue/button';
 import UiButton from '@/ui/UiButton.vue';
 
 const homeStore = useHomeStore();
@@ -70,13 +71,13 @@ function direct(): void {
     </div>
     <div class="about-action">
         <h4>{{ actionInfo }}</h4>
-        <div class="about__button">
+        <div class="about-button">
             <ui-button
-                is-big
                 is-full
+                is-big
                 @click="direct"
             >
-                Пройти Опрос
+                Пройти опрос
             </ui-button>
         </div>
     </div>
@@ -148,8 +149,8 @@ img {
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
 }
 
-.about__button {
-    width: 55%;
+.about-button {
+    width: 80%;
 }
 
 @media (max-width: 1350px) {
@@ -160,11 +161,79 @@ img {
     p {
         font-size: 18px;
     }
+
+    .p-button {
+        width: 265px;
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 1200px) {
     .image {
         display: none;
+    }
+}
+
+@media (max-width: 865px) {
+    h4 {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 595px) {
+    h4 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 30px;
+        margin-left: 55px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .project-info {
+        margin-top: 5px;
+    }
+
+    .about-container {
+        padding: 20px 45px;
+    }
+}
+
+@media (max-width: 490px) {
+    .about-container {
+        padding: 20px;
+    }
+
+    h4 {
+        font-size: 15px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 400px) {
+    h4 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 330px) {
+    h4 {
+        font-size: 13px;
+    }
+
+    p {
+        font-size: 14px;
     }
 }
 </style>

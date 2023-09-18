@@ -12,6 +12,7 @@ import UiButton from '@/ui/UiButton.vue';
             <ui-button
                 class="authorization-button"
                 is-white
+                is-outlined
                 icon="pi pi-angle-left header__button"
                 link
                 @click="$router.push({ name: 'home' })"
@@ -33,10 +34,6 @@ import UiButton from '@/ui/UiButton.vue';
 
 .authorization-main {
     padding-top: 40px;
-}
-
-.authorization-main .authorization-button {
-    border: none;
 }
 
 .authorization-onboarding,

@@ -32,10 +32,6 @@ import UiButton from '@/ui/UiButton.vue';
     }
 }
 
-.p-button {
-    padding: 0;
-}
-
 .pi {
     font-weight: bold;
 }
