@@ -8,6 +8,7 @@ import UiButton from '@/ui/UiButton.vue';
         <ui-button
             is-big
             is-full
+            class="buttons__item"
             @click="$router.push({ name: 'agreement' })"
         >
             Без регистрации
@@ -16,6 +17,7 @@ import UiButton from '@/ui/UiButton.vue';
             is-big
             is-full
             is-white
+            class="buttons__item"
             @click="$router.push({ name: 'client-test-auth' })"
         >
             Для врача
@@ -24,9 +26,6 @@ import UiButton from '@/ui/UiButton.vue';
 </template>
 
 <style lang="scss" scoped>
-.button:not(:last-child) {
-    margin-bottom: 16px;
-}
 .buttons {
     display: flex;
     flex-direction: column;
@@ -35,6 +34,10 @@ import UiButton from '@/ui/UiButton.vue';
     &__title {
         text-align: center;
         margin-bottom: 24px;
+    }
+
+    &__item:not(:last-child) {
+        margin-bottom: 16px;
     }
 }
 </style>
