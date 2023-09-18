@@ -53,6 +53,8 @@ function goToDoctorCabinet() {
                     v-if="!doctorToken"
                     is-full
                     is-big
+                    is-blue
+                    class="main__button"
                     @click="goToDoctorCabinet"
                 >
                     Войти в кабинет врача
@@ -65,6 +67,7 @@ function goToDoctorCabinet() {
                 <ui-button
                     is-full
                     is-big
+                    is-blue
                     class="main__button"
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
@@ -74,7 +77,6 @@ function goToDoctorCabinet() {
                     v-if="!clientToken"
                     is-full
                     is-big
-                    is-white
                     is-border
                     class="main__button"
                     @click="goToClientCabinet"

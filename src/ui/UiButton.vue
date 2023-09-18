@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps({
-    isWhite: Boolean,
+    isBlue: Boolean,
     isFull: Boolean,
     isLoading: Boolean,
     icon: {
@@ -16,7 +16,7 @@ defineProps({
     <button
         :class="{
             button: true,
-            'button--white': isWhite,
+            'button--blue': isBlue,
             'button--full': isFull,
             'button--loading': isLoading,
             'button--big': isBig,
@@ -41,8 +41,8 @@ defineProps({
 <style lang="scss" scoped>
 .button {
     position: relative;
-    background-color: #2196f3;
-    color: white;
+    background-color: transparent;
+    color: #2196f3;
     display: inline-block;
     border-radius: 3px;
     border: none;
@@ -67,15 +67,16 @@ defineProps({
     &-content {
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     &--border {
         border: 1px solid #2196f3;
     }
 
-    &--white {
-        background-color: white;
-        color: #2196f3;
+    &--blue {
+        background-color: #2196f3;
+        color: #fff;
     }
 
     &--full {

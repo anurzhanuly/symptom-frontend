@@ -8,14 +8,14 @@ import UiButton from '@/ui/UiButton.vue';
         <div class="buttons">
             <h2 class="buttons__title">Пройти опрос</h2>
             <ui-button
-                class="buttons__item"
                 is-big
+                is-blue
+                class="buttons__item"
                 @click="$router.push({ name: 'agreement' })"
             >
                 Без регистрации
             </ui-button>
             <ui-button
-                is-white
                 is-border
                 is-big
                 class="buttons__item"

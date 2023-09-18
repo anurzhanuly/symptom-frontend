@@ -75,6 +75,7 @@ function direct(): void {
             <ui-button
                 is-full
                 is-big
+                is-blue
                 @click="direct"
             >
                 Пройти опрос

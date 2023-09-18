@@ -50,6 +50,7 @@ function checkDoctor(): void {
                 <ui-button
                     is-full
                     is-big
+                    is-blue
                     class="authorization__button"
                     @click="checkDoctor"
                 >
