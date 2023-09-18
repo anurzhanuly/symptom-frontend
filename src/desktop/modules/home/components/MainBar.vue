@@ -51,7 +51,7 @@ function goToDoctorCabinet() {
             >
                 <ui-button
                     v-if="!doctorToken"
-                    class="button"
+                    class="main__button"
                     is-big
                     @click="goToDoctorCabinet"
                 >
@@ -64,7 +64,7 @@ function goToDoctorCabinet() {
             >
                 <ui-button
                     is-full
-                    class="button"
+                    class="main__button"
                     is-big
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
@@ -127,7 +127,7 @@ h1 {
     margin-top: 16px;
 }
 
-.button:not(:last-child) {
+.main__button:not(:last-child) {
     margin-bottom: 16px;
 }
 

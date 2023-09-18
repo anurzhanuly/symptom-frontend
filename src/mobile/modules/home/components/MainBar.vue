@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useHomeStore } from '../store/home.store';
 
-import PButton from 'primevue/button';
 import UiButton from '@/ui/UiButton.vue';
 
 const router = useRouter();
@@ -66,6 +65,7 @@ function goToDoctorCabinet() {
                 <ui-button
                     is-full
                     is-big
+                    class="main__button"
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
                     Пройти опрос
@@ -75,6 +75,7 @@ function goToDoctorCabinet() {
                     is-full
                     is-big
                     is-white
+                    class="main__button"
                     @click="goToClientCabinet"
                 >
                     Войти в личный кабинет
@@ -126,7 +127,7 @@ h1 {
     flex-direction: column;
 }
 
-.button {
+.main__button {
     margin-top: 10px;
 }
 
@@ -155,12 +156,6 @@ h1 {
         font-size: 16px;
         line-height: 25px;
     }
-
-    .main-container-button .p-button,
-    .main-container-buttons .p-button {
-        width: 290px;
-        font-size: 18px;
-    }
 }
 
 @media (max-width: 1480px) {
@@ -177,12 +172,6 @@ h1 {
     h3 {
         font-size: 14px;
         line-height: 20px;
-    }
-
-    .main-container-button .p-button,
-    .main-container-buttons .p-button {
-        width: 265px;
-        font-size: 16px;
     }
 }
 
@@ -203,11 +192,6 @@ h1 {
 
     h3 {
         font-size: 16px;
-    }
-
-    .main-container-button .p-button,
-    .main-container-buttons .p-button {
-        width: 385px;
     }
 }
 
@@ -232,13 +216,6 @@ h1 {
 @media (max-width: 430px) {
     .main-information {
         width: 95%;
-    }
-}
-
-@media (max-width: 400px) {
-    .main-container-button .p-button,
-    .main-container-buttons .p-button {
-        width: 100%;
     }
 }
 </style>

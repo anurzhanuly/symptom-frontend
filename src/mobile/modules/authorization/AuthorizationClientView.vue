@@ -71,14 +71,14 @@ function clientRegistration() {
                     Неверный пароль или почта
                 </inline-message>
                 <ui-button
-                    class="button"
+                    class="authorization__button"
                     is-full
                     @click="checkClient"
                 >
                     Вход
                 </ui-button>
                 <ui-button
-                    class="button"
+                    class="authorization__button"
                     is-full
                     is-white
                     @click="resetPassword"
@@ -123,7 +123,7 @@ function clientRegistration() {
     width: 100%;
 }
 
-.button {
+.authorization__button {
     margin-top: 15px;
 }
 

@@ -62,6 +62,7 @@ onMounted(() => {
             <ui-button
                 is-full
                 is-big
+                class="agreement__button"
                 :is-loading="isLoading"
                 @click="$router.push({ name: 'survey' })"
             >
@@ -158,7 +159,7 @@ onMounted(() => {
     color: #1769aa;
     cursor: pointer;
 }
-.button {
+.agreement__button {
     margin-top: 12px;
 }
 .agreement__separator {
