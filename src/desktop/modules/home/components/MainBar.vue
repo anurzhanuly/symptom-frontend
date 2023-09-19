@@ -74,7 +74,7 @@ function goToDoctorCabinet() {
                 <ui-button
                     v-if="!clientToken"
                     is-full
-                    is-border
+                    is-white
                     is-big
                     @click="goToClientCabinet"
                 >

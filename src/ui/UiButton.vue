@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps({
     isBlue: Boolean,
+    isWhite: Boolean,
     isFull: Boolean,
     isLoading: Boolean,
     icon: {
@@ -8,7 +9,6 @@ defineProps({
         default: '',
     },
     isBig: Boolean,
-    isBorder: Boolean,
 });
 </script>
 
@@ -20,7 +20,7 @@ defineProps({
             'button--full': isFull,
             'button--loading': isLoading,
             'button--big': isBig,
-            'button--border': isBorder,
+            'button--white': isWhite,
         }"
         :disabled="isLoading"
     >
@@ -70,8 +70,10 @@ defineProps({
         align-items: center;
     }
 
-    &--border {
+    &--white {
         border: 1px solid #2196f3;
+        background-color: #fff;
+        color: #2196f3;
     }
 
     &--blue {

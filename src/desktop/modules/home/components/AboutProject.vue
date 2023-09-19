@@ -16,10 +16,6 @@ const actionInfo = computed(() => {
         : 'Определить состояние здоровья уже сейчас';
 });
 
-const buttonLabel = computed(() => {
-    return isDoctor.value ? 'Оставить заявку' : 'Пройти опрос';
-});
-
 const projectInfoFirst = computed(() => {
     return isDoctor.value
         ? 'С помощью опросника, работающего на базе искусственного интеллекта, Symptom собирает структурированную историю болезни'

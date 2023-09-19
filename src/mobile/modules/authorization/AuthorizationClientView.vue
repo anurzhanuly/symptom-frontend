@@ -81,7 +81,7 @@ function clientRegistration() {
                 <ui-button
                     class="authorization__button"
                     is-full
-                    is-border
+                    is-white
                     @click="resetPassword"
                 >
                     Забыли пароль?
