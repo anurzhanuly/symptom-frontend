@@ -26,11 +26,11 @@ defineProps({
     >
         <span
             v-if="isLoading"
-            class="button-loader"
+            class="button__loader"
         />
         <span
             v-else
-            class="button-content"
+            class="button__content"
         >
             <i :class="icon" />
             <slot />
@@ -52,7 +52,7 @@ defineProps({
     font-family: 'OpenSans', sans-serif;
     letter-spacing: 1px;
 
-    &-loader {
+    &__loader {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -64,7 +64,8 @@ defineProps({
         border-radius: 50%;
         animation: spin 1s linear infinite;
     }
-    &-content {
+
+    &__content {
         display: flex;
         justify-content: center;
         align-items: center;
