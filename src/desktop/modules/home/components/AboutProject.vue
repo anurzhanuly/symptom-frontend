@@ -74,6 +74,7 @@ function direct(): void {
             <ui-button
                 is-big
                 is-full
+                is-blue
                 @click="direct"
             >
                 Пройти Опрос
