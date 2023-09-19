@@ -73,6 +73,7 @@ function clientRegistration() {
                 <ui-button
                     class="authorization__button"
                     is-full
+                    is-blue
                     @click="checkClient"
                 >
                     Вход

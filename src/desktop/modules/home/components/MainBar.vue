@@ -64,8 +64,9 @@ function goToDoctorCabinet() {
             >
                 <ui-button
                     is-full
-                    class="main__button"
                     is-big
+                    is-blue
+                    class="main__button"
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
                     Пройти Опрос

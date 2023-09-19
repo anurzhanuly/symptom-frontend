@@ -71,6 +71,7 @@ onMounted(() => {
                     </div>
                     <ui-button
                         is-full
+                        is-blue
                         is-big
                         :is-loading="isLoading"
                         class="agreement-button"

@@ -175,6 +175,7 @@ const validateRegisterForm = (): boolean => {
                 </div>
                 <ui-button
                     is-full
+                    is-blue
                     class="authorization__button"
                     @click="goToAgreement"
                 >

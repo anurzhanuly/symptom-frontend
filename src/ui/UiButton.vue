@@ -1,5 +1,6 @@
 <script setup lang="ts">
 defineProps({
+    isBlue: Boolean,
     isWhite: Boolean,
     isFull: Boolean,
     isLoading: Boolean,
@@ -8,7 +9,6 @@ defineProps({
         default: '',
     },
     isBig: Boolean,
-    isOutlined: Boolean,
 });
 </script>
 
@@ -16,21 +16,21 @@ defineProps({
     <button
         :class="{
             button: true,
-            'button--white': isWhite,
+            'button--blue': isBlue,
             'button--full': isFull,
             'button--loading': isLoading,
             'button--big': isBig,
-            'button--outlined': isOutlined,
+            'button--white': isWhite,
         }"
         :disabled="isLoading"
     >
         <span
             v-if="isLoading"
-            class="button-loader"
+            class="button__loader"
         />
         <span
             v-else
-            class="button-content"
+            class="button__content"
         >
             <i :class="icon" />
             <slot />
@@ -41,18 +41,18 @@ defineProps({
 <style lang="scss" scoped>
 .button {
     position: relative;
-    background-color: #2196f3;
-    color: white;
+    background-color: transparent;
+    color: #2196f3;
     display: inline-block;
     border-radius: 3px;
-    border: 1px solid #2196f3;
+    border: none;
     padding: 14px 20px;
     white-space: pre-wrap;
     cursor: pointer;
     font-family: 'OpenSans', sans-serif;
     letter-spacing: 1px;
 
-    &-loader {
+    &__loader {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -64,20 +64,22 @@ defineProps({
         border-radius: 50%;
         animation: spin 1s linear infinite;
     }
-    &-content {
+
+    &__content {
         display: flex;
         justify-content: center;
-    }
-
-    &--outlined {
-        border: none;
-        padding: 0;
+        align-items: center;
     }
 
     &--white {
-        background-color: white;
-        color: #2196f3;
         border: 1px solid #2196f3;
+        background-color: #fff;
+        color: #2196f3;
+    }
+
+    &--blue {
+        background-color: #2196f3;
+        color: #fff;
     }
 
     &--full {

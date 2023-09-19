@@ -7,7 +7,6 @@ import UiButton from '@/ui/UiButton.vue';
         <header class="header">
             <ui-button
                 is-white
-                link
                 @click="$router.push('/')"
             >
                 Назад

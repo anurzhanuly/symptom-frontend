@@ -8,6 +8,7 @@ import UiButton from '@/ui/UiButton.vue';
         <ui-button
             is-big
             is-full
+            is-blue
             class="buttons__item"
             @click="$router.push({ name: 'agreement' })"
         >

@@ -10,10 +10,7 @@ import UiButton from '@/ui/UiButton.vue';
         </div>
         <div class="authorization-main">
             <ui-button
-                is-outlined
-                is-white
                 icon="pi pi-angle-left header__button"
-                link
                 @click="$router.push({ name: 'home' })"
             >
                 Назад
