@@ -40,33 +40,31 @@ function direct(): void {
 <template>
     <div
         id="test"
-        class="about"
+        class="about-page"
     >
-        <div class="about-container">
-            <div class="image">
+        <div class="about">
+            <div class="about__img">
                 <img
                     alt="logo"
                     src="@/assets/onboarding/onboard2.png"
                 />
             </div>
-            <div class="info">
+            <div class="about__info-block">
                 <h3>О проекте</h3>
-                <div>
-                    <div class="project-info">
-                        <h1>01</h1>
-                        <p>{{ projectInfoFirst }}</p>
-                    </div>
-                    <div class="project-info">
-                        <h1>02</h1>
-                        <p>{{ projectInfoSecond }}</p>
-                    </div>
+                <div class="about__text">
+                    <h1>01</h1>
+                    <p>{{ projectInfoFirst }}</p>
+                </div>
+                <div class="about__text">
+                    <h1>02</h1>
+                    <p>{{ projectInfoSecond }}</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="about-action">
         <h4>{{ actionInfo }}</h4>
-        <div class="about__button">
+        <div class="about-action__button">
             <ui-button
                 is-big
                 is-full
@@ -79,61 +77,68 @@ function direct(): void {
     </div>
 </template>
 
-<style scoped>
-h4 {
-    font-weight: 600;
-    font-size: 36px;
-    color: #212121;
-}
-
-h3 {
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 44px;
-    color: #111111;
-    margin-left: 75px;
-}
-
-h1 {
-    font-weight: 600;
-    font-size: 60px;
-    line-height: 60px;
-    color: #276ef1;
-    margin-right: 15px;
-}
-
-p {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 28px;
-    color: #000000;
-}
-
-.info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-}
-
-.project-info {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-.about {
+<style lang="scss" scoped>
+.about-page {
     background: #eef5fb;
 }
 
-.about-container {
+.about {
     display: flex;
     padding: 20px 100px;
-}
 
-.image,
-img {
-    width: 100%;
+    &__img {
+        width: 100%;
+
+        img {
+            width: 100%;
+        }
+        @media (max-width: 1200px) {
+            display: none;
+        }
+    }
+
+    &__info-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+
+        h3 {
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 44px;
+            color: #111111;
+            margin-left: 75px;
+        }
+    }
+
+    &__text {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+
+        h1 {
+            font-weight: 600;
+            font-size: 60px;
+            line-height: 60px;
+            color: #276ef1;
+            margin-right: 15px;
+
+            @media (max-width: 1350px) {
+                font-size: 50px;
+            }
+        }
+        p {
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 28px;
+            color: #000000;
+
+            @media (max-width: 1350px) {
+                font-size: 18px;
+            }
+        }
+    }
 }
 
 .about-action {
@@ -143,25 +148,15 @@ img {
     height: 22vh;
     justify-content: space-evenly;
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
-}
 
-.about__button {
-    width: 55%;
-}
-
-@media (max-width: 1350px) {
-    h1 {
-        font-size: 50px;
+    h4 {
+        font-weight: 600;
+        font-size: 36px;
+        color: #212121;
     }
 
-    p {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .image {
-        display: none;
+    &__button {
+        width: 55%;
     }
 }
 </style>
