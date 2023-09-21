@@ -53,6 +53,8 @@ function goToDoctorCabinet() {
                     v-if="!doctorToken"
                     class="main__button"
                     is-big
+                    is-full
+                    is-blue
                     @click="goToDoctorCabinet"
                 >
                     Войти в кабинет врача
