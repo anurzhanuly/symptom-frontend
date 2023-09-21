@@ -55,12 +55,17 @@ function saveRecommendation() {
             toggleable
             class="patients-card__panel"
         >
-            <p
+            <div
                 v-for="(value, key) in info"
                 :key="key"
+                class="patients-card__result"
             >
-                {{ key }} {{ value }}
-            </p>
+                <p class="patients-card__result__title">{{ key }}</p>
+                <p
+                    class="patients-card__result__text"
+                    v-html="value"
+                />
+            </div>
         </panel>
         <p-button
             v-if="!patientIdFromLocalStorage"
@@ -80,6 +85,24 @@ function saveRecommendation() {
 
     &__panel {
         margin-bottom: 16px;
+    }
+
+    &__result {
+        display: flex;
+
+        &__title {
+            font-size: 20px;
+            width: fit-content;
+            margin-bottom: 8px;
+        }
+
+        &__text {
+            font-size: 20px;
+            margin-left: 8px;
+            margin-bottom: 8px;
+            max-width: 68%;
+            text-align: left;
+        }
     }
 }
 
