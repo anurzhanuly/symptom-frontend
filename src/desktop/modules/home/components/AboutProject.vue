@@ -26,17 +26,17 @@ const projectInfoSecond = computed(() => {
             alt="logo"
             src="@/assets/onboarding/onboard2.png"
         />
-        <div class="about__info-block">
-            <h3 class="about__info-block__title">О проекте</h3>
-            <div class="about__info-block__content">
-                <h1 class="about__info-block__content__title">01</h1>
-                <p class="about__info-block__content__text">
+        <div class="about__wrapper">
+            <h3 class="about__title">О проекте</h3>
+            <div class="about__content">
+                <h1 class="about__subtitle">01</h1>
+                <p class="about__text">
                     {{ projectInfoFirst }}
                 </p>
             </div>
-            <div class="about__info-block__content">
-                <h1 class="about__info-block__content__title">02</h1>
-                <p class="about__info-block__content__text">
+            <div class="about__content">
+                <h1 class="about__subtitle">02</h1>
+                <p class="about__text">
                     {{ projectInfoSecond }}
                 </p>
             </div>
@@ -59,52 +59,52 @@ const projectInfoSecond = computed(() => {
         }
     }
 
-    &__info-block {
+    &__wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
         width: 100%;
+    }
 
-        &__title {
-            font-weight: 600;
-            font-size: 36px;
-            line-height: 44px;
-            color: #111111;
-            margin-left: 75px;
+    &__title {
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 44px;
+        color: #111111;
+        margin-left: 75px;
 
-            @media (max-width: 1200px) {
-                margin: 0;
-                text-align: center;
-            }
+        @media (max-width: 1200px) {
+            margin: 0;
+            text-align: center;
         }
+    }
 
-        &__content {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
 
-            &__title {
-                font-weight: 600;
-                font-size: 60px;
-                line-height: 60px;
-                color: #276ef1;
-                margin-right: 15px;
+    &__subtitle {
+        font-weight: 600;
+        font-size: 60px;
+        line-height: 60px;
+        color: #276ef1;
+        margin-right: 15px;
 
-                @media (max-width: 1350px) {
-                    font-size: 50px;
-                }
-            }
+        @media (max-width: 1350px) {
+            font-size: 50px;
+        }
+    }
 
-            &__text {
-                font-weight: 400;
-                font-size: 20px;
-                line-height: 28px;
-                color: #000000;
+    &__text {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+        color: #000000;
 
-                @media (max-width: 1350px) {
-                    font-size: 18px;
-                }
-            }
+        @media (max-width: 1350px) {
+            font-size: 18px;
         }
     }
 }
