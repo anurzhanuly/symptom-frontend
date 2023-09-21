@@ -38,20 +38,19 @@ function goToDoctorCabinet() {
 </script>
 
 <template>
-    <div class="main-container">
-        <div class="main-information">
-            <h1>Что Вас беспокоит?</h1>
-            <h3>
+    <div class="main">
+        <div class="main__content-wrapper">
+            <h1 class="main__title">Что Вас беспокоит?</h1>
+            <h3 class="main__subtitle">
                 Пройдите опрос, узнайте о состоянии вашего здоровья и начните
                 приём с нами
             </h3>
             <div
                 v-if="isDoctor"
-                class="main-container-button"
+                class="main__button-wrapper"
             >
                 <ui-button
                     v-if="!doctorToken"
-                    class="main__button"
                     is-big
                     is-full
                     is-blue
@@ -62,7 +61,7 @@ function goToDoctorCabinet() {
             </div>
             <div
                 v-else
-                class="main-container-buttons"
+                class="main__button-wrapper"
             >
                 <ui-button
                     is-full
@@ -84,8 +83,9 @@ function goToDoctorCabinet() {
                 </ui-button>
             </div>
         </div>
-        <div class="main-image">
+        <div class="main__img-container">
             <img
+                class="main__img"
                 alt="logo"
                 src="@/assets/main.png"
             />
@@ -93,132 +93,102 @@ function goToDoctorCabinet() {
     </div>
 </template>
 
-<style scoped>
-.main-container {
+<style lang="scss" scoped>
+.main {
     padding: 0 190px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 90vh;
-}
 
-.main-information {
-    width: 50%;
-}
-
-.main-image,
-img {
-    width: 100%;
-}
-
-h3 {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 35px;
-    margin-top: 15px;
-}
-
-h1 {
-    font-size: 48px;
-    font-weight: 700;
-}
-
-.main-container-buttons,
-.main-container-button {
-    display: flex;
-    flex-direction: column;
-    margin-top: 16px;
-}
-
-.main__button:not(:last-child) {
-    margin-bottom: 16px;
-}
-
-@media (max-width: 1900px) {
-    h1 {
-        font-size: 45px;
-    }
-}
-
-@media (max-width: 1800px) {
-    h1 {
-        font-size: 40px;
-    }
-
-    h3 {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 1650px) {
-    h1 {
-        font-size: 35px;
-    }
-
-    h3 {
-        font-size: 16px;
-        line-height: 25px;
-    }
-}
-
-@media (max-width: 1480px) {
-    h1 {
-        font-size: 30px;
-    }
-}
-
-@media (max-width: 1350px) {
-    h1 {
-        font-size: 25px;
-    }
-
-    h3 {
-        font-size: 14px;
-        line-height: 20px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .main-container {
+    @media (max-width: 1200px) {
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
     }
 
-    .main-information {
+    @media (max-width: 865px) {
+        padding: 0 60px;
+    }
+
+    &__content-wrapper {
+        width: 50%;
+
+        @media (max-width: 1200px) {
+            width: 100%;
+        }
+    }
+
+    &__title {
+        font-size: 48px;
+        font-weight: 700;
+
+        @media (max-width: 1900px) {
+            font-size: 45px;
+        }
+
+        @media (max-width: 1800px) {
+            font-size: 40px;
+        }
+
+        @media (max-width: 1650px) {
+            font-size: 35px;
+        }
+
+        @media (max-width: 1480px) {
+            font-size: 30px;
+        }
+
+        @media (max-width: 1350px) {
+            font-size: 25px;
+        }
+
+        @media (max-width: 1200px) {
+            font-size: 37px;
+        }
+    }
+
+    &__subtitle {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 35px;
+        margin-top: 15px;
+
+        @media (max-width: 1800px) {
+            font-size: 18px;
+        }
+
+        @media (max-width: 1650px) {
+            font-size: 16px;
+            line-height: 25px;
+        }
+
+        @media (max-width: 1350px) {
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            font-size: 17px;
+        }
+    }
+
+    &__button-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-top: 16px;
+    }
+
+    &__button {
+        margin-bottom: 16px;
+    }
+
+    &__img-container {
         width: 100%;
     }
 
-    h1 {
-        font-size: 37px;
-    }
-
-    h3 {
-        font-size: 17px;
-    }
-}
-
-@media (max-width: 865px) {
-    .main-container {
-        padding: 0 60px;
-    }
-}
-
-@media (max-width: 595px) {
-    .main-information {
-        width: 83%;
-    }
-}
-
-@media (max-width: 490px) {
-    .main-container {
-        padding: 0 10px;
-    }
-}
-
-@media (max-width: 430px) {
-    .main-information {
-        width: 95%;
+    &__img {
+        width: 100%;
     }
 }
 </style>

@@ -6,6 +6,7 @@ import { useHomeStore } from '../store/home.store';
 import Carousel from 'primevue/carousel';
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 import { success, warn } from '@/utils/toast';
 import { postNpsRequest } from '@desktop/modules/home/services/home.refbooks';
 
@@ -125,8 +126,8 @@ async function sendRequest() {
 </script>
 
 <template>
-    <div class="team-container">
-        <div class="team-carousel">
+    <div class="team">
+        <div class="team__carousel">
             <carousel
                 :autoplay-interval="3000"
                 :num-scroll="4"
@@ -135,12 +136,10 @@ async function sendRequest() {
                 :value="team"
             >
                 <template #header>
-                    <div class="team-carousel-header">
-                        <h1>Наша команда</h1>
-                    </div>
+                    <h1 class="team__title">Наша команда</h1>
                 </template>
                 <template #item="slotProps">
-                    <div class="team-carousel-info">
+                    <div class="team__content">
                         <img
                             alt="logo"
                             :src="getImageUrl(slotProps.data.photo)"
@@ -157,63 +156,68 @@ async function sendRequest() {
         v-if="isDoctor"
         class="questions"
     >
-        <div class="questions-actions">
-            <div>
-                <h1>Остались вопросы?</h1>
-                <p>
-                    Оставьте контактные данные, чтобы мы могли перезвонить вам и
-                    проконсультровать
-                </p>
-            </div>
+        <div class="questions__form">
+            <h1 class="questions__title">Остались вопросы?</h1>
+            <p class="questions__text">
+                Оставьте контактные данные, чтобы мы могли перезвонить вам и
+                проконсультровать
+            </p>
             <input-text
                 v-model="name"
+                class="questions__field"
                 placeholder="Ваше имя и фамилия"
             />
             <input-text
                 v-model="workplace"
+                class="questions__field"
                 placeholder="Место работы"
             />
             <input-text
                 v-model="phone"
+                class="questions__field"
                 placeholder="Номер телефона"
             />
             <p-button
                 label="Отправить"
+                class="questions__button"
                 @click="sendRequest"
             />
         </div>
-        <div class="questions-img">
+        <div class="questions__img-wrapper">
             <img
                 alt="logo"
                 src="@/assets/onboarding/onboard1.png"
+                class="questions__img"
             />
         </div>
     </div>
 </template>
 
-<style scoped>
-.team-container {
+<style lang="scss" scoped>
+.team {
     padding: 20px 150px;
     font-style: normal;
-}
 
-.team-carousel {
-    margin-top: 25px;
-}
+    @media screen and (max-width: 860px) {
+        padding: 20px 65px;
+    }
 
-.team-carousel-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    &__carousel {
+        margin-top: 25px;
+    }
 
-.team-carousel-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    margin: 25px 0;
+    &__title {
+        text-align: center;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        margin: 25px 0;
+    }
 }
 
 .questions {
@@ -222,118 +226,68 @@ async function sendRequest() {
     padding: 45px 85px;
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
     border-radius: 10px;
-}
 
-.questions h1 {
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 44px;
-    color: #ffffff;
-    margin-bottom: 15px;
-}
-
-.questions p {
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.questions-actions {
-    display: flex;
-    flex-direction: column;
-}
-
-.questions-img {
-    width: 50%;
-}
-
-.questions-img img {
-    width: 100%;
-}
-
-.questions .p-inputtext {
-    margin: 15px 0;
-    padding: 15px;
-    border-radius: 10px;
-    width: 450px;
-}
-
-.questions .p-button {
-    font-weight: 600;
-    font-size: 16px;
-    height: 45px;
-    width: 340px;
-    background: #276ef1;
-    border-radius: 10px;
-    margin-top: 15px;
-}
-
-@media (max-width: 1200px) {
-    .questions-img {
-        display: none;
-    }
-}
-
-@media (max-width: 920px) {
-    .questions .p-button,
-    .questions .p-inputtext {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 860px) {
-    .team-container {
-        padding: 20px 65px;
-    }
-
-    .questions {
+    @media screen and (max-width: 860px) {
         padding: 45px;
         margin: 10px 50px 50px 50px;
     }
-}
 
-@media (max-width: 595px) {
-    .team-container h1 {
-        font-size: 25px;
+    &__form {
+        display: flex;
+        flex-direction: column;
     }
 
-    .questions h1 {
-        font-size: 30px;
+    &__title {
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 44px;
+        color: #ffffff;
+        margin-bottom: 15px;
     }
 
-    .questions p {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 490px) {
-    .team-container {
-        padding: 20px 0px;
-    }
-
-    .team-container h1 {
+    &__text {
+        font-weight: 400;
         font-size: 18px;
+        line-height: 24px;
+        color: #ffffff;
+        margin-bottom: 10px;
     }
 
-    .questions h1 {
-        font-size: 25px;
+    &__field {
+        margin: 15px 0;
+        padding: 15px;
+        border-radius: 10px;
+        width: 450px;
+
+        @media (max-width: 920px) {
+            width: 100%;
+        }
     }
 
-    .questions {
-        padding: 25px;
-        margin: 10px 20px 50px 20px;
-    }
-}
+    &__button {
+        font-weight: 600;
+        font-size: 16px;
+        height: 45px;
+        width: 340px;
+        background: #276ef1;
+        border-radius: 10px;
+        margin-top: 15px;
 
-@media (max-width: 350px) {
-    .questions h1 {
-        font-size: 20px;
+        @media (max-width: 920px) {
+            width: 100%;
+        }
     }
 
-    .questions p {
-        font-size: 14px;
+    &__img-wrapper {
+        width: 50%;
+
+        @media (max-width: 1200px) {
+            display: none;
+        }
+    }
+
+    &__img {
+        width: 100%;
     }
 }
 </style>

@@ -17,19 +17,19 @@ const label = computed(() => {
         <div class="header-container">
             <img
                 alt="logo"
-                class="header-image"
+                class="header-container__img"
                 src="@/assets/logo.png"
             />
             <a
                 v-for="(link, index) in links"
                 :key="index"
-                class="static-buttons"
+                class="header-container__link"
                 @click="scrollToElement(link.htmlClass)"
             >
                 {{ link.name }}
             </a>
             <p
-                class="dynamic-button"
+                class="header-container__button"
                 @click="isDoctor = !isDoctor"
             >
                 {{ label }}
@@ -38,67 +38,43 @@ const label = computed(() => {
     </header>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .header-container {
     display: flex;
     justify-content: space-between;
     height: 80px;
     align-items: center;
     padding: 20px 190px;
-}
 
-.dynamic-button {
-    font-size: 16px;
-    color: #276ef1;
-    border-bottom: 1px solid #276ef1;
-    cursor: pointer;
-}
-
-.static-buttons {
-    color: #1f1534;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 16px;
-    opacity: 0.5;
-}
-
-.header-image {
-    max-width: 200px;
-}
-
-@media (max-width: 1350px) {
-    .static-buttons {
-        display: none;
-    }
-
-    .header-image {
-        width: 200px;
-    }
-}
-
-@media (max-width: 860px) {
-    .header-container {
+    @media (max-width: 860px) {
         padding: 20px 60px;
     }
-}
 
-@media (max-width: 490px) {
-    .header-container {
-        padding: 20px 15px;
+    &__img {
+        max-width: 200px;
+
+        @media (max-width: 1350px) {
+            width: 200px;
+        }
     }
 
-    .header-image {
-        width: 180px;
-    }
-
-    .dynamic-button {
+    &__link {
+        color: #1f1534;
+        cursor: pointer;
+        font-weight: 500;
         font-size: 16px;
-    }
-}
+        opacity: 0.5;
 
-@media (max-width: 400px) {
-    .header-image {
-        width: 150px;
+        @media (max-width: 1350px) {
+            display: none;
+        }
+    }
+
+    &__button {
+        font-size: 16px;
+        color: #276ef1;
+        border-bottom: 1px solid #276ef1;
+        cursor: pointer;
     }
 }
 </style>
