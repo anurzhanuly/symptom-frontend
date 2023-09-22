@@ -59,7 +59,7 @@ function openAdminLoginPopup(): void {
                     <i class="pi pi-whatsapp footer__icon" />
                 </a>
             </div>
-            <h2 class="footer__subtitle">Все права защищены «Symptom» 2023</h2>
+            <p class="footer__text">Все права защищены «Symptom» 2023</p>
         </div>
     </footer>
 </template>
@@ -76,9 +76,8 @@ function openAdminLoginPopup(): void {
     }
 
     &__title {
-        font-size: 33px;
+        font-size: 36px;
         color: #000000;
-        letter-spacing: 2.5px;
         cursor: default;
     }
 
@@ -86,14 +85,13 @@ function openAdminLoginPopup(): void {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 25px;
+        margin-top: 24px;
     }
 
     &__link {
-        font-weight: 500;
-        font-size: 18px;
+        font-size: 20px;
         color: #000000;
-        padding: 0 15px;
+        padding: 0 16px;
         cursor: pointer;
     }
 
@@ -101,12 +99,12 @@ function openAdminLoginPopup(): void {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 15px;
+        margin-top: 16px;
     }
 
     &__icon {
-        font-size: 1.5rem;
-        margin: 0 10px;
+        font-size: 24px;
+        margin: 0 12px;
         color: #ffffff;
         background-color: #276ef1;
         border-radius: 5px;
@@ -114,12 +112,11 @@ function openAdminLoginPopup(): void {
         cursor: pointer;
     }
 
-    &__subtitle {
-        font-weight: 500;
-        font-size: 18px;
+    &__text {
+        font-size: 20px;
         line-height: 24px;
         color: #000000;
-        margin-top: 15px;
+        margin-top: 16px;
     }
 }
 </style>

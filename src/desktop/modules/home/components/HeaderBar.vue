@@ -61,7 +61,6 @@ const label = computed(() => {
     &__link {
         color: #1f1534;
         cursor: pointer;
-        font-weight: 500;
         font-size: 16px;
         opacity: 0.5;
 
