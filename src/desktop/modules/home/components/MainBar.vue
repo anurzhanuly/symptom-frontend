@@ -122,25 +122,14 @@ function goToDoctorCabinet() {
     &__title {
         font-size: 48px;
         font-weight: 700;
-
-        @media (max-width: 1900px) {
-            font-size: 45px;
-        }
-
-        @media (max-width: 1800px) {
-            font-size: 40px;
-        }
+        display: inline;
 
         @media (max-width: 1650px) {
-            font-size: 35px;
+            font-size: 36px;
         }
 
         @media (max-width: 1480px) {
             font-size: 30px;
-        }
-
-        @media (max-width: 1350px) {
-            font-size: 25px;
         }
 
         @media (max-width: 1200px) {
@@ -150,26 +139,16 @@ function goToDoctorCabinet() {
 
     &__subtitle {
         font-size: 20px;
-        font-weight: 600;
         line-height: 35px;
         margin-top: 15px;
 
-        @media (max-width: 1800px) {
-            font-size: 18px;
-        }
-
         @media (max-width: 1650px) {
             font-size: 16px;
-            line-height: 25px;
-        }
-
-        @media (max-width: 1350px) {
-            font-size: 14px;
             line-height: 20px;
         }
 
         @media (max-width: 1200px) {
-            font-size: 17px;
+            font-size: 20px;
         }
     }
 

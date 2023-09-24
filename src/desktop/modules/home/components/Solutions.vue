@@ -34,7 +34,7 @@ function getImageUrl(name: string) {
 
 <template>
     <div class="solutions">
-        <h1 class="solutions__title">Какие проблемы решает Symptom</h1>
+        <h2 class="solutions__title">Какие проблемы решает Symptom</h2>
         <div class="solutions__content">
             <div
                 v-for="(solution, index) in solutions"
@@ -85,7 +85,6 @@ function getImageUrl(name: string) {
     }
 
     &__text {
-        font-weight: 300;
         font-size: 18px;
         line-height: 28px;
         color: #000000;

@@ -22,7 +22,7 @@ const advantagesInfoSecond = computed(() => {
 <template>
     <div class="advantages">
         <div class="advantages__wrapper">
-            <h1 class="advantages__title">Наши приемущества</h1>
+            <h2 class="advantages__title">Наши приемущества</h2>
             <div class="advantages__content">
                 <h3 class="advantages__subtitle">01</h3>
                 <p class="advantages__text">{{ advantagesInfoFirst }}</p>
@@ -33,7 +33,6 @@ const advantagesInfoSecond = computed(() => {
             </div>
             <div class="advantages__content" />
         </div>
-
         <div class="advantages__img-wrapper">
             <img
                 class="advantages__img"
@@ -56,13 +55,7 @@ const advantagesInfoSecond = computed(() => {
         padding: 10px 100px;
     }
 
-    &__wrapper {
-        display: flex;
-        flex-direction: column;
-    }
-
     &__title {
-        font-weight: 600;
         font-size: 36px;
         line-height: 44px;
         color: #111111;
@@ -75,7 +68,7 @@ const advantagesInfoSecond = computed(() => {
         }
 
         @media (max-width: 860px) {
-            font-size: 30px;
+            font-size: 28px;
         }
     }
 

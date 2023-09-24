@@ -29,13 +29,13 @@ const projectInfoSecond = computed(() => {
         <div class="about__wrapper">
             <h3 class="about__title">О проекте</h3>
             <div class="about__content">
-                <h1 class="about__subtitle">01</h1>
+                <h2 class="about__subtitle">01</h2>
                 <p class="about__text">
                     {{ projectInfoFirst }}
                 </p>
             </div>
             <div class="about__content">
-                <h1 class="about__subtitle">02</h1>
+                <h2 class="about__subtitle">02</h2>
                 <p class="about__text">
                     {{ projectInfoSecond }}
                 </p>
@@ -67,7 +67,6 @@ const projectInfoSecond = computed(() => {
     }
 
     &__title {
-        font-weight: 600;
         font-size: 36px;
         line-height: 44px;
         color: #111111;
@@ -86,7 +85,6 @@ const projectInfoSecond = computed(() => {
     }
 
     &__subtitle {
-        font-weight: 600;
         font-size: 60px;
         line-height: 60px;
         color: #276ef1;
@@ -98,7 +96,6 @@ const projectInfoSecond = computed(() => {
     }
 
     &__text {
-        font-weight: 400;
         font-size: 20px;
         line-height: 28px;
         color: #000000;

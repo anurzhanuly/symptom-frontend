@@ -51,11 +51,7 @@ const label = computed(() => {
     }
 
     &__img {
-        max-width: 200px;
-
-        @media (max-width: 1350px) {
-            width: 200px;
-        }
+        width: 200px;
     }
 
     &__link {

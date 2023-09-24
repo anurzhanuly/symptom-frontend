@@ -238,7 +238,6 @@ async function sendRequest() {
     }
 
     &__title {
-        font-weight: 600;
         font-size: 36px;
         line-height: 44px;
         color: #ffffff;
@@ -246,9 +245,7 @@ async function sendRequest() {
     }
 
     &__text {
-        font-weight: 400;
         font-size: 18px;
-        line-height: 24px;
         color: #ffffff;
         margin-bottom: 10px;
     }
