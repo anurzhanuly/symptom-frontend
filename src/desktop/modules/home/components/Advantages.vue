@@ -76,7 +76,7 @@ const advantagesInfoSecond = computed(() => {
         display: flex;
         align-items: center;
         margin-top: 90px;
-        max-width: 650px;
+        width: 650px;
 
         @media (max-width: 1350px) {
             margin-top: 30px;
@@ -96,7 +96,6 @@ const advantagesInfoSecond = computed(() => {
     }
 
     &__text {
-        font-weight: 400;
         font-size: 20px;
         line-height: 28px;
         color: #000000;
