@@ -20,143 +20,84 @@ const advantagesInfoSecond = computed(() => {
 </script>
 
 <template>
-    <div class="advantages-container">
-        <div class="advantages-info">
-            <h3>Наши приемущества</h3>
-            <div>
-                <h1>01</h1>
-                <p>{{ advantagesInfoFirst }}</p>
+    <div class="advantages">
+        <div class="advantages__wrapper">
+            <h2 class="advantages__title">Наши приемущества</h2>
+            <div class="advantages__content">
+                <p class="advantages__subtitle">01</p>
+                <p class="advantages__text">{{ advantagesInfoFirst }}</p>
             </div>
-            <div>
-                <h1>02</h1>
-                <p>{{ advantagesInfoSecond }}</p>
+            <div class="advantages__content">
+                <p class="advantages__subtitle">02</p>
+                <p class="advantages__text">{{ advantagesInfoSecond }}</p>
             </div>
-            <div />
+            <div class="advantages__content" />
         </div>
-
-        <div class="image">
-            <img
-                alt="logo"
-                src="@/assets/phone.png"
-            />
-        </div>
+        <img
+            class="advantages__img"
+            alt="logo"
+            src="@/assets/phone.png"
+        />
     </div>
 </template>
 
-<style scoped>
-.advantages-container {
+<style lang="scss" scoped>
+.advantages {
     padding: 10px 190px;
     display: flex;
     background: #eef5fb;
     justify-content: space-between;
     align-items: center;
-}
 
-.advantages-info {
-    display: flex;
-    flex-direction: column;
-}
+    &__title {
+        font-size: 36px;
+        line-height: 44px;
+        color: #111111;
+        margin-left: 75px;
+        padding-top: 15px;
 
-.advantages-info div {
-    display: flex;
-    align-items: center;
-    margin-top: 90px;
-    width: 650px;
-}
-
-h1 {
-    font-weight: 600;
-    font-size: 60px;
-    line-height: 60px;
-    color: #276ef1;
-    margin-right: 15px;
-}
-
-h3 {
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 44px;
-    color: #111111;
-    margin-left: 75px;
-    padding-top: 15px;
-}
-
-p {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 28px;
-    color: #000000;
-}
-
-img {
-    width: 100%;
-}
-
-@media (max-width: 1350px) {
-    img {
-        width: 100%;
+        @media (max-width: 1250px) {
+            text-align: center;
+            margin-left: 0;
+        }
     }
 
-    .advantages-info div {
-        margin-top: 30px;
-    }
-}
+    &__content {
+        display: flex;
+        align-items: center;
+        margin-top: 90px;
+        max-width: 650px;
 
-@media (max-width: 1250px) {
-    .image {
-        display: none;
-    }
+        @media (max-width: 1350px) {
+            margin-top: 30px;
+        }
 
-    .advantages-info div {
-        width: 100%;
-    }
-}
-
-@media (max-width: 860px) {
-    h3 {
-        font-size: 30px;
+        @media (max-width: 1250px) {
+            max-width: 100%;
+        }
     }
 
-    .advantages-container {
-        padding: 10px 100px;
-    }
-}
-
-@media (max-width: 595px) {
-    h3 {
-        font-size: 25px;
+    &__subtitle {
+        font-weight: 600;
+        font-size: 60px;
+        line-height: 60px;
+        color: #276ef1;
+        margin-right: 15px;
     }
 
-    h1 {
-        font-size: 45px;
+    &__text {
+        font-size: 20px;
+        line-height: 28px;
+        color: #000000;
     }
 
-    p {
-        font-size: 16px;
-    }
+    &__img {
+        width: 40%;
+        height: 100%;
 
-    .advantages-container {
-        padding: 10px 45px;
-    }
-}
-
-@media (max-width: 490px) {
-    .advantages-container {
-        padding: 10px 25px;
-    }
-
-    h3 {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 330px) {
-    h3 {
-        font-size: 16px;
-    }
-
-    p {
-        font-size: 14px;
+        @media (max-width: 1250px) {
+            display: none;
+        }
     }
 }
 </style>

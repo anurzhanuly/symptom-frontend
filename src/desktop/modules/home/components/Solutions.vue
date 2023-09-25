@@ -33,102 +33,58 @@ function getImageUrl(name: string) {
 </script>
 
 <template>
-    <div class="solution-container">
-        <div>
-            <h1>Какие проблемы решает Symptom</h1>
-        </div>
-        <div class="solution">
+    <div class="solutions">
+        <h2 class="solutions__title">Какие проблемы решает Symptom</h2>
+        <div class="solutions__content">
             <div
                 v-for="(solution, index) in solutions"
                 :key="index"
-                class="solutions"
+                class="solutions__descr"
             >
                 <img
                     alt="logo"
                     :src="getImageUrl(solution.img)"
                 />
-                <p>{{ solution.info }}</p>
+                <p class="solutions__text">{{ solution.info }}</p>
             </div>
         </div>
     </div>
 </template>
 
-<style scoped>
-.solution-container {
+<style lang="scss" scoped>
+.solutions {
     display: flex;
     flex-direction: column;
     padding: 40px 100px;
     align-items: center;
-}
 
-p {
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 28px;
-    color: #000000;
-}
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 20px;
 
-.solution {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    justify-content: center;
-}
-
-.solutions {
-    background: #eef5fb;
-    border-radius: 20px;
-    width: 490px;
-    margin: 15px;
-    padding: 15px;
-}
-
-@media (max-width: 1240px) {
-    .solutions {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        width: 100%;
-    }
-}
-
-@media (max-width: 860px) {
-    .solution-container {
-        padding: 40px;
-    }
-}
-
-@media (max-width: 595px) {
-    h1 {
-        font-size: 25px;
+        @media (max-width: 1400px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
-    p {
-        font-size: 16px;
+    &__descr {
+        background: #eef5fb;
+        border-radius: 20px;
+        padding: 15px;
+
+        @media (max-width: 1240px) {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
     }
 
-    .solution-container {
-        padding: 40px 30px;
-    }
-}
-
-@media (max-width: 490px) {
-    h1 {
+    &__text {
         font-size: 18px;
-    }
-
-    .solution-container {
-        padding: 40px 7px;
-    }
-}
-
-@media (max-width: 330px) {
-    h1 {
-        font-size: 16px;
-    }
-
-    p {
-        font-size: 14px;
+        line-height: 28px;
+        color: #000000;
     }
 }
 </style>

@@ -51,7 +51,6 @@ function direct(): void {
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
 
     &__title {
-        font-weight: 600;
         font-size: 36px;
         color: #212121;
     }
