@@ -33,13 +33,11 @@ const advantagesInfoSecond = computed(() => {
             </div>
             <div class="advantages__content" />
         </div>
-        <div class="advantages__img-wrapper">
-            <img
-                class="advantages__img"
-                alt="logo"
-                src="@/assets/phone.png"
-            />
-        </div>
+        <img
+            class="advantages__img"
+            alt="logo"
+            src="@/assets/phone.png"
+        />
     </div>
 </template>
 
@@ -102,10 +100,9 @@ const advantagesInfoSecond = computed(() => {
     }
 
     &__img {
-        width: 100%;
-    }
+        width: 40%;
+        height: 100%;
 
-    &__img-wrapper {
         @media (max-width: 1250px) {
             display: none;
         }

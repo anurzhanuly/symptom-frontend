@@ -177,19 +177,18 @@ async function sendRequest() {
                 class="questions__field"
                 placeholder="Номер телефона"
             />
-            <p-button
-                label="Отправить"
-                class="questions__button"
+            <ui-button
+                is-blue
                 @click="sendRequest"
-            />
+            >
+                Отправить
+            </ui-button>
         </div>
-        <div class="questions__img-wrapper">
-            <img
-                alt="logo"
-                src="@/assets/onboarding/onboard1.png"
-                class="questions__img"
-            />
-        </div>
+        <img
+            alt="logo"
+            src="@/assets/onboarding/onboard1.png"
+            class="questions__img"
+        />
     </div>
 </template>
 
@@ -222,6 +221,7 @@ async function sendRequest() {
 
 .questions {
     display: flex;
+    align-items: center;
     margin: 10px 150px 50px 150px;
     padding: 45px 85px;
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
@@ -254,37 +254,15 @@ async function sendRequest() {
         margin: 15px 0;
         padding: 15px;
         border-radius: 10px;
-        width: 450px;
-
-        @media (max-width: 920px) {
-            width: 100%;
-        }
     }
 
-    &__button {
-        font-weight: 600;
-        font-size: 16px;
-        height: 45px;
-        width: 340px;
-        background: #276ef1;
-        border-radius: 10px;
-        margin-top: 15px;
-
-        @media (max-width: 920px) {
-            width: 100%;
-        }
-    }
-
-    &__img-wrapper {
+    &__img {
         width: 50%;
+        height: 100%;
 
         @media (max-width: 1200px) {
             display: none;
         }
-    }
-
-    &__img {
-        width: 100%;
     }
 }
 </style>

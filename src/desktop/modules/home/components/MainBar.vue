@@ -83,13 +83,11 @@ function goToDoctorCabinet() {
                 </ui-button>
             </div>
         </div>
-        <div class="main__img-container">
-            <img
-                class="main__img"
-                alt="logo"
-                src="@/assets/main.png"
-            />
-        </div>
+        <img
+            class="main__img"
+            alt="logo"
+            src="@/assets/main.png"
+        />
     </div>
 </template>
 
@@ -101,7 +99,7 @@ function goToDoctorCabinet() {
     align-items: center;
     height: 90vh;
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1350px) {
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
@@ -112,44 +110,25 @@ function goToDoctorCabinet() {
     }
 
     &__content-wrapper {
-        width: 50%;
+        min-width: 40%;
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1350px) {
             width: 100%;
         }
     }
 
     &__title {
         font-size: 48px;
-        font-weight: 700;
-        display: inline;
 
         @media (max-width: 1650px) {
-            font-size: 36px;
-        }
-
-        @media (max-width: 1480px) {
-            font-size: 30px;
-        }
-
-        @media (max-width: 1200px) {
-            font-size: 37px;
+            font-size: 40px;
         }
     }
 
     &__subtitle {
         font-size: 20px;
-        line-height: 35px;
+        line-height: 28px;
         margin-top: 15px;
-
-        @media (max-width: 1650px) {
-            font-size: 16px;
-            line-height: 20px;
-        }
-
-        @media (max-width: 1200px) {
-            font-size: 20px;
-        }
     }
 
     &__button-wrapper {
@@ -160,10 +139,6 @@ function goToDoctorCabinet() {
 
     &__button {
         margin-bottom: 16px;
-    }
-
-    &__img-container {
-        width: 90%;
     }
 
     &__img {

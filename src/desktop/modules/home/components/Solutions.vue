@@ -63,24 +63,25 @@ function getImageUrl(name: string) {
     }
 
     &__content {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
         margin-top: 20px;
-        justify-content: center;
+
+        @media (max-width: 1400px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     &__descr {
         background: #eef5fb;
         border-radius: 20px;
-        width: 490px;
-        margin: 15px;
         padding: 15px;
 
         @media (max-width: 1240px) {
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            width: 100%;
         }
     }
 
