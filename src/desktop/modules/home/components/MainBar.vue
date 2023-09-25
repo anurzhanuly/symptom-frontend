@@ -105,10 +105,6 @@ function goToDoctorCabinet() {
         align-items: center;
     }
 
-    @media (max-width: 865px) {
-        padding: 0 60px;
-    }
-
     &__content-wrapper {
         min-width: 40%;
 

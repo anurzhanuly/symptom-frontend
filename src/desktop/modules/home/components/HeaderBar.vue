@@ -46,10 +46,6 @@ const label = computed(() => {
     align-items: center;
     padding: 20px 190px;
 
-    @media (max-width: 860px) {
-        padding: 20px 60px;
-    }
-
     &__img {
         width: 200px;
     }

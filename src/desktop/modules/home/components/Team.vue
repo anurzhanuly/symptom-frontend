@@ -195,11 +195,6 @@ async function sendRequest() {
 <style lang="scss" scoped>
 .team {
     padding: 20px 150px;
-    font-style: normal;
-
-    @media screen and (max-width: 860px) {
-        padding: 20px 65px;
-    }
 
     &__carousel {
         margin-top: 25px;
@@ -226,11 +221,6 @@ async function sendRequest() {
     padding: 45px 85px;
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
     border-radius: 10px;
-
-    @media screen and (max-width: 860px) {
-        padding: 45px;
-        margin: 10px 50px 50px 50px;
-    }
 
     &__form {
         display: flex;

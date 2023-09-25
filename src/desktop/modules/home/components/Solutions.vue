@@ -58,10 +58,6 @@ function getImageUrl(name: string) {
     padding: 40px 100px;
     align-items: center;
 
-    @media (max-width: 860px) {
-        padding: 40px;
-    }
-
     &__content {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

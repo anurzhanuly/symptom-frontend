@@ -49,10 +49,6 @@ const advantagesInfoSecond = computed(() => {
     justify-content: space-between;
     align-items: center;
 
-    @media (max-width: 860px) {
-        padding: 10px 100px;
-    }
-
     &__title {
         font-size: 36px;
         line-height: 44px;
@@ -63,10 +59,6 @@ const advantagesInfoSecond = computed(() => {
         @media (max-width: 1250px) {
             text-align: center;
             margin-left: 0;
-        }
-
-        @media (max-width: 860px) {
-            font-size: 28px;
         }
     }
 
