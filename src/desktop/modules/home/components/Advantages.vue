@@ -24,11 +24,11 @@ const advantagesInfoSecond = computed(() => {
         <div class="advantages__wrapper">
             <h2 class="advantages__title">Наши приемущества</h2>
             <div class="advantages__content">
-                <h3 class="advantages__subtitle">01</h3>
+                <p class="advantages__subtitle">01</p>
                 <p class="advantages__text">{{ advantagesInfoFirst }}</p>
             </div>
             <div class="advantages__content">
-                <h3 class="advantages__subtitle">02</h3>
+                <p class="advantages__subtitle">02</p>
                 <p class="advantages__text">{{ advantagesInfoSecond }}</p>
             </div>
             <div class="advantages__content" />
@@ -76,7 +76,7 @@ const advantagesInfoSecond = computed(() => {
         display: flex;
         align-items: center;
         margin-top: 90px;
-        width: 650px;
+        max-width: 650px;
 
         @media (max-width: 1350px) {
             margin-top: 30px;

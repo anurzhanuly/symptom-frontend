@@ -163,7 +163,7 @@ function goToDoctorCabinet() {
     }
 
     &__img-container {
-        width: 100%;
+        width: 90%;
     }
 
     &__img {

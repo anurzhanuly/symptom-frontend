@@ -29,13 +29,13 @@ const projectInfoSecond = computed(() => {
         <div class="about__wrapper">
             <h3 class="about__title">О проекте</h3>
             <div class="about__content">
-                <h2 class="about__subtitle">01</h2>
+                <p class="about__subtitle">01</p>
                 <p class="about__text">
                     {{ projectInfoFirst }}
                 </p>
             </div>
             <div class="about__content">
-                <h2 class="about__subtitle">02</h2>
+                <p class="about__subtitle">02</p>
                 <p class="about__text">
                     {{ projectInfoSecond }}
                 </p>
