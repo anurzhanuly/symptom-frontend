@@ -202,6 +202,11 @@ h1 {
     .main-container {
         padding: 0 60px;
     }
+
+    h1 {
+        margin-top: 12px;
+        line-height: 32px;
+    }
 }
 
 @media (max-width: 595px) {

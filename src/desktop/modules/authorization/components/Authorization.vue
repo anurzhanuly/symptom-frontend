@@ -5,12 +5,12 @@ import UiButton from '@/ui/UiButton.vue';
 
 <template>
     <div class="authorization">
-        <div class="authorization-onboarding">
+        <div class="authorization__onboarding">
             <base-carousel />
         </div>
-        <div class="authorization-main">
+        <div class="authorization__main">
             <ui-button
-                class="authorization-button"
+                class="authorization__button"
                 icon="pi pi-angle-left header__button"
                 @click="$router.push({ name: 'home' })"
             >
@@ -23,29 +23,18 @@ import UiButton from '@/ui/UiButton.vue';
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .authorization {
     display: flex;
     justify-content: space-between;
-}
 
-.authorization-main {
-    padding-top: 40px;
-}
-
-.authorization-onboarding,
-.authorization-main {
-    width: 50%;
-}
-
-@media only screen and (max-width: 750px) {
-    .authorization-onboarding {
-        display: none;
+    &__onboarding {
+        width: 50%;
     }
 
-    .authorization-main {
-        width: 100%;
-        padding-top: 20px;
+    &__main {
+        padding-top: 40px;
+        width: 50%;
     }
 }
 </style>
