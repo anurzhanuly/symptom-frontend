@@ -10,7 +10,7 @@ defineProps({
     },
     buttonText: {
         type: String,
-        default: '',
+        default: 'Назад',
     },
 });
 </script>
