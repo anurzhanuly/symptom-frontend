@@ -40,7 +40,7 @@ function goToDoctorCabinet() {
 <template>
     <div class="main-container">
         <div class="main-information">
-            <h1>Что Вас беспокоит?</h1>
+            <h1 class="main__title">Что Вас беспокоит?</h1>
             <h3>
                 Пройдите опрос, узнайте о состоянии вашего здоровья и начните
                 приём с нами
@@ -203,7 +203,7 @@ h1 {
         padding: 0 60px;
     }
 
-    h1 {
+    .main__title {
         margin-top: 12px;
         line-height: 32px;
     }

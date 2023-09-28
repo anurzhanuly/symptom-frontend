@@ -9,15 +9,15 @@ export const useHomeStore = defineStore('home', () => {
             name: 'О проекте',
         },
         {
-            htmlClass: '.solution-container',
+            htmlClass: '.solutions',
             name: 'Решение',
         },
         {
-            htmlClass: '.advantages-container',
+            htmlClass: '.advantages',
             name: 'Преимущества',
         },
         {
-            htmlClass: '.team-container',
+            htmlClass: '.team',
             name: 'Команда',
         },
     ]);
