@@ -4,13 +4,24 @@ import UiButton from './UiButton.vue';
 defineProps({
     headerLogo: Boolean,
     buttonBack: Boolean,
-    buttonRout: {
-        type: String,
-        default: '',
+    headerLinks: Boolean,
+    navLinks: {
+        type: Object,
+        default() {
+            return { name: '', htmlClass: '' };
+        },
     },
-    buttonText: {
-        type: String,
-        default: 'Назад',
+    buttonProps: {
+        type: Object,
+        default() {
+            return { route: '', text: 'Назад' };
+        },
+    },
+    toggleProps: {
+        type: Object,
+        default() {
+            return { text: '' };
+        },
     },
 });
 </script>
@@ -21,9 +32,9 @@ defineProps({
             v-if="buttonBack"
             class="header__button button-back"
             icon="pi pi-angle-left"
-            @click="$router.push({ name: buttonRout })"
+            @click="$router.push({ name: buttonProps.route })"
         >
-            {{ buttonText }}
+            {{ buttonProps.text }}
         </ui-button>
         <img
             v-if="headerLogo"
@@ -31,6 +42,25 @@ defineProps({
             alt="Symptom logo"
             class="header__logo"
         />
+        <nav
+            v-if="headerLinks"
+            class="header__links-wrapper"
+        >
+            <a
+                v-for="(link, index) in navLinks"
+                :key="index"
+                class="header__link"
+                @click="$emit('linkScroll', index)"
+            >
+                {{ link.name }}
+            </a>
+            <p
+                class="header__button-toggle"
+                @click="$emit('toggleButton')"
+            >
+                {{ toggleProps.text }}
+            </p>
+        </nav>
     </header>
 </template>
 
@@ -43,6 +73,26 @@ defineProps({
     &__logo {
         width: 200px;
         height: 100%;
+    }
+
+    &__links-wrapper {
+        width: 80%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__link {
+        color: #1f1534;
+        cursor: pointer;
+        font-size: 16px;
+        opacity: 0.5;
+    }
+
+    &__button-toggle {
+        font-size: 16px;
+        color: #276ef1;
+        border-bottom: 1px solid #276ef1;
+        cursor: pointer;
     }
 }
 </style>
