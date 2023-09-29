@@ -3,7 +3,6 @@ import UiButton from './UiButton.vue';
 
 defineProps({
     headerLogo: Boolean,
-    buttonBack: Boolean,
     headerLinks: Boolean,
     navLinks: {
         type: Object,
@@ -11,10 +10,10 @@ defineProps({
             return { name: '', htmlClass: '' };
         },
     },
-    buttonProps: {
+    button: {
         type: Object,
         default() {
-            return { route: '', text: 'Назад' };
+            return { isButton: Boolean, route: '', text: 'Назад' };
         },
     },
     toggleProps: {
@@ -29,12 +28,12 @@ defineProps({
 <template>
     <header class="header">
         <ui-button
-            v-if="buttonBack"
+            v-if="button.isButton"
             class="header__button button-back"
             icon="pi pi-angle-left"
-            @click="$router.push({ name: buttonProps.route })"
+            @click="$router.push({ name: button.route })"
         >
-            {{ buttonProps.text }}
+            {{ button.text }}
         </ui-button>
         <img
             v-if="headerLogo"

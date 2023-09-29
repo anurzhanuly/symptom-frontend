@@ -3,7 +3,6 @@ import { computed } from 'vue';
 import { useHomeStore } from '../store/home.store';
 import { storeToRefs } from 'pinia';
 import { scrollToElement } from '@/utils/scroll';
-import BaseHeader from '@/ui/BaseHeader.vue';
 const homeStore = useHomeStore();
 
 const { isDoctor, links } = storeToRefs(homeStore);
@@ -14,16 +13,7 @@ const label = computed(() => {
 </script>
 
 <template>
-    <base-header
-        :header-links="true"
-        :button-back="true"
-        :header-logo="true"
-        :nav-links="links"
-        :toggle-props="{ text: label }"
-        @toggleButton="isDoctor = !isDoctor"
-        @linkScroll="(index) => scrollToElement(links[index].htmlClass)"
-    ></base-header>
-    <!-- <header>
+    <header>
         <div class="header-container">
             <img
                 alt="logo"
@@ -45,7 +35,7 @@ const label = computed(() => {
                 {{ label }}
             </p>
         </div>
-    </header> -->
+    </header>
 </template>
 
 <style lang="scss" scoped>
