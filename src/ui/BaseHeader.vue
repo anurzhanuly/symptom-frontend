@@ -3,7 +3,6 @@ import UiButton from './UiButton.vue';
 
 defineProps({
     headerLogo: Boolean,
-    headerLinks: Boolean,
     navLinks: {
         type: Object,
         default() {
@@ -13,10 +12,10 @@ defineProps({
     button: {
         type: Object,
         default() {
-            return { isButton: Boolean, route: '', text: 'Назад' };
+            return { route: '', text: '' };
         },
     },
-    toggleProps: {
+    toggle: {
         type: Object,
         default() {
             return { text: '' };
@@ -28,8 +27,8 @@ defineProps({
 <template>
     <header class="header">
         <ui-button
-            v-if="button.isButton"
-            class="header__button button-back"
+            v-if="button.text"
+            class="header__button"
             icon="pi pi-angle-left"
             @click="$router.push({ name: button.route })"
         >
@@ -42,7 +41,7 @@ defineProps({
             class="header__logo"
         />
         <nav
-            v-if="headerLinks"
+            v-if="navLinks.length"
             class="header__links-wrapper"
         >
             <a
@@ -53,21 +52,22 @@ defineProps({
             >
                 {{ link.name }}
             </a>
-            <p
-                class="header__button-toggle"
-                @click="$emit('toggleButton')"
-            >
-                {{ toggleProps.text }}
-            </p>
         </nav>
+        <p
+            v-if="toggle.text"
+            class="header__toggle"
+            @click="$emit('toggleButton')"
+        >
+            {{ toggle.text }}
+        </p>
     </header>
 </template>
 
 <style scoped lang="scss">
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
     &__logo {
         width: 200px;
@@ -75,20 +75,18 @@ defineProps({
     }
 
     &__links-wrapper {
-        width: 80%;
         display: flex;
-        justify-content: space-around;
+        width: 60%;
+        justify-content: space-between;
     }
 
     &__link {
         color: #1f1534;
         cursor: pointer;
-        font-size: 16px;
         opacity: 0.5;
     }
 
-    &__button-toggle {
-        font-size: 16px;
+    &__toggle {
         color: #276ef1;
         border-bottom: 1px solid #276ef1;
         cursor: pointer;
