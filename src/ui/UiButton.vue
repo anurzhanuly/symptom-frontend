@@ -23,6 +23,7 @@ defineProps({
             'button--white': isWhite,
         }"
         :disabled="isLoading"
+        type="button"
     >
         <span
             v-if="isLoading"
