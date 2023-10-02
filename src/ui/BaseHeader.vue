@@ -4,7 +4,7 @@ import UiButton from './UiButton.vue';
 defineProps({
     headerLogo: Boolean,
     navLinks: {
-        type: Object,
+        type: Array as () => { name: string; htmlClass: string }[],
         default() {
             return { name: '', htmlClass: '' };
         },
@@ -45,12 +45,12 @@ defineProps({
             class="header__links-wrapper"
         >
             <a
-                v-for="(link, index) in navLinks"
+                v-for="(obj, index) in navLinks"
                 :key="index"
                 class="header__link"
                 @click="$emit('linkScroll', index)"
             >
-                {{ link.name }}
+                {{ obj.name }}
             </a>
         </nav>
         <p
