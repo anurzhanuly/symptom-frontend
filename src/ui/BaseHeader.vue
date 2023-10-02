@@ -4,7 +4,7 @@ import UiButton from './UiButton.vue';
 defineProps({
     headerLogo: Boolean,
     navLinks: {
-        type: Array as () => { name: string; htmlClass: string }[],
+        type: Array as () => { name: string; htmlClass: string }[], // НУЖНО ПОДУМАТЬ ЛУЧШЕ
         default() {
             return { name: '', htmlClass: '' };
         },
