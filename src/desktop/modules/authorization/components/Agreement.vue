@@ -148,7 +148,7 @@ onMounted(() => {
     </sidebar>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .agreement {
     padding: 12px;
 }

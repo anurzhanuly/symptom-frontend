@@ -30,8 +30,4 @@ import UiButton from '@/ui/UiButton.vue';
         max-width: 100px;
     }
 }
-
-.pi {
-    font-weight: bold;
-}
 </style>

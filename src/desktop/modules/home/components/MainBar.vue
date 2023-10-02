@@ -115,6 +115,7 @@ function goToDoctorCabinet() {
 
     &__title {
         font-size: 48px;
+        line-height: 36px;
 
         @media (max-width: 1650px) {
             font-size: 40px;
