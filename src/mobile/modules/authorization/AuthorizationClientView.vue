@@ -7,6 +7,7 @@ import { validateLogin } from '@/utils/validation';
 
 import Authorization from './components/Authorization.vue';
 import ClientRegistration from './components/popup/ClientRegistration.vue';
+import ForgotPassword from './components/popup/ForgotPassword.vue';
 
 import { useDialog } from 'primevue/usedialog';
 import InputText from 'primevue/inputtext';
@@ -30,7 +31,15 @@ function checkClient(): void {
 }
 
 function resetPassword() {
-    // TODO reset password
+    dialog.open(ForgotPassword, {
+        props: {
+            header: 'Введите новый пароль',
+            style: {
+                width: '80%',
+            },
+            modal: true,
+        },
+    });
 }
 
 function clientRegistration() {
