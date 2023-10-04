@@ -20,18 +20,16 @@ const dialogRef = inject<any>('dialogRef');
 function resetPassword() {
     if (validateData()) {
         dialogRef.value.close();
-        phoneNumber.value = phoneNumber.value.replace(/\D/g, '');
-
-        if (phoneNumber.value.startsWith('8')) {
-            phoneNumber.value = '7' + phoneNumber.value.slice(1);
-        }
+        phoneNumber.value = phoneNumber.value
+            .replace(/\D/g, '')
+            .replace(/^8/, '7');
 
         console.log(`phone:${phoneNumber.value} password:${password.value}`);
     }
 }
 
 function validateData(): boolean {
-    const PHONE_PATTERN = /^(8|\+7|7)[0-9]{10}$/;
+    const PHONE_PATTERN = /^(8|\+7|7)\s*\d{3}\s*\d{3}\s*\d{2}\s*\d{2}$/;
 
     isPhoneNumber.value = true;
     isCorrectPhoneNumber.value = true;
@@ -104,6 +102,7 @@ function validateData(): boolean {
             <p-password
                 v-model="passwordConfirm"
                 :feedback="false"
+                toggle-mask
             />
         </div>
         <ui-button
