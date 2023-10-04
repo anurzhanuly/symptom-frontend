@@ -20,13 +20,18 @@ const dialogRef = inject<any>('dialogRef');
 function resetPassword() {
     if (validateData()) {
         dialogRef.value.close();
-        phoneNumber.value = '7' + phoneNumber.value.slice(1);
+        phoneNumber.value = phoneNumber.value.replace(/\D/g, '');
+
+        if (phoneNumber.value.startsWith('8')) {
+            phoneNumber.value = '7' + phoneNumber.value.slice(1);
+        }
+
         console.log(`phone:${phoneNumber.value} password:${password.value}`);
     }
 }
 
 function validateData(): boolean {
-    const phonePattern = /^8[0-9]{10}$/;
+    const PHONE_PATTERN = /^(8|\+7|7)[0-9]{10}$/;
 
     isPhoneNumber.value = true;
     isCorrectPhoneNumber.value = true;
@@ -38,7 +43,7 @@ function validateData(): boolean {
         return false;
     }
 
-    if (!phonePattern.test(phoneNumber.value)) {
+    if (!PHONE_PATTERN.test(phoneNumber.value)) {
         isCorrectPhoneNumber.value = false;
         return false;
     }
@@ -63,15 +68,18 @@ function validateData(): boolean {
         @keyup.enter="resetPassword"
     >
         <div>
-            <h4 class="form__title">
-                Номер телефона <span class="form__element">*</span>
-            </h4>
             <inline-message v-if="!isPhoneNumber">
                 Поле 'Номер телефона' обязательно для заполнения
             </inline-message>
             <inline-message v-if="!isCorrectPhoneNumber">
-                Не корректный номер телефона
+                Некорректный номер телефона
+                <br />
+                Пожалуйста, введите номер в формате 877712345678
             </inline-message>
+            <h4 class="form__title">
+                Номер телефона <span class="form__element">*</span>
+            </h4>
+
             <input-text v-model="phoneNumber" />
         </div>
         <div>
@@ -113,7 +121,6 @@ function validateData(): boolean {
 .form {
     &__title {
         color: #3f3f3f;
-        font-weight: 400;
         margin: 8px 0;
     }
 
@@ -124,5 +131,10 @@ function validateData(): boolean {
     &__button {
         margin-top: 8px;
     }
+}
+
+.p-inline-message {
+    width: 50%;
+    margin: 0 auto;
 }
 </style>
