@@ -99,7 +99,6 @@ function validateData(): boolean {
             <h4 class="form__title">
                 Номер телефона <span class="form__element">*</span>
             </h4>
-
             <input-text v-model="phoneNumber" />
         </div>
         <div>
