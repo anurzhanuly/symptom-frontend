@@ -40,21 +40,33 @@ function validateData(): boolean {
 
     if (!phoneNumber.value) {
         isPhoneNumber.value = false;
+        setTimeout(() => {
+            isPhoneNumber.value = true;
+        }, 5000);
         return false;
     }
 
     if (!PHONE_PATTERN.test(phoneNumber.value)) {
         isCorrectPhoneNumber.value = false;
+        setTimeout(() => {
+            isCorrectPhoneNumber.value = true;
+        }, 5000);
         return false;
     }
 
     if (!password.value) {
         isPassword.value = false;
+        setTimeout(() => {
+            isPassword.value = true;
+        }, 5000);
         return false;
     }
 
     if (password.value !== passwordConfirm.value) {
         isConfirmPassword.value = false;
+        setTimeout(() => {
+            isConfirmPassword.value = true;
+        }, 5000);
         return false;
     }
 
