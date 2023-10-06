@@ -29,12 +29,14 @@ function resetPassword() {
 }
 
 function validateData(): boolean {
-    const PHONE_PATTERN = /^(8|\+7|7)\s*\d{3}\s*\d{3}\s*\d{2}\s*\d{2}$/;
+    const PHONE_PATTERN = /^(8|\+7|7)[0-9]{10}$/;
 
     isPhoneNumber.value = true;
     isCorrectPhoneNumber.value = true;
     isPassword.value = true;
     isConfirmPassword.value = true;
+
+    phoneNumber.value = phoneNumber.value.replace(/\s/g, '');
 
     if (!phoneNumber.value) {
         isPhoneNumber.value = false;
@@ -65,7 +67,7 @@ function validateData(): boolean {
         class="form p-fluid"
         @keyup.enter="resetPassword"
     >
-        <div>
+        <div class="form__tooltip">
             <inline-message v-if="!isPhoneNumber">
                 Поле 'Номер телефона' обязательно для заполнения
             </inline-message>
@@ -74,6 +76,14 @@ function validateData(): boolean {
                 <br />
                 Пожалуйста, введите номер в формате 877712345678
             </inline-message>
+            <inline-message v-if="!isPassword">
+                Поле 'Пароль' обязательно для заполнения
+            </inline-message>
+            <inline-message v-if="!isConfirmPassword">
+                Пароли не совпадают!
+            </inline-message>
+        </div>
+        <div>
             <h4 class="form__title">
                 Номер телефона <span class="form__element">*</span>
             </h4>
@@ -84,9 +94,7 @@ function validateData(): boolean {
             <h4 class="form__title">
                 Новый пароль <span class="form__element">*</span>
             </h4>
-            <inline-message v-if="!isPassword">
-                Поле 'Пароль' обязательно для заполнения
-            </inline-message>
+
             <p-password
                 v-model="password"
                 toggle-mask
@@ -96,9 +104,7 @@ function validateData(): boolean {
             <h4 class="form__title">
                 Подтверждение пароля <span class="form__element">*</span>
             </h4>
-            <inline-message v-if="!isConfirmPassword">
-                Пароли не совпадают!
-            </inline-message>
+
             <p-password
                 v-model="passwordConfirm"
                 :feedback="false"
@@ -118,6 +124,11 @@ function validateData(): boolean {
 
 <style scoped lang="scss">
 .form {
+    &__tooltip {
+        width: 50%;
+        margin: 0 auto;
+    }
+
     &__title {
         color: #3f3f3f;
         margin: 8px 0;
@@ -130,10 +141,5 @@ function validateData(): boolean {
     &__button {
         margin-top: 8px;
     }
-}
-
-.p-inline-message {
-    width: 50%;
-    margin: 0 auto;
 }
 </style>
