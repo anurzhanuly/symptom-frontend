@@ -173,6 +173,7 @@ function validateRegistratition(): boolean {
 
             <ui-button
                 is-full
+                is-blue
                 @click="clientRegistration"
             >
                 Зарегистрироваться
