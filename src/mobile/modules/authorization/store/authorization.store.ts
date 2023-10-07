@@ -15,10 +15,10 @@ export const useAuthorizationStore = defineStore('authorization', () => {
     const doctors = ref<{ id: string; name: string }[]>([]);
 
     async function postLoginDoctor(
-        email: string,
+        login: string,
         password: string
     ): Promise<void> {
-        const res = await postLogin(email, password);
+        const res = await postLogin(login, password);
         if (res) {
             localStorage.setItem(
                 'doctorToken',

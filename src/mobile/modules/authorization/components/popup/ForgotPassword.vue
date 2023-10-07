@@ -97,6 +97,7 @@ function resetPassword() {
             <p-password
                 v-model="password"
                 toggle-mask
+                :feedback="false"
             />
         </div>
         <div>
@@ -107,6 +108,7 @@ function resetPassword() {
             <p-password
                 v-model="passwordConfirm"
                 toggle-mask
+                :feedback="false"
             />
         </div>
         <ui-button

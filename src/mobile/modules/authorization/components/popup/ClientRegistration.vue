@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { useAuthorizationStore } from '../../store/authorization.store';
-import { success } from '@/utils/toast';
-import { useRouter } from 'vue-router';
 import { inject, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { success } from '@/utils/toast';
+import { validatePhone } from '@/utils/validation';
+import { useAuthorizationStore } from '../../store/authorization.store';
 
 import InlineMessage from 'primevue/inlinemessage';
-import PButton from 'primevue/button';
+import UiButton from '@/ui/UiButton.vue';
 import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
 
@@ -20,8 +21,6 @@ const passwordConfirm = ref('');
 
 const isFirstName = ref(true);
 const isLastName = ref(true);
-const isCorrectEmail = ref(true);
-const isPhoneNumber = ref(true);
 const isCorrectPhoneNumber = ref(true);
 const isPassword = ref(true);
 const isConfirmPassword = ref(true);
@@ -29,15 +28,78 @@ const isConfirmPassword = ref(true);
 const router = useRouter();
 const dialogRef = inject<any>('dialogRef');
 
+function validateRegistratition(): boolean {
+    if (!firstName.value || firstName.value.length < 2) {
+        isFirstName.value = false;
+
+        setTimeout(() => {
+            isFirstName.value = true;
+        }, 3000);
+
+        return false;
+    }
+
+    if (!lastName.value || firstName.value.length < 2) {
+        isLastName.value = false;
+
+        setTimeout(() => {
+            isLastName.value = true;
+        }, 3000);
+
+        return false;
+    }
+
+    if (!validatePhone(phoneNumber.value)) {
+        isCorrectPhoneNumber.value = false;
+
+        setTimeout(() => {
+            isCorrectPhoneNumber.value = true;
+        }, 3000);
+
+        return false;
+    }
+
+    if (!password.value) {
+        isPassword.value = false;
+
+        setTimeout(() => {
+            isPassword.value = true;
+        }, 3000);
+
+        return false;
+    }
+
+    if (password.value !== passwordConfirm.value) {
+        isConfirmPassword.value = false;
+
+        setTimeout(() => {
+            isConfirmPassword.value = true;
+        }, 3000);
+
+        return false;
+    }
+
+    return true;
+}
+
 async function clientRegistration() {
     if (validateRegistratition()) {
+        console.log({
+            password: password.value,
+            c_password: passwordConfirm.value,
+            type: 'patient',
+            first_name: firstName.value,
+            last_name: lastName.value,
+            phone: validatePhone(phoneNumber.value),
+            email: email.value,
+        });
         const token = await authorizationStore.clientRegistrationData({
             password: password.value,
             c_password: passwordConfirm.value,
             type: 'patient',
             first_name: firstName.value,
             last_name: lastName.value,
-            phone: phoneNumber.value,
+            phone: validatePhone(phoneNumber.value),
             email: email.value,
         });
 
@@ -52,50 +114,6 @@ async function clientRegistration() {
 
         dialogRef.value.close();
     }
-}
-
-function validateRegistratition(): boolean {
-    const PHONE_PATTERN = /^(8|\+7|7)[0-9]{10}$/;
-
-    isFirstName.value = true;
-    isLastName.value = true;
-    isCorrectEmail.value = true;
-    isPhoneNumber.value = true;
-    isCorrectPhoneNumber.value = true;
-    isPassword.value = true;
-    isConfirmPassword.value = true;
-
-    if (!firstName.value || firstName.value.length < 2) {
-        isFirstName.value = false;
-        return false;
-    }
-
-    if (!lastName.value || firstName.value.length < 2) {
-        isLastName.value = false;
-        return false;
-    }
-
-    if (!phoneNumber.value) {
-        isPhoneNumber.value = false;
-        return false;
-    }
-
-    // if (!phonePattern.test(phoneNumber.value)) {
-    //     isCorrectPhoneNumber.value = false;
-    //     return false;
-    // }
-
-    if (!password.value) {
-        isPassword.value = false;
-        return false;
-    }
-
-    if (password.value !== passwordConfirm.value) {
-        isConfirmPassword.value = false;
-        return false;
-    }
-
-    return true;
 }
 </script>
 
@@ -122,9 +140,6 @@ function validateRegistratition(): boolean {
             </div>
             <div>
                 <h4>Номер телефона <span>*</span></h4>
-                <inline-message v-if="!isPhoneNumber">
-                    Поле 'Номер телефона' обязательно для заполнения
-                </inline-message>
                 <inline-message v-if="!isCorrectPhoneNumber">
                     Не корректный номер телефона
                 </inline-message>
@@ -138,6 +153,7 @@ function validateRegistratition(): boolean {
                 <p-password
                     v-model="password"
                     toggle-mask
+                    :feedback="false"
                 />
             </div>
             <div>
@@ -145,13 +161,21 @@ function validateRegistratition(): boolean {
                 <inline-message v-if="!isConfirmPassword">
                     Пароли не совпадают!
                 </inline-message>
-                <p-password v-model="passwordConfirm" />
+                <p-password
+                    v-model="passwordConfirm"
+                    toggle-mask
+                    :feedback="false"
+                />
             </div>
 
-            <p-button
-                label="Зарегистрироваться"
+            <ui-button
+                is-full
+                is-blue
+                class="button"
                 @click="clientRegistration"
-            />
+            >
+                Зарегистрироваться
+            </ui-button>
         </form>
     </div>
 </template>
@@ -178,7 +202,7 @@ function validateRegistratition(): boolean {
     width: 100%;
 }
 
-.authorization-form .p-button {
+.authorization-form .button {
     margin-top: 15px;
     height: 45px;
     font-weight: 600;

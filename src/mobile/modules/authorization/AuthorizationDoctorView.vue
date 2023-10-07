@@ -1,23 +1,26 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
 import Authorization from './components/Authorization.vue';
 import { useAuthorizationStore } from './store/authorization.store';
-import { validateLogin } from '@/utils/validation';
-import { ref } from 'vue';
+import { validateLogin, validatePhone } from '@/utils/validation';
 
 import PPassword from 'primevue/password';
 import InputText from 'primevue/inputtext';
-import { storeToRefs } from 'pinia';
 import UiButton from '@/ui/UiButton.vue';
 
 const authorizationStore = useAuthorizationStore();
 const { isWrong } = storeToRefs(authorizationStore);
 
 const password = ref('');
-const email = ref('');
+const login = ref('');
 
 function checkDoctor(): void {
-    if (validateLogin(email.value, password.value)) {
-        authorizationStore.postLoginDoctor(email.value, password.value);
+    if (validateLogin(login.value, password.value)) {
+        authorizationStore.postLoginDoctor(
+            validatePhone(login.value),
+            password.value
+        );
     }
 }
 </script>
@@ -33,7 +36,7 @@ function checkDoctor(): void {
 
                 <h4>Почта <span>*</span></h4>
                 <input-text
-                    v-model="email"
+                    v-model="login"
                     type="mail"
                 />
 
@@ -41,6 +44,7 @@ function checkDoctor(): void {
                 <p-password
                     v-model="password"
                     toggle-mask
+                    :feedback="false"
                 />
 
                 <inline-message v-if="isWrong">

@@ -23,14 +23,14 @@ export function validateClinic(
     return true;
 }
 
-export function validateLogin(email: string, password: string): boolean {
-    if (!email) {
-        error('Ошибка', "Поле 'Почта' должно быть заполнено");
+export function validateLogin(login: string, password: string): boolean {
+    if (!validatePhone(login)) {
+        error('Ошибка', 'Пожалуйста, введите номер в формате 877712345678');
         return false;
     }
 
     if (!password) {
-        error('Ошибка', "Поле 'Поле 'Пароль' должно быть заполнено");
+        error('Ошибка', "Поле 'Пароль' должно быть заполнено");
         return false;
     }
 

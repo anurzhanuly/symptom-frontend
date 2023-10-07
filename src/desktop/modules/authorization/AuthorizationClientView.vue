@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useAuthorizationStore } from './store/authorization.store';
-import { validateLogin } from '@/utils/validation';
+import { validateLogin, validatePhone } from '@/utils/validation';
 
 import Authorization from './components/Authorization.vue';
 import ClientRegistration from './components/popup/ClientRegistration.vue';
@@ -25,7 +25,10 @@ const login = ref('');
 
 function checkClient(): void {
     if (validateLogin(login.value, password.value)) {
-        authorizationStore.postLoginClient(login.value, password.value);
+        authorizationStore.postLoginClient(
+            validatePhone(login.value),
+            password.value
+        );
     }
 }
 
@@ -71,6 +74,7 @@ function resetPassword() {
                     <p-password
                         v-model="password"
                         toggle-mask
+                        :feedback="false"
                     />
                 </div>
 
