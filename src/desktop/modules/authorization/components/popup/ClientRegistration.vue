@@ -145,10 +145,7 @@ function validateRegistratition(): boolean {
                 <inline-message v-if="!isConfirmPassword">
                     Пароли не совпадают!
                 </inline-message>
-                <p-password
-                    v-model="passwordConfirm"
-                    :feedback="false"
-                />
+                <p-password v-model="passwordConfirm" />
             </div>
 
             <ui-button

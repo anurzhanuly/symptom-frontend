@@ -36,3 +36,12 @@ export function validateLogin(email: string, password: string): boolean {
 
     return true;
 }
+
+export function validatePhone(phone: string) {
+    const PHONE_PATTERN = /^(8|\+7|7)[0-9]{10}$/;
+    const preparedPhone = phone.replace(/\s/g, '');
+
+    return PHONE_PATTERN.test(preparedPhone)
+        ? preparedPhone.replace(/\D/g, '').replace(/^8/, '7')
+        : '';
+}

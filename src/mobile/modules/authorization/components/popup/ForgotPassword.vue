@@ -5,6 +5,7 @@ import InlineMessage from 'primevue/inlinemessage';
 import UiButton from '@/ui/UiButton.vue';
 import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
+import { validatePhone } from '@/utils/validation';
 
 const password = ref('');
 const passwordConfirm = ref('');
@@ -12,65 +13,52 @@ const phoneNumber = ref('');
 
 const isPassword = ref(true);
 const isConfirmPassword = ref(true);
-const isPhoneNumber = ref(true);
 const isCorrectPhoneNumber = ref(true);
 
 const dialogRef = inject<any>('dialogRef');
 
-function resetPassword() {
-    if (validateData()) {
-        dialogRef.value.close();
-        phoneNumber.value = phoneNumber.value
-            .replace(/\D/g, '')
-            .replace(/^8/, '7');
-
-        console.log(`phone:${phoneNumber.value} password:${password.value}`);
-    }
-}
-
 function validateData(): boolean {
-    const PHONE_PATTERN = /^(8|\+7|7)[0-9]{10}$/;
-
-    isPhoneNumber.value = true;
-    isCorrectPhoneNumber.value = true;
-    isPassword.value = true;
-    isConfirmPassword.value = true;
-
-    phoneNumber.value = phoneNumber.value.replace(/\s/g, '');
-
-    if (!phoneNumber.value) {
-        isPhoneNumber.value = false;
-        setTimeout(() => {
-            isPhoneNumber.value = true;
-        }, 5000);
-        return false;
-    }
-
-    if (!PHONE_PATTERN.test(phoneNumber.value)) {
+    if (!validatePhone(phoneNumber.value)) {
         isCorrectPhoneNumber.value = false;
+
         setTimeout(() => {
             isCorrectPhoneNumber.value = true;
-        }, 5000);
+        }, 3000);
+
         return false;
     }
 
     if (!password.value) {
         isPassword.value = false;
+
         setTimeout(() => {
             isPassword.value = true;
-        }, 5000);
+        }, 3000);
+
         return false;
     }
 
     if (password.value !== passwordConfirm.value) {
         isConfirmPassword.value = false;
+
         setTimeout(() => {
             isConfirmPassword.value = true;
-        }, 5000);
+        }, 3000);
+
         return false;
     }
 
     return true;
+}
+
+function resetPassword() {
+    if (validateData()) {
+        dialogRef.value.close();
+
+        phoneNumber.value = validatePhone(phoneNumber.value);
+
+        console.log(`phone:${phoneNumber.value} password:${password.value}`);
+    }
 }
 </script>
 
@@ -80,9 +68,6 @@ function validateData(): boolean {
         @keyup.enter="resetPassword"
     >
         <div class="form__tooltip">
-            <inline-message v-if="!isPhoneNumber">
-                Поле 'Номер телефона' обязательно для заполнения
-            </inline-message>
             <inline-message v-if="!isCorrectPhoneNumber">
                 Некорректный номер телефона
                 <br />
@@ -99,7 +84,10 @@ function validateData(): boolean {
             <h4 class="form__title">
                 Номер телефона <span class="form__element">*</span>
             </h4>
-            <input-text v-model="phoneNumber" />
+            <input-text
+                v-model="phoneNumber"
+                :use-grouping="false"
+            />
         </div>
         <div>
             <h4 class="form__title">
@@ -118,7 +106,6 @@ function validateData(): boolean {
 
             <p-password
                 v-model="passwordConfirm"
-                :feedback="false"
                 toggle-mask
             />
         </div>

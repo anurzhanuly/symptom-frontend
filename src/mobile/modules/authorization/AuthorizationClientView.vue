@@ -70,7 +70,6 @@ function clientRegistration() {
                     <h4>Пароль <span>*</span></h4>
                     <p-password
                         v-model="password"
-                        :feedback="false"
                         toggle-mask
                     />
                 </div>

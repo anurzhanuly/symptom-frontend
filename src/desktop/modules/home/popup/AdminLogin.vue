@@ -45,7 +45,6 @@ async function checkAdmin() {
             <h3>Пароль</h3>
             <p-password
                 v-model="password"
-                :feedback="false"
                 toggle-mask
             />
         </div>
