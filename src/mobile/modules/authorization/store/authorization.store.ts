@@ -19,6 +19,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         password: string
     ): Promise<void> {
         const res = await postLogin(login, password);
+
         if (res) {
             localStorage.setItem(
                 'doctorToken',

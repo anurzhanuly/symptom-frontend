@@ -34,7 +34,7 @@ function checkDoctor(): void {
                     src="@/assets/logo-auth.png"
                 />
 
-                <h4>Почта <span>*</span></h4>
+                <h4>Телефон <span>*</span></h4>
                 <input-text
                     v-model="login"
                     type="mail"
