@@ -14,7 +14,6 @@ import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
 import InlineMessage from 'primevue/inlinemessage';
 import UiButton from '@/ui/UiButton.vue';
-import UiInput from '@/ui/UiInput.vue';
 
 const authorizationStore = useAuthorizationStore();
 
@@ -22,11 +21,11 @@ const { isWrong } = storeToRefs(authorizationStore);
 
 const dialog = useDialog();
 const password = ref('');
-const email = ref('');
+const login = ref('');
 
 function checkClient(): void {
-    if (validateLogin(email.value, password.value)) {
-        authorizationStore.postLoginClient(email.value, password.value);
+    if (validateLogin(login.value, password.value)) {
+        authorizationStore.postLoginClient(login.value, password.value);
     }
 }
 
@@ -64,8 +63,8 @@ function clientRegistration() {
                     src="@/assets/logo-auth.png"
                 />
                 <div>
-                    <h4>Почта <span>*</span></h4>
-                    <input-text v-model="email" />
+                    <h4>Телефон <span>*</span></h4>
+                    <input-text v-model="login" />
                 </div>
                 <div>
                     <h4>Пароль <span>*</span></h4>

@@ -3,11 +3,11 @@ import type { AxiosResponse } from 'axios';
 import { useSymptomApi } from '@mobile/services/api';
 
 export async function postLogin(
-    email: string,
+    login: string,
     password: string
 ): Promise<AxiosResponse | null> {
     const bodyFormData = new FormData();
-    bodyFormData.append('email', email);
+    bodyFormData.append('phone', login);
     bodyFormData.append('password', password);
 
     try {

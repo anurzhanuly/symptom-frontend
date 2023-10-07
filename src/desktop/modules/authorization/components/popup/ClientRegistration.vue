@@ -20,7 +20,6 @@ const passwordConfirm = ref('');
 
 const isFirstName = ref(true);
 const isLastName = ref(true);
-const isEmail = ref(true);
 const isCorrectEmail = ref(true);
 const isPhoneNumber = ref(true);
 const isCorrectPhoneNumber = ref(true);
@@ -42,9 +41,8 @@ async function clientRegistration() {
             email: email.value,
         });
 
-        localStorage.setItem('clientToken', JSON.stringify(token));
-
-        if (JSON.parse(localStorage.getItem('doctorToken')!)) {
+        if (token) {
+            localStorage.setItem('clientToken', JSON.stringify(token));
             success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
             dialogRef.value.close();
             router.push('/client-cabinet');
@@ -57,12 +55,10 @@ async function clientRegistration() {
 }
 
 function validateRegistratition(): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phonePattern = /^8[0-9]{10}$/;
+    // const phonePattern = /^8[0-9]{10}$/; TODO переделать маску
 
     isFirstName.value = true;
     isLastName.value = true;
-    isEmail.value = true;
     isCorrectEmail.value = true;
     isPhoneNumber.value = true;
     isCorrectPhoneNumber.value = true;
@@ -79,25 +75,15 @@ function validateRegistratition(): boolean {
         return false;
     }
 
-    if (!email.value) {
-        isEmail.value = false;
-        return false;
-    }
-
-    if (!emailRegex.test(email.value)) {
-        isCorrectEmail.value = false;
-        return false;
-    }
-
     if (!phoneNumber.value) {
         isPhoneNumber.value = false;
         return false;
     }
 
-    if (!phonePattern.test(phoneNumber.value)) {
-        isCorrectPhoneNumber.value = false;
-        return false;
-    }
+    // if (!phonePattern.test(phoneNumber.value)) {
+    //     isCorrectPhoneNumber.value = false;
+    //     return false;
+    // }
 
     if (!password.value) {
         isPassword.value = false;
@@ -131,13 +117,7 @@ function validateRegistratition(): boolean {
                 <input-text v-model="lastName" />
             </div>
             <div>
-                <h4>Почта <span>*</span></h4>
-                <inline-message v-if="!isEmail">
-                    Поле 'Почта' обязательно для заполнения
-                </inline-message>
-                <inline-message v-if="!isCorrectEmail">
-                    Не корректная почта
-                </inline-message>
+                <h4>Почта</h4>
                 <input-text v-model="email" />
             </div>
             <div>
