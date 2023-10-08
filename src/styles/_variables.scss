@@ -1,0 +1,90 @@
+@use "sass:math";
+
+// GUI colors
+$black:           #000000;
+$black-primary:   #1c1819;
+$gray-darker:     #414247;
+$gray:            #888b94;
+$gray-lighter:    #bbbec9;
+$gray-lightest:   #d4d4da;
+$white-darkest:   #f2f2f3;
+$white-darker:    #fafafa;
+$white:           #ffffff;
+$yellow-darker:   #ffc726;
+$yellow:          #ffd313;
+$yellow-primary:  #ffdd61;
+$yellow-lightest: #fde8a3;
+$blue-darkest:    #00458a;
+$blue-darker:     #0066cc;
+$blue-primary:    #2a81dd;
+$blue-light:      #34a2e9;
+$blue-lighter:    #d6ecfb;
+$red:             #ff3333;
+$green:           #64BD38;
+$green-darker:    #36A300;
+$orange:          #ff7733;
+$payed-red:       #ffeaea;
+$payed-green:     #eff8eb;
+$payed-blue:      #e9f2fb;
+$payed-yellow:    #fffae7;
+$disabled:        #f4f3f3;
+
+@function make-shadow($opacity: 0.1, $spread: 10px) {
+    @return 0 2px $spread 0 rgba($black-primary, $opacity);
+}
+
+@function border($opacity: 0.1) {
+    @return 1px solid rgba($black-primary, $opacity);
+}
+
+$common-shadow: make-shadow(0.1);
+
+/** Приватная единица размера */
+$_sp: 4px;
+
+@function sp($size: 1) {
+    @return $_sp * $size;
+}
+
+$sp-half: sp(0.5);
+$sp: sp(1);
+$sp2: sp(2);
+$sp3: sp(3);
+$sp4: sp(4);
+$sp5: sp(5);
+$sp6: sp(6);
+
+$radius: 4px;
+$radius-medium: 8px;
+$radius-big: 16px;
+
+$navbar-height: 56px;
+$navbar-height-with-heading: ($navbar-height * 2) + $sp3;
+
+$default-transition-duration: 0.3s;
+
+$app-max-width: 768px;
+$base-font-size: 16px;
+// Размеры шрифтов и высота строки
+// Считаются от базового размера установленного в $base-font-size
+$fz-tiniest: 0.6875rem; // 11px
+$fz-tinier: 0.75rem; // 12px
+$fz-tiny: 0.8125rem; // 13px
+$fz-small: 0.875rem; // 14px
+$fz-normal: 1rem; // 16px
+$fz-big: 1.125rem; // 18px
+$fz-bigger: 1.25rem; // 20px
+$fz-great: 1.5rem; // 24px
+$fz-huge: 1.75rem; // 28px
+
+$lh-tiniest: 0.875rem; // 14px
+$lh-tiny: 1.25rem; // 20px
+$lh-small: 1.375rem; // 22px
+$lh-normal: 1.375rem; // 22px
+$lh-base: 1.5rem; // 24px
+$lh-big: 1.75rem; // 28px
+$lh-bigger: 2rem; // 32px
+$lh-great: 2.25rem; // 36px
+$lh-huge: 2.75rem; // 44px
+
+$valid-icon-sizes: 24px, 28px, 32px, 64px;

@@ -191,7 +191,7 @@ async function sendRequest() {
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .team-container {
     padding: 20px 150px;
     font-style: normal;
@@ -214,6 +214,10 @@ async function sendRequest() {
     flex-direction: column;
     width: 100%;
     margin: 25px 0;
+}
+
+.team-carousel-info img {
+    margin-bottom: $sp2;
 }
 
 .questions {

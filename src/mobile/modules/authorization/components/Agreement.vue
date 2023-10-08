@@ -147,6 +147,8 @@ onMounted(() => {
     }
 }
 .agreement__info-block {
+    @include list-reset;
+
     margin-bottom: 16px;
 }
 .agreement__info:not(:last-child) {

@@ -141,7 +141,8 @@ async function sendRequest() {
                 <template #item="slotProps">
                     <div class="team__content">
                         <img
-                            alt="logo"
+                            alt="team logo"
+                            class="team__logo"
                             :src="getImageUrl(slotProps.data.photo)"
                         />
                         <h3>{{ slotProps.data.name }}</h3>
@@ -202,6 +203,7 @@ async function sendRequest() {
 
     &__title {
         text-align: center;
+        font-size: $fz-bigger;
     }
 
     &__content {
@@ -211,6 +213,10 @@ async function sendRequest() {
         flex-direction: column;
         width: 100%;
         margin: 25px 0;
+    }
+
+    &__logo {
+        margin-bottom: $sp2;
     }
 }
 

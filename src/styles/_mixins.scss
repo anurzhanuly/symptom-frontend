@@ -1,0 +1,67 @@
+@use "sass:math";
+@use "sass:list";
+
+@mixin visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  word-wrap: normal;
+}
+
+@mixin button-reset {
+  appearance: none;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+@mixin position-fixed {
+  position:fixed;
+  max-width: $app-max-width;
+  margin: auto;
+}
+
+@mixin list-reset {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+@mixin overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  color: transparent;
+  opacity: 0;
+}
+
+@mixin remove-scroll-bar() {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+
+@mixin icon-size($size: 24px) {
+  @if not list.index($valid-icon-sizes, $size) {
+    @error "#{$size} is not a valid side. Expected one of #{$valid-icon-sizes}.";
+  }
+
+  &::before {
+    font-size: $size;
+    line-height: $size;
+  }
+}
