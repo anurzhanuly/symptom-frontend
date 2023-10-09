@@ -50,8 +50,8 @@ const projectInfoSecond = computed(() => {
 <style scoped lang="scss">
 .about {
     display: flex;
-    padding: 20px 60px;
-    background: #eef5fb;
+    padding: $sp5 60px;
+    background: $payed-blue;
 
     @media (max-width: 500px) {
         padding: $sp5;
@@ -75,7 +75,7 @@ const projectInfoSecond = computed(() => {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-top: $sp6;
+        margin: $sp6 0;
 
         @media (max-width: 500px) {
             flex-direction: column;
