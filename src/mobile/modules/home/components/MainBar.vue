@@ -38,23 +38,22 @@ function goToDoctorCabinet() {
 </script>
 
 <template>
-    <div class="main-container">
-        <div class="main-information">
+    <div class="main">
+        <div class="main__content-wrapper">
             <h1 class="main__title">Что Вас беспокоит?</h1>
-            <h3>
+            <h3 class="main__subtitle">
                 Пройдите опрос, узнайте о состоянии вашего здоровья и начните
                 приём с нами
             </h3>
             <div
                 v-if="isDoctor"
-                class="main-container-button"
+                class="main__button-wrapper"
             >
                 <ui-button
                     v-if="!doctorToken"
-                    is-full
                     is-big
+                    is-full
                     is-blue
-                    class="main__button"
                     @click="goToDoctorCabinet"
                 >
                     Войти в кабинет врача
@@ -62,7 +61,7 @@ function goToDoctorCabinet() {
             </div>
             <div
                 v-else
-                class="main-container-buttons"
+                class="main__button-wrapper"
             >
                 <ui-button
                     is-full
@@ -71,13 +70,13 @@ function goToDoctorCabinet() {
                     class="main__button"
                     @click="$router.push({ name: 'choose-survey-flow' })"
                 >
-                    Пройти опрос
+                    Пройти Опрос
                 </ui-button>
                 <ui-button
                     v-if="!clientToken"
                     is-full
-                    is-big
                     is-white
+                    is-big
                     class="main__button"
                     @click="goToClientCabinet"
                 >
@@ -85,145 +84,49 @@ function goToDoctorCabinet() {
                 </ui-button>
             </div>
         </div>
-        <div class="main-image">
-            <img
-                alt="logo"
-                src="@/assets/main.png"
-            />
-        </div>
+        <img
+            class="main__img"
+            alt="logo"
+            src="@/assets/main.png"
+        />
     </div>
 </template>
 
-<style scoped>
-.main-container {
-    padding: 0 190px;
+<style scoped lang="scss">
+.main {
+    padding: 0 60px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column-reverse;
+    justify-content: center;
     align-items: center;
     height: 90vh;
-}
 
-.main-information {
-    width: 50%;
-}
-
-.main-image,
-img {
-    width: 100%;
-}
-
-h3 {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 35px;
-    margin-top: 15px;
-}
-
-h1 {
-    font-size: 48px;
-    font-weight: 700;
-}
-
-.main-container-buttons,
-.main-container-button {
-    display: flex;
-    flex-direction: column;
-}
-
-.main__button {
-    margin-top: 10px;
-}
-
-@media (max-width: 1900px) {
-    h1 {
-        font-size: 45px;
-    }
-}
-
-@media (max-width: 1800px) {
-    h1 {
-        font-size: 40px;
-    }
-
-    h3 {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 1650px) {
-    h1 {
-        font-size: 35px;
-    }
-
-    h3 {
-        font-size: 16px;
-        line-height: 25px;
-    }
-}
-
-@media (max-width: 1480px) {
-    h1 {
-        font-size: 30px;
-    }
-}
-
-@media (max-width: 1350px) {
-    h1 {
-        font-size: 25px;
-    }
-
-    h3 {
-        font-size: 14px;
-        line-height: 20px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .main-container {
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .main-information {
-        width: 100%;
-    }
-
-    h1 {
-        font-size: 37px;
-    }
-
-    h3 {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 865px) {
-    .main-container {
-        padding: 0 60px;
-    }
-
-    .main__title {
-        margin-top: 12px;
-        line-height: 32px;
-    }
-}
-
-@media (max-width: 595px) {
-    .main-information {
-        width: 83%;
-    }
-}
-
-@media (max-width: 490px) {
-    .main-container {
+    @media (max-width: 500px) {
         padding: 0 10px;
     }
-}
 
-@media (max-width: 430px) {
-    .main-information {
-        width: 95%;
+    &__title {
+        font-size: $fz-huge;
+        line-height: $lh-bigger;
+    }
+
+    &__subtitle {
+        font-size: $fz-small;
+        line-height: $lh-small;
+        margin-top: 15px;
+    }
+
+    &__button-wrapper {
+        margin-top: 8px;
+    }
+
+    &__button {
+        margin-bottom: 12px;
+        font-size: $fz-normal;
+    }
+
+    &__img {
+        width: 100%;
     }
 }
 </style>
