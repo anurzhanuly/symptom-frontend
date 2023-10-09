@@ -39,6 +39,11 @@ function goToDoctorCabinet() {
 
 <template>
     <div class="main">
+        <img
+            class="main__img"
+            alt="logo"
+            src="@/assets/main.png"
+        />
         <div class="main__content-wrapper">
             <h1 class="main__title">Что Вас беспокоит?</h1>
             <h3 class="main__subtitle">
@@ -84,11 +89,6 @@ function goToDoctorCabinet() {
                 </ui-button>
             </div>
         </div>
-        <img
-            class="main__img"
-            alt="logo"
-            src="@/assets/main.png"
-        />
     </div>
 </template>
 
@@ -96,13 +96,12 @@ function goToDoctorCabinet() {
 .main {
     padding: 0 60px;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
 
     @media (max-width: 500px) {
-        padding: 0 10px;
+        padding: 0 $sp3;
     }
 
     &__title {
@@ -113,15 +112,16 @@ function goToDoctorCabinet() {
     &__subtitle {
         font-size: $fz-small;
         line-height: $lh-small;
-        margin-top: 15px;
+        margin-top: $sp4;
     }
 
     &__button-wrapper {
-        margin-top: 8px;
+        margin-top: $sp6;
+        margin-bottom: $sp6;
     }
 
     &__button {
-        margin-bottom: 12px;
+        margin-bottom: $sp3;
         font-size: $fz-normal;
     }
 

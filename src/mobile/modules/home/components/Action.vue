@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useHomeStore } from '../store/home.store';
-import { useRouter } from 'vue-router';
-import { computed } from 'vue';
 
 import UiButton from '@/ui/UiButton.vue';
 
@@ -46,12 +46,15 @@ function direct(): void {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 22vh;
-    justify-content: space-evenly;
-    background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
+    padding: 30px 60px;
+    background: linear-gradient(
+        135deg,
+        $blue-light 15.72%,
+        $blue-lighter 80.75%
+    );
 
     @media (max-width: 500px) {
-        height: 30vh;
+        padding: $sp3;
     }
 
     &__title {
@@ -59,10 +62,12 @@ function direct(): void {
         line-height: $lh-bigger;
         text-align: center;
         color: $black-primary;
+        margin: $sp6 0;
     }
 
     &__button {
-        width: 80%;
+        width: 100%;
+        margin-bottom: $sp4;
     }
 }
 </style>

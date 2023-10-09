@@ -54,20 +54,19 @@ const projectInfoSecond = computed(() => {
     background: #eef5fb;
 
     @media (max-width: 500px) {
-        padding: 20px;
+        padding: $sp5;
     }
 
     &__wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 100%;
     }
 
     &__title {
         font-size: 36px;
         line-height: $lh-huge;
-        color: #111111;
+        color: $black;
         margin: 0;
         text-align: center;
     }
@@ -75,8 +74,8 @@ const projectInfoSecond = computed(() => {
     &__content {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        margin-top: 5px;
+        align-items: flex-start;
+        margin-top: $sp6;
 
         @media (max-width: 500px) {
             flex-direction: column;
@@ -84,15 +83,17 @@ const projectInfoSecond = computed(() => {
     }
 
     &__subtitle {
-        font-size: 50px;
-        color: #276ef1;
-        margin-right: 15px;
+        font-size: 32px;
+        font-weight: 700;
+        color: $blue-light;
+        line-height: 0;
+        margin-right: $sp4;
     }
 
     &__text {
-        font-size: $fz-small;
+        font-size: $fz-normal;
         line-height: $lh-small;
-        color: #000000;
+        color: $black;
         margin: 0;
     }
 }

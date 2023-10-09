@@ -12,7 +12,7 @@ import FooterBar from './components/FooterBar.vue';
     <header-bar />
     <main-bar />
     <about-project />
-    <action></action>
+    <action />
     <solutions />
     <advantages />
     <footer-bar />
