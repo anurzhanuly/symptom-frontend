@@ -64,10 +64,9 @@ const projectInfoSecond = computed(() => {
     }
 
     &__title {
-        font-size: 36px;
+        font-size: $fz-huge;
         line-height: $lh-huge;
         color: $black;
-        margin: 0;
         text-align: center;
     }
 
