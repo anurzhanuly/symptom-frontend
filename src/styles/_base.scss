@@ -1,0 +1,83 @@
+:root {
+  --window-height: 100vh;
+  --window-height-static: 100vh;
+  --safe-area-bottom: 0px;
+  --content-height: calc(var(--window-height) - var(--navbar-height) - var(--tabbar-height) - var(--safe-area-bottom));
+
+  @supports (bottom: env(safe-area-inset-bottom)) {
+    --safe-area-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $open-sans;
+  font-size: $base-font-size;
+  line-height: 24px;
+  color: $black-primary;
+  width: 100%;
+  background-color: $white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --primary: #2196f3;
+  --background: #ffffff;
+  --background-dim: #f3f3f3;
+  --background-dim-light: #f9f9f9;
+  --primary-foreground: #ffffff;
+  --foreground: #161616;
+  --base-unit: 8px;
+}
+
+body {
+  min-height: var(--window-height);
+
+  // Блок который задает минимальный размер для экрана
+  &::before {
+    content: '';
+    height: 100vh;
+    width: 1px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+
+*:not(input):not(textarea) {
+  -webkit-touch-callout: none; /* Safari Touch */
+  -webkit-user-select: none;   /* Webkit */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Edge*/
+  user-select: none;       /* Future-proof*/
+}
+
+strong {
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: inherit;
+  color: inherit;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  max-width: $app-max-width;
+  margin: auto;
+}

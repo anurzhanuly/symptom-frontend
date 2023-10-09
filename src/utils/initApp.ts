@@ -5,16 +5,14 @@ import VueGtag from 'vue-gtag-next';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import VueYandexMetrika from 'vue3-yandex-metrika';
-import '../styles/main.scss';
 
 import PrimeVue from 'primevue/config';
 import ConfirmationService from 'primevue/confirmationservice';
 import DialogService from 'primevue/dialogservice';
 import ToastService from 'primevue/toastservice';
-import 'primevue/resources/themes/saga-blue/theme.css';
-import 'primevue/resources/primevue.min.css';
-import 'primeicons/primeicons.css';
 import { setAppInstance } from '@/utils/appInstance';
+
+import '@/styles/common.scss';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

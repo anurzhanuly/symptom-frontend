@@ -58,6 +58,11 @@ function getImageUrl(name: string) {
     padding: 40px 100px;
     align-items: center;
 
+    &__title {
+        font-size: $fz-great;
+        line-height: $lh-bigger;
+    }
+
     &__content {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
