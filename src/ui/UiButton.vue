@@ -47,7 +47,6 @@ defineProps({
     display: inline-block;
     border-radius: 3px;
     border: none;
-    padding: 14px 20px;
     white-space: pre-wrap;
     cursor: pointer;
     font-family: 'OpenSans', sans-serif;
@@ -76,11 +75,13 @@ defineProps({
         border: 1px solid #2196f3;
         background-color: #fff;
         color: #2196f3;
+        padding: 14px 20px;
     }
 
     &--blue {
         background-color: #2196f3;
         color: #fff;
+        padding: 14px 20px;
     }
 
     &--full {

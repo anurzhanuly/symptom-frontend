@@ -1,0 +1,112 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useHomeStore } from '../store/home.store';
+import InputText from 'primevue/inputtext';
+import UiButton from '@/ui/UiButton.vue';
+import { success, warn } from '@/utils/toast';
+import { postNpsRequest } from '@mobile/modules/home/services/home.refbooks';
+const homeStore = useHomeStore();
+const { isDoctor } = storeToRefs(homeStore);
+const name = ref('');
+const workplace = ref('');
+const phone = ref('');
+
+async function sendRequest() {
+    if (!name.value) {
+        warn('Ошибка', 'Введите имя');
+        return;
+    }
+    if (!phone.value) {
+        warn('Ошибка', 'Введите телефон');
+        return;
+    }
+    const res = await postNpsRequest({
+        name: name.value,
+        workplace: workplace.value,
+        phone: phone.value,
+    });
+    if (res) {
+        success('Успешно', 'Запрос отправлен');
+    }
+}
+</script>
+
+<template>
+    <div class="questions">
+        <img
+            class="questions__img"
+            alt="logo"
+            src="@/assets/onboarding/onboard1.png"
+        />
+        <div class="questions-actions p-fluid">
+            <h2 class="questions__title">Остались вопросы?</h2>
+            <p class="questions__text">
+                Оставьте контактные данные, чтобы мы могли перезвонить вам и
+                проконсультровать
+            </p>
+            <input-text
+                v-model="name"
+                placeholder="Ваше имя и фамилия"
+                class="questions__input"
+            />
+            <input-text
+                v-if="isDoctor"
+                v-model="workplace"
+                placeholder="Место работы"
+                class="questions__input"
+            />
+            <input-text
+                v-model="phone"
+                placeholder="Номер телефона"
+                class="questions__input"
+            />
+            <ui-button
+                is-blue
+                is-full
+                @click="sendRequest"
+            >
+                Отправить
+            </ui-button>
+        </div>
+    </div>
+</template>
+
+<style lang="scss" scoped>
+.questions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(
+        70deg,
+        $blue-light 15.72%,
+        $blue-lighter 80.75%
+    );
+    padding: $sp6 60px;
+
+    @media (max-width: 500px) {
+        padding: $sp6 $sp3;
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+    }
+
+    &__title {
+        font-size: $fz-great;
+        color: $white;
+        font-weight: 600;
+    }
+
+    &__text {
+        font-size: $fz-normal;
+        color: $white;
+    }
+
+    &__input {
+        margin-bottom: $sp4;
+        padding: $sp3 $sp2;
+    }
+}
+</style>

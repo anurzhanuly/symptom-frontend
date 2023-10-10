@@ -13,7 +13,7 @@ const router = useRouter();
 const actionInfo = computed(() => {
     return isDoctor.value
         ? 'Оставьте заявку в Symptom уже сейчас'
-        : 'Определить состояние здоровья уже сейчас';
+        : 'Определите состояние здоровья уже сейчас';
 });
 
 function direct(): void {
