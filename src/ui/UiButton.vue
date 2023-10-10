@@ -52,6 +52,7 @@ defineProps({
     cursor: pointer;
     font-family: 'OpenSans', sans-serif;
     letter-spacing: 1px;
+    font-size: $fz-normal;
 
     &__loader {
         position: absolute;
@@ -69,7 +70,6 @@ defineProps({
     &__content {
         display: flex;
         justify-content: center;
-        align-items: center;
     }
 
     &--white {

@@ -22,49 +22,43 @@ const advantagesInfoSecond = computed(() => {
 <template>
     <div class="advantages">
         <div class="advantages__wrapper">
-            <h2 class="advantages__title">Приемущества Symptom</h2>
+            <h2 class="advantages__title">Преимущества Symptom</h2>
             <div class="advantages__content">
-                <p class="advantages__subtitle">01</p>
                 <p class="advantages__text">{{ advantagesInfoFirst }}</p>
             </div>
+            <hr class="advantages__underline" />
             <div class="advantages__content">
-                <p class="advantages__subtitle">02</p>
                 <p class="advantages__text">{{ advantagesInfoSecond }}</p>
             </div>
-            <div class="advantages__content" />
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
 .advantages {
-    padding: $sp3 60px;
+    padding: $sp6 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: $payed-blue;
-
-    @media (max-width: 500px) {
-        padding: $sp5;
-    }
 
     &__title {
         font-size: $fz-great;
         font-weight: 600;
         line-height: $lh-huge;
         color: $black;
-        padding-top: $sp4;
         text-align: center;
     }
 
     &__content {
         display: flex;
         align-items: center;
-        margin-top: $sp6;
+        padding: $sp3 60px;
 
         @media (max-width: 500px) {
             align-items: flex-start;
             flex-direction: column;
+            padding: $sp3;
         }
     }
 

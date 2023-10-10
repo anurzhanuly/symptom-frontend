@@ -56,9 +56,9 @@ function goToDoctorCabinet() {
             >
                 <ui-button
                     v-if="!doctorToken"
-                    is-big
                     is-full
                     is-blue
+                    class="main__button"
                     @click="goToDoctorCabinet"
                 >
                     Войти в кабинет врача
@@ -70,7 +70,6 @@ function goToDoctorCabinet() {
             >
                 <ui-button
                     is-full
-                    is-big
                     is-blue
                     class="main__button"
                     @click="$router.push({ name: 'choose-survey-flow' })"
@@ -81,7 +80,6 @@ function goToDoctorCabinet() {
                     v-if="!clientToken"
                     is-full
                     is-white
-                    is-big
                     class="main__button"
                     @click="goToClientCabinet"
                 >
@@ -94,10 +92,11 @@ function goToDoctorCabinet() {
 
 <style scoped lang="scss">
 .main {
+    height: 90vh;
     padding: 0 60px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 
     @media (max-width: 500px) {
@@ -108,12 +107,13 @@ function goToDoctorCabinet() {
         font-size: $fz-huge;
         font-weight: 600;
         line-height: $lh-bigger;
+        margin: $sp6 0;
     }
 
     &__subtitle {
-        font-size: $fz-small;
-        line-height: $lh-small;
-        margin-top: $sp4;
+        font-size: $fz-normal;
+        line-height: $lh-base;
+        margin: $sp6 0;
     }
 
     &__button-wrapper {
@@ -122,12 +122,16 @@ function goToDoctorCabinet() {
     }
 
     &__button {
-        margin-bottom: $sp3;
         font-size: $fz-normal;
+    }
+
+    &__button:not(:last-child) {
+        margin-bottom: $sp4;
     }
 
     &__img {
         width: 100%;
+        margin: $sp6 0;
     }
 }
 </style>

@@ -16,6 +16,10 @@ const actionInfo = computed(() => {
         : 'Определить состояние здоровья уже сейчас';
 });
 
+const buttonInfo = computed(() => {
+    return isDoctor.value ? 'Оставить заявку' : 'Пройти опрос';
+});
+
 function direct(): void {
     if (isDoctor.value) {
         // TODO registration
@@ -35,7 +39,7 @@ function direct(): void {
                 is-blue
                 @click="direct"
             >
-                Пройти Опрос
+                {{ buttonInfo }}
             </ui-button>
         </div>
     </div>
@@ -47,14 +51,10 @@ function direct(): void {
     flex-direction: column;
     align-items: center;
     padding: 30px 60px;
-    background: linear-gradient(
-        135deg,
-        $blue-light 15.72%,
-        $blue-lighter 80.75%
-    );
+    background: $white;
 
     @media (max-width: 500px) {
-        padding: $sp3;
+        padding: $sp6;
     }
 
     &__title {
@@ -63,7 +63,7 @@ function direct(): void {
         line-height: $lh-bigger;
         text-align: center;
         color: $black-primary;
-        margin: $sp6 0;
+        margin-bottom: $sp6;
     }
 
     &__button {

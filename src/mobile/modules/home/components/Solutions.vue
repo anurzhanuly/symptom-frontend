@@ -57,9 +57,14 @@ function getImageUrl(name: string) {
     flex-direction: column;
     padding: $sp6 60px;
     align-items: center;
+    background: linear-gradient(
+        110deg,
+        $blue-light 15.72%,
+        $blue-lighter 80.75%
+    );
 
     @media (max-width: 500px) {
-        padding: $sp3;
+        padding: $sp6 $sp3;
     }
 
     &__title {
@@ -67,6 +72,7 @@ function getImageUrl(name: string) {
         font-weight: 600;
         line-height: $lh-bigger;
         text-align: center;
+        color: $white;
     }
 
     &__content {
