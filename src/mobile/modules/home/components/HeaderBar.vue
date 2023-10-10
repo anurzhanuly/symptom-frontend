@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useHomeStore } from '../store/home.store';
 import { storeToRefs } from 'pinia';
-import { scrollToElement } from '@/utils/scroll';
+import { useHomeStore } from '../store/home.store';
+
 const homeStore = useHomeStore();
 
-const { isDoctor, links } = storeToRefs(homeStore);
+const { isDoctor } = storeToRefs(homeStore);
 
 const label = computed(() => {
     return isDoctor.value ? 'Для пациента' : 'Для врача';
@@ -15,23 +15,13 @@ const label = computed(() => {
 <template>
     <header>
         <div class="header-container">
-            <router-link to="/">
-                <img
-                    alt="logo"
-                    class="header-image"
-                    src="@/assets/logo.png"
-                />
-            </router-link>
-            <a
-                v-for="(link, index) in links"
-                :key="index"
-                class="static-buttons"
-                @click="scrollToElement(link.htmlClass)"
-            >
-                {{ link.name }}
-            </a>
+            <img
+                alt="logo"
+                class="header-container__img"
+                src="@/assets/logo.png"
+            />
             <p
-                class="dynamic-button"
+                class="header-container__button"
                 @click="isDoctor = !isDoctor"
             >
                 {{ label }}
@@ -40,67 +30,26 @@ const label = computed(() => {
     </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .header-container {
     display: flex;
     justify-content: space-between;
-    height: 80px;
     align-items: center;
-    padding: 20px 190px;
-}
+    padding: $sp5 60px;
 
-.dynamic-button {
-    font-size: 16px;
-    color: #276ef1;
-    border-bottom: 1px solid #276ef1;
-    cursor: pointer;
-}
-
-.static-buttons {
-    color: #1f1534;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 16px;
-    opacity: 0.5;
-}
-
-.header-image {
-    width: 250px;
-}
-
-@media (max-width: 1350px) {
-    .static-buttons {
-        display: none;
+    @media (max-width: 500px) {
+        padding: $sp3;
     }
 
-    .header-image {
-        width: 200px;
-    }
-}
-
-@media (max-width: 860px) {
-    .header-container {
-        padding: 20px 60px;
-    }
-}
-
-@media (max-width: 490px) {
-    .header-container {
-        padding: 20px 15px;
-    }
-
-    .header-image {
-        width: 180px;
-    }
-
-    .dynamic-button {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 400px) {
-    .header-image {
+    &__img {
         width: 150px;
+    }
+
+    &__button {
+        font-size: $fz-normal;
+        color: $blue-primary;
+        border-bottom: 1px solid $blue-primary;
+        cursor: pointer;
     }
 }
 </style>
