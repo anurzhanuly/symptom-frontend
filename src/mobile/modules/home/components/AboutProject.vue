@@ -74,10 +74,11 @@ const projectInfoSecond = computed(() => {
     &__content {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
         margin: $sp6 0;
 
         @media (max-width: 500px) {
+            align-items: flex-start;
             flex-direction: column;
         }
     }
