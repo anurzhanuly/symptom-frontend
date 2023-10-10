@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useHomeStore } from '../store/home.store';
-import { computed } from 'vue';
 
 const homeStore = useHomeStore();
 const { isDoctor } = storeToRefs(homeStore);
@@ -20,143 +20,67 @@ const advantagesInfoSecond = computed(() => {
 </script>
 
 <template>
-    <div class="advantages-container">
-        <div class="advantages-info">
-            <h3>Приемущества Symptom</h3>
-            <div>
-                <h1>01</h1>
-                <p>{{ advantagesInfoFirst }}</p>
+    <div class="advantages">
+        <div class="advantages__wrapper">
+            <h2 class="advantages__title">Приемущества Symptom</h2>
+            <div class="advantages__content">
+                <p class="advantages__subtitle">01</p>
+                <p class="advantages__text">{{ advantagesInfoFirst }}</p>
             </div>
-            <div>
-                <h1>02</h1>
-                <p>{{ advantagesInfoSecond }}</p>
+            <div class="advantages__content">
+                <p class="advantages__subtitle">02</p>
+                <p class="advantages__text">{{ advantagesInfoSecond }}</p>
             </div>
-            <div />
-        </div>
-
-        <div class="image">
-            <img
-                alt="logo"
-                src="@/assets/phone.png"
-            />
+            <div class="advantages__content" />
         </div>
     </div>
 </template>
 
-<style scoped>
-.advantages-container {
-    padding: 10px 190px;
-    display: flex;
-    background: #eef5fb;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.advantages-info {
+<style scoped lang="scss">
+.advantages {
+    padding: $sp3 60px;
     display: flex;
     flex-direction: column;
-}
-
-.advantages-info div {
-    display: flex;
     align-items: center;
-    margin-top: 90px;
-    width: 650px;
-}
+    background: $payed-blue;
 
-h1 {
-    font-weight: 600;
-    font-size: 60px;
-    line-height: 60px;
-    color: #276ef1;
-    margin-right: 15px;
-}
-
-h3 {
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 44px;
-    color: #111111;
-    margin-left: 75px;
-    padding-top: 15px;
-}
-
-p {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 28px;
-    color: #000000;
-}
-
-img {
-    width: 100%;
-}
-
-@media (max-width: 1350px) {
-    img {
-        width: 100%;
+    @media (max-width: 500px) {
+        padding: $sp5;
     }
 
-    .advantages-info div {
-        margin-top: 30px;
-    }
-}
-
-@media (max-width: 1250px) {
-    .image {
-        display: none;
-    }
-
-    .advantages-info div {
-        width: 100%;
-    }
-}
-
-@media (max-width: 860px) {
-    h3 {
-        font-size: 30px;
+    &__title {
+        font-size: $fz-huge;
+        font-weight: 600;
+        line-height: $lh-huge;
+        color: $black;
+        padding-top: $sp4;
+        text-align: center;
     }
 
-    .advantages-container {
-        padding: 10px 100px;
-    }
-}
+    &__content {
+        display: flex;
+        align-items: center;
+        margin-top: $sp6;
 
-@media (max-width: 595px) {
-    h3 {
-        font-size: 25px;
-    }
-
-    h1 {
-        font-size: 45px;
+        @media (max-width: 500px) {
+            align-items: flex-start;
+            flex-direction: column;
+        }
     }
 
-    p {
-        font-size: 16px;
+    &__subtitle {
+        font-size: 32px;
+        font-weight: 600;
+        color: $blue-light;
+        line-height: $sp;
+        margin-right: $sp4;
     }
 
-    .advantages-container {
-        padding: 10px 45px;
-    }
-}
-
-@media (max-width: 490px) {
-    .advantages-container {
-        padding: 10px 25px;
-    }
-
-    h3 {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 330px) {
-    h3 {
-        font-size: 16px;
-    }
-
-    p {
-        font-size: 14px;
+    &__text {
+        font-size: $fz-big;
+        line-height: $lh-big;
+        color: $black;
+        margin: 0;
     }
 }
 </style>

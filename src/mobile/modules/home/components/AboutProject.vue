@@ -93,7 +93,7 @@ const projectInfoSecond = computed(() => {
 
     &__text {
         font-size: $fz-normal;
-        line-height: $lh-small;
+        line-height: $lh-big;
         color: $black;
         margin: 0;
     }

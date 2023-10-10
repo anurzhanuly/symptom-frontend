@@ -33,102 +33,66 @@ function getImageUrl(name: string) {
 </script>
 
 <template>
-    <div class="solution-container">
-        <div>
-            <h1>Какие проблемы решает Symptom</h1>
-        </div>
-        <div class="solution">
+    <div class="solutions">
+        <h2 class="solutions__title">Какие проблемы решает Symptom</h2>
+        <div class="solutions__content">
             <div
                 v-for="(solution, index) in solutions"
                 :key="index"
-                class="solutions"
+                class="solutions__descr"
             >
                 <img
                     alt="logo"
                     :src="getImageUrl(solution.img)"
                 />
-                <p>{{ solution.info }}</p>
+                <p class="solutions__text">{{ solution.info }}</p>
             </div>
         </div>
     </div>
 </template>
 
-<style scoped>
-.solution-container {
+<style scoped lang="scss">
+.solutions {
     display: flex;
     flex-direction: column;
-    padding: 40px 100px;
+    padding: $sp6 60px;
     align-items: center;
-}
 
-p {
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 28px;
-    color: #000000;
-}
+    @media (max-width: 500px) {
+        padding: $sp3;
+    }
 
-.solution {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    justify-content: center;
-}
+    &__title {
+        font-size: $fz-huge;
+        font-weight: 600;
+        line-height: $lh-bigger;
+        text-align: center;
+    }
 
-.solutions {
-    background: #eef5fb;
-    border-radius: 20px;
-    width: 490px;
-    margin: 15px;
-    padding: 15px;
-}
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: $sp5;
+        margin-top: $sp5;
+    }
 
-@media (max-width: 1240px) {
-    .solutions {
+    &__descr {
+        background: $payed-blue;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        width: 100%;
-    }
-}
+        border-radius: $sp5;
+        padding: $sp4;
 
-@media (max-width: 860px) {
-    .solution-container {
-        padding: 40px;
-    }
-}
-
-@media (max-width: 595px) {
-    h1 {
-        font-size: 25px;
+        @media (max-width: 500px) {
+            flex-direction: column;
+        }
     }
 
-    p {
-        font-size: 16px;
-    }
-
-    .solution-container {
-        padding: 40px 30px;
-    }
-}
-
-@media (max-width: 490px) {
-    h1 {
-        font-size: 18px;
-    }
-
-    .solution-container {
-        padding: 40px 7px;
-    }
-}
-
-@media (max-width: 330px) {
-    h1 {
-        font-size: 16px;
-    }
-
-    p {
-        font-size: 14px;
+    &__text {
+        font-size: $fz-normal;
+        line-height: $lh-base;
+        color: $black;
     }
 }
 </style>
