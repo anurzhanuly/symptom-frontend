@@ -106,6 +106,7 @@ function goToDoctorCabinet() {
 
     &__title {
         font-size: $fz-huge;
+        font-weight: 600;
         line-height: $lh-bigger;
     }
 

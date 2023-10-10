@@ -59,6 +59,7 @@ function direct(): void {
 
     &__title {
         font-size: $fz-great;
+        font-weight: 600;
         line-height: $lh-bigger;
         text-align: center;
         color: $black-primary;

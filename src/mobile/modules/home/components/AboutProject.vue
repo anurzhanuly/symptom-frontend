@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useHomeStore } from '../store/home.store';
-import { computed } from 'vue';
 
 import UiButton from '@/ui/UiButton.vue';
 
@@ -65,6 +65,7 @@ const projectInfoSecond = computed(() => {
 
     &__title {
         font-size: $fz-huge;
+        font-weight: 600;
         line-height: $lh-huge;
         color: $black;
         text-align: center;
@@ -83,9 +84,9 @@ const projectInfoSecond = computed(() => {
 
     &__subtitle {
         font-size: 32px;
-        font-weight: 700;
+        font-weight: 600;
         color: $blue-light;
-        line-height: 0;
+        line-height: $sp;
         margin-right: $sp4;
     }
 

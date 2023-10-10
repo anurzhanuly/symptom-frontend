@@ -5,7 +5,6 @@ import AboutProject from './components/AboutProject.vue';
 import Action from './components/Action.vue';
 import Solutions from './components/Solutions.vue';
 import Advantages from './components/Advantages.vue';
-import Team from './components/Team.vue';
 import FooterBar from './components/FooterBar.vue';
 </script>
 
@@ -16,6 +15,5 @@ import FooterBar from './components/FooterBar.vue';
     <action />
     <solutions />
     <advantages />
-    <team />
     <footer-bar />
 </template>
