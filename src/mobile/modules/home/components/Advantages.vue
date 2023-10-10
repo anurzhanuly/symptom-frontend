@@ -22,7 +22,7 @@ const advantagesInfoSecond = computed(() => {
 <template>
     <div class="advantages-container">
         <div class="advantages-info">
-            <h3>Наши приемущества</h3>
+            <h3>Приемущества Symptom</h3>
             <div>
                 <h1>01</h1>
                 <p>{{ advantagesInfoFirst }}</p>

@@ -36,6 +36,7 @@ import UiButton from '@/ui/UiButton.vue';
     &__title {
         text-align: center;
         margin-bottom: 24px;
+        font-size: $fz-great;
     }
 
     &__item {

@@ -53,7 +53,7 @@ const label = computed(() => {
     &__link {
         color: #1f1534;
         cursor: pointer;
-        font-size: 16px;
+        font-size: $fz-normal;
         opacity: 0.5;
 
         @media (max-width: 1350px) {

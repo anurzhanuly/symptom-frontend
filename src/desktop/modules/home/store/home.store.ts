@@ -16,10 +16,6 @@ export const useHomeStore = defineStore('home', () => {
             htmlClass: '.advantages',
             name: 'Преимущества',
         },
-        {
-            htmlClass: '.team',
-            name: 'Команда',
-        },
     ]);
 
     return {
