@@ -33,6 +33,7 @@ import UiButton from '@/ui/UiButton.vue';
     padding: 32px 16px;
 
     &__title {
+        font-size: $fz-bigger;
         text-align: center;
         margin-bottom: 24px;
     }

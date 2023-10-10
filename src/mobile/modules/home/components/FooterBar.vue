@@ -107,7 +107,7 @@ function openAdminLoginPopup(): void {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: $sp4;
+        margin: $sp6 0;
     }
 
     &__icon {
@@ -124,7 +124,7 @@ function openAdminLoginPopup(): void {
         font-size: $fz-small;
         line-height: $lh-base;
         color: $black;
-        margin-top: $sp4;
+        margin: 0;
     }
 }
 </style>

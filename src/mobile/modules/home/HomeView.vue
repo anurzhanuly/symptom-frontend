@@ -11,9 +11,9 @@ import FooterBar from './components/FooterBar.vue';
 <template>
     <header-bar />
     <main-bar />
-    <about-project />
-    <action />
+    <!-- <about-project /> -->
     <solutions />
-    <advantages />
+    <action />
+    <!-- <advantages /> -->
     <footer-bar />
 </template>

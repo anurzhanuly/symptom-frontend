@@ -32,13 +32,12 @@ const projectInfoSecond = computed(() => {
         <div class="about__wrapper">
             <h3 class="about__title">О проекте</h3>
             <div class="about__content">
-                <p class="about__subtitle">01</p>
                 <p class="about__text">
                     {{ projectInfoFirst }}
                 </p>
             </div>
+            <hr class="about__underline" />
             <div class="about__content">
-                <p class="about__subtitle">02</p>
                 <p class="about__text">
                     {{ projectInfoSecond }}
                 </p>
@@ -50,11 +49,11 @@ const projectInfoSecond = computed(() => {
 <style scoped lang="scss">
 .about {
     display: flex;
-    padding: $sp5 60px;
+    padding: $sp6 0;
     background: $payed-blue;
 
     @media (max-width: 500px) {
-        padding: $sp5;
+        padding: $sp5 0;
     }
 
     &__wrapper {
@@ -75,20 +74,18 @@ const projectInfoSecond = computed(() => {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: $sp6 0;
+        padding: $sp3 60px;
 
         @media (max-width: 500px) {
             align-items: flex-start;
             flex-direction: column;
+            padding: $sp3;
         }
     }
 
-    &__subtitle {
-        font-size: 32px;
-        font-weight: 600;
-        color: $blue-light;
-        line-height: $sp;
-        margin-right: $sp4;
+    &__underline {
+        color: $black;
+        width: 100%;
     }
 
     &__text {
