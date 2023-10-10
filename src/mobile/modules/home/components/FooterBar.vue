@@ -98,7 +98,7 @@ function openAdminLoginPopup(): void {
 
     &__link {
         font-size: $fz-normal;
-        color: #000000;
+        color: $black;
         padding: 0 $sp4;
         cursor: pointer;
     }

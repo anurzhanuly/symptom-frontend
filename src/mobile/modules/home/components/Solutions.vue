@@ -63,7 +63,7 @@ function getImageUrl(name: string) {
     }
 
     &__title {
-        font-size: $fz-huge;
+        font-size: $fz-great;
         font-weight: 600;
         line-height: $lh-bigger;
         text-align: center;
