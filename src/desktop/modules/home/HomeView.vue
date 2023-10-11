@@ -6,6 +6,7 @@ import Action from './components/Action.vue';
 import Solutions from './components/Solutions.vue';
 import Advantages from './components/Advantages.vue';
 import FooterBar from './components/FooterBar.vue';
+import RequestForm from './components/RequestForm.vue';
 </script>
 
 <template>
@@ -15,5 +16,6 @@ import FooterBar from './components/FooterBar.vue';
     <action />
     <solutions />
     <advantages />
+    <request-form />
     <footer-bar />
 </template>

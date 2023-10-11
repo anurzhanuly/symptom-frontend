@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router';
 import { computed } from 'vue';
 
 import UiButton from '@/ui/UiButton.vue';
+import { scrollToElement } from '@/utils/scroll';
 
 const homeStore = useHomeStore();
 const { isDoctor } = storeToRefs(homeStore);
@@ -13,12 +14,12 @@ const router = useRouter();
 const actionInfo = computed(() => {
     return isDoctor.value
         ? 'Оставьте заявку в Symptom уже сейчас'
-        : 'Определить состояние здоровья уже сейчас';
+        : 'Определите состояние здоровья уже сейчас';
 });
 
 function direct(): void {
     if (isDoctor.value) {
-        // TODO registration
+        scrollToElement('.questions');
     } else {
         router.push({ name: 'choose-survey-flow' });
     }
