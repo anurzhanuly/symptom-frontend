@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useHomeStore } from '../store/home.store';
-import { useRouter } from 'vue-router';
-import { computed } from 'vue';
 
 import UiButton from '@/ui/UiButton.vue';
 import { scrollToElement } from '@/utils/scroll';
@@ -15,6 +15,10 @@ const actionInfo = computed(() => {
     return isDoctor.value
         ? 'Оставьте заявку в Symptom уже сейчас'
         : 'Определите состояние здоровья уже сейчас';
+});
+
+const buttonInfo = computed(() => {
+    return isDoctor.value ? 'Оставить заявку' : 'Пройти опрос';
 });
 
 function direct(): void {
@@ -36,7 +40,7 @@ function direct(): void {
                 is-blue
                 @click="direct"
             >
-                Пройти Опрос
+                {{ buttonInfo }}
             </ui-button>
         </div>
     </div>
