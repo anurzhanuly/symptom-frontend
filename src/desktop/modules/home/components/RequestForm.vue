@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useHomeStore } from '../store/home.store';
 import InputText from 'primevue/inputtext';
 import UiButton from '@/ui/UiButton.vue';
 import { success, warn } from '@/utils/toast';
 import { postNpsRequest } from '@mobile/modules/home/services/home.refbooks';
-const homeStore = useHomeStore();
-const { isDoctor } = storeToRefs(homeStore);
+
 const name = ref('');
 const workplace = ref('');
 const phone = ref('');
@@ -17,17 +14,28 @@ async function sendRequest() {
         warn('Ошибка', 'Введите имя');
         return;
     }
+
+    if (!workplace.value) {
+        warn('Ошибка', 'Введите место работы или любое слово');
+        return;
+    }
+
     if (!phone.value) {
         warn('Ошибка', 'Введите телефон');
         return;
     }
+
     const res = await postNpsRequest({
         name: name.value,
         workplace: workplace.value,
         phone: phone.value,
     });
+
     if (res) {
         success('Успешно', 'Запрос отправлен');
+        name.value = '';
+        workplace.value = '';
+        phone.value = '';
     }
 }
 </script>
@@ -46,7 +54,6 @@ async function sendRequest() {
                 class="questions__input"
             />
             <input-text
-                v-if="isDoctor"
                 v-model="workplace"
                 placeholder="Место работы"
                 class="questions__input"

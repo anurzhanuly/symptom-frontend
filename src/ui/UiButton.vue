@@ -58,8 +58,8 @@ defineProps({
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 20px;
-        height: 20px;
+        width: $sp5;
+        height: $sp5;
         border: 2px solid #fff;
         border-top: 2px solid transparent;
         border-radius: 50%;
@@ -75,13 +75,13 @@ defineProps({
         border: 1px solid #2196f3;
         background-color: #fff;
         color: #2196f3;
-        padding: 14px 20px;
+        padding: $sp3 $sp5;
     }
 
     &--blue {
         background-color: #2196f3;
-        color: #fff;
-        padding: 14px 20px;
+        color: $white;
+        padding: $sp3 $sp5;
     }
 
     &--full {
@@ -96,7 +96,7 @@ defineProps({
     }
 
     &--big {
-        font-size: 20px;
+        font-size: $fz-bigger;
     }
 }
 
