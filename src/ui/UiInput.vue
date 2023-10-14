@@ -36,11 +36,11 @@ defineProps({
 <style lang="scss" scoped>
 .input {
     width: 100%;
-    font-size: 16px;
-    background-color: #f3f3f3;
-    border: 1px solid #ced4da;
+    font-size: $fz-normal;
+    background-color: $white-darker;
+    border: 1px solid $gray-lighter;
     transition: 0.1s;
-    padding: 12px 5px;
+    padding: $sp3 $sp2;
 }
 
 .input:focus {

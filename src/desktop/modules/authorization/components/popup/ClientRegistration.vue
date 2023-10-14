@@ -4,6 +4,8 @@ import { useRouter } from 'vue-router';
 import { success } from '@/utils/toast';
 import { validatePhone } from '@/utils/validation';
 import { useAuthorizationStore } from '../../store/authorization.store';
+import RegistrationApprove from './RegistrationApprove.vue';
+import { useDialog } from 'primevue/usedialog';
 
 import InlineMessage from 'primevue/inlinemessage';
 import UiButton from '@/ui/UiButton.vue';
@@ -11,6 +13,8 @@ import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
 
 const authorizationStore = useAuthorizationStore();
+
+const dialog = useDialog();
 
 const firstName = ref('');
 const lastName = ref('');
@@ -99,6 +103,14 @@ async function clientRegistration() {
             success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
             dialogRef.value.close();
             router.push('/client-cabinet');
+            dialog.open(RegistrationApprove, {
+                props: {
+                    style: {
+                        width: '50%',
+                    },
+                    modal: true,
+                },
+            });
 
             return;
         }
