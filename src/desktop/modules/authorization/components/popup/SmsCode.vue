@@ -5,33 +5,49 @@ import InlineMessage from 'primevue/inlinemessage';
 import UiButton from '@/ui/UiButton.vue';
 import UiInput from '@/ui/UiInput.vue';
 
-const code = ref('');
+const smsCode = ref('');
 const dialogRef = inject<any>('dialogRef');
 
-const isCode = ref(true);
+const isTrueCode = ref(true);
 
-function approve() {
-    dialogRef.value.close();
+function submitCode() {
+    if (!validateSmsCode(smsCode.value)) {
+        isTrueCode.value = false;
+
+        setTimeout(() => {
+            isTrueCode.value = true;
+        }, 3000);
+    } else {
+        dialogRef.value.close();
+    }
+}
+
+function validateSmsCode(sms: string) {
+    const SMS_PATTERN = /[0-9]{6}/;
+
+    return SMS_PATTERN.test(sms) ? sms : '';
 }
 </script>
 
 <template>
-    <div class="wrapper">
-        <form class="approve__form p-fluid">
-            <p class="approve__text">
+    <div class="sms-code">
+        <form class="sms-code__form p-fluid">
+            <p class="sms-code__text">
                 Мы отправили код для подтверждения на ваш телефон <br />
                 Пожалуйста, введите 6-значный код
             </p>
-            <inline-message v-if="!isCode">Код пароль неверный</inline-message>
+            <inline-message v-if="!isTrueCode">
+                Код пароль неверный
+            </inline-message>
             <ui-input
                 type="number"
-                :value="code"
-                class="approve__input"
+                :value="smsCode"
+                class="sms-code__input"
             ></ui-input>
             <ui-button
                 is-blue
                 is-full
-                @click="approve"
+                @click="submitCode"
             >
                 Отправить
             </ui-button>
@@ -40,7 +56,7 @@ function approve() {
 </template>
 
 <style scoped lang="scss">
-.approve {
+.sms-code {
     &__text {
         font-size: $fz-normal;
     }
