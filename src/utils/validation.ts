@@ -45,9 +45,3 @@ export function validatePhone(phone: string) {
         ? preparedPhone.replace(/\D/g, '').replace(/^8/, '7')
         : '';
 }
-
-export function validateSmsCode(smsCode: string) {
-    const SMS_PATTERN = /[0-9]{6}/;
-
-    return SMS_PATTERN.test(smsCode) ? smsCode : '';
-}
