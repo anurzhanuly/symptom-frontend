@@ -100,17 +100,11 @@ async function clientRegistration() {
 
         if (token) {
             localStorage.setItem('clientToken', JSON.stringify(token));
+
             success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
+
             dialogRef.value.close();
             router.push('/client-cabinet');
-            dialog.open(SmsCode, {
-                props: {
-                    style: {
-                        width: '50%',
-                    },
-                    modal: true,
-                },
-            });
 
             return;
         }

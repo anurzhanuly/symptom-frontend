@@ -23,9 +23,9 @@ function submitCode() {
 }
 
 function validateSmsCode(sms: string) {
-    const SMS_PATTERN = /[0-9]{6}/;
+    const SMS_PATTERN = /^[0-9]{6}$/;
 
-    return SMS_PATTERN.test(sms) ? sms : '';
+    return SMS_PATTERN.test(sms);
 }
 </script>
 
@@ -36,12 +36,15 @@ function validateSmsCode(sms: string) {
                 Мы отправили код для подтверждения на ваш телефон <br />
                 Пожалуйста, введите 6-значный код
             </p>
-            <inline-message v-if="!isTrueCode">
-                Код пароль неверный
+            <inline-message
+                v-if="!isTrueCode"
+                class="sms-code__tooltip"
+            >
+                Неверный код
             </inline-message>
             <ui-input
+                v-model="smsCode"
                 type="number"
-                :value="smsCode"
                 class="sms-code__input"
             ></ui-input>
             <ui-button
@@ -62,6 +65,10 @@ function validateSmsCode(sms: string) {
     }
 
     &__input {
+        margin-bottom: $sp3;
+    }
+
+    &__tooltip {
         margin-bottom: $sp3;
     }
 }

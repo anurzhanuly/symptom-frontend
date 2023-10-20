@@ -1,8 +1,9 @@
 <script setup lang="ts">
 defineProps({
-    value: {
-        type: String,
+    modelValue: {
+        required: false,
         default: '',
+        type: [String, Number],
     },
     type: {
         type: String,
@@ -18,11 +19,13 @@ defineProps({
     },
     isRequired: Boolean,
 });
+
+defineEmits(['update:modelValue']);
 </script>
 
 <template>
     <input
-        :v-model="value"
+        :value="modelValue"
         :class="{
             input: true,
         }"
@@ -30,6 +33,7 @@ defineProps({
         :name="name"
         :placeholder="placeholder"
         :required="isRequired"
+        @input="$emit('update:modelValue', $event.target.value)"
     />
 </template>
 
