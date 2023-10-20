@@ -20,7 +20,11 @@ defineProps({
     isRequired: Boolean,
 });
 
-defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue']);
+
+const inputChange = (event) => {
+    emit('update:modelValue', event.target.value);
+};
 </script>
 
 <template>
@@ -33,7 +37,7 @@ defineEmits(['update:modelValue']);
         :name="name"
         :placeholder="placeholder"
         :required="isRequired"
-        @input="$emit('update:modelValue', $event.target.value)"
+        @input="inputChange"
     />
 </template>
 
