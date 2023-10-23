@@ -1,8 +1,9 @@
 <script setup lang="ts">
 defineProps({
-    value: {
-        type: String,
+    modelValue: {
+        required: false,
         default: '',
+        type: String,
     },
     type: {
         type: String,
@@ -18,11 +19,17 @@ defineProps({
     },
     isRequired: Boolean,
 });
+
+const emit = defineEmits(['update:modelValue']);
+
+const onInputChange = (event: Event) => {
+    emit('update:modelValue', event.target.value);
+};
 </script>
 
 <template>
     <input
-        :v-model="value"
+        :value="modelValue"
         :class="{
             input: true,
         }"
@@ -30,17 +37,18 @@ defineProps({
         :name="name"
         :placeholder="placeholder"
         :required="isRequired"
+        @input="onInputChange"
     />
 </template>
 
 <style lang="scss" scoped>
 .input {
     width: 100%;
-    font-size: 16px;
-    background-color: #f3f3f3;
-    border: 1px solid #ced4da;
+    font-size: $fz-normal;
+    background-color: $white-darker;
+    border: 1px solid $gray-lighter;
     transition: 0.1s;
-    padding: 12px 5px;
+    padding: $sp3 $sp2;
 }
 
 .input:focus {

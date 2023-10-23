@@ -4,13 +4,17 @@ import { useRouter } from 'vue-router';
 import { success } from '@/utils/toast';
 import { validatePhone } from '@/utils/validation';
 import { useAuthorizationStore } from '../../store/authorization.store';
+import { useDialog } from 'primevue/usedialog';
 
+import SmsCode from './SmsCode.vue';
 import InlineMessage from 'primevue/inlinemessage';
 import UiButton from '@/ui/UiButton.vue';
 import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
 
 const authorizationStore = useAuthorizationStore();
+
+const dialog = useDialog();
 
 const firstName = ref('');
 const lastName = ref('');
@@ -96,7 +100,9 @@ async function clientRegistration() {
 
         if (token) {
             localStorage.setItem('clientToken', JSON.stringify(token));
+
             success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
+
             dialogRef.value.close();
             router.push('/client-cabinet');
 
