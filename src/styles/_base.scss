@@ -51,15 +51,6 @@ body {
   box-sizing: border-box;
 }
 
-
-*:not(input):not(textarea) {
-  -webkit-touch-callout: none; /* Safari Touch */
-  -webkit-user-select: none;   /* Webkit */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Edge*/
-  user-select: none;       /* Future-proof*/
-}
-
 strong {
   font-weight: 600;
 }
