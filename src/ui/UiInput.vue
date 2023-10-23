@@ -3,7 +3,7 @@ defineProps({
     modelValue: {
         required: false,
         default: '',
-        type: [String, Number],
+        type: String,
     },
     type: {
         type: String,
@@ -22,7 +22,7 @@ defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-const inputChange = (event: Event) => {
+const onInputChange = (event: Event) => {
     emit('update:modelValue', event.target.value);
 };
 </script>
@@ -37,7 +37,7 @@ const inputChange = (event: Event) => {
         :name="name"
         :placeholder="placeholder"
         :required="isRequired"
-        @input="inputChange"
+        @input="onInputChange"
     />
 </template>
 
