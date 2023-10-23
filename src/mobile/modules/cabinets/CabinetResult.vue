@@ -111,7 +111,7 @@ const { patientResult, patientCard, recommendations } =
     margin-top: 3px;
 }
 
-.result-patient__text {
+.result__text {
     margin: 0;
 }
 
