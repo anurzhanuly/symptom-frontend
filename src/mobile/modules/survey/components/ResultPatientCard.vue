@@ -58,6 +58,7 @@ function saveRecommendation() {
             <p
                 v-for="(value, key) in info"
                 :key="key"
+                class="patients-card__text"
             >
                 {{ key }} {{ value }}
             </p>
@@ -80,6 +81,10 @@ function saveRecommendation() {
 
     &__panel {
         margin-bottom: 16px;
+    }
+
+    &__text {
+        margin: 0;
     }
 }
 

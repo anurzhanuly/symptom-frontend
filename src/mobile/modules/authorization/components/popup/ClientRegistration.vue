@@ -3,14 +3,18 @@ import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { success } from '@/utils/toast';
 import { validatePhone } from '@/utils/validation';
+import { useDialog } from 'primevue/usedialog';
 import { useAuthorizationStore } from '../../store/authorization.store';
 
+import SmsCode from './SmsCode.vue';
 import InlineMessage from 'primevue/inlinemessage';
 import UiButton from '@/ui/UiButton.vue';
 import InputText from 'primevue/inputtext';
 import PPassword from 'primevue/password';
 
 const authorizationStore = useAuthorizationStore();
+
+const dialog = useDialog();
 
 const firstName = ref('');
 const lastName = ref('');
@@ -84,15 +88,6 @@ function validateRegistratition(): boolean {
 
 async function clientRegistration() {
     if (validateRegistratition()) {
-        console.log({
-            password: password.value,
-            c_password: passwordConfirm.value,
-            type: 'patient',
-            first_name: firstName.value,
-            last_name: lastName.value,
-            phone: validatePhone(phoneNumber.value),
-            email: email.value,
-        });
         const token = await authorizationStore.clientRegistrationData({
             password: password.value,
             c_password: passwordConfirm.value,
