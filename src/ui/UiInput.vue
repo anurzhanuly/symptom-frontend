@@ -23,7 +23,9 @@ defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const onInputChange = (event: Event) => {
-    emit('update:modelValue', event.target.value);
+    if (event.target) {
+        emit('update:modelValue', (event.target as HTMLInputElement).value);
+    }
 };
 </script>
 
