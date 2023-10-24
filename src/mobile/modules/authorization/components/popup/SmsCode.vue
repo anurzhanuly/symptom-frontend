@@ -8,14 +8,14 @@ import UiInput from '@/ui/UiInput.vue';
 const smsCode = ref('');
 const dialogRef = inject<any>('dialogRef');
 
-const isTrueCode = ref(true);
+const isCodeValid = ref(true);
 
 function submitCode() {
     if (!validateSmsCode(smsCode.value)) {
-        isTrueCode.value = false;
+        isCodeValid.value = false;
 
         setTimeout(() => {
-            isTrueCode.value = true;
+            isCodeValid.value = true;
         }, 3000);
     } else {
         dialogRef.value.close();
@@ -37,7 +37,7 @@ function validateSmsCode(sms: string) {
                 Пожалуйста, введите 6-значный код
             </p>
             <inline-message
-                v-if="!isTrueCode"
+                v-if="!isCodeValid"
                 class="sms-code__tooltip"
             >
                 Неверный код
