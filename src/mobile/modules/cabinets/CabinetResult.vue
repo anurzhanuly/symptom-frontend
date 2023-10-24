@@ -46,7 +46,7 @@ const { patientResult, patientCard, recommendations } =
                         <p
                             v-for="(value, key) in info"
                             :key="key"
-                            class="result-patient__text"
+                            class="result__text"
                         >
                             {{ key }} {{ value }}
                         </p>
@@ -93,6 +93,10 @@ const { patientResult, patientCard, recommendations } =
 
 .result-card p {
     margin-top: 15px;
+}
+
+.result__text {
+    margin: 0;
 }
 
 .result-card-content {
