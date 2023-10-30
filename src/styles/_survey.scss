@@ -1,0 +1,17 @@
+.sd-page {
+    min-width: unset !important;
+}
+
+.sd-row div {
+    min-width: unset !important;
+}
+
+@media (max-width: 400px) {
+    .sv-vue-title-additional-div {
+        font-size: $fz-bigger !important;
+    }
+
+    .sd-input {
+        font-size: $fz-small !important;
+    }
+}
