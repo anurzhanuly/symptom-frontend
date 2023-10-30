@@ -13,6 +13,8 @@ export const useAuthorizationStore = defineStore('authorization', () => {
     const router = useRouter();
     const isWrong = ref(false);
     const doctors = ref<{ id: string; name: string }[]>([]);
+    const isRegistrationComplete = ref(false);
+    const phoneNumber = ref('');
 
     async function postLoginDoctor(
         login: string,
@@ -90,5 +92,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         getClinicDoctorsData,
         getDoctorsData,
         doctors,
+        isRegistrationComplete,
+        phoneNumber,
     };
 });

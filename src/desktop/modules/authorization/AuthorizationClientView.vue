@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useAuthorizationStore } from './store/authorization.store';
@@ -8,6 +8,7 @@ import { validateLogin, validatePhone } from '@/utils/validation';
 import Authorization from './components/Authorization.vue';
 import ClientRegistration from './components/popup/ClientRegistration.vue';
 import ForgotPassword from './components/popup/ForgotPassword.vue';
+import SmsCode from './components/popup/SmsCode.vue';
 
 import { useDialog } from 'primevue/usedialog';
 import InputText from 'primevue/inputtext';
@@ -43,6 +44,24 @@ function clientRegistration() {
         },
     });
 }
+
+watch(
+    () => authorizationStore.isRegistrationComplete,
+    (value) => {
+        if (value === true) {
+            dialog.open(SmsCode, {
+                props: {
+                    header: 'Введите код',
+                    style: {
+                        width: '80%',
+                    },
+                    modal: true,
+                    closable: false,
+                },
+            });
+        }
+    }
+);
 
 function resetPassword() {
     dialog.open(ForgotPassword, {

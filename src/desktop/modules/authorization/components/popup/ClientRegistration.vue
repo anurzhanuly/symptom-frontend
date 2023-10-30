@@ -5,8 +5,9 @@ import { success } from '@/utils/toast';
 import { validatePhone } from '@/utils/validation';
 import { useAuthorizationStore } from '../../store/authorization.store';
 import { useDialog } from 'primevue/usedialog';
+import { useSymptomApi } from '@desktop/services/api';
+import type { AxiosResponse } from 'axios';
 
-import SmsCode from './SmsCode.vue';
 import InlineMessage from 'primevue/inlinemessage';
 import UiButton from '@/ui/UiButton.vue';
 import InputText from 'primevue/inputtext';
@@ -88,28 +89,45 @@ function validateRegistratition(): boolean {
 
 async function clientRegistration() {
     if (validateRegistratition()) {
-        const token = await authorizationStore.clientRegistrationData({
-            password: password.value,
-            c_password: passwordConfirm.value,
-            type: 'patient',
-            first_name: firstName.value,
-            last_name: lastName.value,
-            phone: validatePhone(phoneNumber.value),
-            email: email.value,
-        });
+        // const token = await authorizationStore.clientRegistrationData({
+        //     password: password.value,
+        //     c_password: passwordConfirm.value,
+        //     type: 'patient',
+        //     first_name: firstName.value,
+        //     last_name: lastName.value,
+        //     phone: validatePhone(phoneNumber.value),
+        //     email: email.value,
+        // });
 
-        if (token) {
-            localStorage.setItem('clientToken', JSON.stringify(token));
+        // if (token) {
+        //     localStorage.setItem('clientToken', JSON.stringify(token));
 
-            success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
+        //     success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
 
-            dialogRef.value.close();
-            router.push('/client-cabinet');
+        //     dialogRef.value.close();
+        //     router.push('/client-cabinet');
 
-            return;
-        }
-
+        //     return;
+        // }
+        // sendSMSCode(phoneNumber.value);
+        authorizationStore.phoneNumber = phoneNumber.value;
+        authorizationStore.isRegistrationComplete = true;
+        // setTimeout(
+        //     () => (authorizationStore.isRegistrationComplete = false),
+        //     1000
+        // );
         dialogRef.value.close();
+    }
+}
+
+async function sendSMSCode(phoneNumber: string): Promise<AxiosResponse | null> {
+    const bodyFormData = new FormData();
+    bodyFormData.append('phone', phoneNumber);
+    try {
+        return await useSymptomApi.post('/sendCode', bodyFormData);
+    } catch (error) {
+        console.error(error);
+        return null;
     }
 }
 </script>
