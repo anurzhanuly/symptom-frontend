@@ -67,7 +67,7 @@ function openAdminLoginPopup(): void {
 <style lang="scss" scoped>
 .footer {
     background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
-    padding: 25px 0;
+    padding: $sp6 0;
 
     &__wrapper {
         display: flex;
@@ -76,8 +76,8 @@ function openAdminLoginPopup(): void {
     }
 
     &__title {
-        font-size: 36px;
-        color: #000000;
+        font-size: $fz-max;
+        color: $black;
         cursor: default;
     }
 
@@ -85,13 +85,13 @@ function openAdminLoginPopup(): void {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 24px;
+        margin-top: $sp6;
     }
 
     &__link {
-        font-size: 20px;
-        color: #000000;
-        padding: 0 16px;
+        font-size: $fz-bigger;
+        color: $black;
+        padding: 0 $sp4;
         cursor: pointer;
     }
 
@@ -99,24 +99,24 @@ function openAdminLoginPopup(): void {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 16px;
+        margin-top: $sp4;
     }
 
     &__icon {
-        font-size: 24px;
-        margin: 0 12px;
-        color: #ffffff;
-        background-color: #276ef1;
-        border-radius: 5px;
-        padding: 8px;
+        font-size: $fz-great;
+        margin: 0 $sp3;
+        color: $white;
+        background-color: $blue-primary;
+        border-radius: $sp;
+        padding: $sp2;
         cursor: pointer;
     }
 
     &__text {
-        font-size: 20px;
-        line-height: 24px;
-        color: #000000;
-        margin-top: 16px;
+        font-size: $fz-bigger;
+        line-height: $sp6;
+        color: $black;
+        margin-top: $sp4;
     }
 }
 </style>

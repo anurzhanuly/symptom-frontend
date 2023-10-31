@@ -44,7 +44,7 @@ const label = computed(() => {
     justify-content: space-between;
     height: 80px;
     align-items: center;
-    padding: 20px 190px;
+    padding: $sp5 190px;
 
     &__img {
         width: 200px;
@@ -62,9 +62,9 @@ const label = computed(() => {
     }
 
     &__button {
-        font-size: 16px;
-        color: #276ef1;
-        border-bottom: 1px solid #276ef1;
+        font-size: $fz-normal;
+        color: $blue-primary;
+        border-bottom: 1px solid $blue-primary;
         cursor: pointer;
     }
 }

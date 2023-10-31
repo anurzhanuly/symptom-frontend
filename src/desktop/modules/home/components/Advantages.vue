@@ -43,33 +43,28 @@ const advantagesInfoSecond = computed(() => {
 
 <style lang="scss" scoped>
 .advantages {
-    padding: 10px 190px;
+    padding: $sp2 190px;
     display: flex;
-    background: #eef5fb;
+    background: $payed-blue;
     justify-content: space-between;
     align-items: center;
 
     &__title {
-        font-size: 36px;
-        line-height: 44px;
-        color: #111111;
-        margin-left: 75px;
-        padding-top: 15px;
-
-        @media (max-width: 1250px) {
-            text-align: center;
-            margin-left: 0;
-        }
+        font-size: $fz-max;
+        line-height: $lh-huge;
+        color: $black;
+        padding-top: $sp4;
+        text-align: center;
     }
 
     &__content {
         display: flex;
         align-items: center;
-        margin-top: 90px;
+        margin-top: 40px;
         max-width: 650px;
 
         @media (max-width: 1350px) {
-            margin-top: 30px;
+            margin-top: 0;
         }
 
         @media (max-width: 1250px) {
@@ -78,17 +73,16 @@ const advantagesInfoSecond = computed(() => {
     }
 
     &__subtitle {
-        font-weight: 600;
-        font-size: 60px;
-        line-height: 60px;
-        color: #276ef1;
-        margin-right: 15px;
+        font-size: 40px;
+        line-height: $lh-huge;
+        color: $blue-darker;
+        margin-right: $sp4;
     }
 
     &__text {
-        font-size: 20px;
-        line-height: 28px;
-        color: #000000;
+        font-size: $fz-bigger;
+        line-height: $lh-big;
+        color: $black;
     }
 
     &__img {

@@ -59,15 +59,15 @@ function getImageUrl(name: string) {
     align-items: center;
 
     &__title {
-        font-size: $fz-huge;
+        font-size: $fz-max;
         line-height: $lh-bigger;
     }
 
     &__content {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-top: 20px;
+        gap: $sp5;
+        margin-top: 40px;
 
         @media (max-width: 1400px) {
             grid-template-columns: repeat(2, 1fr);
@@ -75,21 +75,24 @@ function getImageUrl(name: string) {
     }
 
     &__descr {
-        background: #eef5fb;
-        border-radius: 20px;
-        padding: 15px;
+        background: $payed-blue;
+        border-radius: $sp5;
+        padding: $sp4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-        @media (max-width: 1240px) {
-            display: flex;
-            align-items: center;
+        @media (max-width: 1400px) {
+            flex-direction: row;
             justify-content: flex-start;
         }
     }
 
     &__text {
-        font-size: 18px;
-        line-height: 28px;
-        color: #000000;
+        font-size: $fz-big;
+        line-height: $lh-big;
+        color: $black;
     }
 }
 </style>
