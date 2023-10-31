@@ -53,11 +53,15 @@ function direct(): void {
     align-items: center;
     height: 22vh;
     justify-content: space-evenly;
-    background: linear-gradient(135deg, #62a9e3 15.72%, #aacceb 80.75%);
+    background: linear-gradient(
+        60deg,
+        $blue-light 15.72%,
+        $blue-lighter 80.75%
+    );
 
     &__title {
-        font-size: 36px;
-        color: #212121;
+        font-size: $fz-max;
+        color: $black;
     }
 
     &__button {

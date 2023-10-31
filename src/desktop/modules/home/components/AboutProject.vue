@@ -47,8 +47,8 @@ const projectInfoSecond = computed(() => {
 <style scoped lang="scss">
 .about {
     display: flex;
-    padding: 20px 100px;
-    background: #eef5fb;
+    padding: $sp5 100px;
+    background: $payed-blue;
 
     &__img {
         max-width: 50%;
@@ -67,9 +67,9 @@ const projectInfoSecond = computed(() => {
     }
 
     &__title {
-        font-size: 36px;
-        line-height: 44px;
-        color: #111111;
+        font-size: $fz-max;
+        line-height: $lh-huge;
+        color: $black;
         margin-left: 75px;
 
         @media (max-width: 1200px) {
@@ -82,27 +82,23 @@ const projectInfoSecond = computed(() => {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 30px;
+        margin-top: $sp6;
     }
 
     &__subtitle {
-        font-size: 60px;
-        line-height: 60px;
-        color: #276ef1;
-        margin-right: 15px;
-
-        @media (max-width: 1350px) {
-            font-size: 50px;
-        }
+        font-size: 40px;
+        line-height: $lh-huge;
+        color: $blue-darker;
+        margin-right: $sp4;
     }
 
     &__text {
-        font-size: 20px;
-        line-height: 28px;
-        color: #000000;
+        font-size: $fz-bigger;
+        line-height: $lh-big;
+        color: $black;
 
         @media (max-width: 1350px) {
-            font-size: 18px;
+            font-size: $fz-big;
         }
     }
 }

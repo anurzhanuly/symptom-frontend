@@ -97,7 +97,7 @@ async function sendRequest() {
     }
 
     &__title {
-        font-size: $fz-huge;
+        font-size: $fz-max;
         line-height: $lh-bigger;
         color: $white;
         font-weight: 600;

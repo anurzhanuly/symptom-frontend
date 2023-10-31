@@ -115,7 +115,7 @@ function goToDoctorCabinet() {
 
     &__title {
         font-size: 48px;
-        line-height: 36px;
+        line-height: $lh-great;
 
         @media (max-width: 1650px) {
             font-size: 40px;
@@ -123,19 +123,19 @@ function goToDoctorCabinet() {
     }
 
     &__subtitle {
-        font-size: 20px;
-        line-height: 28px;
-        margin-top: 15px;
+        font-size: $fz-bigger;
+        line-height: $lh-big;
+        margin-top: $sp4;
     }
 
     &__button-wrapper {
         display: flex;
         flex-direction: column;
-        margin-top: 16px;
+        margin-top: $sp4;
     }
 
     &__button {
-        margin-bottom: 16px;
+        margin-bottom: $sp4;
     }
 
     &__img {
