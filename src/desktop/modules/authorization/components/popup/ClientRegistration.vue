@@ -100,6 +100,7 @@ async function clientRegistration() {
 
         if (token) {
             localStorage.setItem('clientToken', JSON.stringify(token));
+            localStorage.setItem('tokenDate', JSON.stringify(Date.now()));
 
             success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
 

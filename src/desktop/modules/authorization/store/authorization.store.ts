@@ -41,6 +41,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
                 'clientToken',
                 JSON.stringify(res.data.data.token)
             );
+            localStorage.setItem('tokenDate', JSON.stringify(Date.now()));
 
             router.push('/client-cabinet');
         } else {

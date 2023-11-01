@@ -16,8 +16,13 @@ const doctorToken = ref('');
 
 function goToClientCabinet() {
     clientToken.value = localStorage.getItem('clientToken') ?? '';
+    const tokenDate = localStorage.getItem('tokenDate') ?? '';
+    const eightHoursInMillis = 8 * 60 * 60 * 1000;
 
-    if (clientToken.value) {
+    if (
+        clientToken.value &&
+        Date.now() - Number(tokenDate) < eightHoursInMillis
+    ) {
         router.push('/client-cabinet');
 
         return;
