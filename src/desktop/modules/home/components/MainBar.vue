@@ -19,11 +19,14 @@ function goToClientCabinet() {
     const tokenDate = localStorage.getItem('tokenDate') ?? '';
     const prepareDate = 8 * 60 * 60 * 1000;
     const currentDate = Date.now();
+    const timeDiff = currentDate - Number(tokenDate);
 
-    if (clientToken.value && currentDate - Number(tokenDate) < prepareDate) {
-        router.push('/client-cabinet');
+    if (clientToken.value && tokenDate) {
+        if (timeDiff < prepareDate) {
+            router.push('/client-cabinet');
 
-        return;
+            return;
+        }
     }
     router.push('/client-sign-in');
 }
