@@ -99,8 +99,9 @@ async function clientRegistration() {
         });
 
         if (token) {
+            const dateOfToken = JSON.stringify(Date.now());
             localStorage.setItem('clientToken', JSON.stringify(token));
-            localStorage.setItem('tokenDate', JSON.stringify(Date.now()));
+            localStorage.setItem('tokenDate', dateOfToken);
 
             success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
 

@@ -35,13 +35,13 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         password: string
     ): Promise<void> {
         const res = await postLogin(login, password);
-
+        const dateOfToken = JSON.stringify(Date.now());
         if (res) {
             localStorage.setItem(
                 'clientToken',
                 JSON.stringify(res.data.data.token)
             );
-            localStorage.setItem('tokenDate', JSON.stringify(Date.now()));
+            localStorage.setItem('tokenDate', dateOfToken);
 
             router.push('/client-cabinet');
         } else {
