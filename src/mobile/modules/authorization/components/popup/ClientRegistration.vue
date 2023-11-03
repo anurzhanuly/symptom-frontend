@@ -99,8 +99,12 @@ async function clientRegistration() {
         });
 
         if (token) {
+            const dateOfToken = Date.now().toString();
             localStorage.setItem('clientToken', JSON.stringify(token));
+            localStorage.setItem('tokenDate', dateOfToken);
+
             success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
+
             dialogRef.value.close();
             router.push('/client-cabinet');
 
