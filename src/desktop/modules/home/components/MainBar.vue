@@ -16,10 +16,10 @@ const doctorToken = ref('');
 
 function goToClientCabinet() {
     clientToken.value = localStorage.getItem('clientToken') ?? '';
-    const tokenDate = localStorage.getItem('tokenDate') ?? '';
+    const tokenDate = Number(localStorage.getItem('tokenDate')) ?? '';
     const prepareDate = 8 * 60 * 60 * 1000;
     const currentDate = Date.now();
-    const timeDiff = currentDate - Number(tokenDate);
+    const timeDiff = currentDate - tokenDate;
 
     if (clientToken.value && tokenDate) {
         if (timeDiff < prepareDate) {

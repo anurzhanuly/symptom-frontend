@@ -99,7 +99,7 @@ async function clientRegistration() {
         });
 
         if (token) {
-            const dateOfToken = JSON.stringify(Date.now());
+            const dateOfToken = Date.now().toString();
             localStorage.setItem('clientToken', JSON.stringify(token));
             localStorage.setItem('tokenDate', dateOfToken);
 

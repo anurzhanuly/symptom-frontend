@@ -35,7 +35,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         password: string
     ): Promise<void> {
         const res = await postLogin(login, password);
-        const dateOfToken = JSON.stringify(Date.now());
+        const dateOfToken = Date.now().toString();
         if (res) {
             localStorage.setItem(
                 'clientToken',
