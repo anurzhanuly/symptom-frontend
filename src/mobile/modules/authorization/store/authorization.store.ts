@@ -32,16 +32,17 @@ export const useAuthorizationStore = defineStore('authorization', () => {
     }
 
     async function postLoginClient(
-        email: string,
+        login: string,
         password: string
     ): Promise<void> {
-        const res = await postLogin(email, password);
-
+        const res = await postLogin(login, password);
+        const dateOfToken = Date.now().toString();
         if (res) {
             localStorage.setItem(
                 'clientToken',
                 JSON.stringify(res.data.data.token)
             );
+            localStorage.setItem('tokenDate', dateOfToken);
 
             router.push('/client-cabinet');
         } else {
