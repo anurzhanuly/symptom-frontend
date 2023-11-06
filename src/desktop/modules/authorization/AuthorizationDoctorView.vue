@@ -27,27 +27,37 @@ function checkDoctor(): void {
 
 <template>
     <authorization>
-        <div class="authorization-doctor">
-            <form class="authorization-form p-fluid">
+        <div class="authorization">
+            <form class="authorization__form p-fluid">
                 <img
+                    class="authorization__logo"
                     alt="Symptom logo"
                     src="@/assets/logo-auth.png"
                 />
 
-                <h4>Телефон <span>*</span></h4>
+                <h4 class="authorization__text">
+                    Телефон
+                    <span class="authorization__tag">*</span>
+                </h4>
                 <input-text
                     v-model="login"
                     type="mail"
                 />
 
-                <h4>Пароль <span>*</span></h4>
+                <h4 class="authorization__text">
+                    Пароль
+                    <span class="authorization__tag">*</span>
+                </h4>
                 <p-password
                     v-model="password"
                     toggle-mask
                     :feedback="false"
                 />
 
-                <inline-message v-if="isWrong">
+                <inline-message
+                    v-if="isWrong"
+                    class="authorization__dropdown"
+                >
                     Неверный пароль или почта
                 </inline-message>
                 <ui-button
@@ -64,37 +74,25 @@ function checkDoctor(): void {
     </authorization>
 </template>
 
-<style scoped>
-.authorization-doctor {
-    padding: 16% 32%;
-}
+<style scoped lang="scss">
+.authorization {
+    padding: $sp4 $sp6;
 
-.authorization-form span {
-    color: #d0312d;
-}
+    &__logo {
+        margin-bottom: $sp5;
+    }
 
-.authorization-form img {
-    margin-bottom: 20px;
-}
+    &__tag {
+        color: $red;
+    }
 
-.authorization-form h4 {
-    color: #3f3f3f;
-    font-weight: 400;
-    margin-top: 8px;
-}
+    &__text {
+        color: $black;
+        margin: $sp2 0;
+    }
 
-.authorization-form .p-inputtext {
-    width: 100%;
-    margin-top: 8px;
-}
-
-.authorization__button {
-    margin-top: 15px;
-}
-
-@media only screen and (max-width: 750px) {
-    .authorization-doctor {
-        padding: 10%;
+    &__button {
+        margin-top: $sp4;
     }
 }
 </style>

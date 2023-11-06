@@ -59,18 +59,25 @@ function resetPassword() {
 
 <template>
     <authorization>
-        <div class="authorization-client">
-            <form class="authorization-form p-fluid">
+        <div class="authorization">
+            <form class="authorization__form p-fluid">
                 <img
+                    class="authorization__logo"
                     alt="Symptom logo"
                     src="@/assets/logo-auth.png"
                 />
                 <div>
-                    <h4>Телефон <span>*</span></h4>
+                    <h4 class="authorization__text">
+                        Телефон
+                        <span class="authorization__tag">*</span>
+                    </h4>
                     <input-text v-model="login" />
                 </div>
                 <div>
-                    <h4>Пароль <span>*</span></h4>
+                    <h4 class="authorization__text">
+                        Пароль
+                        <span class="authorization__tag">*</span>
+                    </h4>
                     <p-password
                         v-model="password"
                         toggle-mask
@@ -78,7 +85,10 @@ function resetPassword() {
                     />
                 </div>
 
-                <inline-message v-if="isWrong">
+                <inline-message
+                    v-if="isWrong"
+                    class="authorization__dropdown"
+                >
                     Неверный пароль или почта
                 </inline-message>
                 <ui-button
@@ -102,54 +112,54 @@ function resetPassword() {
             </form>
         </div>
 
-        <div class="registration-client">
+        <div class="registration">
             <p>
                 Нет аккаунта? Вы можете
-                <strong @click="clientRegistration">Зарегистрироваться</strong>
+                <strong
+                    class="registration__strong"
+                    @click="clientRegistration"
+                    >Зарегистрироваться</strong
+                >
             </p>
         </div>
     </authorization>
 </template>
 
-<style scoped>
-.authorization-client {
-    padding: 24px 16px 16px;
+<style scoped lang="scss">
+.authorization {
+    padding: $sp6 $sp4 $sp4;
+
+    &__logo {
+        margin-bottom: $sp5;
+    }
+
+    &__tag {
+        color: $red;
+    }
+
+    &__text {
+        color: $black;
+        margin: $sp3 0;
+    }
+
+    &__dropdown {
+        margin: $sp3 0;
+    }
+
+    &__button {
+        margin-top: $sp4;
+    }
 }
 
-.authorization-form span {
-    color: #d0312d;
-}
-
-.authorization-form img {
-    margin-bottom: 20px;
-}
-
-.authorization-form h4 {
-    color: #3f3f3f;
-    font-weight: 400;
-    margin-top: 8px;
-}
-
-.authorization-form .p-inputtext,
-.authorization-form .p-dropdown,
-.authorization-form .p-inline-message {
-    margin-top: 8px;
-    width: 100%;
-}
-
-.authorization__button {
-    margin-top: 15px;
-}
-
-.registration-client {
+.registration {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px;
-}
+    padding: $sp4;
 
-.registration-client strong {
-    color: #2196f3;
-    cursor: pointer;
+    &__strong {
+        color: $blue-primary;
+        cursor: pointer;
+    }
 }
 </style>

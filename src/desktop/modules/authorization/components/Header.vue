@@ -22,7 +22,7 @@ import UiButton from '@/ui/UiButton.vue';
 
 <style lang="scss" scoped>
 .header {
-    padding: 20px 16px;
+    padding: $sp5 $sp4;
     display: flex;
     justify-content: space-between;
 
