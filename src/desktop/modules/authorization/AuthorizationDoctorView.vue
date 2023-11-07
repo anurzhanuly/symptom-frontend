@@ -27,26 +27,26 @@ function checkDoctor(): void {
 
 <template>
     <authorization>
-        <div class="authorization">
-            <form class="authorization__form p-fluid">
+        <div class="authorization-doctor">
+            <form class="authorization-doctor__form p-fluid">
                 <img
-                    class="authorization__logo"
+                    class="authorization-doctor__logo"
                     alt="Symptom logo"
                     src="@/assets/logo-auth.png"
                 />
 
-                <h4 class="authorization__text">
+                <h4 class="authorization-doctor__text">
                     Телефон
-                    <span class="authorization__tag">*</span>
+                    <span class="authorization-doctor__tag">*</span>
                 </h4>
                 <input-text
                     v-model="login"
                     type="mail"
                 />
 
-                <h4 class="authorization__text">
+                <h4 class="authorization-doctor__text">
                     Пароль
-                    <span class="authorization__tag">*</span>
+                    <span class="authorization-doctor__tag">*</span>
                 </h4>
                 <p-password
                     v-model="password"
@@ -56,7 +56,7 @@ function checkDoctor(): void {
 
                 <inline-message
                     v-if="isWrong"
-                    class="authorization__dropdown"
+                    class="authorization-doctor__error"
                 >
                     Неверный пароль или почта
                 </inline-message>
@@ -64,7 +64,7 @@ function checkDoctor(): void {
                     is-full
                     is-big
                     is-blue
-                    class="authorization__button"
+                    class="authorization-doctor__button"
                     @click="checkDoctor"
                 >
                     Вход
@@ -75,7 +75,7 @@ function checkDoctor(): void {
 </template>
 
 <style scoped lang="scss">
-.authorization {
+.authorization-doctor {
     padding: $sp4 $sp6;
 
     &__logo {
@@ -93,6 +93,10 @@ function checkDoctor(): void {
 
     &__button {
         margin-top: $sp4;
+    }
+
+    &__error {
+        margin: $sp3 0;
     }
 }
 </style>

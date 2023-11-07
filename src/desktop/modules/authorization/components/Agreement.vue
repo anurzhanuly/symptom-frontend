@@ -57,7 +57,7 @@ onMounted(() => {
                     <div class="agreement__check">
                         Я прочитал(а) и принимаю
                         <strong
-                            class="agreement__strong"
+                            class="agreement__link"
                             @click="termsOfUse = true"
                             >Условия использования.
                         </strong>
@@ -67,7 +67,7 @@ onMounted(() => {
                             здоровье для прохождения опроса. Полная информация
                             доступна в
                             <strong
-                                class="agreement__strong"
+                                class="agreement__link"
                                 @click="privacyPolicy = true"
                                 >Политике конфиденциальности.
                             </strong>
@@ -179,7 +179,7 @@ onMounted(() => {
         margin-top: $sp3;
     }
 
-    &__strong {
+    &__link {
         color: $blue-primary;
         cursor: pointer;
     }
