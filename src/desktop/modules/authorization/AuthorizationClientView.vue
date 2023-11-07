@@ -69,14 +69,14 @@ function resetPassword() {
                 <div>
                     <h4 class="authorization-client__text">
                         Телефон
-                        <span class="authorization-client__tag">*</span>
+                        <span class="authorization-client__indicator">*</span>
                     </h4>
                     <input-text v-model="login" />
                 </div>
                 <div>
                     <h4 class="authorization-client__text">
                         Пароль
-                        <span class="authorization-client__tag">*</span>
+                        <span class="authorization-client__indicator">*</span>
                     </h4>
                     <p-password
                         v-model="password"
@@ -110,17 +110,15 @@ function resetPassword() {
                     Забыли пароль?
                 </ui-button>
             </form>
-            <div class="authorization-client__inner-block">
-                <p>
-                    Нет аккаунта? Вы можете
-                    <strong
-                        class="authorization-client__link"
-                        @click="clientRegistration"
-                    >
-                        Зарегистрироваться
-                    </strong>
-                </p>
-            </div>
+            <p class="authorization-client__register-text">
+                Нет аккаунта? Вы можете
+                <strong
+                    class="authorization-client__link"
+                    @click="clientRegistration"
+                >
+                    Зарегистрироваться
+                </strong>
+            </p>
         </div>
     </authorization>
 </template>
@@ -133,7 +131,7 @@ function resetPassword() {
         margin-bottom: $sp5;
     }
 
-    &__tag {
+    &__indicator {
         color: $red;
     }
 
@@ -150,11 +148,11 @@ function resetPassword() {
         margin-top: $sp4;
     }
 
-    &__inner-block {
+    &__register-text {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: $sp4;
+        margin-top: $sp4;
     }
 
     &__link {

@@ -37,7 +37,7 @@ function checkDoctor(): void {
 
                 <h4 class="authorization-doctor__text">
                     Телефон
-                    <span class="authorization-doctor__tag">*</span>
+                    <span class="authorization-doctor__indicator">*</span>
                 </h4>
                 <input-text
                     v-model="login"
@@ -46,7 +46,7 @@ function checkDoctor(): void {
 
                 <h4 class="authorization-doctor__text">
                     Пароль
-                    <span class="authorization-doctor__tag">*</span>
+                    <span class="authorization-doctor__indicator">*</span>
                 </h4>
                 <p-password
                     v-model="password"
@@ -82,7 +82,7 @@ function checkDoctor(): void {
         margin-bottom: $sp5;
     }
 
-    &__tag {
+    &__indicator {
         color: $red;
     }
 
