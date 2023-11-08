@@ -118,34 +118,46 @@ async function clientRegistration() {
 
 <template>
     <div>
-        <form class="authorization-form p-fluid">
+        <form class="registration-form p-fluid">
             <div>
-                <h4>Имя <span>*</span></h4>
+                <h4 class="registration-form__title">
+                    Имя
+                    <span class="registration-form__tag">*</span>
+                </h4>
                 <inline-message v-if="!isFirstName">
                     Поле 'Имя' обязательно для заполнено
                 </inline-message>
                 <input-text v-model="firstName" />
             </div>
             <div>
-                <h4>Фамилия <span>*</span></h4>
+                <h4 class="registration-form__title">
+                    Фамилия
+                    <span class="registration-form__tag">*</span>
+                </h4>
                 <inline-message v-if="!isLastName">
                     Поле 'Фамилия' обязательно для заполнено
                 </inline-message>
                 <input-text v-model="lastName" />
             </div>
             <div>
-                <h4>Почта</h4>
+                <h4 class="registration-form__title">Почта</h4>
                 <input-text v-model="email" />
             </div>
             <div>
-                <h4>Номер телефона <span>*</span></h4>
+                <h4 class="registration-form__title">
+                    Номер телефона
+                    <span class="registration-form__tag">*</span>
+                </h4>
                 <inline-message v-if="!isCorrectPhoneNumber">
                     Не корректный номер телефона
                 </inline-message>
                 <input-text v-model="phoneNumber" />
             </div>
             <div>
-                <h4>Пароль <span>*</span></h4>
+                <h4 class="registration-form__title">
+                    Пароль
+                    <span class="registration-form__tag">*</span>
+                </h4>
                 <inline-message v-if="!isPassword">
                     Поле 'Пароль' обязательно для заполнения
                 </inline-message>
@@ -156,7 +168,10 @@ async function clientRegistration() {
                 />
             </div>
             <div>
-                <h4>Подтверждение пароля <span>*</span></h4>
+                <h4 class="registration-form__title">
+                    Подтверждение пароля
+                    <span class="registration-form__tag">*</span>
+                </h4>
                 <inline-message v-if="!isConfirmPassword">
                     Пароли не совпадают!
                 </inline-message>
@@ -170,7 +185,8 @@ async function clientRegistration() {
             <ui-button
                 is-full
                 is-blue
-                class="button"
+                is-big
+                class="registration-form__button"
                 @click="clientRegistration"
             >
                 Зарегистрироваться
@@ -179,33 +195,19 @@ async function clientRegistration() {
     </div>
 </template>
 
-<style scoped>
-.authorization-form span {
-    color: #d0312d;
-}
+<style scoped lang="scss">
+.authorization-form {
+    &__title {
+        color: $black;
+        margin: $sp2 0;
+    }
 
-.authorization-form img {
-    margin-bottom: 20px;
-}
+    &__tag {
+        color: $red;
+    }
 
-.authorization-form h4 {
-    color: #3f3f3f;
-    font-weight: 400;
-    margin-top: 8px;
-}
-
-.authorization-form .p-inputtext,
-.authorization-form .p-dropdown,
-.authorization-form .p-password {
-    margin-top: 8px;
-    width: 100%;
-}
-
-.authorization-form .button {
-    margin-top: 15px;
-    height: 45px;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 100%;
+    &__button {
+        margin-top: $sp4;
+    }
 }
 </style>

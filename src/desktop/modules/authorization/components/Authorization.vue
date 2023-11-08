@@ -33,7 +33,7 @@ import UiButton from '@/ui/UiButton.vue';
     }
 
     &__main {
-        padding-top: 40px;
+        padding-top: $sp6;
         width: 50%;
     }
 }

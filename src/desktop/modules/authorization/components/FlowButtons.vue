@@ -31,16 +31,16 @@ import UiButton from '@/ui/UiButton.vue';
 .buttons {
     display: flex;
     flex-direction: column;
-    padding: 32px 16px;
+    padding: $sp6 $sp4;
 
     &__title {
         text-align: center;
-        margin-bottom: 24px;
+        margin-bottom: $sp6;
         font-size: $fz-great;
     }
 
     &__item {
-        margin-bottom: 16px;
+        margin-bottom: $sp4;
     }
 }
 </style>

@@ -54,9 +54,11 @@ onMounted(() => {
                         <li class="agreement__info">Мне есть 18 лет</li>
                     </ul>
                     <hr class="agreement__separator" />
-                    <div class="agreement-check">
+                    <div class="agreement__check">
                         Я прочитал(а) и принимаю
-                        <strong @click="termsOfUse = true"
+                        <strong
+                            class="agreement__link"
+                            @click="termsOfUse = true"
                             >Условия использования.
                         </strong>
                         <br />
@@ -64,7 +66,9 @@ onMounted(() => {
                             >Я соглашаюсь на использование информации о моем
                             здоровье для прохождения опроса. Полная информация
                             доступна в
-                            <strong @click="privacyPolicy = true"
+                            <strong
+                                class="agreement__link"
+                                @click="privacyPolicy = true"
                                 >Политике конфиденциальности.
                             </strong>
                         </span>
@@ -74,7 +78,7 @@ onMounted(() => {
                         is-blue
                         is-big
                         :is-loading="isLoading"
-                        class="agreement-button"
+                        class="agreement__button"
                         @click="$router.push({ name: 'survey' })"
                     >
                         Принять и начать опрос
@@ -150,31 +154,38 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .agreement {
-    padding: 12px;
-}
-.agreement__title {
-    margin-bottom: 16px;
-}
-.agreement__info-block {
-    @include list-reset;
+    padding: $sp3;
 
-    margin-bottom: 16px;
-}
-.agreement__info:not(:last-child) {
-    margin-bottom: 8px;
-}
-.agreement-check .p-checkbox {
-    margin-right: 5px;
-    margin-top: 12px;
-}
-.agreement-check strong {
-    color: #1769aa;
-    cursor: pointer;
-}
-.agreement-button {
-    margin-top: 12px;
-}
-.agreement__separator {
-    margin: 16px 0;
+    &__title {
+        margin-bottom: $sp4;
+    }
+
+    &__info-block {
+        @include list-reset;
+
+        margin-bottom: $sp4;
+    }
+
+    &__info:not(:last-child) {
+        margin-bottom: $sp2;
+    }
+
+    &__separator {
+        margin: $sp4 0;
+    }
+
+    &__check {
+        margin-right: $sp;
+        margin-top: $sp3;
+    }
+
+    &__link {
+        color: $blue-primary;
+        cursor: pointer;
+    }
+
+    &__button {
+        margin-top: $sp3;
+    }
 }
 </style>

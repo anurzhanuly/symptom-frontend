@@ -60,17 +60,24 @@ function resetPassword() {
 <template>
     <authorization>
         <div class="authorization-client">
-            <form class="authorization-form p-fluid">
+            <form class="authorization-client__form p-fluid">
                 <img
+                    class="authorization-client__logo"
                     alt="Symptom logo"
                     src="@/assets/logo-auth.png"
                 />
                 <div>
-                    <h4>Телефон <span>*</span></h4>
+                    <h4 class="authorization-client__text">
+                        Телефон
+                        <span class="authorization-client__indicator">*</span>
+                    </h4>
                     <input-text v-model="login" />
                 </div>
                 <div>
-                    <h4>Пароль <span>*</span></h4>
+                    <h4 class="authorization-client__text">
+                        Пароль
+                        <span class="authorization-client__indicator">*</span>
+                    </h4>
                     <p-password
                         v-model="password"
                         toggle-mask
@@ -78,11 +85,14 @@ function resetPassword() {
                     />
                 </div>
 
-                <inline-message v-if="isWrong">
+                <inline-message
+                    v-if="isWrong"
+                    class="authorization-client__error"
+                >
                     Неверный пароль или почта
                 </inline-message>
                 <ui-button
-                    class="authorization__button"
+                    class="authorization-client__button"
                     is-full
                     is-big
                     is-blue
@@ -91,7 +101,7 @@ function resetPassword() {
                     Вход
                 </ui-button>
                 <ui-button
-                    class="authorization__button"
+                    class="authorization-client__button"
                     is-full
                     is-big
                     is-white
@@ -100,56 +110,54 @@ function resetPassword() {
                     Забыли пароль?
                 </ui-button>
             </form>
-        </div>
-
-        <div class="registration-client">
-            <p>
+            <p class="authorization-client__register-text">
                 Нет аккаунта? Вы можете
-                <strong @click="clientRegistration">Зарегистрироваться</strong>
+                <strong
+                    class="authorization-client__link"
+                    @click="clientRegistration"
+                >
+                    Зарегистрироваться
+                </strong>
             </p>
         </div>
     </authorization>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .authorization-client {
-    padding: 24px 16px 16px;
-}
+    padding: $sp6 $sp4 $sp4;
 
-.authorization-form span {
-    color: #d0312d;
-}
+    &__logo {
+        margin-bottom: $sp5;
+    }
 
-.authorization-form img {
-    margin-bottom: 20px;
-}
+    &__indicator {
+        color: $red;
+    }
 
-.authorization-form h4 {
-    color: #3f3f3f;
-    font-weight: 400;
-    margin-top: 8px;
-}
+    &__text {
+        color: $black;
+        margin: $sp3 0;
+    }
 
-.authorization-form .p-inputtext,
-.authorization-form .p-dropdown,
-.authorization-form .p-inline-message {
-    margin-top: 8px;
-    width: 100%;
-}
+    &__error {
+        margin: $sp3 0;
+    }
 
-.authorization__button {
-    margin-top: 15px;
-}
+    &__button {
+        margin-top: $sp4;
+    }
 
-.registration-client {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-}
+    &__register-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: $sp4;
+    }
 
-.registration-client strong {
-    color: #2196f3;
-    cursor: pointer;
+    &__link {
+        color: $blue-primary;
+        cursor: pointer;
+    }
 }
 </style>
