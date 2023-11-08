@@ -122,7 +122,7 @@ async function clientRegistration() {
             <div>
                 <h4 class="registration-form__title">
                     Имя
-                    <span class="registration-form__tag">*</span>
+                    <span class="registration-form__indicator">*</span>
                 </h4>
                 <inline-message v-if="!isFirstName">
                     Поле 'Имя' обязательно для заполнено
@@ -132,7 +132,7 @@ async function clientRegistration() {
             <div>
                 <h4 class="registration-form__title">
                     Фамилия
-                    <span class="registration-form__tag">*</span>
+                    <span class="registration-form__indicator">*</span>
                 </h4>
                 <inline-message v-if="!isLastName">
                     Поле 'Фамилия' обязательно для заполнено
@@ -146,7 +146,7 @@ async function clientRegistration() {
             <div>
                 <h4 class="registration-form__title">
                     Номер телефона
-                    <span class="registration-form__tag">*</span>
+                    <span class="registration-form__indicator">*</span>
                 </h4>
                 <inline-message v-if="!isCorrectPhoneNumber">
                     Не корректный номер телефона
@@ -156,7 +156,7 @@ async function clientRegistration() {
             <div>
                 <h4 class="registration-form__title">
                     Пароль
-                    <span class="registration-form__tag">*</span>
+                    <span class="registration-form__indicator">*</span>
                 </h4>
                 <inline-message v-if="!isPassword">
                     Поле 'Пароль' обязательно для заполнения
@@ -170,7 +170,7 @@ async function clientRegistration() {
             <div>
                 <h4 class="registration-form__title">
                     Подтверждение пароля
-                    <span class="registration-form__tag">*</span>
+                    <span class="registration-form__indicator">*</span>
                 </h4>
                 <inline-message v-if="!isConfirmPassword">
                     Пароли не совпадают!
@@ -196,13 +196,13 @@ async function clientRegistration() {
 </template>
 
 <style scoped lang="scss">
-.authorization-form {
+.registration-form {
     &__title {
         color: $black;
         margin: $sp2 0;
     }
 
-    &__tag {
+    &__indicator {
         color: $red;
     }
 
