@@ -29,6 +29,8 @@ const isCorrectPhoneNumber = ref(true);
 const isPassword = ref(true);
 const isConfirmPassword = ref(true);
 
+const registrationError = ref(false);
+
 const router = useRouter();
 const dialogRef = inject<any>('dialogRef');
 
@@ -107,11 +109,11 @@ async function clientRegistration() {
 
             dialogRef.value.close();
             router.push('/client-cabinet');
-
-            return;
         }
 
-        dialogRef.value.close();
+        if (!token) {
+            registrationError.value = true;
+        }
     }
 }
 </script>
@@ -120,6 +122,9 @@ async function clientRegistration() {
     <div>
         <form class="registration-form p-fluid">
             <div>
+                <inline-message v-if="registrationError">
+                    Пользователь с такими данными уже зарегистрирован
+                </inline-message>
                 <h4 class="registration-form__title">
                     Имя
                     <span class="registration-form__indicator">*</span>
@@ -181,7 +186,6 @@ async function clientRegistration() {
                     :feedback="false"
                 />
             </div>
-
             <ui-button
                 is-full
                 is-blue

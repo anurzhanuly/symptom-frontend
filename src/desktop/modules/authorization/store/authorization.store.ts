@@ -51,7 +51,6 @@ export const useAuthorizationStore = defineStore('authorization', () => {
 
     async function clientRegistrationData(clientData: ClientRegistration) {
         const res = await clientRegistration(clientData);
-
         if (res) {
             return res.data.data.token;
         }
