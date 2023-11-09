@@ -90,29 +90,35 @@ function validateRegistratition(): boolean {
 
 async function clientRegistration() {
     if (validateRegistratition()) {
-        const token = await authorizationStore.clientRegistrationData({
-            password: password.value,
-            c_password: passwordConfirm.value,
-            type: 'patient',
-            first_name: firstName.value,
-            last_name: lastName.value,
-            phone: validatePhone(phoneNumber.value),
-            email: email.value,
-        });
+        try {
+            const token = await authorizationStore.clientRegistrationData({
+                password: password.value,
+                c_password: passwordConfirm.value,
+                type: 'patient',
+                first_name: firstName.value,
+                last_name: lastName.value,
+                phone: validatePhone(phoneNumber.value),
+                email: email.value,
+            });
 
-        if (token) {
-            const dateOfToken = Date.now().toString();
-            localStorage.setItem('clientToken', JSON.stringify(token));
-            localStorage.setItem('tokenDate', dateOfToken);
+            if (token) {
+                const dateOfToken = Date.now().toString();
+                localStorage.setItem('clientToken', JSON.stringify(token));
+                localStorage.setItem('tokenDate', dateOfToken);
 
-            success('Аккаунт создан', `Добро пожаловать ${firstName.value}`);
+                success(
+                    'Аккаунт создан',
+                    `Добро пожаловать ${firstName.value}`
+                );
 
-            dialogRef.value.close();
-            router.push('/client-cabinet');
-        }
-
-        if (!token) {
+                dialogRef.value.close();
+                router.push('/client-cabinet');
+            }
+        } catch (error) {
+            console.error('Ошибка при вызове clientRegistrationData:', error);
             registrationError.value = true;
+
+            setTimeout(() => (registrationError.value = false), 4000);
         }
     }
 }
@@ -132,7 +138,10 @@ async function clientRegistration() {
                 <inline-message v-if="!isFirstName">
                     Поле 'Имя' обязательно для заполнено
                 </inline-message>
-                <input-text v-model="firstName" />
+                <input-text
+                    v-model="firstName"
+                    class="registration-form__input"
+                />
             </div>
             <div>
                 <h4 class="registration-form__title">
@@ -142,11 +151,17 @@ async function clientRegistration() {
                 <inline-message v-if="!isLastName">
                     Поле 'Фамилия' обязательно для заполнено
                 </inline-message>
-                <input-text v-model="lastName" />
+                <input-text
+                    v-model="lastName"
+                    class="registration-form__input"
+                />
             </div>
             <div>
                 <h4 class="registration-form__title">Почта</h4>
-                <input-text v-model="email" />
+                <input-text
+                    v-model="email"
+                    class="registration-form__input"
+                />
             </div>
             <div>
                 <h4 class="registration-form__title">
@@ -156,7 +171,10 @@ async function clientRegistration() {
                 <inline-message v-if="!isCorrectPhoneNumber">
                     Не корректный номер телефона
                 </inline-message>
-                <input-text v-model="phoneNumber" />
+                <input-text
+                    v-model="phoneNumber"
+                    class="registration-form__input"
+                />
             </div>
             <div>
                 <h4 class="registration-form__title">
@@ -170,6 +188,7 @@ async function clientRegistration() {
                     v-model="password"
                     toggle-mask
                     :feedback="false"
+                    class="registration-form__input"
                 />
             </div>
             <div>
@@ -184,6 +203,7 @@ async function clientRegistration() {
                     v-model="passwordConfirm"
                     toggle-mask
                     :feedback="false"
+                    class="registration-form__input"
                 />
             </div>
             <ui-button
@@ -203,6 +223,9 @@ async function clientRegistration() {
 .registration-form {
     &__title {
         color: $black;
+    }
+
+    &__input {
         margin: $sp2 0;
     }
 
