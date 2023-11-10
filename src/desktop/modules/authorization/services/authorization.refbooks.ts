@@ -31,8 +31,8 @@ export async function clientRegistration(clientData: ClientRegistration) {
     try {
         return await useSymptomApi.post('/register', bodyFormData);
     } catch (error) {
-        console.error(error);
-        return null;
+        console.log(error);
+        throw error;
     }
 }
 

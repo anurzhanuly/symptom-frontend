@@ -50,10 +50,15 @@ export const useAuthorizationStore = defineStore('authorization', () => {
     }
 
     async function clientRegistrationData(clientData: ClientRegistration) {
-        const res = await clientRegistration(clientData);
+        try {
+            const res = await clientRegistration(clientData);
 
-        if (res) {
-            return res.data.data.token;
+            if (res) {
+                return res.data.data.token;
+            }
+        } catch (error) {
+            console.log(error);
+            throw error;
         }
     }
 
