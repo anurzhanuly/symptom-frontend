@@ -57,7 +57,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
                 return res.data.data.token;
             }
         } catch (error) {
-            console.error('Ошибка в clientRegistration:', error);
+            console.log(error);
             throw error;
         }
     }

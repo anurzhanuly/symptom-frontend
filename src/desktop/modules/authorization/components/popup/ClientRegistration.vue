@@ -114,11 +114,13 @@ async function clientRegistration() {
                 dialogRef.value.close();
                 router.push('/client-cabinet');
             }
-        } catch (error) {
-            console.error('Ошибка при вызове clientRegistrationData:', error);
-            registrationError.value = true;
+        } catch (error: any) {
+            console.log(error);
+            if (error.response.status === 500) {
+                registrationError.value = true;
 
-            setTimeout(() => (registrationError.value = false), 4000);
+                setTimeout(() => (registrationError.value = false), 4000);
+            }
         }
     }
 }
