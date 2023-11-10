@@ -28,7 +28,6 @@ const isLastName = ref(true);
 const isCorrectPhoneNumber = ref(true);
 const isPassword = ref(true);
 const isConfirmPassword = ref(true);
-
 const registrationError = ref(false);
 
 const router = useRouter();
@@ -116,7 +115,7 @@ async function clientRegistration() {
             }
         } catch (error: any) {
             console.log(error);
-            if (error.response.status === 500) {
+            if (error.response.data.message.includes('Duplicate entry')) {
                 registrationError.value = true;
 
                 setTimeout(() => (registrationError.value = false), 4000);
