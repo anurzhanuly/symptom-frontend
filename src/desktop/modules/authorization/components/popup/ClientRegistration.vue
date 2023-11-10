@@ -22,7 +22,6 @@ const email = ref('');
 const phoneNumber = ref('');
 const password = ref('');
 const passwordConfirm = ref('');
-
 const isFirstName = ref(true);
 const isLastName = ref(true);
 const isCorrectPhoneNumber = ref(true);
