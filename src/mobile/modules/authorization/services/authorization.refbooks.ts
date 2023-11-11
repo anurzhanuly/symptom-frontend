@@ -1,6 +1,6 @@
 import type { ClientRegistration } from '../types/authorization';
 import type { AxiosResponse } from 'axios';
-import { useSymptomApi } from '@mobile/services/api';
+import { useSymptomApi } from '@desktop/services/api';
 
 export async function postLogin(
     login: string,
@@ -31,8 +31,8 @@ export async function clientRegistration(clientData: ClientRegistration) {
     try {
         return await useSymptomApi.post('/register', bodyFormData);
     } catch (error) {
-        console.error(error);
-        return null;
+        console.log(error);
+        throw error;
     }
 }
 
