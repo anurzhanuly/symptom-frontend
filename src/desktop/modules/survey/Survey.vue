@@ -24,8 +24,6 @@ const progressLastValue = ref(0);
 const surveyJson = computed(() => surveyStore.questions);
 
 const survey = ref(new Model(surveyJson.value));
-console.log(survey);
-console.log(surveyJson.value);
 survey.value.locale = 'ru';
 
 watch(surveyJson, (newVal) => {
@@ -86,13 +84,11 @@ function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
 }
 
 function onPageChange(_: any, options: any): void {
-    console.log(progress.value, progressLastValue.value);
     if (options.isNextPage) {
         progress.value += 3;
         progressLastValue.value += 3;
 
         if (survey.value.isLastPage) {
-            console.log('last page');
             progress.value = 100;
         } else {
             progress.value = progressLastValue.value;
@@ -102,11 +98,6 @@ function onPageChange(_: any, options: any): void {
         progressLastValue.value -= 3;
     }
 }
-
-onBeforeUnmount(() => {
-    survey.value.onCurrentPageChanged.remove(onPageChange);
-    survey.value.onComplete.remove(onSurveyComplete);
-});
 </script>
 
 <template>
