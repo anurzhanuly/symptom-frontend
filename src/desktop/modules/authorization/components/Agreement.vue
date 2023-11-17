@@ -1,14 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
 import Authorization from '../components/Authorization.vue';
 import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
+import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 
 import UiButton from '@/ui/UiButton.vue';
 import Card from 'primevue/card';
 import Sidebar from 'primevue/sidebar';
 
+const surveyStore = useSurveyStore();
+
 const termsOfUse = ref(false);
 const privacyPolicy = ref(false);
+const { isLoading, questions } = storeToRefs(surveyStore);
+
+onMounted(() => {
+    if (!questions.value) {
+        surveyStore.getQuestionsData();
+    }
+});
 </script>
 
 <template>
@@ -66,6 +77,7 @@ const privacyPolicy = ref(false);
                         is-full
                         is-blue
                         is-big
+                        :is-loading="isLoading"
                         class="agreement__button"
                         @click="$router.push({ name: 'survey' })"
                     >

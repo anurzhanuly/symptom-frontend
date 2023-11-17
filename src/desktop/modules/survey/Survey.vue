@@ -7,6 +7,7 @@ import 'survey-core/survey.i18n';
 import { Model } from 'survey-core';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 import ProgressBar from 'primevue/progressbar';
+import UiButton from '@/ui/UiButton.vue';
 
 const router = useRouter();
 const surveyStore = useSurveyStore();
@@ -106,10 +107,8 @@ function onPageChange(_: any, options: any): void {
             v-if="isLoading"
             class="survey__loading-block"
         >
-            <p class="survey__text">
-                <span class="survey__loader" />
-                Пожалуйста подождите, загружаем вопросы
-            </p>
+            <ui-button is-loading-blue></ui-button>
+            <p class="survey__text">Пожалуйста подождите, загружаем вопросы</p>
         </div>
         <progress-bar :value="progress" />
         <SurveyComponent :model="survey" />
@@ -137,31 +136,7 @@ function onPageChange(_: any, options: any): void {
     }
 
     &__text {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         font-size: $fz-normal;
-    }
-
-    &__loader {
-        display: block;
-        transform: translate(-50%, -50%);
-        width: $sp6;
-        height: $sp6;
-        border: 2px solid $black-primary;
-        border-top: 2px solid transparent;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        0% {
-            transform: translate(-50%, -50%) rotate(0deg);
-        }
-        100% {
-            transform: translate(-50%, -50%) rotate(360deg);
-        }
     }
 }
 </style>

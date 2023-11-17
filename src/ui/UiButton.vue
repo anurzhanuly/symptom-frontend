@@ -4,6 +4,7 @@ defineProps({
     isWhite: Boolean,
     isFull: Boolean,
     isLoading: Boolean,
+    isLoadingBlue: Boolean,
     icon: {
         type: String,
         default: '',
@@ -19,6 +20,7 @@ defineProps({
             'button--blue': isBlue,
             'button--full': isFull,
             'button--loading': isLoading,
+            'button--loading-blue': isLoadingBlue,
             'button--big': isBig,
             'button--white': isWhite,
         }"
@@ -28,6 +30,10 @@ defineProps({
         <span
             v-if="isLoading"
             class="button__loader"
+        />
+        <span
+            v-else-if="isLoadingBlue"
+            class="button__loader button__loader--big"
         />
         <span
             v-else
@@ -60,10 +66,17 @@ defineProps({
         transform: translate(-50%, -50%);
         width: $sp5;
         height: $sp5;
-        border: 2px solid #fff;
+        border: 2px solid $white;
         border-top: 2px solid transparent;
         border-radius: 50%;
         animation: spin 1s linear infinite;
+
+        &--big {
+            width: 32px;
+            height: 32px;
+            border: 3px solid $blue-primary;
+            border-top: 2px solid transparent;
+        }
     }
 
     &__content {
@@ -91,8 +104,14 @@ defineProps({
     &--loading {
         position: relative;
         pointer-events: none;
-        background-color: #5eadef;
-        padding: 22px;
+        padding: $sp5;
+        background-color: $blue-light;
+    }
+
+    &--loading-blue {
+        position: relative;
+        pointer-events: none;
+        padding: $sp5;
     }
 
     &--big {
