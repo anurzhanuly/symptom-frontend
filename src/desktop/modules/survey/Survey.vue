@@ -7,7 +7,6 @@ import 'survey-core/survey.i18n';
 import { Model } from 'survey-core';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 import ProgressBar from 'primevue/progressbar';
-import UiButton from '@/ui/UiButton.vue';
 import UiLoader from '@/ui/UiLoader.vue';
 
 const router = useRouter();
