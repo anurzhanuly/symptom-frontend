@@ -100,7 +100,7 @@ function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
     progress.value = 0;
     progressLastValue.value = 0;
 
-    window.localStorage.setItem(storageItemKey, '');
+    window.localStorage.removeItem(storageItemKey);
 
     surveyStore.postAnswersDataChatGPT({
         answers: newData,
