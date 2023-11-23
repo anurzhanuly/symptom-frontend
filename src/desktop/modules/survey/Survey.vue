@@ -23,10 +23,10 @@ onMounted(async () => {
 const progress = ref(0);
 const progressLastValue = ref(0);
 const surveyJson = computed(() => surveyStore.questions);
+const storageItemKey = 'my-survey';
 
 const survey = ref(new Model(surveyJson.value));
 survey.value.locale = 'ru';
-const storageItemKey = 'my-survey';
 
 watch(surveyJson, (newVal) => {
     const newSurvey = new Model(newVal);
@@ -52,6 +52,15 @@ function saveSurveyData(survey: any) {
     const data = survey.data;
     data.pageNo = survey.currentPageNo;
     window.localStorage.setItem(storageItemKey, JSON.stringify(data));
+}
+
+function surveyHandler() {
+    if (!survey.value) {
+        return;
+    }
+    survey.value.onCurrentPageChanged.add(saveSurveyData);
+    survey.value.onCurrentPageChanged.add(onPageChange);
+    survey.value.onComplete.add(onSurveyComplete);
 }
 
 function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
@@ -90,7 +99,9 @@ function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
 
     progress.value = 0;
     progressLastValue.value = 0;
+
     window.localStorage.setItem(storageItemKey, '');
+
     surveyStore.postAnswersDataChatGPT({
         answers: newData,
         patientID: +(localStorage.getItem('patientId') ?? 0),
@@ -117,10 +128,7 @@ function onPageChange(_: any, options: any): void {
         progressLastValue.value -= 3;
     }
 }
-
-survey.value.onCurrentPageChanged.add(saveSurveyData);
-survey.value.onCurrentPageChanged.add(onPageChange);
-survey.value.onComplete.add(onSurveyComplete);
+surveyHandler();
 </script>
 
 <template>
