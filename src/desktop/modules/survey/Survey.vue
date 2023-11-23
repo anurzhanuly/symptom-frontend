@@ -41,11 +41,8 @@ watch(surveyJson, (newVal) => {
         }
     }
 
-    newSurvey.onCurrentPageChanged.add(saveSurveyData);
-    newSurvey.onCurrentPageChanged.add(onPageChange);
-    newSurvey.onComplete.add(onSurveyComplete);
-
     survey.value = newSurvey;
+    initSurveyHandler();
 });
 
 function saveSurveyData(survey: any) {
@@ -54,10 +51,8 @@ function saveSurveyData(survey: any) {
     window.localStorage.setItem(storageItemKey, JSON.stringify(data));
 }
 
-function surveyHandler() {
-    if (!survey.value) {
-        return;
-    }
+function initSurveyHandler() {
+    if (!survey.value) return;
     survey.value.onCurrentPageChanged.add(saveSurveyData);
     survey.value.onCurrentPageChanged.add(onPageChange);
     survey.value.onComplete.add(onSurveyComplete);
@@ -128,7 +123,7 @@ function onPageChange(_: any, options: any): void {
         progressLastValue.value -= 3;
     }
 }
-surveyHandler();
+initSurveyHandler();
 </script>
 
 <template>
