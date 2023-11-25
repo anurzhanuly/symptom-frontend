@@ -8,6 +8,7 @@ import { Model } from 'survey-core';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 import ProgressBar from 'primevue/progressbar';
 import UiLoader from '@/ui/UiLoader.vue';
+import UiButton from '@/ui/UiButton.vue';
 
 const router = useRouter();
 const surveyStore = useSurveyStore();
@@ -25,17 +26,28 @@ const progressLastValue = ref(0);
 const surveyJson = computed(() => surveyStore.questions);
 const STORAGE_ITEM_KEY = 'my-survey';
 
+const prevData = window.localStorage.getItem(STORAGE_ITEM_KEY) || null;
+
+const hasPrevData = ref(
+    window.localStorage.getItem(STORAGE_ITEM_KEY) ? true : false
+);
+
 const survey = ref(new Model(surveyJson.value));
 survey.value.locale = 'ru';
 
-watch(surveyJson, (newVal) => {
-    const newSurvey = new Model(newVal);
+restoreSurvey(surveyJson.value);
+
+function restoreSurvey(surveyVal: any) {
+    const newSurvey = new Model(surveyVal);
     newSurvey.locale = 'ru';
 
-    const prevData = window.localStorage.getItem(STORAGE_ITEM_KEY) || null;
     if (prevData) {
         const data = JSON.parse(prevData);
+
         newSurvey.data = data;
+        progress.value = data.progress;
+        progressLastValue.value = data.previosProgress;
+
         if (data.pageNo) {
             newSurvey.currentPageNo = data.pageNo;
         }
@@ -43,11 +55,19 @@ watch(surveyJson, (newVal) => {
 
     survey.value = newSurvey;
     initSurveyHandler();
+}
+
+watch(surveyJson, (newVal) => {
+    restoreSurvey(newVal);
 });
 
 function saveSurveyData(survey: any) {
     const data = survey.data;
+
     data.pageNo = survey.currentPageNo;
+    data.progress = progress.value;
+    data.previosProgress = progressLastValue.value;
+
     window.localStorage.setItem(STORAGE_ITEM_KEY, JSON.stringify(data));
 }
 
@@ -124,11 +144,50 @@ function onPageChange(_: any, options: any): void {
         progressLastValue.value -= 3;
     }
 }
+
+function continueTest() {
+    hasPrevData.value = false;
+}
+
+function startNewTest() {
+    hasPrevData.value = false;
+    progress.value = 0;
+    progressLastValue.value = 0;
+
+    localStorage.removeItem(STORAGE_ITEM_KEY);
+
+    survey.value = new Model(surveyJson.value);
+    survey.value.locale = 'ru';
+
+    initSurveyHandler();
+}
+
 initSurveyHandler();
 </script>
 
 <template>
     <div class="survey">
+        <div
+            v-if="hasPrevData"
+            class="survey__continue-test"
+        >
+            <p class="survey__text">Желаете продолжить тест?</p>
+            <div class="survey__buttons-wrapper">
+                <ui-button
+                    is-blue
+                    class="survey__button"
+                    @click="continueTest"
+                >
+                    Да
+                </ui-button>
+                <ui-button
+                    is-white
+                    @click="startNewTest"
+                >
+                    Нет, начать тест сначала
+                </ui-button>
+            </div>
+        </div>
         <div
             v-if="isLoading"
             class="survey__loading-block"
@@ -161,11 +220,29 @@ initSurveyHandler();
         align-items: center;
         flex-direction: column;
         background-color: $white-darkest;
+        z-index: 3;
+    }
+
+    &__continue-test {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: $white-darkest;
         z-index: 2;
     }
 
     &__text {
         font-size: $fz-normal;
+    }
+
+    &__button {
+        margin-right: $sp4;
     }
 }
 </style>
