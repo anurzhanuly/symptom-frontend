@@ -158,7 +158,7 @@ createNewSurvey(surveyJson.value);
 <template>
     <div class="survey">
         <div
-
+            v-if="isLoading"
             class="survey__loading"
         >
             <ui-loader
