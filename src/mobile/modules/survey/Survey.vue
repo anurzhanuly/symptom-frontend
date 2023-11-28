@@ -175,6 +175,7 @@ createNewSurvey(surveyJson.value);
             <div class="survey__buttons-wrapper">
                 <ui-button
                     is-blue
+                    is-full
                     class="survey__button"
                     @click="isOfferTestVisible = false"
                 >
@@ -182,6 +183,7 @@ createNewSurvey(surveyJson.value);
                 </ui-button>
                 <ui-button
                     is-white
+                    is-full
                     @click="startNewTest"
                 >
                     Нет, начать тест сначала
@@ -233,8 +235,15 @@ createNewSurvey(surveyJson.value);
         font-size: $fz-normal;
     }
 
-    &__button {
-        margin-right: $sp4;
+    &__buttons-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 48px;
+    }
+
+    &__button:not(:last-child) {
+        margin-bottom: $sp4;
     }
 }
 </style>
