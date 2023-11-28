@@ -220,7 +220,7 @@ initSurveyHandler();
         align-items: center;
         flex-direction: column;
         background-color: $white-darkest;
-        z-index: 2;
+        z-index: 3;
     }
 
     &__continue-test {
@@ -234,7 +234,7 @@ initSurveyHandler();
         align-items: center;
         flex-direction: column;
         background-color: $white-darkest;
-        z-index: 3;
+        z-index: 2;
     }
 
     &__text {
