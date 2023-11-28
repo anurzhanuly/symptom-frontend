@@ -162,6 +162,7 @@ createNewSurvey(surveyJson.value);
             class="survey__loading"
         >
             <ui-loader
+                class="survey__loader"
                 is-loader-big
                 is-loader-blue
             />
@@ -215,6 +216,14 @@ createNewSurvey(surveyJson.value);
         flex-direction: column;
         background-color: $white-darkest;
         z-index: 3;
+    }
+
+    &__loader {
+        margin-left: 28px;
+    }
+
+    &__text {
+        text-align: center;
     }
 
     &__offer {
