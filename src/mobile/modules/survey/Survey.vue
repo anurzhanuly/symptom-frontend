@@ -8,34 +8,60 @@ import { Model } from 'survey-core';
 import { useSurveyStore } from '@mobile/modules/survey/store/survey.store';
 import ProgressBar from 'primevue/progressbar';
 import UiLoader from '@/ui/UiLoader.vue';
+import UiButton from '@/ui/UiButton.vue';
 
 const router = useRouter();
 const surveyStore = useSurveyStore();
 
-const { isLoading, questions } = storeToRefs(surveyStore);
-
-onMounted(async () => {
-    if (!questions.value) {
-        await surveyStore.getQuestionsData();
-    }
-});
-
+const STORAGE_ITEM_KEY = 'my-survey';
+const { isLoading } = storeToRefs(surveyStore);
 const progress = ref(0);
 const progressLastValue = ref(0);
+const isOfferTestVisible = ref(
+    Boolean(window.localStorage.getItem(STORAGE_ITEM_KEY))
+);
 const surveyJson = computed(() => surveyStore.questions);
 
-const survey = ref(new Model(surveyJson.value));
-survey.value.locale = 'ru';
+const survey = ref();
 
-watch(surveyJson, (newVal) => {
-    survey.value = new Model(newVal);
-    survey.value.locale = 'ru';
+function createNewSurvey(surveyJsonData: any) {
+    const newSurvey = new Model(surveyJsonData);
+    const prevAnswersData = window.localStorage.getItem(STORAGE_ITEM_KEY);
+    newSurvey.locale = 'ru';
+
+    if (prevAnswersData) {
+        const data = JSON.parse(prevAnswersData);
+
+        newSurvey.data = data;
+        progress.value = data.progress;
+        progressLastValue.value = data.previosProgress;
+
+        if (data.pageNo) {
+            newSurvey.currentPageNo = data.pageNo;
+        }
+    }
+
+    survey.value = newSurvey;
+    initSurveyHandler();
+}
+
+function saveSurveyData(survey: any) {
+    const data = survey.data;
+
+    data.pageNo = survey.currentPageNo;
+    data.progress = progress.value;
+    data.previosProgress = progressLastValue.value;
+
+    window.localStorage.setItem(STORAGE_ITEM_KEY, JSON.stringify(data));
+}
+
+function initSurveyHandler() {
+    if (!survey.value) return;
+
+    survey.value.onCurrentPageChanged.add(saveSurveyData);
     survey.value.onCurrentPageChanged.add(onPageChange);
     survey.value.onComplete.add(onSurveyComplete);
-});
-
-survey.value.onCurrentPageChanged.add(onPageChange);
-survey.value.onComplete.add(onSurveyComplete);
+}
 
 function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
     const newData: Record<string, string[]> = {};
@@ -73,6 +99,9 @@ function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
 
     progress.value = 0;
     progressLastValue.value = 0;
+
+    window.localStorage.removeItem(STORAGE_ITEM_KEY);
+
     surveyStore.postAnswersDataChatGPT({
         answers: newData,
         patientID: +(localStorage.getItem('patientId') ?? 0),
@@ -99,22 +128,70 @@ function onPageChange(_: any, options: any): void {
         progressLastValue.value -= 3;
     }
 }
+
+function startNewTest() {
+    progress.value = 0;
+    progressLastValue.value = 0;
+
+    localStorage.removeItem(STORAGE_ITEM_KEY);
+
+    createNewSurvey(surveyJson.value);
+
+    isOfferTestVisible.value = false;
+}
+
+onMounted(async () => {
+    if (!surveyJson.value) {
+        await surveyStore.getQuestionsData();
+    }
+});
+
+watch(surveyJson, (newVal) => {
+    if (!surveyJson.value) return;
+
+    createNewSurvey(newVal);
+});
+
+createNewSurvey(surveyJson.value);
 </script>
 
 <template>
     <div class="survey">
         <div
             v-if="isLoading"
-            class="survey__loading-block"
+            class="survey__loading"
         >
             <ui-loader
                 is-loader-big
                 is-loader-blue
-            ></ui-loader>
+            />
             <p class="survey__text">Пожалуйста подождите, загружаем вопросы</p>
         </div>
-        <progress-bar :value="progress" />
-        <SurveyComponent :model="survey" />
+        <div
+            v-if="isOfferTestVisible"
+            class="survey__offer"
+        >
+            <p class="survey__offer-text">Желаете продолжить тест?</p>
+            <div class="survey__buttons-wrapper">
+                <ui-button
+                    is-blue
+                    class="survey__button"
+                    @click="isOfferTestVisible = false"
+                >
+                    Да
+                </ui-button>
+                <ui-button
+                    is-white
+                    @click="startNewTest"
+                >
+                    Нет, начать тест сначала
+                </ui-button>
+            </div>
+        </div>
+        <template v-else>
+            <progress-bar :value="progress" />
+            <SurveyComponent :model="survey" />
+        </template>
     </div>
 </template>
 
@@ -124,7 +201,21 @@ function onPageChange(_: any, options: any): void {
     background-color: $white-darkest;
     z-index: 1;
 
-    &__loading-block {
+    &__loading {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: $white-darkest;
+        z-index: 3;
+    }
+
+    &__offer {
         position: absolute;
         left: 0;
         top: 0;
@@ -138,8 +229,12 @@ function onPageChange(_: any, options: any): void {
         z-index: 2;
     }
 
-    &__text {
+    &__offer-text {
         font-size: $fz-normal;
+    }
+
+    &__button {
+        margin-right: $sp4;
     }
 }
 </style>
