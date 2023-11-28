@@ -13,36 +13,24 @@ import UiButton from '@/ui/UiButton.vue';
 const router = useRouter();
 const surveyStore = useSurveyStore();
 
-const { isLoading, questions } = storeToRefs(surveyStore);
-
-onMounted(async () => {
-    if (!questions.value) {
-        await surveyStore.getQuestionsData();
-    }
-});
-
+const STORAGE_ITEM_KEY = 'my-survey';
+const { isLoading } = storeToRefs(surveyStore);
 const progress = ref(0);
 const progressLastValue = ref(0);
-const surveyJson = computed(() => surveyStore.questions);
-const STORAGE_ITEM_KEY = 'my-survey';
-
-const prevData = window.localStorage.getItem(STORAGE_ITEM_KEY) || null;
-
-const hasPrevData = ref(
-    window.localStorage.getItem(STORAGE_ITEM_KEY) ? true : false
+const isOfferTestVisible = ref(
+    Boolean(window.localStorage.getItem(STORAGE_ITEM_KEY))
 );
+const surveyJson = computed(() => surveyStore.questions);
 
-const survey = ref(new Model(surveyJson.value));
-survey.value.locale = 'ru';
+const survey = ref();
 
-restoreSurvey(surveyJson.value);
-
-function restoreSurvey(surveyVal: any) {
-    const newSurvey = new Model(surveyVal);
+function createNewSurvey(surveyJsonData: any) {
+    const newSurvey = new Model(surveyJsonData);
+    const prevAnswersData = window.localStorage.getItem(STORAGE_ITEM_KEY);
     newSurvey.locale = 'ru';
 
-    if (prevData) {
-        const data = JSON.parse(prevData);
+    if (prevAnswersData) {
+        const data = JSON.parse(prevAnswersData);
 
         newSurvey.data = data;
         progress.value = data.progress;
@@ -56,10 +44,6 @@ function restoreSurvey(surveyVal: any) {
     survey.value = newSurvey;
     initSurveyHandler();
 }
-
-watch(surveyJson, (newVal) => {
-    restoreSurvey(newVal);
-});
 
 function saveSurveyData(survey: any) {
     const data = survey.data;
@@ -145,38 +129,54 @@ function onPageChange(_: any, options: any): void {
     }
 }
 
-function continueTest() {
-    hasPrevData.value = false;
-}
-
 function startNewTest() {
-    hasPrevData.value = false;
     progress.value = 0;
     progressLastValue.value = 0;
 
     localStorage.removeItem(STORAGE_ITEM_KEY);
 
-    survey.value = new Model(surveyJson.value);
-    survey.value.locale = 'ru';
+    createNewSurvey(surveyJson.value);
 
-    initSurveyHandler();
+    isOfferTestVisible.value = false;
 }
 
-initSurveyHandler();
+onMounted(async () => {
+    if (!surveyJson.value) {
+        await surveyStore.getQuestionsData();
+    }
+});
+
+watch(surveyJson, (newVal) => {
+    if (!surveyJson.value) return;
+
+    createNewSurvey(newVal);
+});
+
+createNewSurvey(surveyJson.value);
 </script>
 
 <template>
     <div class="survey">
         <div
-            v-if="hasPrevData"
-            class="survey__continue-test"
+            v-if="isLoading"
+            class="survey__loading"
         >
-            <p class="survey__text">Желаете продолжить тест?</p>
+            <ui-loader
+                is-loader-big
+                is-loader-blue
+            />
+            <p class="survey__text">Пожалуйста подождите, загружаем вопросы</p>
+        </div>
+        <div
+            v-if="isOfferTestVisible"
+            class="survey__offer"
+        >
+            <p class="survey__offer-text">Желаете продолжить тест?</p>
             <div class="survey__buttons-wrapper">
                 <ui-button
                     is-blue
                     class="survey__button"
-                    @click="continueTest"
+                    @click="isOfferTestVisible = false"
                 >
                     Да
                 </ui-button>
@@ -188,18 +188,10 @@ initSurveyHandler();
                 </ui-button>
             </div>
         </div>
-        <div
-            v-if="isLoading"
-            class="survey__loading-block"
-        >
-            <ui-loader
-                is-loader-big
-                is-loader-blue
-            ></ui-loader>
-            <p class="survey__text">Пожалуйста подождите, загружаем вопросы</p>
-        </div>
-        <progress-bar :value="progress" />
-        <SurveyComponent :model="survey" />
+        <template v-else>
+            <progress-bar :value="progress" />
+            <SurveyComponent :model="survey" />
+        </template>
     </div>
 </template>
 
@@ -209,7 +201,7 @@ initSurveyHandler();
     background-color: $white-darkest;
     z-index: 1;
 
-    &__loading-block {
+    &__loading {
         position: absolute;
         left: 0;
         top: 0;
@@ -223,7 +215,7 @@ initSurveyHandler();
         z-index: 3;
     }
 
-    &__continue-test {
+    &__offer {
         position: absolute;
         left: 0;
         top: 0;
@@ -237,7 +229,7 @@ initSurveyHandler();
         z-index: 2;
     }
 
-    &__text {
+    &__offer-text {
         font-size: $fz-normal;
     }
 
