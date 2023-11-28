@@ -47,7 +47,6 @@ defineProps({
     white-space: pre-wrap;
     cursor: pointer;
     font-family: 'OpenSans', sans-serif;
-    letter-spacing: 1px;
     font-size: $fz-normal;
 
     &__content {
