@@ -5,13 +5,13 @@ import { useRouter } from 'vue-router';
 
 import { warn } from '@/utils/toast';
 import { useCabinetsStore } from './store/cabinets.store';
-import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
+import { useSurveyStore } from '@mobile/modules/survey/store/survey.store';
 
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import BaseHeader from '@desktop/components/BaseHeader.vue';
+import BaseHeader from '@mobile/components/BaseHeader.vue';
 
 const cabinetsStore = useCabinetsStore();
 const surveyStore = useSurveyStore();
