@@ -164,24 +164,13 @@ const router = createRouter({
             path: '/client-cabinet',
             name: '/client-cabinet',
             component: (): Component =>
-                import('@desktop/modules/cabinets/ClientCabinetView.vue'),
-            redirect: () => {
-                return { path: '/client-cabinet/main' };
-            },
-            children: [
-                {
-                    path: 'main',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/cabinets/ClientCabinetMain.vue'
-                        ),
-                },
-                {
-                    path: 'result/:id',
-                    component: (): Component =>
-                        import('@desktop/modules/cabinets/CabinetResult.vue'),
-                },
-            ],
+                import('@desktop/modules/cabinets/ClientCabinetMain.vue'),
+        },
+        {
+            path: '/client-cabinet-result',
+            name: '/client-cabinet-result',
+            component: (): Component =>
+                import('@desktop/modules/cabinets/CabinetResult.vue'),
         },
     ],
 });

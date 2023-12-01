@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import { useCabinetsStore } from './store/cabinets.store';
-import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
+import { warn } from '@/utils/toast';
+import { useCabinetsStore } from './store/cabinets.store';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 
 import InputText from 'primevue/inputtext';
-import UiButton from '@/ui/UiButton.vue';
 import PButton from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
+import BaseHeader from '@desktop/components/BaseHeader.vue';
 
 const cabinetsStore = useCabinetsStore();
 const surveyStore = useSurveyStore();
 
+const router = useRouter();
 const { resultAnswersChatGPT } = storeToRefs(surveyStore);
 const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);
 
@@ -34,13 +37,21 @@ onMounted(async () => {
     }
 });
 
-function checkResult(Id: string) {
-    cabinetsStore.getClientResultData(Id);
+function checkResult(id: string) {
+    const result = cabinetsStore.getClientResultData(id);
+
+    if (!result) {
+        warn('Не найдено', 'Результаты не найдены');
+    }
+
+    localStorage.setItem('clientCabinetResultId', id);
+    router.push(`/client-cabinet-result`);
 }
 </script>
 
 <template>
     <div>
+        <base-header />
         <data-table
             class="p-datatable-sm"
             column-resize-mode="expand"

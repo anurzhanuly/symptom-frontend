@@ -75,8 +75,9 @@ export const useCabinetsStore = defineStore('cabinet', () => {
         }
     }
 
-    async function getClientResultData(Id: string): Promise<void> {
+    async function getClientResultData(Id: string): Promise<boolean> {
         const res = await getResult(Id);
+
         if (res) {
             patientResult.value = res.data.included.filter(
                 (item: { type: string }) => item.type === 'patient'
@@ -89,10 +90,10 @@ export const useCabinetsStore = defineStore('cabinet', () => {
             patientCard.value = res.data.data.attributes.patient_card;
             recommendations.value = res.data.data.attributes.recommendations;
 
-            router.push(`/client-cabinet/result/${Id}`);
-        } else {
-            warn('Не найдено', 'Результаты не найдены');
+            return true;
         }
+
+        return false;
     }
 
     return {
