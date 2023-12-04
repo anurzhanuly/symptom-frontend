@@ -47,14 +47,14 @@ async function changePassword() {
 
 <style lang="scss" scoped>
 .settings {
-    padding: 30px 16px 30px;
+    padding: $sp5;
 
     &__header {
-        margin-bottom: 30px;
+        margin-bottom: $sp5;
     }
 
     &__button {
-        margin-bottom: $sp4;
+        margin-bottom: $sp5;
     }
 }
 </style>

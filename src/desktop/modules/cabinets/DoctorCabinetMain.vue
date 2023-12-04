@@ -95,6 +95,6 @@ function checkResult(id: string) {
 }
 
 .table__button {
-    margin: 8px 16px;
+    margin: 8px;
 }
 </style>
