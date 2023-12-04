@@ -125,40 +125,21 @@ const router = createRouter({
         },
         {
             path: '/doctor-cabinet',
-            name: 'doctor-cabinet',
+            name: '/doctor-cabinet',
             component: (): Component =>
-                import('@desktop/modules/cabinets/DoctorCabinetView.vue'),
-            redirect: () => {
-                return { path: '/doctor-cabinet/main' };
-            },
-            children: [
-                {
-                    path: 'main',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/cabinets/DoctorCabinetMain.vue'
-                        ),
-                },
-                {
-                    path: 'patients',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/cabinets/DoctorCabinetPatients.vue'
-                        ),
-                },
-                {
-                    path: 'settings',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/cabinets/DoctorCabinetSettings.vue'
-                        ),
-                },
-                {
-                    path: 'result/:id',
-                    component: (): Component =>
-                        import('@desktop/modules/cabinets/CabinetResult.vue'),
-                },
-            ],
+                import('@desktop/modules/cabinets/DoctorCabinetMain.vue'),
+        },
+        {
+            path: '/doctor-cabinet-result',
+            name: '/doctor-cabinet-result',
+            component: (): Component =>
+            import('@desktop/modules/cabinets/CabinetResult.vue'),
+        },
+        {
+            path: '/doctor-cabinet-settings',
+            name: '/doctor-cabinet-settings',
+            component: (): Component =>
+            import('@desktop/modules/cabinets/DoctorCabinetSettings.vue'),
         },
         {
             path: '/client-cabinet',

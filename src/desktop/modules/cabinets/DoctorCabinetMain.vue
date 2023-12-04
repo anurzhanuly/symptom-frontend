@@ -1,28 +1,41 @@
 <script setup lang="ts">
 import { useCabinetsStore } from '@desktop/modules/cabinets/store/cabinets.store';
+import { useRouter } from 'vue-router';
+import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
+import { warn } from '@/utils/toast';
 
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
+import BaseHeader from '@desktop/components/BaseHeader.vue';
+import UiButton from '@/ui/UiButton.vue';
 
 const cabinetsStore = useCabinetsStore();
+const surveyStore = useSurveyStore();
 
-onMounted(() => {
-    // TODO: Сделать рефакторинг
-    cabinetsStore.getDoctorConsultationsData();
+const router = useRouter();
+
+onMounted(async () => {
+    await cabinetsStore.getDoctorConsultationsData();
 });
 
 const { myConsultation, filters, searchString } = storeToRefs(cabinetsStore);
 
-function checkResult(Id: string) {
-    cabinetsStore.getDoctorResultData(Id);
+function checkResult(id: string) {
+    const result = cabinetsStore.getClientResultData(id);
+    if (!result) {
+        warn('Не найдено', 'Результаты не найдены');
+    }
+    localStorage.setItem('clientCabinetResultId', id);
+    router.push(`/doctor-cabinet-result`);
 }
 </script>
 
 <template>
+    <base-header></base-header>
     <data-table
         class="p-datatable-sm"
         column-resize-mode="expand"
@@ -46,6 +59,14 @@ function checkResult(Id: string) {
                 </span>
             </div>
         </template>
+        <ui-button
+            class="table__button"
+            is-blue
+            is-big
+            @click="$router.push({ name: '/doctor-cabinet-settings' })"
+        >
+            Настройки
+        </ui-button>
         <column header="Дата опроса">
             <template #body="slotProps">
                 <p-button
@@ -71,5 +92,9 @@ function checkResult(Id: string) {
 
 .request-table-header .p-inputtext {
     margin-right: 5px;
+}
+
+.table__button {
+    margin: 8px 16px;
 }
 </style>

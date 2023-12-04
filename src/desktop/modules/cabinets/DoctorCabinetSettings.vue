@@ -4,6 +4,8 @@ import InputText from 'primevue/inputtext';
 import { postPassword } from '@desktop/modules/cabinets/services/cabinets.refbooks';
 import PButton from 'primevue/button';
 import { success, error } from '@/utils/toast';
+import BaseHeader from '@/desktop/components/BaseHeader.vue';
+import UiButton from '@/ui/UiButton.vue';
 
 const newPassword = ref('');
 
@@ -19,7 +21,16 @@ async function changePassword() {
 </script>
 
 <template>
+    <base-header></base-header>
     <div class="settings">
+        <ui-button
+            icon="pi pi-angle-left header__button"
+            is-white
+            class="settings__button"
+            @click="$router.push({ name: '/doctor-cabinet' })"
+        >
+            Назад
+        </ui-button>
         <h2 class="settings__header">Смена пароля</h2>
         <div>
             <input-text
@@ -40,6 +51,10 @@ async function changePassword() {
 
     &__header {
         margin-bottom: 30px;
+    }
+
+    &__button {
+        margin-bottom: $sp4;
     }
 }
 </style>
