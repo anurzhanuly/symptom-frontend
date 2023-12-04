@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useCabinetsStore } from './store/cabinets.store';
+import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
+import { useCabinetsStore } from './store/cabinets.store';
 
 import Card from 'primevue/card';
 import Panel from 'primevue/panel';
@@ -9,6 +10,14 @@ const cabinetsStore = useCabinetsStore();
 
 const { patientResult, patientCard, recommendations } =
     storeToRefs(cabinetsStore);
+
+onMounted(() => {
+    const clientCabinetResultId = localStorage.getItem('clientCabinetResultId');
+
+    if (clientCabinetResultId && !patientCard.value) {
+        cabinetsStore.getClientResultData(clientCabinetResultId);
+    }
+});
 </script>
 
 <template>
