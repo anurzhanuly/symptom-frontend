@@ -23,7 +23,7 @@ function goToClientCabinet() {
 
     if (clientToken.value && tokenDate) {
         if (timeDiff < prepareDate) {
-            router.push('/client-cabinet');
+            router.push('client-cabinet');
 
             return;
         }

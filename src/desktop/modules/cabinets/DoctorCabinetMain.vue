@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useCabinetsStore } from '@desktop/modules/cabinets/store/cabinets.store';
-import { useRouter } from 'vue-router';
-import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
-import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useCabinetsStore } from '@desktop/modules/cabinets/store/cabinets.store';
+import { storeToRefs } from 'pinia';
 import { warn } from '@/utils/toast';
+import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
