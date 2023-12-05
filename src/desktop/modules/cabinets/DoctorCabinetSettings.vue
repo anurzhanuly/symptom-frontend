@@ -21,13 +21,13 @@ async function changePassword() {
 </script>
 
 <template>
-    <base-header></base-header>
+    <base-header />
     <div class="settings">
         <ui-button
             icon="pi pi-angle-left header__button"
             is-white
             class="settings__button"
-            @click="$router.push({ name: '/doctor-cabinet' })"
+            @click="$router.push({ name: 'doctor-cabinet' })"
         >
             Назад
         </ui-button>

@@ -125,31 +125,31 @@ const router = createRouter({
         },
         {
             path: '/doctor-cabinet',
-            name: '/doctor-cabinet',
+            name: 'doctor-cabinet',
             component: (): Component =>
                 import('@desktop/modules/cabinets/DoctorCabinetMain.vue'),
         },
         {
             path: '/doctor-cabinet-result',
-            name: '/doctor-cabinet-result',
+            name: 'doctor-cabinet-result',
             component: (): Component =>
             import('@desktop/modules/cabinets/CabinetResult.vue'),
         },
         {
             path: '/doctor-cabinet-settings',
-            name: '/doctor-cabinet-settings',
+            name: 'doctor-cabinet-settings',
             component: (): Component =>
             import('@desktop/modules/cabinets/DoctorCabinetSettings.vue'),
         },
         {
             path: '/client-cabinet',
-            name: '/client-cabinet',
+            name: 'client-cabinet',
             component: (): Component =>
                 import('@desktop/modules/cabinets/ClientCabinetMain.vue'),
         },
         {
             path: '/client-cabinet-result',
-            name: '/client-cabinet-result',
+            name: 'client-cabinet-result',
             component: (): Component =>
                 import('@desktop/modules/cabinets/CabinetResult.vue'),
         },

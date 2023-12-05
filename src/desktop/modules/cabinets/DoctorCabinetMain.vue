@@ -18,24 +18,26 @@ const surveyStore = useSurveyStore();
 
 const router = useRouter();
 
-onMounted(async () => {
-    await cabinetsStore.getDoctorConsultationsData();
+onMounted(() => {
+    cabinetsStore.getDoctorConsultationsData();
 });
 
 const { myConsultation, filters, searchString } = storeToRefs(cabinetsStore);
 
 function checkResult(id: string) {
     const result = cabinetsStore.getClientResultData(id);
+
     if (!result) {
         warn('Не найдено', 'Результаты не найдены');
     }
+
     localStorage.setItem('clientCabinetResultId', id);
-    router.push(`/doctor-cabinet-result`);
+    router.push(`doctor-cabinet-result`);
 }
 </script>
 
 <template>
-    <base-header></base-header>
+    <base-header />
     <data-table
         class="p-datatable-sm"
         column-resize-mode="expand"
@@ -63,7 +65,7 @@ function checkResult(id: string) {
             class="table__button"
             is-blue
             is-big
-            @click="$router.push({ name: '/doctor-cabinet-settings' })"
+            @click="$router.push({ name: 'doctor-cabinet-settings' })"
         >
             Настройки
         </ui-button>
