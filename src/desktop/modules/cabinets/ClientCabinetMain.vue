@@ -45,7 +45,7 @@ function checkResult(id: string) {
     }
 
     localStorage.setItem('clientCabinetResultId', id);
-    router.push(`/client-cabinet-result`);
+    router.push(`client-cabinet-result`);
 }
 </script>
 
