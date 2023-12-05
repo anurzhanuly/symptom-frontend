@@ -1,19 +1,33 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import ProgressBar from 'primevue/progressbar';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 
+import BaseHeader from '@desktop/components/BaseHeader.vue';
 import Panel from 'primevue/panel';
 import PButton from 'primevue/button';
 
 const router = useRouter();
+
 const surveyStore = useSurveyStore();
+const { isLoading } = storeToRefs(surveyStore);
 const { recommendations, recommendationsChatGPT } = storeToRefs(surveyStore);
+
+console.log(recommendations);
+
+onMounted(() => {
+    const surveyAnswers = window.localStorage.getItem('surveyAnswers');
+    const surveyAnswersJSON = surveyAnswers ? JSON.parse(surveyAnswers) : null;
+    surveyStore.postAnswersDataChatGPT(surveyAnswersJSON);
+});
 
 const patientIdFromLocalStorage = computed(() =>
     localStorage.getItem('patientId')
 );
+
 const test = [
     {
         title: 'Щит и Меч Здоровья',
@@ -44,6 +58,11 @@ function saveRecommendation() {
 </script>
 
 <template>
+    <progress-bar
+        v-if="isLoading"
+        mode="indeterminate"
+    />
+    <base-header />
     <div class="recommendation">
         <h2 class="recommendation__title">Рекомендации</h2>
         <panel

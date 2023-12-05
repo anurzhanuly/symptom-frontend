@@ -50,29 +50,20 @@ const router = createRouter({
                 ),
         },
         {
-            path: '/result',
-            name: 'result',
+            path: '/result-recommendation',
+            name: 'result-recommendation',
             component: (): Component =>
-                import('@desktop/modules/survey/ResultView.vue'),
-            redirect: () => {
-                return { path: '/result/recommendation' };
-            },
-            children: [
-                {
-                    path: 'recommendation',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/survey/components/ResultRecomindation.vue'
-                        ),
-                },
-                {
-                    path: 'card',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/survey/components/ResultPatientCard.vue'
-                        ),
-                },
-            ],
+                import(
+                    '@desktop/modules/survey/components/ResultRecomindation.vue'
+                ),
+        },
+        {
+            path: '/result-card',
+            name: 'result-card',
+            component: (): Component =>
+                import(
+                    '@desktop/modules/survey/components/ResultPatientCard.vue'
+                ),
         },
         {
             path: '/survey',
