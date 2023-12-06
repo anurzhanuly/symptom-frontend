@@ -16,10 +16,11 @@ const { isLoading } = storeToRefs(surveyStore);
 const { recommendations, recommendationsChatGPT } = storeToRefs(surveyStore);
 
 onMounted(() => {
-    const surveyAnswers = window.localStorage.getItem('surveyAnswers');
-    if (!surveyAnswers || recommendations.value.length) return;
-
-    surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers));
+    const surveyAnswers = window.localStorage.getItem('surveyAnswers') || null;
+    if (surveyAnswers && !recommendations.value.length) {
+        surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers));
+    }
+    return;
 });
 
 const patientIdFromLocalStorage = computed(() =>
