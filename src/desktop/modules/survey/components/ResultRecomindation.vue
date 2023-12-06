@@ -17,11 +17,9 @@ const { recommendations, recommendationsChatGPT } = storeToRefs(surveyStore);
 
 onMounted(() => {
     const surveyAnswers = window.localStorage.getItem('surveyAnswers');
-    if (!surveyAnswers) return;
+    if (!surveyAnswers || recommendations.value.length) return;
 
-    if (!recommendations.value.length) {
-        surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers));
-    }
+    surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers));
 });
 
 const patientIdFromLocalStorage = computed(() =>
