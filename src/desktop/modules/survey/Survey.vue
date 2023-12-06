@@ -112,11 +112,7 @@ function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
 
     window.localStorage.setItem('surveyAnswers', JSON.stringify(surveyAnswers));
 
-    surveyStore.postAnswersDataChatGPT({
-        answers: newData,
-        patientID: +(localStorage.getItem('patientId') ?? 0),
-        doctorID: doctorId,
-    });
+    surveyStore.postAnswersDataChatGPT(surveyAnswers);
 
     router.push({
         path: '/result-recommendation',

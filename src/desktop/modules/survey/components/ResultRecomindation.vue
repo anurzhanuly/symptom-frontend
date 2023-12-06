@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
-import ProgressBar from 'primevue/progressbar';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 
-import BaseHeader from '@desktop/components/BaseHeader.vue';
+import ProgressBar from 'primevue/progressbar';
 import Panel from 'primevue/panel';
 import PButton from 'primevue/button';
+import BaseHeader from '@desktop/components/BaseHeader.vue';
 
 const router = useRouter();
 
@@ -16,12 +15,13 @@ const surveyStore = useSurveyStore();
 const { isLoading } = storeToRefs(surveyStore);
 const { recommendations, recommendationsChatGPT } = storeToRefs(surveyStore);
 
-console.log(recommendations);
-
 onMounted(() => {
     const surveyAnswers = window.localStorage.getItem('surveyAnswers');
-    const surveyAnswersJSON = surveyAnswers ? JSON.parse(surveyAnswers) : null;
-    surveyStore.postAnswersDataChatGPT(surveyAnswersJSON);
+    if (!surveyAnswers) return;
+
+    if (!recommendations.value.length) {
+        surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers));
+    }
 });
 
 const patientIdFromLocalStorage = computed(() =>
