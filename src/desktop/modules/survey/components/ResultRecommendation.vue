@@ -7,9 +7,23 @@ import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 import ProgressBar from 'primevue/progressbar';
 import Panel from 'primevue/panel';
 import PButton from 'primevue/button';
+import TabMenu from 'primevue/tabmenu';
 import BaseHeader from '@desktop/components/BaseHeader.vue';
 
 const router = useRouter();
+
+const surveyPages = [
+    {
+        label: 'Рекомендации',
+        icon: 'pi pi-fw pi-pencil',
+        to: '/result-recommendation',
+    },
+    {
+        label: 'Карточка',
+        icon: 'pi pi-fw pi-file',
+        to: '/result-card',
+    },
+];
 
 const surveyStore = useSurveyStore();
 const { isLoading } = storeToRefs(surveyStore);
@@ -18,7 +32,7 @@ const { recommendations, recommendationsChatGPT } = storeToRefs(surveyStore);
 onMounted(() => {
     const surveyAnswers = window.localStorage.getItem('surveyAnswers');
 
-    if (surveyAnswers && !recommendations.value.length) return;
+    if (!surveyAnswers && recommendations.value.length) return;
 
     surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers as string));
 });
@@ -62,6 +76,7 @@ function saveRecommendation() {
         mode="indeterminate"
     />
     <base-header />
+    <tab-menu :model="surveyPages" />
     <div class="recommendation">
         <h2 class="recommendation__title">Рекомендации</h2>
         <panel

@@ -54,7 +54,7 @@ const router = createRouter({
             name: 'result-recommendation',
             component: (): Component =>
                 import(
-                    '@desktop/modules/survey/components/ResultRecomindation.vue'
+                    '@desktop/modules/survey/components/ResultRecommendation.vue'
                 ),
         },
         {

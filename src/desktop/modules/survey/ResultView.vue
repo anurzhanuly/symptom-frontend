@@ -14,12 +14,12 @@ const surveyPages = [
     {
         label: 'Рекомендации',
         icon: 'pi pi-fw pi-pencil',
-        to: '/result/recommendation',
+        to: '/result-recommendation',
     },
     {
         label: 'Карточка',
         icon: 'pi pi-fw pi-file',
-        to: '/result/card',
+        to: '/result-card',
     },
 ];
 </script>
