@@ -104,13 +104,13 @@ onMounted(() => {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .result {
-    padding: 16px;
+    padding: $sp4;
 }
 
 .result__button {
-    margin-bottom: 16px;
+    margin-bottom: $sp4;
 }
 
 .result-card p {

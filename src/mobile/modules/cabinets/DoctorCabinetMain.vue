@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useCabinetsStore } from '@mobile/modules/cabinets/store/cabinets.store';
-import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
 import { warn } from '@/utils/toast';
+import { useCabinetsStore } from '@mobile/modules/cabinets/store/cabinets.store';
 
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
@@ -13,7 +13,6 @@ import BaseHeader from '@/mobile/components/BaseHeader.vue';
 import UiButton from '@/ui/UiButton.vue';
 
 const cabinetsStore = useCabinetsStore();
-
 const router = useRouter();
 
 onMounted(() => {
