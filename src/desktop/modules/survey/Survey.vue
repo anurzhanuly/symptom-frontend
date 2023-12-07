@@ -41,6 +41,8 @@ function createNewSurvey(surveyJsonData: any) {
         }
     }
 
+    window.localStorage.removeItem('surveyAnswers');
+
     survey.value = newSurvey;
     initSurveyHandler();
 }
@@ -102,14 +104,18 @@ function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
 
     window.localStorage.removeItem(STORAGE_ITEM_KEY);
 
-    surveyStore.postAnswersDataChatGPT({
+    const surveyAnswers = {
         answers: newData,
         patientID: +(localStorage.getItem('patientId') ?? 0),
         doctorID: doctorId,
-    });
+    };
+
+    window.localStorage.setItem('surveyAnswers', JSON.stringify(surveyAnswers));
+
+    surveyStore.postAnswersDataChatGPT(surveyAnswers);
 
     router.push({
-        path: '/result',
+        path: '/result-recommendation',
     });
 }
 
@@ -134,6 +140,7 @@ function startNewTest() {
     progressLastValue.value = 0;
 
     localStorage.removeItem(STORAGE_ITEM_KEY);
+    window.localStorage.removeItem('surveyAnswers');
 
     createNewSurvey(surveyJson.value);
 

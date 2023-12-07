@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
@@ -7,10 +7,33 @@ import { useSurveyStore } from '../store/survey.store';
 
 import Panel from 'primevue/panel';
 import PButton from 'primevue/button';
+import TabMenu from 'primevue/tabmenu';
+import BaseHeader from '@/desktop/components/BaseHeader.vue';
 
 const router = useRouter();
 const surveyStore = useSurveyStore();
 const { patientsCard } = storeToRefs(surveyStore);
+
+onMounted(() => {
+    const surveyAnswers = window.localStorage.getItem('surveyAnswers');
+
+    if (!surveyAnswers && patientsCard.value.length) return;
+
+    surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers as string));
+});
+
+const SURVEY_PAGES = [
+    {
+        label: 'Рекомендации',
+        icon: 'pi pi-fw pi-pencil',
+        to: '/result-recommendation',
+    },
+    {
+        label: 'Карточка',
+        icon: 'pi pi-fw pi-file',
+        to: '/result-card',
+    },
+];
 
 const patientIdFromLocalStorage = computed(() =>
     localStorage.getItem('patientId')
@@ -46,6 +69,8 @@ function saveRecommendation() {
 </script>
 
 <template>
+    <base-header />
+    <tab-menu :model="SURVEY_PAGES" />
     <div class="patients-card">
         <h2 class="patients-card__title">Карточка пациента</h2>
         <panel
