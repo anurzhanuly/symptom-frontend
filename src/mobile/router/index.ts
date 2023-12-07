@@ -50,29 +50,20 @@ const router = createRouter({
                 ),
         },
         {
-            path: '/result',
-            name: 'result',
+            path: '/result-recommendation',
+            name: 'result-recommendation',
             component: (): Component =>
-                import('@mobile/modules/survey/ResultView.vue'),
-            redirect: () => {
-                return { path: '/result/recommendation' };
-            },
-            children: [
-                {
-                    path: 'recommendation',
-                    component: (): Component =>
-                        import(
-                            '@mobile/modules/survey/components/ResultRecomindation.vue'
-                        ),
-                },
-                {
-                    path: 'card',
-                    component: (): Component =>
-                        import(
-                            '@mobile/modules/survey/components/ResultPatientCard.vue'
-                        ),
-                },
-            ],
+                import(
+                    '@desktop/modules/survey/components/ResultRecommendation.vue'
+                ),
+        },
+        {
+            path: '/result-card',
+            name: 'result-card',
+            component: (): Component =>
+                import(
+                    '@desktop/modules/survey/components/ResultPatientCard.vue'
+                ),
         },
         {
             path: '/survey',
@@ -127,38 +118,19 @@ const router = createRouter({
             path: '/doctor-cabinet',
             name: 'doctor-cabinet',
             component: (): Component =>
-                import('@mobile/modules/cabinets/DoctorCabinetView.vue'),
-            redirect: () => {
-                return { path: '/doctor-cabinet/main' };
-            },
-            children: [
-                {
-                    path: 'main',
-                    component: (): Component =>
-                        import(
-                            '@mobile/modules/cabinets/DoctorCabinetMain.vue'
-                        ),
-                },
-                {
-                    path: 'patients',
-                    component: (): Component =>
-                        import(
-                            '@mobile/modules/cabinets/DoctorCabinetPatients.vue'
-                        ),
-                },
-                {
-                    path: 'settings',
-                    component: (): Component =>
-                        import(
-                            '@mobile/modules/cabinets/DoctorCabinetSettings.vue'
-                        ),
-                },
-                {
-                    path: 'result/:id',
-                    component: (): Component =>
-                        import('@mobile/modules/cabinets/CabinetResult.vue'),
-                },
-            ],
+                import('@mobile/modules/cabinets/DoctorCabinetMain.vue'),
+        },
+        {
+            path: '/doctor-cabinet-result',
+            name: 'doctor-cabinet-result',
+            component: (): Component =>
+            import('@mobile/modules/cabinets/CabinetResult.vue'),
+        },
+        {
+            path: '/doctor-cabinet-settings',
+            name: 'doctor-cabinet-settings',
+            component: (): Component =>
+            import('@mobile/modules/cabinets/DoctorCabinetSettings.vue'),
         },
         {
             path: '/client-cabinet',

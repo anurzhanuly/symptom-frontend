@@ -1,14 +1,40 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 import { useSurveyStore } from '@mobile/modules/survey/store/survey.store';
 
+import ProgressBar from 'primevue/progressbar';
 import Panel from 'primevue/panel';
 import PButton from 'primevue/button';
+import TabMenu from 'primevue/tabmenu';
+import BaseHeader from '@mobile/components/BaseHeader.vue';
 
 const router = useRouter();
+
+const SURVEY_PAGES = [
+    {
+        label: 'Рекомендации',
+        icon: 'pi pi-fw pi-pencil',
+        to: '/result-recommendation',
+    },
+    {
+        label: 'Карточка',
+        icon: 'pi pi-fw pi-file',
+        to: '/result-card',
+    },
+];
+
+onMounted(() => {
+    const surveyAnswers = window.localStorage.getItem('surveyAnswers');
+
+    if (!surveyAnswers && recommendations.value.length) return;
+
+    surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers as string));
+});
+
 const surveyStore = useSurveyStore();
+const { isLoading } = storeToRefs(surveyStore);
 const { recommendations, recommendationsChatGPT } = storeToRefs(surveyStore);
 
 const patientIdFromLocalStorage = computed(() =>
@@ -44,6 +70,12 @@ function saveRecommendation() {
 </script>
 
 <template>
+    <progress-bar
+        v-if="isLoading"
+        mode="indeterminate"
+    />
+    <base-header />
+    <tab-menu :model="SURVEY_PAGES" />
     <div class="recommendation">
         <h2 class="recommendation__title">Рекомендации</h2>
         <panel
