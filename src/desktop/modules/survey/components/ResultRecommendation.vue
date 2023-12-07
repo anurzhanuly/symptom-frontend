@@ -12,7 +12,7 @@ import BaseHeader from '@desktop/components/BaseHeader.vue';
 
 const router = useRouter();
 
-const surveyPages = [
+const SURVEY_PAGES = [
     {
         label: 'Рекомендации',
         icon: 'pi pi-fw pi-pencil',
@@ -76,7 +76,7 @@ function saveRecommendation() {
         mode="indeterminate"
     />
     <base-header />
-    <tab-menu :model="surveyPages" />
+    <tab-menu :model="SURVEY_PAGES" />
     <div class="recommendation">
         <h2 class="recommendation__title">Рекомендации</h2>
         <panel

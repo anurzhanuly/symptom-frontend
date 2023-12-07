@@ -22,7 +22,7 @@ onMounted(() => {
     surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers as string));
 });
 
-const surveyPages = [
+const SURVEY_PAGES = [
     {
         label: 'Рекомендации',
         icon: 'pi pi-fw pi-pencil',
@@ -70,7 +70,7 @@ function saveRecommendation() {
 
 <template>
     <base-header />
-    <tab-menu :model="surveyPages" />
+    <tab-menu :model="SURVEY_PAGES" />
     <div class="patients-card">
         <h2 class="patients-card__title">Карточка пациента</h2>
         <panel
