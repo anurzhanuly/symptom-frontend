@@ -5,6 +5,7 @@ import { useCabinetsStore } from './store/cabinets.store';
 
 import Card from 'primevue/card';
 import Panel from 'primevue/panel';
+import UiButton from '@/ui/UiButton.vue';
 
 const cabinetsStore = useCabinetsStore();
 
@@ -23,6 +24,14 @@ onMounted(() => {
 <template>
     <div class="result">
         <div class="result-card">
+            <ui-button
+                is-white
+                icon="pi pi-angle-left header__button"
+                class="result__button"
+                @click="$router.back"
+            >
+                Назад
+            </ui-button>
             <card>
                 <template #content>
                     <div class="result-card-content">
@@ -95,9 +104,13 @@ onMounted(() => {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .result {
-    padding: 15px;
+    padding: $sp4;
+}
+
+.result__button {
+    margin-bottom: $sp4;
 }
 
 .result-card p {
