@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref, onMounted } from 'vue';
 import CreateClinic from './popup/CreateClinic.vue';
 import ChangeClinic from './popup/ChangeClinic.vue';
 import CreateDoctor from './popup/CreateDoctor.vue';
@@ -6,17 +7,46 @@ import ChangeDoctor from './popup/ChangeDoctor.vue';
 import type { Clinics, Doctors } from '../types/clinics';
 import { useClinicsStore } from '../stores/clinics.store';
 import { storeToRefs } from 'pinia';
-import { onMounted } from 'vue';
 
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import PButton from 'primevue/button';
 // import { useConfirm } from "primevue/useconfirm";
 import { useDialog } from 'primevue/usedialog';
+import TabMenu from 'primevue/tabmenu';
+import BaseHeader from '@/desktop/components/BaseHeader.vue';
 
 const clinicsStore = useClinicsStore();
 const dialog = useDialog();
 // const confirm = useConfirm();
+
+const adminPages = ref([
+    {
+        label: 'Изменить JSON вопросов',
+        icon: 'pi pi-fw pi-pencil',
+        to: '/admin-quest',
+    },
+    {
+        label: 'Изменить условия рекомендаций',
+        icon: 'pi pi-fw pi-file',
+        to: '/admin-cond',
+    },
+    {
+        label: 'Изменить рекомендации',
+        icon: 'pi pi-fw pi-book',
+        to: '/admin-recom',
+    },
+    {
+        label: 'Изменить наименование',
+        icon: 'pi pi-fw pi-database',
+        to: '/admin-magic',
+    },
+    {
+        label: 'Список клиник',
+        icon: 'pi pi-fw pi-book',
+        to: '/admin-clinics',
+    },
+]);
 
 const { clinics, doctors, selectedClinic, selectedDoctor } =
     storeToRefs(clinicsStore);
@@ -78,6 +108,8 @@ function changeDoctor(data: Doctors): void {
 </script>
 
 <template>
+    <base-header />
+    <tab-menu :model="adminPages" />
     <div class="clinic-list">
         <data-table
             class="p-datatable-sm"

@@ -7,9 +7,39 @@ import InputText from 'primevue/inputtext';
 import Dropdown from 'primevue/dropdown';
 import PButton from 'primevue/button';
 import Panel from 'primevue/panel';
+import TabMenu from 'primevue/tabmenu';
+import BaseHeader from '@/desktop/components/BaseHeader.vue';
 
 const adminStore = useAdminStore();
 const confirm = useConfirm();
+
+const adminPages = ref([
+    {
+        label: 'Изменить JSON вопросов',
+        icon: 'pi pi-fw pi-pencil',
+        to: '/admin-quest',
+    },
+    {
+        label: 'Изменить условия рекомендаций',
+        icon: 'pi pi-fw pi-file',
+        to: '/admin-cond',
+    },
+    {
+        label: 'Изменить рекомендации',
+        icon: 'pi pi-fw pi-book',
+        to: '/admin-recom',
+    },
+    {
+        label: 'Изменить наименование',
+        icon: 'pi pi-fw pi-database',
+        to: '/admin-magic',
+    },
+    {
+        label: 'Список клиник',
+        icon: 'pi pi-fw pi-book',
+        to: '/admin-clinics',
+    },
+]);
 
 const beforeQuestName = ref('');
 const afterQuestName = ref('');
@@ -43,6 +73,8 @@ function confirmChange(event: any): void {
 </script>
 
 <template>
+    <base-header />
+    <tab-menu :model="adminPages" />
     <panel header="Наименование вопроса в рекомендациях">
         <input-text
             v-model="beforeQuestName"

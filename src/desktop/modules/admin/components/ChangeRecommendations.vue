@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref } from 'vue';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { storeToRefs } from 'pinia';
 import { warn } from '@/utils/toast';
@@ -10,6 +11,36 @@ import Listbox from 'primevue/listbox';
 import Panel from 'primevue/panel';
 import Toolbar from 'primevue/toolbar';
 import InputText from 'primevue/inputtext';
+import TabMenu from 'primevue/tabmenu';
+import BaseHeader from '@/desktop/components/BaseHeader.vue';
+
+const adminPages = ref([
+    {
+        label: 'Изменить JSON вопросов',
+        icon: 'pi pi-fw pi-pencil',
+        to: '/admin-quest',
+    },
+    {
+        label: 'Изменить условия рекомендаций',
+        icon: 'pi pi-fw pi-file',
+        to: '/admin-cond',
+    },
+    {
+        label: 'Изменить рекомендации',
+        icon: 'pi pi-fw pi-book',
+        to: '/admin-recom',
+    },
+    {
+        label: 'Изменить наименование',
+        icon: 'pi pi-fw pi-database',
+        to: '/admin-magic',
+    },
+    {
+        label: 'Список клиник',
+        icon: 'pi pi-fw pi-book',
+        to: '/admin-clinics',
+    },
+]);
 
 const confirm = useConfirm();
 const adminStore = useAdminStore();
@@ -49,6 +80,8 @@ function deleteTestConfirm(event: any, key: string): void {
 </script>
 
 <template>
+    <base-header />
+    <tab-menu :model="adminPages" />
     <panel header="Изменить рекомендации">
         <div class="recommendations">
             <div class="recommendations-list">

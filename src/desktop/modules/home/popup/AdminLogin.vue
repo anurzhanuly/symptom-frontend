@@ -24,7 +24,7 @@ async function checkAdmin() {
                 JSON.stringify(res.data.data.token)
             );
 
-            router.push('/admin');
+            router.push('/admin-quest');
         }
     }
 
