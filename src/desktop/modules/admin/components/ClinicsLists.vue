@@ -15,38 +15,12 @@ import PButton from 'primevue/button';
 import { useDialog } from 'primevue/usedialog';
 import TabMenu from 'primevue/tabmenu';
 import BaseHeader from '@/desktop/components/BaseHeader.vue';
+import { tabRoutes } from '@desktop/modules/admin/config';
 
 const clinicsStore = useClinicsStore();
 const dialog = useDialog();
+const adminPages = ref(tabRoutes);
 // const confirm = useConfirm();
-
-const adminPages = ref([
-    {
-        label: 'Изменить JSON вопросов',
-        icon: 'pi pi-fw pi-pencil',
-        to: '/admin-quest',
-    },
-    {
-        label: 'Изменить условия рекомендаций',
-        icon: 'pi pi-fw pi-file',
-        to: '/admin-cond',
-    },
-    {
-        label: 'Изменить рекомендации',
-        icon: 'pi pi-fw pi-book',
-        to: '/admin-recom',
-    },
-    {
-        label: 'Изменить наименование',
-        icon: 'pi pi-fw pi-database',
-        to: '/admin-magic',
-    },
-    {
-        label: 'Список клиник',
-        icon: 'pi pi-fw pi-book',
-        to: '/admin-clinics',
-    },
-]);
 
 const { clinics, doctors, selectedClinic, selectedDoctor } =
     storeToRefs(clinicsStore);

@@ -13,37 +13,11 @@ import Toolbar from 'primevue/toolbar';
 import InputText from 'primevue/inputtext';
 import TabMenu from 'primevue/tabmenu';
 import BaseHeader from '@/desktop/components/BaseHeader.vue';
-
-const adminPages = ref([
-    {
-        label: 'Изменить JSON вопросов',
-        icon: 'pi pi-fw pi-pencil',
-        to: '/admin-quest',
-    },
-    {
-        label: 'Изменить условия рекомендаций',
-        icon: 'pi pi-fw pi-file',
-        to: '/admin-cond',
-    },
-    {
-        label: 'Изменить рекомендации',
-        icon: 'pi pi-fw pi-book',
-        to: '/admin-recom',
-    },
-    {
-        label: 'Изменить наименование',
-        icon: 'pi pi-fw pi-database',
-        to: '/admin-magic',
-    },
-    {
-        label: 'Список клиник',
-        icon: 'pi pi-fw pi-book',
-        to: '/admin-clinics',
-    },
-]);
+import { tabRoutes } from '@desktop/modules/admin/config';
 
 const confirm = useConfirm();
 const adminStore = useAdminStore();
+const adminPages = ref(tabRoutes);
 const { selectedRecommendation, allRecommendations, tests } =
     storeToRefs(adminStore);
 
