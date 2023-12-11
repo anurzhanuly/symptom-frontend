@@ -72,47 +72,40 @@ const router = createRouter({
                 import('@desktop/modules/survey/Survey.vue'),
         },
         {
-            path: '/admin',
-            name: 'admin',
+            path: '/admin-quest',
+            name: 'admin-quest',
             component: (): Component =>
-                import('@desktop/modules/admin/AdminView.vue'),
-            children: [
-                {
-                    path: 'quest',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/admin/components/ChangeJSONQuestions.vue'
-                        ),
-                },
-                {
-                    path: 'cond',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/admin/components/ChangeConditions.vue'
-                        ),
-                },
-                {
-                    path: 'recom',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/admin/components/ChangeRecommendations.vue'
-                        ),
-                },
-                {
-                    path: 'magic',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/admin/components/ChangeName.vue'
-                        ),
-                },
-                {
-                    path: 'clinics',
-                    component: (): Component =>
-                        import(
-                            '@desktop/modules/admin/components/ClinicsLists.vue'
-                        ),
-                },
-            ],
+                import(
+                    '@desktop/modules/admin/components/ChangeJSONQuestions.vue'
+                ),
+        },
+        {
+            path: '/admin-cond',
+            name: 'admin-cond',
+            component: (): Component =>
+                import(
+                    '@desktop/modules/admin/components/ChangeConditions.vue'
+                ),
+        },
+        {
+            path: '/admin-recom',
+            name: 'admin-recom',
+            component: (): Component =>
+                import(
+                    '@desktop/modules/admin/components/ChangeRecommendations.vue'
+                ),
+        },
+        {
+            path: '/admin-magic',
+            name: 'admin-magic',
+            component: (): Component =>
+                import('@desktop/modules/admin/components/ChangeName.vue'),
+        },
+        {
+            path: '/admin-clinics',
+            name: 'admin-clinics',
+            component: (): Component =>
+                import('@desktop/modules/admin/components/ClinicsLists.vue'),
         },
         {
             path: '/doctor-cabinet',
@@ -124,13 +117,13 @@ const router = createRouter({
             path: '/doctor-cabinet-result',
             name: 'doctor-cabinet-result',
             component: (): Component =>
-            import('@desktop/modules/cabinets/CabinetResult.vue'),
+                import('@desktop/modules/cabinets/CabinetResult.vue'),
         },
         {
             path: '/doctor-cabinet-settings',
             name: 'doctor-cabinet-settings',
             component: (): Component =>
-            import('@desktop/modules/cabinets/DoctorCabinetSettings.vue'),
+                import('@desktop/modules/cabinets/DoctorCabinetSettings.vue'),
         },
         {
             path: '/client-cabinet',

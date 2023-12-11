@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import { computed, ref } from 'vue';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { storeToRefs } from 'pinia';
-import { computed } from 'vue';
 
 import { useConfirm } from 'primevue/useconfirm';
 import DataTable from 'primevue/datatable';
@@ -15,9 +15,14 @@ import Listbox from 'primevue/listbox';
 import Toolbar from 'primevue/toolbar';
 import Panel from 'primevue/panel';
 import BlockUI from 'primevue/blockui';
+import TabMenu from 'primevue/tabmenu';
+import BaseHeader from '@/desktop/components/BaseHeader.vue';
+import { tabRoutes } from '@desktop/modules/admin/config';
 
 const adminStore = useAdminStore();
 const confirm = useConfirm();
+
+const adminPages = ref(tabRoutes);
 
 const {
     allRecommendations,
@@ -55,6 +60,8 @@ function deleteConditionConfirm(event: any, index: number): void {
 </script>
 
 <template>
+    <base-header />
+    <tab-menu :model="adminPages" />
     <panel header="Изменить условия рекомендаций">
         <div class="conditions">
             <div class="conditions-list">

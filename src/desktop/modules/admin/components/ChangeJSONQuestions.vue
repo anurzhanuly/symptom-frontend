@@ -10,8 +10,12 @@ import { ref } from 'vue';
 import Panel from 'primevue/panel';
 import PTextarea from 'primevue/textarea';
 import PButton from 'primevue/button';
+import TabMenu from 'primevue/tabmenu';
+import BaseHeader from '@/desktop/components/BaseHeader.vue';
+import { tabRoutes } from '@desktop/modules/admin/config';
 
 const surveyStr = ref('');
+const adminPages = ref(tabRoutes);
 
 async function changeSurveyQuestions(): Promise<void> {
     if (!surveyStr.value) {
@@ -45,6 +49,8 @@ async function changeQuestionsJson(
 </script>
 
 <template>
+    <base-header />
+    <tab-menu :model="adminPages" />
     <panel header="Вставьте сюда json с вопросами из survey">
         <p-textarea
             v-model="surveyStr"

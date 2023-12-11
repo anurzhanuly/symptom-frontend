@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref, onMounted } from 'vue';
 import CreateClinic from './popup/CreateClinic.vue';
 import ChangeClinic from './popup/ChangeClinic.vue';
 import CreateDoctor from './popup/CreateDoctor.vue';
@@ -6,16 +7,19 @@ import ChangeDoctor from './popup/ChangeDoctor.vue';
 import type { Clinics, Doctors } from '../types/clinics';
 import { useClinicsStore } from '../stores/clinics.store';
 import { storeToRefs } from 'pinia';
-import { onMounted } from 'vue';
 
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import PButton from 'primevue/button';
 // import { useConfirm } from "primevue/useconfirm";
 import { useDialog } from 'primevue/usedialog';
+import TabMenu from 'primevue/tabmenu';
+import BaseHeader from '@/desktop/components/BaseHeader.vue';
+import { tabRoutes } from '@desktop/modules/admin/config';
 
 const clinicsStore = useClinicsStore();
 const dialog = useDialog();
+const adminPages = ref(tabRoutes);
 // const confirm = useConfirm();
 
 const { clinics, doctors, selectedClinic, selectedDoctor } =
@@ -78,6 +82,8 @@ function changeDoctor(data: Doctors): void {
 </script>
 
 <template>
+    <base-header />
+    <tab-menu :model="adminPages" />
     <div class="clinic-list">
         <data-table
             class="p-datatable-sm"

@@ -7,10 +7,14 @@ import InputText from 'primevue/inputtext';
 import Dropdown from 'primevue/dropdown';
 import PButton from 'primevue/button';
 import Panel from 'primevue/panel';
+import TabMenu from 'primevue/tabmenu';
+import BaseHeader from '@/desktop/components/BaseHeader.vue';
+import { tabRoutes } from '@desktop/modules/admin/config';
 
 const adminStore = useAdminStore();
 const confirm = useConfirm();
 
+const adminPages = ref(tabRoutes);
 const beforeQuestName = ref('');
 const afterQuestName = ref('');
 
@@ -43,6 +47,8 @@ function confirmChange(event: any): void {
 </script>
 
 <template>
+    <base-header />
+    <tab-menu :model="adminPages" />
     <panel header="Наименование вопроса в рекомендациях">
         <input-text
             v-model="beforeQuestName"
