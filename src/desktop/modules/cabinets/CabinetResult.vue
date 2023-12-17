@@ -55,25 +55,20 @@ onMounted(() => {
             <card>
                 <template #title> Карточка пациента </template>
                 <template #content>
-                    <div
-                        v-for="(data, num) in patientCard"
-                        :key="num"
+                    <panel
+                        v-for="(info, title) in patientCard"
+                        :key="title"
+                        :header="title.toString()"
+                        toggleable
                     >
-                        <panel
-                            v-for="(info, title) in data"
-                            :key="title"
-                            :header="title.toString()"
-                            toggleable
+                        <p
+                            v-for="(value, key) in info"
+                            :key="key"
+                            class="result__text"
                         >
-                            <p
-                                v-for="(value, key) in info"
-                                :key="key"
-                                class="result__text"
-                            >
-                                {{ key }} {{ value }}
-                            </p>
-                        </panel>
-                    </div>
+                            {{ key }} {{ value }}
+                        </p>
+                    </panel>
                 </template>
             </card>
         </div>
