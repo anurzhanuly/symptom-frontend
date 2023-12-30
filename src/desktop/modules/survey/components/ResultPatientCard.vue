@@ -12,15 +12,8 @@ import BaseHeader from '@/desktop/components/BaseHeader.vue';
 
 const router = useRouter();
 const surveyStore = useSurveyStore();
-const { patientsCard } = storeToRefs(surveyStore);
 
-onMounted(() => {
-    const surveyAnswers = window.localStorage.getItem('surveyAnswers');
-
-    if (!surveyAnswers && patientsCard.value.length) return;
-
-    surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers as string));
-});
+const surveyResult = JSON.parse(localStorage.getItem('surveyResult') as string);
 
 const SURVEY_PAGES = [
     {
@@ -74,7 +67,7 @@ function saveRecommendation() {
     <div class="patients-card">
         <h2 class="patients-card__title">Карточка пациента</h2>
         <panel
-            v-for="(info, title) in patientsCard"
+            v-for="(info, title) in surveyResult.patientCard"
             :key="title"
             :header="surveyStore.stringTitle(title)"
             toggleable
