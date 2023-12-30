@@ -39,17 +39,19 @@ export const useSurveyStore = defineStore('survey', () => {
         answers: Record<string, string[]>;
         patientID: number;
         doctorID: number;
-    }) {
+    }): Promise<any> {
         isLoading.value = true;
         resultAnswersChatGPT.value = data.answers;
+
         try {
-            //TODO переделать
             const res = await postAnswersToChatGPT(data);
 
             if (!axios.isAxiosError(res)) {
                 patientsCard.value = res.data.patientCard;
                 recommendations.value = res.data.recommendations;
                 recommendationsChatGPT.value = res.data.symptomAi;
+
+                return res.data;
             }
         } catch (e) {
             console.error(e);

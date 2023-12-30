@@ -65,7 +65,9 @@ function initSurveyHandler() {
     survey.value.onComplete.add(onSurveyComplete);
 }
 
-function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
+async function onSurveyComplete(sender: {
+    data: Record<string, string[]>;
+}): Promise<void> {
     const newData: Record<string, string[]> = {};
     const doctorId = +(localStorage.getItem('doctorId') ?? 0);
 
@@ -109,14 +111,19 @@ function onSurveyComplete(sender: { data: Record<string, string[]> }): void {
         patientID: +(localStorage.getItem('patientId') ?? 0),
         doctorID: doctorId,
     };
+    try {
+        const surveyResult = await surveyStore.postAnswersDataChatGPT(
+            surveyAnswers
+        );
 
-    window.localStorage.setItem('surveyAnswers', JSON.stringify(surveyAnswers));
+        localStorage.setItem('surveyResult', JSON.stringify(surveyResult));
 
-    surveyStore.postAnswersDataChatGPT(surveyAnswers);
-
-    router.push({
-        path: '/result-recommendation',
-    });
+        router.push({
+            path: '/result-recommendation',
+        });
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function onPageChange(_: any, options: any): void {

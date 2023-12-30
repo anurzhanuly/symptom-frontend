@@ -27,15 +27,9 @@ const SURVEY_PAGES = [
 
 const surveyStore = useSurveyStore();
 const { isLoading } = storeToRefs(surveyStore);
-const { recommendations, recommendationsChatGPT } = storeToRefs(surveyStore);
+const { recommendationsChatGPT } = storeToRefs(surveyStore);
 
-onMounted(() => {
-    const surveyAnswers = window.localStorage.getItem('surveyAnswers');
-
-    if (!surveyAnswers && recommendations.value.length) return;
-
-    surveyStore.postAnswersDataChatGPT(JSON.parse(surveyAnswers as string));
-});
+const surveyResult = JSON.parse(localStorage.getItem('surveyResult') as string);
 
 const patientIdFromLocalStorage = computed(() =>
     localStorage.getItem('patientId')
@@ -80,7 +74,7 @@ function saveRecommendation() {
     <div class="recommendation">
         <h2 class="recommendation__title">Рекомендации</h2>
         <panel
-            v-for="(item, index) in recommendations"
+            v-for="(item, index) in surveyResult.recommendations"
             :key="index"
             class="recommendation__panel"
             :header="item.title"
