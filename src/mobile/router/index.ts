@@ -54,7 +54,7 @@ const router = createRouter({
             name: 'result-recommendation',
             component: (): Component =>
                 import(
-                    '@desktop/modules/survey/components/ResultRecommendation.vue'
+                    '@mobile/modules/survey/components/ResultRecommendation.vue'
                 ),
         },
         {
@@ -62,7 +62,7 @@ const router = createRouter({
             name: 'result-card',
             component: (): Component =>
                 import(
-                    '@desktop/modules/survey/components/ResultPatientCard.vue'
+                    '@mobile/modules/survey/components/ResultPatientCard.vue'
                 ),
         },
         {
@@ -124,13 +124,13 @@ const router = createRouter({
             path: '/doctor-cabinet-result',
             name: 'doctor-cabinet-result',
             component: (): Component =>
-            import('@mobile/modules/cabinets/CabinetResult.vue'),
+                import('@mobile/modules/cabinets/CabinetResult.vue'),
         },
         {
             path: '/doctor-cabinet-settings',
             name: 'doctor-cabinet-settings',
             component: (): Component =>
-            import('@mobile/modules/cabinets/DoctorCabinetSettings.vue'),
+                import('@mobile/modules/cabinets/DoctorCabinetSettings.vue'),
         },
         {
             path: '/client-cabinet',
@@ -143,6 +143,44 @@ const router = createRouter({
             name: '/client-cabinet-result',
             component: (): Component =>
                 import('@mobile/modules/cabinets/CabinetResult.vue'),
+        },
+        {
+            path: '/survey-flow-web',
+            name: '/survey-flow-web',
+            component: (): Component =>
+                import('@mobile/modules/webview/ChooseSurveyFlowWeb.vue'),
+        },
+        {
+            path: '/agreement-web',
+            name: '/agreement-web',
+            component: (): Component =>
+                import('@mobile/modules/webview/AgreementWeb.vue'),
+        },
+        {
+            path: '/survey-web',
+            name: '/survey-web',
+            component: (): Component =>
+                import('@mobile/modules/webview/SurveyWeb.vue'),
+        },
+        {
+            path: '/client-test-auth-web',
+            name: '/client-test-auth-web',
+            component: (): Component =>
+                import(
+                    '@mobile/modules/webview/ClientTestAuthorizationWeb.vue'
+                ),
+        },
+        {
+            path: '/result-recommendation-web',
+            name: 'result-recommendation-web',
+            component: (): Component =>
+                import('@mobile/modules/webview/ResultRecommendationWeb.vue'),
+        },
+        {
+            path: '/result-card-web',
+            name: 'result-card-web',
+            component: (): Component =>
+                import('@mobile/modules/webview/ResultCardWeb.vue'),
         },
     ],
 });
