@@ -65,7 +65,7 @@ onMounted(() => {
                 is-blue
                 class="agreement__button"
                 :is-loading="isLoading"
-                @click="$router.push({ name: '/survey-web' })"
+                @click="$router.push({ name: '/survey-wv' })"
             >
                 Принять и начать опрос
             </ui-button>

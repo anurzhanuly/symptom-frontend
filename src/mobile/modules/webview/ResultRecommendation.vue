@@ -10,12 +10,12 @@ const SURVEY_PAGES = [
     {
         label: 'Рекомендации',
         icon: 'pi pi-fw pi-pencil',
-        to: '/result-recommendation-web',
+        to: '/result-recommendation-wv',
     },
     {
         label: 'Карточка',
         icon: 'pi pi-fw pi-file',
-        to: '/result-card-web',
+        to: '/result-card-wv',
     },
 ];
 

@@ -145,42 +145,40 @@ const router = createRouter({
                 import('@mobile/modules/cabinets/CabinetResult.vue'),
         },
         {
-            path: '/survey-flow-web',
-            name: '/survey-flow-web',
+            path: '/survey-flow-wv',
+            name: '/survey-flow-wv',
             component: (): Component =>
-                import('@mobile/modules/webview/ChooseSurveyFlowWeb.vue'),
+                import('@mobile/modules/webview/ChooseSurveyFlow.vue'),
         },
         {
-            path: '/agreement-web',
-            name: '/agreement-web',
+            path: '/agreement-wv',
+            name: '/agreement-wv',
             component: (): Component =>
-                import('@mobile/modules/webview/AgreementWeb.vue'),
+                import('@mobile/modules/webview/Agreement.vue'),
         },
         {
-            path: '/survey-web',
-            name: '/survey-web',
+            path: '/survey-wv',
+            name: '/survey-wv',
             component: (): Component =>
-                import('@mobile/modules/webview/SurveyWeb.vue'),
+                import('@mobile/modules/webview/Survey.vue'),
         },
         {
-            path: '/client-test-auth-web',
-            name: '/client-test-auth-web',
+            path: '/client-test-auth-wv',
+            name: '/client-test-auth-wv',
             component: (): Component =>
-                import(
-                    '@mobile/modules/webview/ClientTestAuthorizationWeb.vue'
-                ),
+                import('@mobile/modules/webview/ClientTestAuthorization.vue'),
         },
         {
-            path: '/result-recommendation-web',
-            name: 'result-recommendation-web',
+            path: '/result-recommendation-wv',
+            name: 'result-recommendation-wv',
             component: (): Component =>
-                import('@mobile/modules/webview/ResultRecommendationWeb.vue'),
+                import('@mobile/modules/webview/ResultRecommendation.vue'),
         },
         {
-            path: '/result-card-web',
-            name: 'result-card-web',
+            path: '/result-card-wv',
+            name: 'result-card-wv',
             component: (): Component =>
-                import('@mobile/modules/webview/ResultCardWeb.vue'),
+                import('@mobile/modules/webview/ResultCard.vue'),
         },
     ],
 });

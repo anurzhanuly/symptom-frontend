@@ -3,7 +3,6 @@ import { useWebviewStore } from '@mobile/modules/webview/store/webview.store';
 
 import Panel from 'primevue/panel';
 import TabMenu from 'primevue/tabmenu';
-import BaseHeader from '@/mobile/components/BaseHeader.vue';
 
 const webviewStore = useWebviewStore();
 
@@ -13,12 +12,12 @@ const SURVEY_PAGES = [
     {
         label: 'Рекомендации',
         icon: 'pi pi-fw pi-pencil',
-        to: '/result-recommendation-web',
+        to: '/result-recommendation-wv',
     },
     {
         label: 'Карточка',
         icon: 'pi pi-fw pi-file',
-        to: '/result-card-web',
+        to: '/result-card-wv',
     },
 ];
 </script>

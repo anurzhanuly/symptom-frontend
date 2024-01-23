@@ -21,7 +21,7 @@ onMounted(() => {
             is-full
             is-blue
             class="buttons__item"
-            @click="$router.push({ name: '/agreement-web' })"
+            @click="$router.push({ name: '/agreement-wv' })"
         >
             Без регистрации
         </ui-button>
@@ -30,7 +30,7 @@ onMounted(() => {
             is-full
             is-white
             class="buttons__item"
-            @click="$router.push({ name: '/client-test-auth-web' })"
+            @click="$router.push({ name: '/client-test-auth-wv' })"
         >
             Для врача
         </ui-button>

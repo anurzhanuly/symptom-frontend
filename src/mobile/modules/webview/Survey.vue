@@ -119,7 +119,7 @@ async function onSurveyComplete(sender: {
         localStorage.setItem('surveyResult', JSON.stringify(surveyResult));
 
         router.push({
-            path: '/result-recommendation-web',
+            path: '/result-recommendation-wv',
         });
     } catch (error) {
         console.error(error);

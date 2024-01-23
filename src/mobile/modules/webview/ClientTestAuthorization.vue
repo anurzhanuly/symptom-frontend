@@ -50,7 +50,7 @@ const goToAgreement = (): void => {
     if (validateRegisterForm()) {
         gEvent('survey_auth', { ...userRegisterData.value });
 
-        router.push('/agreement-web');
+        router.push('/agreement-wv');
     }
 };
 
