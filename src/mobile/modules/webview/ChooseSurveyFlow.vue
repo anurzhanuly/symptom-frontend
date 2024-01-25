@@ -10,7 +10,6 @@ const { patientId } = storeToRefs(webviewStore);
 
 onMounted(() => {
     patientId.value = getParameterByKey('userId') || '';
-    console.log(patientId.value);
 });
 </script>
 <template>

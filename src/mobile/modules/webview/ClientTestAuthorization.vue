@@ -20,7 +20,7 @@ const clinicStore = useClinicsStore();
 const webviewStore = useWebviewStore();
 
 const { clinics } = storeToRefs(clinicStore);
-const { doctors, patientId, isLoading, questions } = storeToRefs(webviewStore);
+const { doctors, questions } = storeToRefs(webviewStore);
 
 const firstName = ref('');
 const lastName = ref('');
@@ -38,7 +38,6 @@ onMounted(() => {
 
     webviewStore.getDoctorsData();
     const id = getParameterByKey('doc');
-    patientId.value = getParameterByKey('userId') || '';
 
     if (!id) return;
 
