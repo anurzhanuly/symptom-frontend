@@ -115,7 +115,7 @@ export const useAdminStore = defineStore('admin', () => {
         }
     }
 
-    async function getRecommendationDetails(Recommendation: any) {
+    async function getRecommendationDetailItem(Recommendation: any) {
         if (!Recommendation?.id) return;
 
         const res = await getRecommendationDetail(Recommendation?.id);
@@ -270,7 +270,7 @@ export const useAdminStore = defineStore('admin', () => {
         isLoading,
         getQuestionsData,
         getRecommendationsData,
-        getRecommendationDetails,
+        getRecommendationDetailItem,
         updateCondition,
         deleteCondition,
         createBlockCondition,

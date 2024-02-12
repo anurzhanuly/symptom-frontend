@@ -46,7 +46,7 @@ onMounted(() => {
 });
 
 watch(selectedRecommendation, async (newRecommendation) => {
-    adminStore.getRecommendationDetails(newRecommendation);
+    adminStore.getRecommendationDetailItem(newRecommendation);
 });
 
 const conditionColumns = computed(() => adminStore.conditionColumns || []);
