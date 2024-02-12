@@ -5,8 +5,7 @@ import type {
 } from '@desktop/modules/admin/types/questions';
 import type { AxiosError, AxiosResponse } from 'axios';
 import { useSymptomApi } from '@desktop/services/api';
-import { ref, onMounted, watch } from 'vue';
-import { storeToRefs } from 'pinia';
+import { ref, onMounted } from 'vue';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 
 import Panel from 'primevue/panel';
@@ -20,8 +19,6 @@ const surveyStr = ref('');
 const adminPages = ref(tabRoutes);
 const adminStore = useAdminStore();
 
-const { selectedRecommendation } = storeToRefs(adminStore);
-
 onMounted(() => {
     if (!adminStore.allRecommendations.length) {
         adminStore.getRecommendationsData();
@@ -30,10 +27,6 @@ onMounted(() => {
     if (!adminStore.questions.length) {
         adminStore.getQuestionsData();
     }
-});
-
-watch(selectedRecommendation, async (newRecommendation) => {
-    adminStore.getRecommendationDetails(newRecommendation);
 });
 
 async function changeSurveyQuestions(): Promise<void> {
