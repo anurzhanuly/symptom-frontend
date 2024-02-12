@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, watch, ref, onMounted } from 'vue';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { useConfirm } from 'primevue/useconfirm';
 
@@ -10,6 +10,7 @@ import Panel from 'primevue/panel';
 import TabMenu from 'primevue/tabmenu';
 import BaseHeader from '@/desktop/components/BaseHeader.vue';
 import { tabRoutes } from '@desktop/modules/admin/config';
+import { storeToRefs } from 'pinia';
 
 const adminStore = useAdminStore();
 const confirm = useConfirm();
@@ -17,6 +18,21 @@ const confirm = useConfirm();
 const adminPages = ref(tabRoutes);
 const beforeQuestName = ref('');
 const afterQuestName = ref('');
+const { selectedRecommendation } = storeToRefs(adminStore);
+
+onMounted(() => {
+    if (!adminStore.allRecommendations.length) {
+        adminStore.getRecommendationsData();
+    }
+
+    if (!adminStore.questions.length) {
+        adminStore.getQuestionsData();
+    }
+});
+
+watch(selectedRecommendation, async (newRecommendation) => {
+    adminStore.getRecommendationDetails(newRecommendation);
+});
 
 const isReadyToChange = computed(() => {
     return !!(beforeQuestName.value && afterQuestName.value);

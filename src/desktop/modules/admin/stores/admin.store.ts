@@ -37,34 +37,6 @@ export const useAdminStore = defineStore('admin', () => {
 
     const dialog = useDialog();
 
-    onMounted(() => {
-        if (!allRecommendations.value.length) {
-            getRecommendationsData();
-        }
-
-        if (!questions.value.length) {
-            getQuestionsData();
-        }
-    });
-
-    watch(selectedRecommendation, async (newRecommendation) => {
-        if (!newRecommendation?.id) return;
-
-        const res = await getRecommendationDetail(newRecommendation?.id);
-
-        if (res) {
-            tests.value = res.data.data.attributes.tests;
-
-            const keys = Object.keys(tests.value);
-
-            lastTestKey.value = keys[keys.length - 1]
-                ? Number(keys[keys.length - 1]) + 1
-                : 1;
-
-            conditions.value = res.data.data.attributes.conditions;
-        }
-    });
-
     const conditionColumns = [
         {
             header: 'Наименование вопроса',
@@ -140,6 +112,24 @@ export const useAdminStore = defineStore('admin', () => {
 
         if (res) {
             allRecommendations.value = res.data.data;
+        }
+    }
+
+    async function getRecommendationDetails(Recommendation: any) {
+        if (!Recommendation?.id) return;
+
+        const res = await getRecommendationDetail(Recommendation?.id);
+
+        if (res) {
+            tests.value = res.data.data.attributes.tests;
+
+            const keys = Object.keys(tests.value);
+
+            lastTestKey.value = keys[keys.length - 1]
+                ? Number(keys[keys.length - 1]) + 1
+                : 1;
+
+            conditions.value = res.data.data.attributes.conditions;
         }
     }
 
@@ -279,6 +269,8 @@ export const useAdminStore = defineStore('admin', () => {
         vals,
         isLoading,
         getQuestionsData,
+        getRecommendationsData,
+        getRecommendationDetails,
         updateCondition,
         deleteCondition,
         createBlockCondition,

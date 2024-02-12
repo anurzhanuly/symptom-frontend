@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { storeToRefs } from 'pinia';
 import { warn } from '@/utils/toast';
@@ -20,6 +20,20 @@ const adminStore = useAdminStore();
 const adminPages = ref(tabRoutes);
 const { selectedRecommendation, allRecommendations, tests } =
     storeToRefs(adminStore);
+
+onMounted(() => {
+    if (!adminStore.allRecommendations.length) {
+        adminStore.getRecommendationsData();
+    }
+
+    if (!adminStore.questions.length) {
+        adminStore.getQuestionsData();
+    }
+});
+
+watch(selectedRecommendation, async (newRecommendation) => {
+    adminStore.getRecommendationDetails(newRecommendation);
+});
 
 function updateTest(): void {
     let isEmpty = false;
