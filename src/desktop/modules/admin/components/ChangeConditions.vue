@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted, watch } from 'vue';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { storeToRefs } from 'pinia';
 
@@ -34,6 +34,20 @@ const {
     vals,
     isLoading,
 } = storeToRefs(adminStore);
+
+onMounted(() => {
+    if (!adminStore.allRecommendations.length) {
+        adminStore.getRecommendationsData();
+    }
+
+    if (!adminStore.questions.length) {
+        adminStore.getQuestionsData();
+    }
+});
+
+watch(selectedRecommendation, async (newRecommendation) => {
+    adminStore.getRecommendationDetail(newRecommendation);
+});
 
 const conditionColumns = computed(() => adminStore.conditionColumns || []);
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { useConfirm } from 'primevue/useconfirm';
 
@@ -17,6 +17,16 @@ const confirm = useConfirm();
 const adminPages = ref(tabRoutes);
 const beforeQuestName = ref('');
 const afterQuestName = ref('');
+
+onMounted(() => {
+    if (!adminStore.allRecommendations.length) {
+        adminStore.getRecommendationsData();
+    }
+
+    if (!adminStore.questions.length) {
+        adminStore.getQuestionsData();
+    }
+});
 
 const isReadyToChange = computed(() => {
     return !!(beforeQuestName.value && afterQuestName.value);

@@ -5,7 +5,8 @@ import type {
 } from '@desktop/modules/admin/types/questions';
 import type { AxiosError, AxiosResponse } from 'axios';
 import { useSymptomApi } from '@desktop/services/api';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 
 import Panel from 'primevue/panel';
 import PTextarea from 'primevue/textarea';
@@ -16,6 +17,17 @@ import { tabRoutes } from '@desktop/modules/admin/config';
 
 const surveyStr = ref('');
 const adminPages = ref(tabRoutes);
+const adminStore = useAdminStore();
+
+onMounted(() => {
+    if (!adminStore.allRecommendations.length) {
+        adminStore.getRecommendationsData();
+    }
+
+    if (!adminStore.questions.length) {
+        adminStore.getQuestionsData();
+    }
+});
 
 async function changeSurveyQuestions(): Promise<void> {
     if (!surveyStr.value) {
