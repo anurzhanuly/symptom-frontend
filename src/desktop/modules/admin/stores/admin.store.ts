@@ -10,7 +10,7 @@ import {
     createRecommendation,
     deleteRecommendation,
     getQuestionsJson,
-    getRecommendationDetail,
+    getRecommendationDetailData,
     getRecommendations,
     updateRecommendation,
 } from '../services/admin.refbooks';
@@ -115,10 +115,10 @@ export const useAdminStore = defineStore('admin', () => {
         }
     }
 
-    async function getRecommendationDetailItem(Recommendation: any) {
+    async function getRecommendationDetail(Recommendation: any) {
         if (!Recommendation?.id) return;
 
-        const res = await getRecommendationDetail(Recommendation?.id);
+        const res = await getRecommendationDetailData(Recommendation?.id);
 
         if (res) {
             tests.value = res.data.data.attributes.tests;
@@ -270,7 +270,7 @@ export const useAdminStore = defineStore('admin', () => {
         isLoading,
         getQuestionsData,
         getRecommendationsData,
-        getRecommendationDetailItem,
+        getRecommendationDetail,
         updateCondition,
         deleteCondition,
         createBlockCondition,

@@ -32,7 +32,7 @@ onMounted(() => {
 });
 
 watch(selectedRecommendation, async (newRecommendation) => {
-    adminStore.getRecommendationDetailItem(newRecommendation);
+    adminStore.getRecommendationDetail(newRecommendation);
 });
 
 function updateTest(): void {

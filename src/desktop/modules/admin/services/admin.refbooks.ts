@@ -28,7 +28,7 @@ export async function getRecommendations(): Promise<AxiosResponse | null> {
     }
 }
 
-export async function getRecommendationDetail(
+export async function getRecommendationDetailData(
     id: string | undefined
 ): Promise<AxiosResponse | null> {
     try {
