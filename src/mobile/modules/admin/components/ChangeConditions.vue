@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useAdminStore } from '@mobile/modules/admin/stores/admin.store';
 import { storeToRefs } from 'pinia';
-import { computed } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 
 import { useConfirm } from 'primevue/useconfirm';
 import DataTable from 'primevue/datatable';
@@ -29,6 +29,20 @@ const {
     vals,
     isLoading,
 } = storeToRefs(adminStore);
+
+onMounted(() => {
+    if (!adminStore.allRecommendations.length) {
+        adminStore.getRecommendationsData();
+    }
+
+    if (!adminStore.questions.length) {
+        adminStore.getQuestionsData();
+    }
+});
+
+watch(selectedRecommendation, async (newRecommendation) => {
+    adminStore.getRecommendationDetail(newRecommendation);
+});
 
 const conditionColumns = computed(() => adminStore.conditionColumns || []);
 

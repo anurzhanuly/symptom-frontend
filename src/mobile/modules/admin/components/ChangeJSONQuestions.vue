@@ -1,17 +1,29 @@
 <script lang="ts" setup>
+import { useAdminStore } from '@mobile/modules/admin/stores/admin.store';
+import { onMounted, ref } from 'vue';
 import type {
     QuestionsContent,
     ResQuestions,
 } from '@mobile/modules/admin/types/questions';
 import type { AxiosError, AxiosResponse } from 'axios';
 import { useSymptomApi } from '@mobile/services/api';
-import { ref } from 'vue';
 
 import Panel from 'primevue/panel';
 import PTextarea from 'primevue/textarea';
 import PButton from 'primevue/button';
 
 const surveyStr = ref('');
+const adminStore = useAdminStore();
+
+onMounted(() => {
+    if (!adminStore.allRecommendations.length) {
+        adminStore.getRecommendationsData();
+    }
+
+    if (!adminStore.questions.length) {
+        adminStore.getQuestionsData();
+    }
+});
 
 async function changeSurveyQuestions(): Promise<void> {
     if (!surveyStr.value) {
