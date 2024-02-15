@@ -22,7 +22,7 @@ const clinicStore = useClinicsStore();
 const authorizationStore = useAuthorizationStore();
 const surveyStore = useSurveyStore();
 
-const { isLoading, questions } = storeToRefs(surveyStore);
+const { questions } = storeToRefs(surveyStore);
 const { clinics } = storeToRefs(clinicStore);
 const { doctors } = storeToRefs(authorizationStore);
 

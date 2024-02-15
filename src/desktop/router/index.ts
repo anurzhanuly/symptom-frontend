@@ -96,6 +96,12 @@ const router = createRouter({
                 ),
         },
         {
+            path: '/choose-admin-flow',
+            name: 'choose-admin-flow',
+            component: (): Component =>
+                import('@desktop/modules/admin/components/ChooseAdminFlow.vue'),
+        },
+        {
             path: '/admin-magic',
             name: 'admin-magic',
             component: (): Component =>
