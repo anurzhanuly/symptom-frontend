@@ -14,6 +14,7 @@ const router = useRouter();
 
 onMounted(() => {
     localStorage.removeItem('diseaseId');
+
     if (!adminStore.allDiseases.length) {
         adminStore.getDiseasesData();
     }
