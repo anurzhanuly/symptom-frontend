@@ -4,11 +4,12 @@ import type {
 } from '@desktop/modules/admin/types/recommendations.js';
 import type { DataTableCellEditCompleteEvent } from 'primevue/datatable';
 import type { Questions } from '../types/questions';
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import {
     createRecommendation,
     deleteRecommendation,
+    getDiseases,
     getQuestionsJson,
     getRecommendationDetailData,
     getRecommendations,
@@ -21,6 +22,7 @@ import CreateConditions from '../components/popup/CreateConditions.vue';
 
 export const useAdminStore = defineStore('admin', () => {
     const allRecommendations = ref<Recommendation[]>([]);
+    const allDiseases = ref<Recommendation[]>([]);
     const selectedRecommendation = ref<Recommendation | null>();
     const questions = ref<Questions[]>([]);
     const conditions = ref<Condition[] | any[]>([]); // TODO: исправить типизацию
@@ -112,6 +114,14 @@ export const useAdminStore = defineStore('admin', () => {
 
         if (res) {
             allRecommendations.value = res.data.data;
+        }
+    }
+
+    async function getDiseasesData(): Promise<void> {
+        const res = await getDiseases();
+
+        if (res) {
+            allDiseases.value = res.data.data;
         }
     }
 
@@ -255,6 +265,7 @@ export const useAdminStore = defineStore('admin', () => {
 
     return {
         allRecommendations,
+        allDiseases,
         selectedRecommendation,
         tests,
         conditions,
@@ -281,5 +292,6 @@ export const useAdminStore = defineStore('admin', () => {
         updateRecommendationData,
         deleteTest,
         createTest,
+        getDiseasesData,
     };
 });

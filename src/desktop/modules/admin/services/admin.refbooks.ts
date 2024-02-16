@@ -28,6 +28,19 @@ export async function getRecommendations(): Promise<AxiosResponse | null> {
     }
 }
 
+export async function getDiseases(): Promise<AxiosResponse | null> {
+    try {
+        return await useSymptomApi.get<Recommendation[]>('/admin/diseases/', {
+            headers: {
+                'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+            },
+        });
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
 export async function getRecommendationDetailData(
     id: string | undefined
 ): Promise<AxiosResponse | null> {
