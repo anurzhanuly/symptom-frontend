@@ -1,3 +1,6 @@
+import { checkToken } from './utils/storage';
+
+checkToken();
 const isMobile = window.matchMedia('(max-width: 900px)').matches;
 
 if (isMobile) {

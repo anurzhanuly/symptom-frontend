@@ -11,7 +11,7 @@ import UiButton from '@/ui/UiButton.vue';
                 is-big
                 is-blue
                 class="buttons__item"
-                @click="$router.push({ name: 'agreement' })"
+                @click="$router.push({ name: 'choose-survey-type' })"
             >
                 Без регистрации
             </ui-button>
@@ -19,7 +19,7 @@ import UiButton from '@/ui/UiButton.vue';
                 is-white
                 is-big
                 class="buttons__item"
-                @click="$router.push({ name: 'client-test-auth' })"
+                @click="$router.push({ name: 'choose-survey-type' })"
             >
                 Для врача
             </ui-button>
