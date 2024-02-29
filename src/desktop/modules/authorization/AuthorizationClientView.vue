@@ -116,7 +116,7 @@ function resetPassword() {
                     class="authorization-client__link"
                     @click="clientRegistration"
                 >
-                    Зарегистрироваться
+                    &nbsp;Зарегистрироваться
                 </strong>
             </p>
         </div>

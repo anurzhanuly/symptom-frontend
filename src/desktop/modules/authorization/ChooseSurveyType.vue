@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router';
 
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 
+import Header from './components/Header.vue';
 import UiButton from '@/ui/UiButton.vue';
 import { warn } from '@/utils/toast';
 import Dropdown from 'primevue/dropdown';
@@ -23,6 +24,13 @@ onMounted(() => {
 const { allDiseases } = storeToRefs(adminStore);
 const diseaseId = ref('');
 
+function chooseRoute() {
+    const surveyType = localStorage.getItem('surveyFlow');
+    if (surveyType) {
+        router.push({ name: 'client-test-auth' });
+    } else router.push({ name: 'agreement' });
+}
+
 function goToSurvey() {
     if (!diseaseId.value) {
         warn('Внимание', 'Выберите пожалуйста болезнь из списка');
@@ -30,18 +38,19 @@ function goToSurvey() {
     }
 
     localStorage.setItem('diseaseId', diseaseId.value);
-    router.push({ name: 'client-test-auth' });
+    chooseRoute();
 }
 </script>
 
 <template>
     <div class="survey-type">
+        <Header></Header>
         <h2 class="survey-type__title">Выберите тип теста</h2>
         <ui-button
             is-big
             is-blue
             class="survey-type__item"
-            @click="$router.push({ name: 'agreement' })"
+            @click="chooseRoute"
         >
             Пройти общий тест
         </ui-button>

@@ -16,7 +16,7 @@ onMounted(() => {
     const clientCabinetResultId = localStorage.getItem('clientCabinetResultId');
 
     if (clientCabinetResultId && !patientCard.value) {
-        cabinetsStore.getClientResultData(clientCabinetResultId);
+        cabinetsStore.getDiseaseResultData(clientCabinetResultId);
     }
 });
 </script>
@@ -77,7 +77,7 @@ onMounted(() => {
             <card>
                 <template #title> Рекомендации </template>
                 <template #content>
-                    <div v-if="typeof recommendations[0] === 'object'">
+                    <div>
                         <panel
                             v-for="(item, index) in recommendations"
                             :key="index"
@@ -86,16 +86,6 @@ onMounted(() => {
                             toggleable
                         >
                             <p v-html="item.recommendation" />
-                        </panel>
-                    </div>
-                    <div v-else>
-                        <panel
-                            v-for="(recommendation, index) in recommendations"
-                            :key="index"
-                            :header="(index + 1).toString()"
-                            toggleable
-                        >
-                            <p v-html="recommendation" />
                         </panel>
                     </div>
                 </template>

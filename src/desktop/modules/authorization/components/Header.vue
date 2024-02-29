@@ -7,7 +7,7 @@ import UiButton from '@/ui/UiButton.vue';
         <header class="header">
             <ui-button
                 is-white
-                @click="$router.push('/')"
+                @click="$router.back"
             >
                 Назад
             </ui-button>
@@ -25,9 +25,5 @@ import UiButton from '@/ui/UiButton.vue';
     padding: $sp5 $sp4;
     display: flex;
     justify-content: space-between;
-
-    &__logo {
-        max-width: 100px;
-    }
 }
 </style>

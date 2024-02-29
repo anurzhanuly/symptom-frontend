@@ -13,12 +13,14 @@ const surveyStore = useSurveyStore();
 
 const termsOfUse = ref(false);
 const privacyPolicy = ref(false);
-const { isLoading, questions } = storeToRefs(surveyStore);
+const { isLoading } = storeToRefs(surveyStore);
 
 onMounted(() => {
-    if (!questions.value) {
-        surveyStore.getQuestionsData();
-    }
+    const diseaseId = localStorage.getItem('diseaseId');
+
+    if (diseaseId) {
+        surveyStore.getDiseasesQuestionsData();
+    } else surveyStore.getQuestionsData();
 });
 </script>
 

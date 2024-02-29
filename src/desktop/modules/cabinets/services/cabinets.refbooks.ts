@@ -27,9 +27,37 @@ export async function getClientConsultations(): Promise<AxiosResponse | null> {
     }
 }
 
+export async function getClientDiseasesConsultations(): Promise<AxiosResponse | null> {
+    try {
+        return await useSymptomApi.get('/patients/monitoring', {
+            headers: {
+                'auth-token': JSON.parse(localStorage.getItem('clientToken')!),
+            },
+        });
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
 export async function getResult(Id: string): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.get(`/results/${Id}`);
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export async function getDiseaseResult(
+    Id: string
+): Promise<AxiosResponse | null> {
+    try {
+        return await useSymptomApi.get(`/patients/monitoring/${Id}`, {
+            headers: {
+                'auth-token': JSON.parse(localStorage.getItem('clientToken')!),
+            },
+        });
     } catch (error) {
         console.error(error);
         return null;

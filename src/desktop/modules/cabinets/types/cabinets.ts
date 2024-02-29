@@ -25,3 +25,17 @@ export interface ConsultationResult {
 export interface PatientAnswers {
     [key: string]: string[];
 }
+
+export interface DiseaseData {
+    data: Disease[];
+}
+
+export interface Disease {
+    type: string;
+    id: string;
+    attributes: DiseaseAttributes;
+}
+
+export interface DiseaseAttributes {
+    name: string;
+}

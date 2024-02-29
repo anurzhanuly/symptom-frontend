@@ -1,4 +1,4 @@
-export function checkToken() {
+export function checkUserToken() {
     const token = localStorage.getItem('clientToken');
     const tokenDate = Number(localStorage.getItem('tokenDate')) || 0;
     const prepareDate = 8 * 60 * 60 * 1000;
@@ -9,6 +9,7 @@ export function checkToken() {
         if (timeDiff > prepareDate) {
             localStorage.removeItem('clientToken');
             localStorage.removeItem('tokenDate');
+            localStorage.removeItem('patientId');
         }
     }
 }

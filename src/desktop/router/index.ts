@@ -144,10 +144,22 @@ const router = createRouter({
                 import('@desktop/modules/cabinets/ClientCabinetMain.vue'),
         },
         {
+            path: '/client-cabinet-diseases',
+            name: 'client-cabinet-diseases',
+            component: (): Component =>
+                import('@desktop/modules/cabinets/ClientCabinetDiseases.vue'),
+        },
+        {
             path: '/client-cabinet-result',
             name: 'client-cabinet-result',
             component: (): Component =>
                 import('@desktop/modules/cabinets/CabinetResult.vue'),
+        },
+        {
+            path: '/client-cabinet-result-disease',
+            name: 'client-cabinet-result-disease',
+            component: (): Component =>
+                import('@desktop/modules/cabinets/CabinetResultDisease.vue'),
         },
     ],
 });
