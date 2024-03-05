@@ -1,4 +1,4 @@
-import { checkUserToken } from './utils/storage';
+import { checkClientToken } from './utils/storage';
 
 const isMobile = window.matchMedia('(max-width: 900px)').matches;
 
@@ -8,5 +8,5 @@ if (isMobile) {
     import('@desktop/main').then((module) => module.initDesktopApp());
 }
 
-checkUserToken(); // Проверяем время токена и если оно больше 8 часов, удаляем из LocalStorage
+checkClientToken(); // Проверяем время токена и если оно больше 8 часов, удаляем из LocalStorage
 export {};

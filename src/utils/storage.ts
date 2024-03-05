@@ -1,4 +1,4 @@
-export function checkUserToken() {
+export function checkClientToken() {
     const token = localStorage.getItem('clientToken');
     const tokenDate = Number(localStorage.getItem('tokenDate')) || 0;
     const prepareDate = 8 * 60 * 60 * 1000;

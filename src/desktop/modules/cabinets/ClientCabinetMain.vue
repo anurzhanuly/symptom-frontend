@@ -24,9 +24,6 @@ const { resultAnswersChatGPT } = storeToRefs(surveyStore);
 const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);
 
 onMounted(async () => {
-    localStorage.removeItem('clientDiseaseResultId');
-    localStorage.removeItem('clientCabinetResultId');
-
     await cabinetsStore.getClientConsultationsData();
 
     if (
