@@ -116,7 +116,7 @@ function resetPassword() {
                     class="authorization-client__link"
                     @click="clientRegistration"
                 >
-                    &nbsp;Зарегистрироваться
+                    Зарегистрироваться
                 </strong>
             </p>
         </div>
@@ -158,6 +158,7 @@ function resetPassword() {
     &__link {
         color: $blue-primary;
         cursor: pointer;
+        padding-left: $sp;
     }
 }
 </style>

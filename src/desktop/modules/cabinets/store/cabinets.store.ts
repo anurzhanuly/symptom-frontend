@@ -63,7 +63,6 @@ export const useCabinetsStore = defineStore('cabinet', () => {
 
         if (res) {
             diseaseConsultation.value = res.data.data ?? [];
-            localStorage.setItem('patientId', res.data.data.id);
         } else {
             error('Ошибка', 'Попробуйте снова');
             router.push('/client-sign-in');

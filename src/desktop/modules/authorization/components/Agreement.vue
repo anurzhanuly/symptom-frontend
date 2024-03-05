@@ -20,7 +20,9 @@ onMounted(() => {
 
     if (diseaseId) {
         surveyStore.getDiseasesQuestionsData();
-    } else surveyStore.getQuestionsData();
+    } else {
+        surveyStore.getQuestionsData();
+    }
 });
 </script>
 

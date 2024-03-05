@@ -49,7 +49,9 @@ async function changeSurveyQuestions(): Promise<void> {
 
     if (diseaseId) {
         await changeDiseaseQuestionsJson(questions, diseaseId);
-    } else await changeQuestionsJson(questions);
+    } else {
+        await changeQuestionsJson(questions);
+    }
 }
 
 async function changeQuestionsJson(
