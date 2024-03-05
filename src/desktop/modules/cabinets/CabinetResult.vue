@@ -4,9 +4,11 @@ import { storeToRefs } from 'pinia';
 import { useCabinetsStore } from './store/cabinets.store';
 import BaseResultCard from './components/BaseResultCard.vue';
 
+import UiLoader from '@/ui/UiLoader.vue';
+
 const cabinetsStore = useCabinetsStore();
 
-const { patientResult, patientCard, recommendations } =
+const { patientResult, patientCard, recommendations, isLoading } =
     storeToRefs(cabinetsStore);
 
 onMounted(async () => {
@@ -19,7 +21,9 @@ onMounted(async () => {
 </script>
 
 <template>
+    <ui-loader v-if="isLoading" />
     <base-result-card
+        v-else
         :patient-result="patientResult"
         :patient-card="patientCard"
         :recommendations="recommendations"

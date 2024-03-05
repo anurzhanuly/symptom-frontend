@@ -22,6 +22,11 @@ export interface ConsultationResult {
     attributes: Attributes;
 }
 
+export interface Recommendation {
+    title: string;
+    recommendation: string;
+}
+
 export interface PatientAnswers {
     [key: string]: string[];
 }

@@ -2,12 +2,8 @@
 import type { PropType } from 'vue';
 import Card from 'primevue/card';
 import Panel from 'primevue/panel';
+import type { Recommendation } from '../types/cabinets';
 import UiButton from '@/ui/UiButton.vue';
-
-interface Recommendation {
-    title: string;
-    recommendation: string;
-}
 
 defineProps({
     patientResult: {
@@ -22,13 +18,11 @@ defineProps({
     },
     patientCard: {
         type: Object,
-        default() {
-            return {};
-        },
+        required: true,
     },
     recommendations: {
         type: Array as PropType<Recommendation[]>,
-        default: () => [],
+        required: true,
     },
 });
 </script>

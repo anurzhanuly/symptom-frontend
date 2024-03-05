@@ -26,6 +26,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
     const patientAnswer = ref<PatientAnswers>();
     const patientCard = ref();
     const recommendations = ref<any>([]); //TODO POPRAVIT
+    const isLoading = ref(false);
 
     const router = useRouter();
 
@@ -92,6 +93,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
 
     async function getClientResultData(Id: string): Promise<boolean> {
         const res = await getResult(Id);
+        isLoading.value = true;
 
         if (res) {
             patientResult.value = res.data.included.filter(
@@ -105,6 +107,8 @@ export const useCabinetsStore = defineStore('cabinet', () => {
             patientCard.value = res.data.data.attributes.patient_card;
             recommendations.value = res.data.data.attributes.recommendations;
 
+            isLoading.value = false;
+
             return true;
         }
 
@@ -113,10 +117,12 @@ export const useCabinetsStore = defineStore('cabinet', () => {
 
     async function getDiseaseResultData(Id: string): Promise<boolean> {
         const res = await getDiseaseResult(Id);
+        isLoading.value = true;
 
         if (res) {
             recommendations.value = res.data;
 
+            isLoading.value = false;
             return true;
         }
 
@@ -125,6 +131,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
 
     return {
         searchString,
+        isLoading,
         filters,
         myConsultation,
         diseaseConsultation,
