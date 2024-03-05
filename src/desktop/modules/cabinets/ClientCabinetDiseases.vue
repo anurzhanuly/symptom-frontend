@@ -21,10 +21,11 @@ const cabinetPages = ref(tabRoutes);
 
 const router = useRouter();
 const { resultAnswersChatGPT } = storeToRefs(surveyStore);
-const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);
+const { diseaseConsultation, searchString, filters } =
+    storeToRefs(cabinetsStore);
 
 onMounted(async () => {
-    await cabinetsStore.getClientConsultationsData();
+    await cabinetsStore.getClientDiseasesConsultationsData();
 
     if (
         sessionStorage.getItem('saveRec') &&
@@ -36,19 +37,19 @@ onMounted(async () => {
             doctorID: +(localStorage.getItem('doctorId') ?? 0),
         });
 
-        await cabinetsStore.getClientConsultationsData();
+        await cabinetsStore.getClientDiseasesConsultationsData();
     }
 });
 
 function checkResult(id: string) {
-    const result = cabinetsStore.getClientResultData(id);
+    const result = cabinetsStore.getDiseaseResultData(id);
 
     if (!result) {
         warn('Не найдено', 'Результаты не найдены');
     }
 
     localStorage.setItem('clientCabinetResultId', id);
-    router.push(`client-cabinet-result`);
+    router.push(`client-cabinet-result-disease`);
 }
 </script>
 
@@ -65,7 +66,7 @@ function checkResult(id: string) {
             reorderable-columns
             selection-mode="single"
             striped-rows
-            :value="myConsultation"
+            :value="diseaseConsultation"
         >
             <template #header>
                 <div class="request-table-header">

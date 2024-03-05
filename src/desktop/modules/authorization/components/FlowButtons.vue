@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import Authorization from '@/desktop/modules/authorization/components/Authorization.vue';
+import router from '@/desktop/router';
 import UiButton from '@/ui/UiButton.vue';
+
+const chooseDoctorFlow = () => {
+    localStorage.setItem('surveyFlow', 'doctor');
+    router.push({ name: 'choose-survey-type' });
+};
 </script>
 
 <template>
@@ -19,7 +25,7 @@ import UiButton from '@/ui/UiButton.vue';
                 is-white
                 is-big
                 class="buttons__item"
-                @click="$router.push({ name: 'choose-survey-type' })"
+                @click="chooseDoctorFlow"
             >
                 Для врача
             </ui-button>

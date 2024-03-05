@@ -1,6 +1,12 @@
-import { getQuestionsJson } from '@desktop/modules/admin/services/admin.refbooks';
+import {
+    getQuestionsJson,
+    getDiseasesQuestionsJson,
+} from '@desktop/modules/admin/services/admin.refbooks';
 import type { QuestionsContent } from '@desktop/modules/admin/types/questions';
-import { postAnswersToChatGPT } from '../services/survey.refbooks';
+import {
+    postAnswersToChatGPT,
+    postAnswersDiseases,
+} from '../services/survey.refbooks';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from 'axios';
@@ -35,6 +41,21 @@ export const useSurveyStore = defineStore('survey', () => {
         isLoading.value = false;
     }
 
+    async function getDiseasesQuestionsData(): Promise<void> {
+        const diseaseId = localStorage.getItem('diseaseId');
+        isLoading.value = true;
+
+        if (diseaseId) {
+            const res = await getDiseasesQuestionsJson(diseaseId);
+
+            if (res) {
+                const result = res.data.data[res.data.data.length - 1];
+                questions.value = result.attributes.name.content;
+                isLoading.value = false;
+            }
+        }
+    }
+
     async function postAnswersDataChatGPT(data: {
         answers: Record<string, string[]>;
         patientID: number;
@@ -60,6 +81,34 @@ export const useSurveyStore = defineStore('survey', () => {
         }
     }
 
+    async function postAnswersDataDiseases(data: {
+        answers: Record<string, string[]>;
+        patientID: number;
+        doctorID: number;
+    }): Promise<any> {
+        isLoading.value = true;
+        resultAnswersChatGPT.value = data.answers;
+        const diseaseId = localStorage.getItem('diseaseId');
+
+        if (diseaseId) {
+            try {
+                const res = await postAnswersDiseases(data, diseaseId);
+
+                if (!axios.isAxiosError(res)) {
+                    patientsCard.value = res.data.patientCard;
+                    recommendations.value = res.data.recommendations;
+                    recommendationsChatGPT.value = res.data.symptomAi;
+
+                    return res.data;
+                }
+            } catch (e) {
+                console.error(e);
+            } finally {
+                isLoading.value = false;
+            }
+        }
+    }
+
     function stringTitle(title: any): string {
         if (typeof title === 'number') {
             return title.toString();
@@ -77,6 +126,8 @@ export const useSurveyStore = defineStore('survey', () => {
         resultAnswersChatGPT,
         postAnswersDataChatGPT,
         getQuestionsData,
+        getDiseasesQuestionsData,
+        postAnswersDataDiseases,
         stringTitle,
     };
 });

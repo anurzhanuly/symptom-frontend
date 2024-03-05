@@ -45,7 +45,13 @@ async function changeSurveyQuestions(): Promise<void> {
         content: { pages: questionsJson },
     };
 
-    await changeQuestionsJson(questions);
+    const diseaseId = localStorage.getItem('diseaseId');
+
+    if (diseaseId) {
+        await changeDiseaseQuestionsJson(questions, diseaseId);
+    } else {
+        await changeQuestionsJson(questions);
+    }
 }
 
 async function changeQuestionsJson(
@@ -53,6 +59,26 @@ async function changeQuestionsJson(
 ): Promise<AxiosError | AxiosResponse> {
     try {
         return await useSymptomApi.post('/questionnaires/new', questions);
+    } catch (error) {
+        console.log(error);
+        return error as AxiosError<Error>;
+    }
+}
+
+async function changeDiseaseQuestionsJson(
+    questions: ResQuestions,
+    id: string
+): Promise<AxiosError | AxiosResponse> {
+    try {
+        return await useSymptomApi.post(
+            `/admin/diseases/${id}/questionnaires`,
+            questions,
+            {
+                headers: {
+                    'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                },
+            }
+        );
     } catch (error) {
         console.log(error);
         return error as AxiosError<Error>;

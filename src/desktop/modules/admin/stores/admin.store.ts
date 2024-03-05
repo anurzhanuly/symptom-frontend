@@ -11,6 +11,7 @@ import {
     deleteRecommendation,
     getDiseases,
     getQuestionsJson,
+    getDiseasesQuestionsJson,
     getRecommendationDetailData,
     getRecommendations,
     updateRecommendation,
@@ -106,6 +107,41 @@ export const useAdminStore = defineStore('admin', () => {
             vals.value = test;
 
             isLoading.value = false;
+        }
+    }
+
+    async function getDiseasesQuestionsData(): Promise<void> {
+        const diseaseId = localStorage.getItem('diseaseId');
+        isLoading.value = true;
+
+        if (diseaseId) {
+            const res = await getDiseasesQuestionsJson(diseaseId);
+
+            if (res) {
+                const result = res.data.data[res.data.data.length - 1];
+                const pages = result.attributes.name.pages;
+                const elements = [];
+                const names = [];
+                const test = [];
+
+                for (let i = 0; i < pages.length; i++) {
+                    const element = pages[i];
+                    elements.push(element.elements);
+
+                    for (let j = 0; j < element.elements.length; j++) {
+                        const item = element.elements[j];
+
+                        names.push({ value: item.name });
+                        test.push(item);
+                    }
+                }
+
+                questions.value = elements;
+                questionsNames.value = names;
+                vals.value = test;
+
+                isLoading.value = false;
+            }
         }
     }
 
@@ -293,5 +329,6 @@ export const useAdminStore = defineStore('admin', () => {
         deleteTest,
         createTest,
         getDiseasesData,
+        getDiseasesQuestionsData,
     };
 });

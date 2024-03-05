@@ -20,6 +20,7 @@ const progressLastValue = ref(0);
 const isOfferTestVisible = ref(
     Boolean(window.localStorage.getItem(STORAGE_ITEM_KEY))
 );
+
 const surveyJson = computed(() => surveyStore.questions);
 
 const survey = ref();
@@ -112,9 +113,18 @@ async function onSurveyComplete(sender: {
         doctorID: doctorId,
     };
     try {
-        const surveyResult = await surveyStore.postAnswersDataChatGPT(
-            surveyAnswers
-        );
+        const diseaseId = localStorage.getItem('diseaseId');
+        let surveyResult;
+
+        if (diseaseId) {
+            surveyResult = await surveyStore.postAnswersDataDiseases(
+                surveyAnswers
+            );
+        } else {
+            surveyResult = await surveyStore.postAnswersDataChatGPT(
+                surveyAnswers
+            );
+        }
 
         localStorage.setItem('surveyResult', JSON.stringify(surveyResult));
 

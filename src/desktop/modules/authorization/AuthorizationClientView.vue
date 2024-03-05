@@ -110,14 +110,17 @@ function resetPassword() {
                     Забыли пароль?
                 </ui-button>
             </form>
+            <p class="authorization-client__register-text">Нет аккаунта?</p>
             <p class="authorization-client__register-text">
-                Нет аккаунта? Вы можете
-                <strong
-                    class="authorization-client__link"
-                    @click="clientRegistration"
-                >
-                    Зарегистрироваться
-                </strong>
+                Вы можете
+                <span>
+                    <strong
+                        class="authorization-client__link"
+                        @click="clientRegistration"
+                    >
+                        Зарегистрироваться
+                    </strong>
+                </span>
             </p>
         </div>
     </authorization>
@@ -153,6 +156,7 @@ function resetPassword() {
         justify-content: center;
         align-items: center;
         margin-top: $sp4;
+        white-space: pre; // Свойство для создания пробела внутри тега P
     }
 
     &__link {

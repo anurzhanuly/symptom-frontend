@@ -15,7 +15,7 @@ onMounted(async () => {
     const clientCabinetResultId = localStorage.getItem('clientCabinetResultId');
 
     if (clientCabinetResultId) {
-        await cabinetsStore.getClientResultData(clientCabinetResultId);
+        await cabinetsStore.getDiseaseResultData(clientCabinetResultId);
     }
 });
 </script>
