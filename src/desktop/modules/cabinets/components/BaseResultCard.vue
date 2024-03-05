@@ -85,8 +85,8 @@ defineProps({
                 <template #content>
                     <div>
                         <panel
-                            v-for="(item, index) in recommendations"
-                            :key="index"
+                            v-for="(item, id) in recommendations"
+                            :key="id"
                             class="recommendation__panel"
                             :header="item.title"
                             toggleable
