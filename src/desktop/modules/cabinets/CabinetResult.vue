@@ -23,5 +23,5 @@ onMounted(async () => {
         :patient-result="patientResult"
         :patient-card="patientCard"
         :recommendations="recommendations"
-    ></base-result-card>
+    />
 </template>
