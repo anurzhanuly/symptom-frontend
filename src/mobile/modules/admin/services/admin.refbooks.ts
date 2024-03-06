@@ -28,6 +28,26 @@ export async function getRecommendations(): Promise<AxiosResponse | null> {
     }
 }
 
+export async function getDiseases(): Promise<AxiosResponse | null> {
+    try {
+        return await useSymptomApi.get<Recommendation[]>('/diseases/');
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export async function getDiseasesQuestionsJson(
+    id: string | undefined
+): Promise<AxiosResponse | null> {
+    try {
+        return await useSymptomApi.get<any>(`/diseases/${id}/questionnaires`);
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
 export async function getRecommendationDetailData(
     id: string | undefined
 ): Promise<AxiosResponse | null> {

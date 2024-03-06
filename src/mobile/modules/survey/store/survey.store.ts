@@ -1,6 +1,9 @@
-import { getQuestionsJson } from '@mobile/modules/admin/services/admin.refbooks';
+import {
+    getQuestionsJson,
+    getDiseasesQuestionsJson,
+} from '@mobile/modules/admin/services/admin.refbooks';
 import type { QuestionsContent } from '@mobile/modules/admin/types/questions';
-import { postAnswersToChatGPT } from '../services/survey.refbooks';
+import { postAnswers, postAnswersDiseases } from '../services/survey.refbooks';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from 'axios';
@@ -23,28 +26,47 @@ export const useSurveyStore = defineStore('survey', () => {
     >([]);
     const isLoading = ref(false);
 
-    async function getQuestionsData(): Promise<void> {
+    async function getQuestionsData(diseaseId?: string): Promise<void> {
         isLoading.value = true;
 
-        const res = await getQuestionsJson();
+        let res;
+        if (diseaseId) {
+            res = await getDiseasesQuestionsJson(diseaseId);
 
-        if (res) {
-            questions.value = res.data;
+            if (res) {
+                const result = res.data.data[res.data.data.length - 1];
+                questions.value = result.attributes.name.content;
+            }
+        } else {
+            res = await getQuestionsJson();
+
+            if (res) {
+                questions.value = res.data;
+            }
         }
 
         isLoading.value = false;
     }
 
-    async function postAnswersDataChatGPT(data: {
-        answers: Record<string, string[]>;
-        patientID: number;
-        doctorID: number;
-    }): Promise<any> {
+    async function postAnswersData(
+        data: {
+            answers: Record<string, string[]>;
+            patientID: number;
+            doctorID: number;
+        },
+        diseaseId?: string
+    ): Promise<any> {
         isLoading.value = true;
         resultAnswersChatGPT.value = data.answers;
 
         try {
-            const res = await postAnswersToChatGPT(data);
+            let res;
+
+            if (diseaseId) {
+                res = await postAnswersDiseases(data, diseaseId);
+            } else {
+                res = await postAnswers(data);
+            }
 
             if (!axios.isAxiosError(res)) {
                 patientsCard.value = res.data.patientCard;
@@ -75,7 +97,7 @@ export const useSurveyStore = defineStore('survey', () => {
         recommendations,
         recommendationsChatGPT,
         resultAnswersChatGPT,
-        postAnswersDataChatGPT,
+        postAnswersData,
         getQuestionsData,
         stringTitle,
     };

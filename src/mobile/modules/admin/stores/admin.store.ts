@@ -9,7 +9,9 @@ import { defineStore } from 'pinia';
 import {
     createRecommendation,
     deleteRecommendation,
+    getDiseases,
     getQuestionsJson,
+    getDiseasesQuestionsJson,
     getRecommendationDetailData,
     getRecommendations,
     updateRecommendation,
@@ -21,6 +23,7 @@ import CreateConditions from '../components/popup/CreateConditions.vue';
 
 export const useAdminStore = defineStore('admin', () => {
     const allRecommendations = ref<Recommendation[]>([]);
+    const allDiseases = ref<Recommendation[]>([]);
     const selectedRecommendation = ref<Recommendation | null>();
     const questions = ref<Questions[]>([]);
     const conditions = ref<Condition[] | any[]>([]); // TODO: исправить типизацию
@@ -36,34 +39,6 @@ export const useAdminStore = defineStore('admin', () => {
     const recomindationNewName = ref('');
 
     const dialog = useDialog();
-
-    onMounted(() => {
-        if (!allRecommendations.value.length) {
-            getRecommendationsData();
-        }
-
-        if (!questions.value.length) {
-            getQuestionsData();
-        }
-    });
-
-    watch(selectedRecommendation, async (newRecommendation) => {
-        if (!newRecommendation?.id) return;
-
-        const res = await getRecommendationDetailData(newRecommendation?.id);
-
-        if (res) {
-            tests.value = res.data.data.attributes.tests;
-
-            const keys = Object.keys(tests.value);
-
-            lastTestKey.value = keys[keys.length - 1]
-                ? Number(keys[keys.length - 1]) + 1
-                : 1;
-
-            conditions.value = res.data.data.attributes.conditions;
-        }
-    });
 
     const conditionColumns = [
         {
@@ -105,12 +80,21 @@ export const useAdminStore = defineStore('admin', () => {
         },
     ];
 
-    async function getQuestionsData(): Promise<void> {
+    async function getQuestionsData(diseaseId?: string): Promise<void> {
         isLoading.value = true;
-        const res = await getQuestionsJson();
+
+        let res;
+        if (diseaseId) {
+            res = await getDiseasesQuestionsJson(diseaseId);
+        } else {
+            res = await getQuestionsJson();
+        }
 
         if (res) {
-            const pages = res.data.pages;
+            const data = diseaseId
+                ? res.data.data[res.data.data.length - 1]
+                : res.data;
+            const pages = diseaseId ? data.attributes.name.pages : data.pages;
             const elements = [];
             const names = [];
             const test = [];
@@ -130,7 +114,6 @@ export const useAdminStore = defineStore('admin', () => {
             questions.value = elements;
             questionsNames.value = names;
             vals.value = test;
-
             isLoading.value = false;
         }
     }
@@ -140,6 +123,14 @@ export const useAdminStore = defineStore('admin', () => {
 
         if (res) {
             allRecommendations.value = res.data.data;
+        }
+    }
+
+    async function getDiseasesData(): Promise<void> {
+        const res = await getDiseases();
+
+        if (res) {
+            allDiseases.value = res.data.data;
         }
     }
 
@@ -283,6 +274,7 @@ export const useAdminStore = defineStore('admin', () => {
 
     return {
         allRecommendations,
+        allDiseases,
         selectedRecommendation,
         tests,
         conditions,
@@ -309,5 +301,6 @@ export const useAdminStore = defineStore('admin', () => {
         updateRecommendationData,
         deleteTest,
         createTest,
+        getDiseasesData,
     };
 });

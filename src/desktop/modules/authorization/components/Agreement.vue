@@ -19,7 +19,7 @@ onMounted(() => {
     const diseaseId = localStorage.getItem('diseaseId');
 
     if (diseaseId) {
-        surveyStore.getDiseasesQuestionsData();
+        surveyStore.getQuestionsData(diseaseId);
     } else {
         surveyStore.getQuestionsData();
     }
