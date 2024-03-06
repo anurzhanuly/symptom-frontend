@@ -80,12 +80,21 @@ export const useAdminStore = defineStore('admin', () => {
         },
     ];
 
-    async function getQuestionsData(): Promise<void> {
+    async function getQuestionsData(diseaseId?: string): Promise<void> {
         isLoading.value = true;
-        const res = await getQuestionsJson();
+
+        let res;
+        if (diseaseId) {
+            res = await getDiseasesQuestionsJson(diseaseId);
+        } else {
+            res = await getQuestionsJson();
+        }
 
         if (res) {
-            const pages = res.data.pages;
+            const data = diseaseId
+                ? res.data.data[res.data.data.length - 1]
+                : res.data;
+            const pages = diseaseId ? data.attributes.name.pages : data.pages;
             const elements = [];
             const names = [];
             const test = [];
@@ -105,43 +114,7 @@ export const useAdminStore = defineStore('admin', () => {
             questions.value = elements;
             questionsNames.value = names;
             vals.value = test;
-
             isLoading.value = false;
-        }
-    }
-
-    async function getDiseasesQuestionsData(): Promise<void> {
-        const diseaseId = localStorage.getItem('diseaseId');
-        isLoading.value = true;
-
-        if (diseaseId) {
-            const res = await getDiseasesQuestionsJson(diseaseId);
-
-            if (res) {
-                const result = res.data.data[res.data.data.length - 1];
-                const pages = result.attributes.name.pages;
-                const elements = [];
-                const names = [];
-                const test = [];
-
-                for (let i = 0; i < pages.length; i++) {
-                    const element = pages[i];
-                    elements.push(element.elements);
-
-                    for (let j = 0; j < element.elements.length; j++) {
-                        const item = element.elements[j];
-
-                        names.push({ value: item.name });
-                        test.push(item);
-                    }
-                }
-
-                questions.value = elements;
-                questionsNames.value = names;
-                vals.value = test;
-
-                isLoading.value = false;
-            }
         }
     }
 
@@ -329,6 +302,5 @@ export const useAdminStore = defineStore('admin', () => {
         deleteTest,
         createTest,
         getDiseasesData,
-        getDiseasesQuestionsData,
     };
 });

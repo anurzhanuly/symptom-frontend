@@ -12,6 +12,7 @@ import UiButton from '@/ui/UiButton.vue';
 
 const router = useRouter();
 const surveyStore = useSurveyStore();
+const diseaseId = localStorage.getItem('diseaseId');
 
 const STORAGE_ITEM_KEY = 'my-survey';
 const { isLoading } = storeToRefs(surveyStore);
@@ -113,17 +114,15 @@ async function onSurveyComplete(sender: {
         doctorID: doctorId,
     };
     try {
-        const diseaseId = localStorage.getItem('diseaseId');
         let surveyResult;
 
         if (diseaseId) {
-            surveyResult = await surveyStore.postAnswersDataDiseases(
-                surveyAnswers
+            surveyResult = await surveyStore.postAnswersData(
+                surveyAnswers,
+                diseaseId
             );
         } else {
-            surveyResult = await surveyStore.postAnswersDataChatGPT(
-                surveyAnswers
-            );
+            surveyResult = await surveyStore.postAnswersData(surveyAnswers);
         }
 
         localStorage.setItem('surveyResult', JSON.stringify(surveyResult));
@@ -166,7 +165,11 @@ function startNewTest() {
 
 onMounted(async () => {
     if (!surveyJson.value) {
-        await surveyStore.getQuestionsData();
+        if (diseaseId) {
+            await surveyStore.getQuestionsData(diseaseId);
+        } else {
+            await surveyStore.getQuestionsData();
+        }
     }
 });
 
