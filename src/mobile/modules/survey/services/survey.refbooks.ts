@@ -17,3 +17,23 @@ export const postAnswersToChatGPT = async (data: {
         return err;
     }
 };
+
+export const postAnswersDiseases = async (
+    data: {
+        answers: Record<string, string[]>;
+        patientID: number;
+        doctorID: number;
+    },
+    id: string
+): Promise<any> => {
+    try {
+        return await useSymptomApi.post(
+            `/diseases/${id}/answer?key=SymptomAlgaBas`,
+            data
+        );
+    } catch (error) {
+        const err = error as AxiosError<Error>;
+        console.log(error);
+        return err;
+    }
+};

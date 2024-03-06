@@ -9,7 +9,9 @@ import { defineStore } from 'pinia';
 import {
     createRecommendation,
     deleteRecommendation,
+    getDiseases,
     getQuestionsJson,
+    getDiseasesQuestionsJson,
     getRecommendationDetailData,
     getRecommendations,
     updateRecommendation,
@@ -21,6 +23,7 @@ import CreateConditions from '../components/popup/CreateConditions.vue';
 
 export const useAdminStore = defineStore('admin', () => {
     const allRecommendations = ref<Recommendation[]>([]);
+    const allDiseases = ref<Recommendation[]>([]);
     const selectedRecommendation = ref<Recommendation | null>();
     const questions = ref<Questions[]>([]);
     const conditions = ref<Condition[] | any[]>([]); // TODO: исправить типизацию
@@ -36,34 +39,6 @@ export const useAdminStore = defineStore('admin', () => {
     const recomindationNewName = ref('');
 
     const dialog = useDialog();
-
-    onMounted(() => {
-        if (!allRecommendations.value.length) {
-            getRecommendationsData();
-        }
-
-        if (!questions.value.length) {
-            getQuestionsData();
-        }
-    });
-
-    watch(selectedRecommendation, async (newRecommendation) => {
-        if (!newRecommendation?.id) return;
-
-        const res = await getRecommendationDetailData(newRecommendation?.id);
-
-        if (res) {
-            tests.value = res.data.data.attributes.tests;
-
-            const keys = Object.keys(tests.value);
-
-            lastTestKey.value = keys[keys.length - 1]
-                ? Number(keys[keys.length - 1]) + 1
-                : 1;
-
-            conditions.value = res.data.data.attributes.conditions;
-        }
-    });
 
     const conditionColumns = [
         {
@@ -135,11 +110,54 @@ export const useAdminStore = defineStore('admin', () => {
         }
     }
 
+    async function getDiseasesQuestionsData(): Promise<void> {
+        const diseaseId = localStorage.getItem('diseaseId');
+        isLoading.value = true;
+
+        if (diseaseId) {
+            const res = await getDiseasesQuestionsJson(diseaseId);
+
+            if (res) {
+                const result = res.data.data[res.data.data.length - 1];
+                const pages = result.attributes.name.pages;
+                const elements = [];
+                const names = [];
+                const test = [];
+
+                for (let i = 0; i < pages.length; i++) {
+                    const element = pages[i];
+                    elements.push(element.elements);
+
+                    for (let j = 0; j < element.elements.length; j++) {
+                        const item = element.elements[j];
+
+                        names.push({ value: item.name });
+                        test.push(item);
+                    }
+                }
+
+                questions.value = elements;
+                questionsNames.value = names;
+                vals.value = test;
+
+                isLoading.value = false;
+            }
+        }
+    }
+
     async function getRecommendationsData(): Promise<void> {
         const res = await getRecommendations();
 
         if (res) {
             allRecommendations.value = res.data.data;
+        }
+    }
+
+    async function getDiseasesData(): Promise<void> {
+        const res = await getDiseases();
+
+        if (res) {
+            allDiseases.value = res.data.data;
         }
     }
 
@@ -283,6 +301,7 @@ export const useAdminStore = defineStore('admin', () => {
 
     return {
         allRecommendations,
+        allDiseases,
         selectedRecommendation,
         tests,
         conditions,
@@ -309,5 +328,7 @@ export const useAdminStore = defineStore('admin', () => {
         updateRecommendationData,
         deleteTest,
         createTest,
+        getDiseasesData,
+        getDiseasesQuestionsData,
     };
 });
