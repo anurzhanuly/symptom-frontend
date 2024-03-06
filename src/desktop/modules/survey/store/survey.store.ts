@@ -3,10 +3,7 @@ import {
     getDiseasesQuestionsJson,
 } from '@desktop/modules/admin/services/admin.refbooks';
 import type { QuestionsContent } from '@desktop/modules/admin/types/questions';
-import {
-    postAnswersToChatGPT,
-    postAnswersDiseases,
-} from '../services/survey.refbooks';
+import { postAnswers, postAnswersDiseases } from '../services/survey.refbooks';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from 'axios';
@@ -68,7 +65,7 @@ export const useSurveyStore = defineStore('survey', () => {
             if (diseaseId) {
                 res = await postAnswersDiseases(data, diseaseId);
             } else {
-                res = await postAnswersToChatGPT(data);
+                res = await postAnswers(data);
             }
 
             if (!axios.isAxiosError(res)) {
