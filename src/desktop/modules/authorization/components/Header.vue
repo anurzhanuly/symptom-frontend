@@ -7,7 +7,7 @@ import UiButton from '@/ui/UiButton.vue';
         <header class="header">
             <ui-button
                 is-white
-                @click="$router.back"
+                @click="$router.push({ name: 'choose-survey-flow' })"
             >
                 Назад
             </ui-button>
@@ -22,7 +22,7 @@ import UiButton from '@/ui/UiButton.vue';
 
 <style lang="scss" scoped>
 .header {
-    padding: $sp5 $sp4;
+    padding: $sp5 0;
     display: flex;
     justify-content: space-between;
 }

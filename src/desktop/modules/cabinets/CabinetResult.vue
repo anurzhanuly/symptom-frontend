@@ -24,6 +24,7 @@ onMounted(async () => {
     <ui-loader v-if="isLoading" />
     <base-result-card
         v-else
+        :route-name="'client-cabinet'"
         :patient-result="patientResult"
         :patient-card="patientCard"
         :recommendations="recommendations"

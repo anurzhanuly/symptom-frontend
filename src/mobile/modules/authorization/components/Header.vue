@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import UiButton from '@/ui/UiButton.vue';
+
+defineProps({
+    routeName: {
+        type: String,
+        required: true,
+    },
+});
 </script>
 
 <template>
@@ -7,7 +14,7 @@ import UiButton from '@/ui/UiButton.vue';
         <header class="header">
             <ui-button
                 icon="pi pi-angle-left"
-                @click="$router.back()"
+                @click="$router.push({ name: routeName })"
             >
                 Назад
             </ui-button>

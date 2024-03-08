@@ -6,6 +6,6 @@ localStorage.removeItem('doctorId'); //TODO Странное место для �
 </script>
 
 <template>
-    <Header />
+    <Header :route-name="'home'" />
     <flow-buttons />
 </template>
