@@ -18,6 +18,12 @@ const router = createRouter({
                 import('@mobile/modules/authorization/ChooseSurveyFlow.vue'),
         },
         {
+            path: '/choose-survey-type',
+            name: 'choose-survey-type',
+            component: (): Component =>
+                import('@mobile/modules/authorization/ChooseSurveyType.vue'),
+        },
+        {
             path: '/agreement',
             name: 'agreement',
             component: (): Component =>

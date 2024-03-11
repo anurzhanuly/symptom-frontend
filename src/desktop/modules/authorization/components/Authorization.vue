@@ -12,7 +12,7 @@ import UiButton from '@/ui/UiButton.vue';
             <ui-button
                 class="authorization__button"
                 icon="pi pi-angle-left header__button"
-                @click="$router.back"
+                @click="$router.push({ name: 'home' })"
             >
                 Назад
             </ui-button>

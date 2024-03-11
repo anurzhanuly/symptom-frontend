@@ -3,10 +3,13 @@ import Authorization from '@/desktop/modules/authorization/components/Authorizat
 import router from '@/desktop/router';
 import UiButton from '@/ui/UiButton.vue';
 
-const chooseDoctorFlow = () => {
+localStorage.removeItem('surveyFlow');
+localStorage.removeItem('doctorId');
+
+function chooseDoctorFlow() {
     localStorage.setItem('surveyFlow', 'doctor');
     router.push({ name: 'choose-survey-type' });
-};
+}
 </script>
 
 <template>

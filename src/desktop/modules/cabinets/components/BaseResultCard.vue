@@ -6,6 +6,10 @@ import type { Recommendation } from '../types/cabinets';
 import UiButton from '@/ui/UiButton.vue';
 
 defineProps({
+    routeName: {
+        type: String,
+        required: true,
+    },
     patientResult: {
         type: Object,
         default: () => ({
@@ -34,7 +38,7 @@ defineProps({
                 is-white
                 icon="pi pi-angle-left header__button"
                 class="result__button"
-                @click="$router.back"
+                @click="$router.push({ name: routeName })"
             >
                 Назад
             </ui-button>

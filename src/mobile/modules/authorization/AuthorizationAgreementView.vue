@@ -4,6 +4,6 @@ import Agreement from './components/Agreement.vue';
 </script>
 
 <template>
-    <Header />
+    <Header :route-name="'choose-survey-type'" />
     <agreement />
 </template>

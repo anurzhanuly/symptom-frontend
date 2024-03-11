@@ -1,5 +1,14 @@
 <script lang="ts" setup>
+import router from '@/mobile/router';
 import UiButton from '@/ui/UiButton.vue';
+
+localStorage.removeItem('surveyFlow');
+localStorage.removeItem('doctorId');
+
+function chooseDoctorFlow() {
+    localStorage.setItem('surveyFlow', 'doctor');
+    router.push({ name: 'choose-survey-type' });
+}
 </script>
 
 <template>
@@ -10,7 +19,7 @@ import UiButton from '@/ui/UiButton.vue';
             is-full
             is-blue
             class="buttons__item"
-            @click="$router.push({ name: 'agreement' })"
+            @click="$router.push({ name: 'choose-survey-type' })"
         >
             Без регистрации
         </ui-button>
@@ -19,7 +28,7 @@ import UiButton from '@/ui/UiButton.vue';
             is-full
             is-white
             class="buttons__item"
-            @click="$router.push({ name: 'client-test-auth' })"
+            @click="chooseDoctorFlow"
         >
             Для врача
         </ui-button>
