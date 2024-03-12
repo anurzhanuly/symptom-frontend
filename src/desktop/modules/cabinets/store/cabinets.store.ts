@@ -1,3 +1,5 @@
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import {
     getClientConsultations,
     getDoctorConsultations,
@@ -12,10 +14,9 @@ import type {
     DiseaseData,
 } from '../types/cabinets';
 import type { DataTableFilterMeta } from 'primevue/datatable';
-import { useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 import { error, warn } from '@/utils/toast';
-import { ref } from 'vue';
+import { DOCTOR_ID, PATIENT_ID } from '@/utils/localStorageKeys';
 
 export const useCabinetsStore = defineStore('cabinet', () => {
     const myConsultation = ref<Consultation[]>([]);
@@ -40,7 +41,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
 
         if (res) {
             myConsultation.value = res.data.included ?? [];
-            localStorage.setItem('doctorId', res.data.data.id);
+            localStorage.setItem(DOCTOR_ID, res.data.data.id);
         } else {
             error('Ошибка', 'Попробуйте снова');
             router.push('/doctor-sign-in');
@@ -52,7 +53,7 @@ export const useCabinetsStore = defineStore('cabinet', () => {
 
         if (res) {
             myConsultation.value = res.data.included ?? [];
-            localStorage.setItem('patientId', res.data.data.id);
+            localStorage.setItem(PATIENT_ID, res.data.data.id);
         } else {
             error('Ошибка', 'Попробуйте снова');
             router.push('/client-sign-in');

@@ -10,6 +10,7 @@ import { useAuthorizationStore } from '@desktop/modules/authorization/store/auth
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 import { warn } from '@/utils/toast';
 import { getParameterByKey } from '@/utils/url';
+import { DOCTOR_ID } from '@/utils/localStorageKeys';
 
 import InputText from 'primevue/inputtext';
 import Dropdown from 'primevue/dropdown';
@@ -116,7 +117,7 @@ const validateRegisterForm = (): boolean => {
         doctor: doctorId.value,
     };
 
-    localStorage.setItem('doctorId', doctorId.value);
+    localStorage.setItem(DOCTOR_ID, doctorId.value);
 
     return true;
 };

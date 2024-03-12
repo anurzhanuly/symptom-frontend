@@ -112,9 +112,7 @@ async function onSurveyComplete(sender: {
         doctorID: doctorId,
     };
     try {
-        const surveyResult = await surveyStore.postAnswersDataChatGPT(
-            surveyAnswers
-        );
+        const surveyResult = await surveyStore.postAnswersData(surveyAnswers);
 
         localStorage.setItem('surveyResult', JSON.stringify(surveyResult));
 

@@ -1,7 +1,8 @@
-import type { Recommendation } from '../types/recommendations';
-import type { AxiosResponse } from 'axios';
-import { useSymptomApi } from '@desktop/services/api';
 import type { UnwrapRef } from 'vue';
+import type { AxiosResponse } from 'axios';
+import type { Recommendation } from '../types/recommendations';
+import { useSymptomApi } from '@desktop/services/api';
+import { ADMIN_TOKEN } from '@/utils/localStorageKeys';
 
 export async function getQuestionsJson(): Promise<AxiosResponse | null> {
     try {
@@ -18,7 +19,9 @@ export async function getRecommendations(): Promise<AxiosResponse | null> {
             '/admin/recommendations/',
             {
                 headers: {
-                    'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                    'auth-token': JSON.parse(
+                        localStorage.getItem(ADMIN_TOKEN)!
+                    ),
                 },
             }
         );
@@ -54,7 +57,7 @@ export async function getRecommendationDetailData(
     try {
         return await useSymptomApi.get<any>(`/admin/recommendations/${id}`, {
             headers: {
-                'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                'auth-token': JSON.parse(localStorage.getItem(ADMIN_TOKEN)!),
             },
         });
     } catch (error) {
@@ -72,7 +75,9 @@ export async function deleteRecommendation(
             {},
             {
                 headers: {
-                    'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                    'auth-token': JSON.parse(
+                        localStorage.getItem(ADMIN_TOKEN)!
+                    ),
                 },
             }
         );
@@ -97,7 +102,9 @@ export async function createRecommendation(
             },
             {
                 headers: {
-                    'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                    'auth-token': JSON.parse(
+                        localStorage.getItem(ADMIN_TOKEN)!
+                    ),
                 },
             }
         );
@@ -125,7 +132,9 @@ export async function updateRecommendation(
             },
             {
                 headers: {
-                    'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                    'auth-token': JSON.parse(
+                        localStorage.getItem(ADMIN_TOKEN)!
+                    ),
                 },
             }
         );

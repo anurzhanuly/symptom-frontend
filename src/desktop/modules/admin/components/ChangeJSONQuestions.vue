@@ -14,6 +14,7 @@ import PButton from 'primevue/button';
 import TabMenu from 'primevue/tabmenu';
 import BaseHeader from '@/desktop/components/BaseHeader.vue';
 import { tabRoutes } from '@desktop/modules/admin/config';
+import { DISEASE_ID, ADMIN_TOKEN } from '@/utils/localStorageKeys';
 
 const surveyStr = ref('');
 const adminPages = ref(tabRoutes);
@@ -45,7 +46,7 @@ async function changeSurveyQuestions(): Promise<void> {
         content: { pages: questionsJson },
     };
 
-    const diseaseId = localStorage.getItem('diseaseId');
+    const diseaseId = localStorage.getItem(DISEASE_ID);
 
     if (diseaseId) {
         await changeDiseaseQuestionsJson(questions, diseaseId);
@@ -75,7 +76,9 @@ async function changeDiseaseQuestionsJson(
             questions,
             {
                 headers: {
-                    'auth-token': JSON.parse(localStorage.getItem('admToken')!),
+                    'auth-token': JSON.parse(
+                        localStorage.getItem(ADMIN_TOKEN)!
+                    ),
                 },
             }
         );

@@ -2,6 +2,7 @@
 import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { validateLogin } from '@/utils/validation';
+import { ADMIN_TOKEN } from '@/utils/localStorageKeys';
 
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
@@ -20,7 +21,7 @@ async function checkAdmin() {
 
         if (res) {
             localStorage.setItem(
-                'admToken',
+                ADMIN_TOKEN,
                 JSON.stringify(res.data.data.token)
             );
 

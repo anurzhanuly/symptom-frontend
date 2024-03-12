@@ -2,12 +2,13 @@
 import Authorization from '@/desktop/modules/authorization/components/Authorization.vue';
 import router from '@/desktop/router';
 import UiButton from '@/ui/UiButton.vue';
+import { DOCTOR_ID, SURVEY_FLOW } from '@/utils/localStorageKeys';
 
-localStorage.removeItem('surveyFlow');
-localStorage.removeItem('doctorId');
+localStorage.removeItem(SURVEY_FLOW);
+localStorage.removeItem(DOCTOR_ID);
 
 function chooseDoctorFlow() {
-    localStorage.setItem('surveyFlow', 'doctor');
+    localStorage.setItem(SURVEY_FLOW, 'doctor');
     router.push({ name: 'choose-survey-type' });
 }
 </script>

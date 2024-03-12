@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
+import { SURVEY_RESULT, PATIENT_ID } from '@/utils/localStorageKeys';
 
 import ProgressBar from 'primevue/progressbar';
 import Panel from 'primevue/panel';
@@ -29,10 +30,10 @@ const surveyStore = useSurveyStore();
 const { isLoading } = storeToRefs(surveyStore);
 const { recommendationsChatGPT } = storeToRefs(surveyStore);
 
-const surveyResult = JSON.parse(localStorage.getItem('surveyResult') as string);
+const surveyResult = JSON.parse(localStorage.getItem(SURVEY_RESULT) as string);
 
 const patientIdFromLocalStorage = computed(() =>
-    localStorage.getItem('patientId')
+    localStorage.getItem(PATIENT_ID)
 );
 
 const test = [

@@ -5,6 +5,13 @@ import { useRouter } from 'vue-router';
 import 'survey-core/defaultV2.min.css';
 import 'survey-core/survey.i18n';
 import { Model } from 'survey-core';
+import {
+    DISEASE_ID,
+    SURVEY_CURRENT_ANSWERS,
+    SURVEY_RESULT,
+    DOCTOR_ID,
+    PATIENT_ID,
+} from '@/utils/localStorageKeys';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 import ProgressBar from 'primevue/progressbar';
 import UiLoader from '@/ui/UiLoader.vue';
@@ -12,14 +19,13 @@ import UiButton from '@/ui/UiButton.vue';
 
 const router = useRouter();
 const surveyStore = useSurveyStore();
-const diseaseId = localStorage.getItem('diseaseId');
+const diseaseId = localStorage.getItem(DISEASE_ID);
 
-const STORAGE_ITEM_KEY = 'my-survey';
 const { isLoading } = storeToRefs(surveyStore);
 const progress = ref(0);
 const progressLastValue = ref(0);
 const isOfferTestVisible = ref(
-    Boolean(window.localStorage.getItem(STORAGE_ITEM_KEY))
+    Boolean(window.localStorage.getItem(SURVEY_CURRENT_ANSWERS))
 );
 
 const surveyJson = computed(() => surveyStore.questions);
@@ -28,7 +34,7 @@ const survey = ref();
 
 function createNewSurvey(surveyJsonData: any) {
     const newSurvey = new Model(surveyJsonData);
-    const prevAnswersData = window.localStorage.getItem(STORAGE_ITEM_KEY);
+    const prevAnswersData = window.localStorage.getItem(SURVEY_CURRENT_ANSWERS);
     newSurvey.locale = 'ru';
 
     if (prevAnswersData) {
@@ -43,7 +49,7 @@ function createNewSurvey(surveyJsonData: any) {
         }
     }
 
-    window.localStorage.removeItem('surveyAnswers');
+    window.localStorage.removeItem(SURVEY_RESULT);
 
     survey.value = newSurvey;
     initSurveyHandler();
@@ -56,7 +62,7 @@ function saveSurveyData(survey: any) {
     data.progress = progress.value;
     data.previosProgress = progressLastValue.value;
 
-    window.localStorage.setItem(STORAGE_ITEM_KEY, JSON.stringify(data));
+    window.localStorage.setItem(SURVEY_CURRENT_ANSWERS, JSON.stringify(data));
 }
 
 function initSurveyHandler() {
@@ -71,7 +77,7 @@ async function onSurveyComplete(sender: {
     data: Record<string, string[]>;
 }): Promise<void> {
     const newData: Record<string, string[]> = {};
-    const doctorId = +(localStorage.getItem('doctorId') ?? 0);
+    const doctorId = +(localStorage.getItem(DOCTOR_ID) ?? 0);
 
     for (const key in sender.data) {
         if (Array.isArray(sender.data[key])) {
@@ -106,11 +112,11 @@ async function onSurveyComplete(sender: {
     progress.value = 0;
     progressLastValue.value = 0;
 
-    window.localStorage.removeItem(STORAGE_ITEM_KEY);
+    window.localStorage.removeItem(SURVEY_CURRENT_ANSWERS);
 
     const surveyAnswers = {
         answers: newData,
-        patientID: +(localStorage.getItem('patientId') ?? 0),
+        patientID: +(localStorage.getItem(PATIENT_ID) ?? 0),
         doctorID: doctorId,
     };
     try {
@@ -125,7 +131,7 @@ async function onSurveyComplete(sender: {
             surveyResult = await surveyStore.postAnswersData(surveyAnswers);
         }
 
-        localStorage.setItem('surveyResult', JSON.stringify(surveyResult));
+        localStorage.setItem(SURVEY_RESULT, JSON.stringify(surveyResult));
 
         router.push({
             path: '/result-recommendation',
@@ -155,8 +161,8 @@ function startNewTest() {
     progress.value = 0;
     progressLastValue.value = 0;
 
-    localStorage.removeItem(STORAGE_ITEM_KEY);
-    window.localStorage.removeItem('surveyAnswers');
+    localStorage.removeItem(SURVEY_CURRENT_ANSWERS);
+    window.localStorage.removeItem(SURVEY_RESULT);
 
     createNewSurvey(surveyJson.value);
 
