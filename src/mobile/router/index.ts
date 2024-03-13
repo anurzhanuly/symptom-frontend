@@ -140,15 +140,27 @@ const router = createRouter({
         },
         {
             path: '/client-cabinet',
-            name: '/client-cabinet',
+            name: 'client-cabinet',
             component: (): Component =>
                 import('@mobile/modules/cabinets/ClientCabinetMain.vue'),
         },
         {
+            path: '/client-cabinet-diseases',
+            name: 'client-cabinet-diseases',
+            component: (): Component =>
+                import('@mobile/modules/cabinets/ClientCabinetDiseases.vue'),
+        },
+        {
             path: '/client-cabinet-result',
-            name: '/client-cabinet-result',
+            name: 'client-cabinet-result',
             component: (): Component =>
                 import('@mobile/modules/cabinets/CabinetResult.vue'),
+        },
+        {
+            path: '/client-cabinet-result-disease',
+            name: 'client-cabinet-result-disease',
+            component: (): Component =>
+                import('@mobile/modules/cabinets/CabinetResultDisease.vue'),
         },
         {
             path: '/survey-flow-wv',
