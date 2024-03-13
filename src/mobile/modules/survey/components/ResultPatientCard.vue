@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { computed, onMounted } from 'vue';
-import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { useSurveyStore } from '../store/survey.store';
+import { SURVEY_RESULT, PATIENT_ID } from '@/utils/localStorageKeys';
 
 import Panel from 'primevue/panel';
 import PButton from 'primevue/button';
@@ -13,7 +13,7 @@ import BaseHeader from '@/mobile/components/BaseHeader.vue';
 const router = useRouter();
 const surveyStore = useSurveyStore();
 
-const surveyResult = JSON.parse(localStorage.getItem('surveyResult') as string);
+const surveyResult = JSON.parse(localStorage.getItem(SURVEY_RESULT) as string);
 
 const SURVEY_PAGES = [
     {
@@ -29,7 +29,7 @@ const SURVEY_PAGES = [
 ];
 
 const patientIdFromLocalStorage = computed(() =>
-    localStorage.getItem('patientId')
+    localStorage.getItem(PATIENT_ID)
 );
 const test = {
     'Общая информация': {

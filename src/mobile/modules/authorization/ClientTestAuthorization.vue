@@ -10,6 +10,7 @@ import { useAuthorizationStore } from '@mobile/modules/authorization/store/autho
 import { useSurveyStore } from '@mobile/modules/survey/store/survey.store';
 import { warn } from '@/utils/toast';
 import { getParameterByKey } from '@/utils/url';
+import { DOCTOR_ID } from '@/utils/localStorageKeys';
 
 import InputText from 'primevue/inputtext';
 import Dropdown from 'primevue/dropdown';
@@ -22,7 +23,7 @@ const clinicStore = useClinicsStore();
 const authorizationStore = useAuthorizationStore();
 const surveyStore = useSurveyStore();
 
-const { isLoading, questions } = storeToRefs(surveyStore);
+const { questions } = storeToRefs(surveyStore);
 const { clinics } = storeToRefs(clinicStore);
 const { doctors } = storeToRefs(authorizationStore);
 
@@ -116,7 +117,7 @@ const validateRegisterForm = (): boolean => {
         doctor: doctorId.value,
     };
 
-    localStorage.setItem('doctorId', doctorId.value);
+    localStorage.setItem(DOCTOR_ID, doctorId.value);
 
     return true;
 };
