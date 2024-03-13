@@ -8,6 +8,11 @@ import type { ClientRegistration, Doctors } from '../types/authorization';
 import { useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
+import {
+    DOCTOR_TOKEN,
+    CLIENT_TOKEN,
+    DATE_OF_TOKEN,
+} from '@/utils/localStorageKeys';
 
 export const useAuthorizationStore = defineStore('authorization', () => {
     const router = useRouter();
@@ -21,7 +26,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         const res = await postLogin(login, password);
         if (res) {
             localStorage.setItem(
-                'doctorToken',
+                DOCTOR_TOKEN,
                 JSON.stringify(res.data.data.token)
             );
             router.push('/doctor-cabinet');
@@ -38,10 +43,10 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         const dateOfToken = Date.now().toString();
         if (res) {
             localStorage.setItem(
-                'clientToken',
+                CLIENT_TOKEN,
                 JSON.stringify(res.data.data.token)
             );
-            localStorage.setItem('tokenDate', dateOfToken);
+            localStorage.setItem(DATE_OF_TOKEN, dateOfToken);
 
             router.push('/client-cabinet');
         } else {

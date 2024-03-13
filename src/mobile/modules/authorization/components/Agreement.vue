@@ -3,18 +3,23 @@ import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useSurveyStore } from '@mobile/modules/survey/store/survey.store';
 import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
+import { DISEASE_ID } from '@/utils/localStorageKeys';
 
 import UiButton from '@/ui/UiButton.vue';
 import Sidebar from 'primevue/sidebar';
 
 const surveyStore = useSurveyStore();
-const { isLoading, questions } = storeToRefs(surveyStore);
+const { isLoading } = storeToRefs(surveyStore);
 
 const termsOfUse = ref(false);
 const privacyPolicy = ref(false);
 
 onMounted(() => {
-    if (!questions.value) {
+    const diseaseId = localStorage.getItem(DISEASE_ID);
+
+    if (diseaseId) {
+        surveyStore.getQuestionsData(diseaseId);
+    } else {
         surveyStore.getQuestionsData();
     }
 });

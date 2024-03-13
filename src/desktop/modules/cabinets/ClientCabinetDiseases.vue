@@ -12,6 +12,11 @@ import PButton from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import TabMenu from 'primevue/tabmenu';
+import {
+    PATIENT_ID,
+    DOCTOR_ID,
+    CABINET_RESULT_ID,
+} from '@/utils/localStorageKeys';
 import BaseHeader from '@desktop/components/BaseHeader.vue';
 import { tabRoutes } from '@desktop/modules/cabinets/config';
 
@@ -29,12 +34,12 @@ onMounted(async () => {
 
     if (
         sessionStorage.getItem('saveRec') &&
-        +(localStorage.getItem('patientId') ?? 0) //TODO переделать
+        +(localStorage.getItem(PATIENT_ID) ?? 0) //TODO переделать
     ) {
-        await surveyStore.postAnswersDataChatGPT({
+        await surveyStore.postAnswersData({
             answers: resultAnswersChatGPT.value,
-            patientID: +(localStorage.getItem('patientId') ?? 0),
-            doctorID: +(localStorage.getItem('doctorId') ?? 0),
+            patientID: +(localStorage.getItem(PATIENT_ID) ?? 0),
+            doctorID: +(localStorage.getItem(DOCTOR_ID) ?? 0),
         });
 
         await cabinetsStore.getClientDiseasesConsultationsData();
@@ -48,7 +53,7 @@ function checkResult(id: string) {
         warn('Не найдено', 'Результаты не найдены');
     }
 
-    localStorage.setItem('clientCabinetResultId', id);
+    localStorage.setItem(CABINET_RESULT_ID, id);
     router.push(`client-cabinet-result-disease`);
 }
 </script>

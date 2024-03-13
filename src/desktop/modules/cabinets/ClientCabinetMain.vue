@@ -4,6 +4,11 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
 import { warn } from '@/utils/toast';
+import {
+    PATIENT_ID,
+    DOCTOR_ID,
+    CABINET_RESULT_ID,
+} from '@/utils/localStorageKeys';
 import { useCabinetsStore } from './store/cabinets.store';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 
@@ -28,12 +33,12 @@ onMounted(async () => {
 
     if (
         sessionStorage.getItem('saveRec') &&
-        +(localStorage.getItem('patientId') ?? 0) //TODO переделать
+        +(localStorage.getItem(PATIENT_ID) ?? 0) //TODO переделать
     ) {
-        await surveyStore.postAnswersDataChatGPT({
+        await surveyStore.postAnswersData({
             answers: resultAnswersChatGPT.value,
-            patientID: +(localStorage.getItem('patientId') ?? 0),
-            doctorID: +(localStorage.getItem('doctorId') ?? 0),
+            patientID: +(localStorage.getItem(PATIENT_ID) ?? 0),
+            doctorID: +(localStorage.getItem(DOCTOR_ID) ?? 0),
         });
 
         await cabinetsStore.getClientConsultationsData();
@@ -47,7 +52,7 @@ function checkResult(id: string) {
         warn('Не найдено', 'Результаты не найдены');
     }
 
-    localStorage.setItem('clientCabinetResultId', id);
+    localStorage.setItem(CABINET_RESULT_ID, id);
     router.push(`client-cabinet-result`);
 }
 </script>

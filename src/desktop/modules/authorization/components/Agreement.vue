@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import Authorization from '../components/Authorization.vue';
 import { PRIVACY_POLICY, TERMS_OF_USE } from '@/utils/agreement';
+import { DISEASE_ID } from '@/utils/localStorageKeys';
 import { useSurveyStore } from '@desktop/modules/survey/store/survey.store';
 
 import UiButton from '@/ui/UiButton.vue';
@@ -16,7 +17,7 @@ const privacyPolicy = ref(false);
 const { isLoading } = storeToRefs(surveyStore);
 
 onMounted(() => {
-    const diseaseId = localStorage.getItem('diseaseId');
+    const diseaseId = localStorage.getItem(DISEASE_ID);
 
     if (diseaseId) {
         surveyStore.getQuestionsData(diseaseId);

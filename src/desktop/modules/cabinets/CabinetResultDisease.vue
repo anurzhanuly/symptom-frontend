@@ -3,6 +3,7 @@ import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useCabinetsStore } from './store/cabinets.store';
 import BaseResultCard from './components/BaseResultCard.vue';
+import { CABINET_RESULT_ID } from '@/utils/localStorageKeys';
 
 import UiLoader from '@/ui/UiLoader.vue';
 
@@ -12,7 +13,7 @@ const { patientResult, patientCard, recommendations, isLoading } =
     storeToRefs(cabinetsStore);
 
 onMounted(async () => {
-    const clientCabinetResultId = localStorage.getItem('clientCabinetResultId');
+    const clientCabinetResultId = localStorage.getItem(CABINET_RESULT_ID);
 
     if (clientCabinetResultId) {
         await cabinetsStore.getDiseaseResultData(clientCabinetResultId);

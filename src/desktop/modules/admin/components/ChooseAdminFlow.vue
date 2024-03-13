@@ -7,13 +7,14 @@ import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 
 import UiButton from '@/ui/UiButton.vue';
 import { warn } from '@/utils/toast';
+import { DISEASE_ID } from '@/utils/localStorageKeys';
 import Dropdown from 'primevue/dropdown';
 
 const adminStore = useAdminStore();
 const router = useRouter();
 
 onMounted(() => {
-    localStorage.removeItem('diseaseId');
+    localStorage.removeItem(DISEASE_ID);
 
     if (!adminStore.allDiseases.length) {
         adminStore.getDiseasesData();
@@ -29,7 +30,7 @@ function goToAdmin() {
         return false;
     }
 
-    localStorage.setItem('diseaseId', diseaseId.value);
+    localStorage.setItem(DISEASE_ID, diseaseId.value);
     router.push({ name: 'admin-quest' });
 }
 </script>
