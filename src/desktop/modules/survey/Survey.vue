@@ -25,7 +25,7 @@ const { isLoading } = storeToRefs(surveyStore);
 const progress = ref(0);
 const progressLastValue = ref(0);
 const isOfferTestVisible = ref(
-    Boolean(window.localStorage.getItem(SURVEY_CURRENT_ANSWERS))
+    Boolean(localStorage.getItem(SURVEY_CURRENT_ANSWERS))
 );
 
 const surveyJson = computed(() => surveyStore.questions);
@@ -34,7 +34,7 @@ const survey = ref();
 
 function createNewSurvey(surveyJsonData: any) {
     const newSurvey = new Model(surveyJsonData);
-    const prevAnswersData = window.localStorage.getItem(SURVEY_CURRENT_ANSWERS);
+    const prevAnswersData = localStorage.getItem(SURVEY_CURRENT_ANSWERS);
     newSurvey.locale = 'ru';
 
     if (prevAnswersData) {
@@ -49,7 +49,7 @@ function createNewSurvey(surveyJsonData: any) {
         }
     }
 
-    window.localStorage.removeItem(SURVEY_RESULT);
+    localStorage.removeItem(SURVEY_RESULT);
 
     survey.value = newSurvey;
     initSurveyHandler();
@@ -62,7 +62,7 @@ function saveSurveyData(survey: any) {
     data.progress = progress.value;
     data.previosProgress = progressLastValue.value;
 
-    window.localStorage.setItem(SURVEY_CURRENT_ANSWERS, JSON.stringify(data));
+    localStorage.setItem(SURVEY_CURRENT_ANSWERS, JSON.stringify(data));
 }
 
 function initSurveyHandler() {
@@ -112,7 +112,7 @@ async function onSurveyComplete(sender: {
     progress.value = 0;
     progressLastValue.value = 0;
 
-    window.localStorage.removeItem(SURVEY_CURRENT_ANSWERS);
+    localStorage.removeItem(SURVEY_CURRENT_ANSWERS);
 
     const surveyAnswers = {
         answers: newData,
@@ -162,7 +162,7 @@ function startNewTest() {
     progressLastValue.value = 0;
 
     localStorage.removeItem(SURVEY_CURRENT_ANSWERS);
-    window.localStorage.removeItem(SURVEY_RESULT);
+    localStorage.removeItem(SURVEY_RESULT);
 
     createNewSurvey(surveyJson.value);
 
