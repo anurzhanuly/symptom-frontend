@@ -3,8 +3,13 @@ import {
     postLogin,
     getClinicDoctors,
     getDoctors,
+    getDiseases,
 } from '../services/authorization.refbooks';
-import type { ClientRegistration, Doctors } from '../types/authorization';
+import type {
+    ClientRegistration,
+    Doctors,
+    Recommendation,
+} from '../types/authorization';
 import { useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
@@ -13,6 +18,7 @@ export const useAuthorizationStore = defineStore('authorization', () => {
     const router = useRouter();
     const isWrong = ref(false);
     const doctors = ref<{ id: string; name: string }[]>([]);
+    const allDiseases = ref<Recommendation[]>([]);
 
     async function postLoginDoctor(
         login: string,
@@ -88,13 +94,23 @@ export const useAuthorizationStore = defineStore('authorization', () => {
         }
     }
 
+    async function getDiseasesData(): Promise<void> {
+        const res = await getDiseases();
+
+        if (res) {
+            allDiseases.value = res.data.data;
+        }
+    }
+
     return {
         isWrong,
+        allDiseases,
         postLoginDoctor,
         postLoginClient,
         clientRegistrationData,
         getClinicDoctorsData,
         getDoctorsData,
+        getDiseasesData,
         doctors,
     };
 });

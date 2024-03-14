@@ -3,25 +3,25 @@ import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
-import { useAdminStore } from '@mobile/modules/admin/stores/admin.store';
+import { useAuthorizationStore } from '@mobile/modules/authorization/store/authorization.store';
 
 import Header from './components/Header.vue';
 import UiButton from '@/ui/UiButton.vue';
 import { warn } from '@/utils/toast';
 import Dropdown from 'primevue/dropdown';
 
-const adminStore = useAdminStore();
+const authorizationStore = useAuthorizationStore();
 const router = useRouter();
 
 onMounted(() => {
     localStorage.removeItem('diseaseId');
 
-    if (!adminStore.allDiseases.length) {
-        adminStore.getDiseasesData();
+    if (!authorizationStore.allDiseases.length) {
+        authorizationStore.getDiseasesData();
     }
 });
 
-const { allDiseases } = storeToRefs(adminStore);
+const { allDiseases } = storeToRefs(authorizationStore);
 const diseaseId = ref('');
 
 function chooseSurveyFlow() {
