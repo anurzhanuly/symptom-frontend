@@ -4,21 +4,21 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
 import { warn } from '@/utils/toast';
-import {
-    PATIENT_ID,
-    DOCTOR_ID,
-    CABINET_RESULT_ID,
-} from '@/utils/localStorageKeys';
-import { tabRoutes } from '@mobile/modules/cabinets/config';
 import { useCabinetsStore } from './store/cabinets.store';
 import { useSurveyStore } from '@mobile/modules/survey/store/survey.store';
 
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
 import DataTable from 'primevue/datatable';
-import TabMenu from 'primevue/tabmenu';
 import Column from 'primevue/column';
+import TabMenu from 'primevue/tabmenu';
+import {
+    PATIENT_ID,
+    DOCTOR_ID,
+    CABINET_RESULT_ID,
+} from '@/utils/localStorageKeys';
 import BaseHeader from '@mobile/components/BaseHeader.vue';
+import { tabRoutes } from '@mobile/modules/cabinets/config';
 
 const cabinetsStore = useCabinetsStore();
 const surveyStore = useSurveyStore();
@@ -26,10 +26,11 @@ const cabinetPages = ref(tabRoutes);
 
 const router = useRouter();
 const { resultAnswersChatGPT } = storeToRefs(surveyStore);
-const { myConsultation, searchString, filters } = storeToRefs(cabinetsStore);
+const { diseaseConsultation, searchString, filters } =
+    storeToRefs(cabinetsStore);
 
 onMounted(async () => {
-    await cabinetsStore.getClientConsultationsData();
+    await cabinetsStore.getClientDiseasesConsultationsData();
 
     if (
         sessionStorage.getItem('saveRec') &&
@@ -41,19 +42,19 @@ onMounted(async () => {
             doctorID: +(localStorage.getItem(DOCTOR_ID) ?? 0),
         });
 
-        await cabinetsStore.getClientConsultationsData();
+        await cabinetsStore.getClientDiseasesConsultationsData();
     }
 });
 
 function checkResult(id: string) {
-    const result = cabinetsStore.getClientResultData(id);
+    const result = cabinetsStore.getDiseaseResultData(id);
 
     if (!result) {
         warn('Не найдено', 'Результаты не найдены');
     }
 
     localStorage.setItem(CABINET_RESULT_ID, id);
-    router.push(`/client-cabinet-result`);
+    router.push(`client-cabinet-result-disease`);
 }
 </script>
 
@@ -70,7 +71,7 @@ function checkResult(id: string) {
             reorderable-columns
             selection-mode="single"
             striped-rows
-            :value="myConsultation"
+            :value="diseaseConsultation"
         >
             <template #header>
                 <div class="request-table-header">

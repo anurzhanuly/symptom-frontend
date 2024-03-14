@@ -16,7 +16,7 @@ onMounted(async () => {
     const clientCabinetResultId = localStorage.getItem(CABINET_RESULT_ID);
 
     if (clientCabinetResultId) {
-        await cabinetsStore.getClientResultData(clientCabinetResultId);
+        await cabinetsStore.getDiseaseResultData(clientCabinetResultId);
     }
 });
 </script>
@@ -25,7 +25,7 @@ onMounted(async () => {
     <ui-loader v-if="isLoading" />
     <base-result-card
         v-else
-        :route-name="'client-cabinet'"
+        :route-name="'client-cabinet-diseases'"
         :patient-result="patientResult"
         :patient-card="patientCard"
         :recommendations="recommendations"
