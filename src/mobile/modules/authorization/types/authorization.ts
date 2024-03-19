@@ -1,7 +1,7 @@
 import type {
     Attributes,
     Relationships,
-} from '@mobile/modules/admin/types/clinics';
+} from '@desktop/modules/admin/types/clinics';
 
 export interface ClientRegistration {
     email: string;
@@ -18,4 +18,10 @@ export interface Doctors {
     id: string;
     attributes: Attributes;
     relationships?: Relationships;
+}
+
+export interface Recommendation {
+    type: string;
+    id: string;
+    attributes: Attributes;
 }

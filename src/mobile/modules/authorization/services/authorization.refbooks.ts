@@ -1,4 +1,7 @@
-import type { ClientRegistration } from '../types/authorization';
+import type {
+    ClientRegistration,
+    Recommendation,
+} from '../types/authorization';
 import type { AxiosResponse } from 'axios';
 import { useSymptomApi } from '@mobile/services/api';
 
@@ -50,6 +53,15 @@ export async function getClinicDoctors(
 export async function getDoctors(): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.get('/doctors');
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export async function getDiseases(): Promise<AxiosResponse | null> {
+    try {
+        return await useSymptomApi.get<Recommendation[]>('/diseases/');
     } catch (error) {
         console.error(error);
         return null;

@@ -78,49 +78,6 @@ const router = createRouter({
                 import('@mobile/modules/survey/Survey.vue'),
         },
         {
-            path: '/admin',
-            name: 'admin',
-            component: (): Component =>
-                import('@mobile/modules/admin/AdminView.vue'),
-            children: [
-                {
-                    path: 'quest',
-                    component: (): Component =>
-                        import(
-                            '@mobile/modules/admin/components/ChangeJSONQuestions.vue'
-                        ),
-                },
-                {
-                    path: 'cond',
-                    component: (): Component =>
-                        import(
-                            '@mobile/modules/admin/components/ChangeConditions.vue'
-                        ),
-                },
-                {
-                    path: 'recom',
-                    component: (): Component =>
-                        import(
-                            '@mobile/modules/admin/components/ChangeRecommendations.vue'
-                        ),
-                },
-                {
-                    path: 'magic',
-                    component: (): Component =>
-                        import(
-                            '@mobile/modules/admin/components/ChangeName.vue'
-                        ),
-                },
-                {
-                    path: 'clinics',
-                    component: (): Component =>
-                        import(
-                            '@mobile/modules/admin/components/ClinicsLists.vue'
-                        ),
-                },
-            ],
-        },
-        {
             path: '/doctor-cabinet',
             name: 'doctor-cabinet',
             component: (): Component =>

@@ -1,37 +1,17 @@
 <script lang="ts" setup>
-import AdminLogin from '../popup/AdminLogin.vue';
-import { useDialog } from 'primevue/usedialog';
 import { useHomeStore } from '../store/home.store';
 import { storeToRefs } from 'pinia';
 import { scrollToElement } from '@/utils/scroll';
 
-const dialog = useDialog();
 const homeStore = useHomeStore();
 
 const { links } = storeToRefs(homeStore);
-
-function openAdminLoginPopup(): void {
-    dialog.open(AdminLogin, {
-        props: {
-            header: 'Введите логин и пароль',
-            style: {
-                width: '90%',
-            },
-            modal: true,
-        },
-    });
-}
 </script>
 
 <template>
     <footer class="footer">
         <div class="footer__wrapper">
-            <h2
-                class="footer__title"
-                @click="openAdminLoginPopup"
-            >
-                Symptom
-            </h2>
+            <h2 class="footer__title">Symptom</h2>
             <div class="footer__links-container">
                 <a
                     v-for="(link, index) in links"
