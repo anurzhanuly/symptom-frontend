@@ -5,7 +5,7 @@ import { storeToRefs } from 'pinia';
 import { useGtag } from 'vue-gtag-next';
 
 import Authorization from './components/Authorization.vue';
-import { useClinicsStore } from '@mobile/modules/admin/stores/clinics.store';
+import { useClinicsStore } from '@desktop/modules/admin/stores/clinics.store';
 import { useAuthorizationStore } from '@mobile/modules/authorization/store/authorization.store';
 import { useSurveyStore } from '@mobile/modules/survey/store/survey.store';
 import { warn } from '@/utils/toast';
