@@ -8,13 +8,18 @@ import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import {
     createRecommendation,
+    createDiseaseRecommendation,
     deleteRecommendation,
+    deleteDiseaseRecommendation,
     getDiseases,
     getQuestionsJson,
     getDiseasesQuestionsJson,
     getRecommendationDetailData,
+    getDiseaseRecommendationDetailData,
     getRecommendations,
+    getDiseaseRecommendations,
     updateRecommendation,
+    updateDiseaseRecommendation,
 } from '../services/admin.refbooks';
 import { success } from '@/utils/toast.js';
 import { useDialog } from 'primevue/usedialog';
@@ -94,7 +99,9 @@ export const useAdminStore = defineStore('admin', () => {
             const data = diseaseId
                 ? res.data.data[res.data.data.length - 1]
                 : res.data;
-            const pages = diseaseId ? data.attributes.name.pages : data.pages;
+            const pages = diseaseId
+                ? data.attributes.name.content.pages
+                : data.pages;
             const elements = [];
             const names = [];
             const test = [];
@@ -118,8 +125,14 @@ export const useAdminStore = defineStore('admin', () => {
         }
     }
 
-    async function getRecommendationsData(): Promise<void> {
-        const res = await getRecommendations();
+    async function getRecommendationsData(diseaseId?: string): Promise<void> {
+        let res;
+
+        if (diseaseId) {
+            res = await getDiseaseRecommendations(diseaseId);
+        } else {
+            res = await getRecommendations();
+        }
 
         if (res) {
             allRecommendations.value = res.data.data;
@@ -134,10 +147,22 @@ export const useAdminStore = defineStore('admin', () => {
         }
     }
 
-    async function getRecommendationDetail(Recommendation: any) {
+    async function getRecommendationDetail(
+        Recommendation: any,
+        diseaseId?: string
+    ) {
         if (!Recommendation?.id) return;
 
-        const res = await getRecommendationDetailData(Recommendation?.id);
+        let res;
+
+        if (diseaseId) {
+            res = await getDiseaseRecommendationDetailData(
+                Recommendation?.id,
+                diseaseId
+            );
+        } else {
+            res = await getRecommendationDetailData(Recommendation?.id);
+        }
 
         if (res) {
             tests.value = res.data.data.attributes.tests;
@@ -205,8 +230,17 @@ export const useAdminStore = defineStore('admin', () => {
         success('Удаление условия', 'Условие удалено, не забудьте сохранить');
     }
 
-    async function createRecommendationData(): Promise<void> {
-        const res = await createRecommendation(recomindationNewName.value);
+    async function createRecommendationData(diseaseId?: string): Promise<void> {
+        let res;
+
+        if (diseaseId) {
+            res = await createDiseaseRecommendation(
+                recomindationNewName.value,
+                diseaseId
+            );
+        } else {
+            res = await createRecommendation(recomindationNewName.value);
+        }
 
         if (res) {
             allRecommendations.value.push(res.data.data);
@@ -214,11 +248,21 @@ export const useAdminStore = defineStore('admin', () => {
         }
     }
 
-    async function deleteRecommendationData(): Promise<void> {
+    async function deleteRecommendationData(diseaseId?: string): Promise<void> {
         const foundedObject = allRecommendations.value.find(
             (item) => item.attributes.name === recomindationDeleteName.value
         );
-        const res = await deleteRecommendation(foundedObject?.id);
+        let res;
+
+        if (diseaseId) {
+            res = await deleteDiseaseRecommendation(
+                foundedObject?.id,
+                diseaseId
+            );
+        } else {
+            res = await deleteRecommendation(foundedObject?.id);
+        }
+
         if (res) {
             allRecommendations.value = allRecommendations.value.filter(
                 (item) => item.id !== foundedObject?.id
@@ -230,13 +274,25 @@ export const useAdminStore = defineStore('admin', () => {
         }
     }
 
-    async function updateRecommendationData(): Promise<void> {
-        const res = await updateRecommendation(
-            selectedRecommendation.value?.id,
-            selectedRecommendation.value?.attributes.name,
-            tests.value,
-            conditions.value
-        );
+    async function updateRecommendationData(diseaseId?: string): Promise<void> {
+        let res;
+
+        if (diseaseId) {
+            res = await updateDiseaseRecommendation(
+                selectedRecommendation.value?.id,
+                selectedRecommendation.value?.attributes.name,
+                tests.value,
+                conditions.value,
+                diseaseId
+            );
+        } else {
+            res = await updateRecommendation(
+                selectedRecommendation.value?.id,
+                selectedRecommendation.value?.attributes.name,
+                tests.value,
+                conditions.value
+            );
+        }
 
         if (res) {
             success('Изменения рекоминдации', 'Все изменения сохранены');

@@ -3,6 +3,7 @@ import { ref, watch, onMounted } from 'vue';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { storeToRefs } from 'pinia';
 import { warn } from '@/utils/toast';
+import { DISEASE_ID } from '@/utils/localStorageKeys';
 
 import { useConfirm } from 'primevue/useconfirm';
 import PButton from 'primevue/button';
@@ -21,18 +22,24 @@ const adminPages = ref(tabRoutes);
 const { selectedRecommendation, allRecommendations, tests } =
     storeToRefs(adminStore);
 
-onMounted(() => {
-    if (!adminStore.allRecommendations.length) {
-        adminStore.getRecommendationsData();
-    }
+const diseaseId = localStorage.getItem(DISEASE_ID);
 
-    if (!adminStore.questions.length) {
+onMounted(() => {
+    if (diseaseId) {
+        adminStore.getRecommendationsData(diseaseId);
+        adminStore.getQuestionsData(diseaseId);
+    } else {
+        adminStore.getRecommendationsData();
         adminStore.getQuestionsData();
     }
 });
 
 watch(selectedRecommendation, async (newRecommendation) => {
-    adminStore.getRecommendationDetail(newRecommendation);
+    if (diseaseId) {
+        adminStore.getRecommendationDetail(newRecommendation, diseaseId);
+    } else {
+        adminStore.getRecommendationDetail(newRecommendation);
+    }
 });
 
 function updateTest(): void {
@@ -52,7 +59,11 @@ function updateTest(): void {
         }
     }
 
-    adminStore.updateRecommendationData();
+    if (diseaseId) {
+        adminStore.updateRecommendationData(diseaseId);
+    } else {
+        adminStore.updateRecommendationData();
+    }
 }
 
 function deleteTestConfirm(event: any, key: string): void {

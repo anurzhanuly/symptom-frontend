@@ -2,6 +2,7 @@
 import { computed, ref, onMounted } from 'vue';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { useConfirm } from 'primevue/useconfirm';
+import { DISEASE_ID } from '@/utils/localStorageKeys';
 
 import InputText from 'primevue/inputtext';
 import Dropdown from 'primevue/dropdown';
@@ -18,12 +19,14 @@ const adminPages = ref(tabRoutes);
 const beforeQuestName = ref('');
 const afterQuestName = ref('');
 
-onMounted(() => {
-    if (!adminStore.allRecommendations.length) {
-        adminStore.getRecommendationsData();
-    }
+const diseaseId = localStorage.getItem(DISEASE_ID);
 
-    if (!adminStore.questions.length) {
+onMounted(() => {
+    if (diseaseId) {
+        adminStore.getRecommendationsData(diseaseId);
+        adminStore.getQuestionsData(diseaseId);
+    } else {
+        adminStore.getRecommendationsData();
         adminStore.getQuestionsData();
     }
 });

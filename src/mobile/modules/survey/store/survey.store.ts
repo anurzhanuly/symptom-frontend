@@ -1,8 +1,8 @@
 import {
     getQuestionsJson,
     getDiseasesQuestionsJson,
-} from '@mobile/modules/admin/services/admin.refbooks';
-import type { QuestionsContent } from '@mobile/modules/admin/types/questions';
+} from '@desktop/modules/admin/services/admin.refbooks';
+import type { QuestionsContent } from '@desktop/modules/admin/types/questions';
 import { postAnswers, postAnswersDiseases } from '../services/survey.refbooks';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';

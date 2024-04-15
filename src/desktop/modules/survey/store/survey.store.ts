@@ -34,8 +34,8 @@ export const useSurveyStore = defineStore('survey', () => {
             res = await getDiseasesQuestionsJson(diseaseId);
 
             if (res) {
-                const result = res.data.data[res.data.data.length - 1];
-                questions.value = result.attributes.name.content;
+                const result = res.data.data.attributes;
+                questions.value = result.questionnaire;
             }
         } else {
             res = await getQuestionsJson();
