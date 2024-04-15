@@ -4,8 +4,8 @@ import {
     postAnswersToChatGPT,
 } from '../services/webview.refbooks';
 import type { Doctors } from '../types/webview';
-import { getQuestionsJson } from '@mobile/modules/admin/services/admin.refbooks';
-import type { QuestionsContent } from '@mobile/modules/admin/types/questions';
+import { getQuestionsJson } from '@desktop/modules/admin/services/admin.refbooks';
+import type { QuestionsContent } from '@desktop/modules/admin/types/questions';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from 'axios';

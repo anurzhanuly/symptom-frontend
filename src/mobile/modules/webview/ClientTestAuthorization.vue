@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useGtag } from 'vue-gtag-next';
 
-import { useClinicsStore } from '@mobile/modules/admin/stores/clinics.store';
+import { useClinicsStore } from '@desktop/modules/admin/stores/clinics.store';
 import { useWebviewStore } from '@mobile/modules/webview/store/webview.store';
 import { warn } from '@/utils/toast';
 import { getParameterByKey } from '@/utils/url';

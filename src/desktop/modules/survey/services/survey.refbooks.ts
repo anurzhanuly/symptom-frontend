@@ -28,7 +28,7 @@ export const postAnswersDiseases = async (
 ): Promise<any> => {
     try {
         return await useSymptomApi.post(
-            `/diseases/${id}/answer?key=SymptomAlgaBas`,
+            `/diseases/${id}/recommendations`,
             data
         );
     } catch (error) {

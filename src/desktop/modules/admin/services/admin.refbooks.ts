@@ -36,7 +36,7 @@ export async function getDiseaseRecommendations(
 ): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.get<Recommendation[]>(
-            `/admin/diseases/${id}/recommendations`,
+            `/diseases/${id}/questionnaires/display-options`,
             {
                 headers: {
                     'auth-token': JSON.parse(
@@ -64,7 +64,9 @@ export async function getDiseasesQuestionsJson(
     id: string | undefined
 ): Promise<AxiosResponse | null> {
     try {
-        return await useSymptomApi.get<any>(`/diseases/${id}/questionnaires`);
+        return await useSymptomApi.get<any>(
+            `/diseases/${id}/questionnaires/latest`
+        );
     } catch (error) {
         console.error(error);
         return null;

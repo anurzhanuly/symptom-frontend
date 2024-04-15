@@ -72,7 +72,7 @@ async function changeDiseaseQuestionsJson(
 ): Promise<AxiosError | AxiosResponse> {
     try {
         return await useSymptomApi.post(
-            `/admin/diseases/${id}/questionnaires`,
+            `/diseases/${id}/questionnaires/new`,
             questions,
             {
                 headers: {
