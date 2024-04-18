@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import InputText from 'primevue/inputtext';
 import UiButton from '@/ui/UiButton.vue';
 import { success, warn } from '@/utils/toast';
-import { postNpsRequest } from '@mobile/modules/home/services/home.refbooks';
+import { postNpsRequest } from '@/common/services/home/home';
 
 const name = ref('');
 const workplace = ref('');

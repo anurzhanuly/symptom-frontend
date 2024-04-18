@@ -1,3 +1,5 @@
+import { onMounted, ref } from 'vue';
+import { defineStore } from 'pinia';
 import type {
     City,
     Clinics,
@@ -5,7 +7,7 @@ import type {
     NewClinic,
     NewDoctor,
     Specialization,
-} from '../types/clinics';
+} from '@/common/types/admin/clinics';
 import {
     getCities,
     getClinics,
@@ -15,9 +17,7 @@ import {
     postChangeDoctor,
     postNewClinic,
     postNewDoctor,
-} from '../services/clinics.refbooks';
-import { defineStore } from 'pinia';
-import { onMounted, ref } from 'vue';
+} from '@/common/services/admin/clinics';
 
 export const useClinicsStore = defineStore('clinics', () => {
     const clinics = ref<Clinics[]>([]);

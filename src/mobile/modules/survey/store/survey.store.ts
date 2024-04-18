@@ -1,12 +1,16 @@
+import { ref } from 'vue';
+import axios from 'axios';
+import { defineStore } from 'pinia';
+
+import type { QuestionsContent } from '@/common/types/admin/questions';
 import {
     getQuestionsJson,
     getDiseasesQuestionsJson,
-} from '@desktop/modules/admin/services/admin.refbooks';
-import type { QuestionsContent } from '@desktop/modules/admin/types/questions';
-import { postAnswers, postAnswersDiseases } from '../services/survey.refbooks';
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
-import axios from 'axios';
+} from '@/common/services/admin/admin';
+import {
+    postAnswers,
+    postAnswersDiseases,
+} from '@/common/services/survey/survey';
 
 export const useSurveyStore = defineStore('survey', () => {
     const resultAnswersChatGPT = ref<Record<string, string[]>>({});
@@ -34,8 +38,8 @@ export const useSurveyStore = defineStore('survey', () => {
             res = await getDiseasesQuestionsJson(diseaseId);
 
             if (res) {
-                const result = res.data.data[res.data.data.length - 1];
-                questions.value = result.attributes.name.content;
+                const result = res.data.data.attributes;
+                questions.value = result.questionnaire;
             }
         } else {
             res = await getQuestionsJson();

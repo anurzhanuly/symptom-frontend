@@ -1,18 +1,20 @@
+import { ref } from 'vue';
+import { defineStore } from 'pinia';
+import { useRouter } from 'vue-router';
+
 import {
     clientRegistration,
     postLogin,
     getClinicDoctors,
     getDoctors,
-    getDiseases,
-} from '../services/authorization.refbooks';
+} from '@/common/services/authorization/authorization';
+import { getDiseases } from '@/common/services/admin/admin';
+
 import type {
     ClientRegistration,
     Doctors,
-    Recommendation,
-} from '../types/authorization';
-import { useRouter } from 'vue-router';
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
+} from '@/common/types/authorization/authorization';
+import type { Recommendation } from '@/common/types/admin/recommendations';
 
 export const useAuthorizationStore = defineStore('authorization', () => {
     const router = useRouter();

@@ -1,20 +1,20 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { defineStore } from 'pinia';
+import type { DataTableFilterMeta } from 'primevue/datatable';
 import {
     getClientConsultations,
     getDoctorConsultations,
     getResult,
     getDiseaseResult,
     getClientDiseasesConsultations,
-} from '../services/cabinets.refbooks';
+} from '@/common/services/cabinets/cabinets';
 import type {
     Consultation,
     ConsultationResult,
     PatientAnswers,
     DiseaseData,
-} from '../types/cabinets';
-import type { DataTableFilterMeta } from 'primevue/datatable';
-import { defineStore } from 'pinia';
+} from '@/common/types/cabinets/cabinets';
 import { error, warn } from '@/utils/toast';
 import { DOCTOR_ID, PATIENT_ID } from '@/utils/localStorageKeys';
 

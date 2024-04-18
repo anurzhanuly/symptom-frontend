@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import InputText from 'primevue/inputtext';
-import { postPassword } from '@desktop/modules/cabinets/services/cabinets.refbooks';
+import { postPassword } from '@/common/services/cabinets/cabinets';
 import PButton from 'primevue/button';
 import { success, error } from '@/utils/toast';
 import BaseHeader from '@/desktop/components/BaseHeader.vue';

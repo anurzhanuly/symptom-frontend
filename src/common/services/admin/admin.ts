@@ -1,6 +1,6 @@
 import type { UnwrapRef } from 'vue';
 import type { AxiosResponse } from 'axios';
-import type { Recommendation } from '@/common/types/admin/recommendatios';
+import type { Recommendation } from '@/common/types/admin/recommendations';
 import { useSymptomApi } from '@/common/services/api';
 import { ADMIN_TOKEN } from '@/utils/localStorageKeys';
 

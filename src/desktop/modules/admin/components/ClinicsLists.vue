@@ -4,7 +4,7 @@ import CreateClinic from './popup/CreateClinic.vue';
 import ChangeClinic from './popup/ChangeClinic.vue';
 import CreateDoctor from './popup/CreateDoctor.vue';
 import ChangeDoctor from './popup/ChangeDoctor.vue';
-import type { Clinics, Doctors } from '../types/clinics';
+import type { Clinics, Doctors } from '@/common/types/admin/clinics';
 import { useClinicsStore } from '../stores/clinics.store';
 import { storeToRefs } from 'pinia';
 

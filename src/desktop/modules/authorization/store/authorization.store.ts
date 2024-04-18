@@ -1,13 +1,16 @@
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { defineStore } from 'pinia';
 import {
     clientRegistration,
     postLogin,
     getClinicDoctors,
     getDoctors,
-} from '../services/authorization.refbooks';
-import type { ClientRegistration, Doctors } from '../types/authorization';
-import { useRouter } from 'vue-router';
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
+} from '@/common/services/authorization/authorization';
+import type {
+    ClientRegistration,
+    Doctors,
+} from '@/common/types/authorization/authorization';
 import {
     DOCTOR_TOKEN,
     CLIENT_TOKEN,

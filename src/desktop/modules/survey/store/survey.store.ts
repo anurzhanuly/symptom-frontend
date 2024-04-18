@@ -1,12 +1,15 @@
+import { ref } from 'vue';
+import { defineStore } from 'pinia';
+import axios from 'axios';
 import {
     getQuestionsJson,
     getDiseasesQuestionsJson,
-} from '@desktop/modules/admin/services/admin.refbooks';
-import type { QuestionsContent } from '@desktop/modules/admin/types/questions';
-import { postAnswers, postAnswersDiseases } from '../services/survey.refbooks';
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
-import axios from 'axios';
+} from '@/common/services/admin/admin';
+import type { QuestionsContent } from '@/common/types/admin/questions';
+import {
+    postAnswers,
+    postAnswersDiseases,
+} from '@/common/services/survey/survey';
 
 export const useSurveyStore = defineStore('survey', () => {
     const resultAnswersChatGPT = ref<Record<string, string[]>>({});
