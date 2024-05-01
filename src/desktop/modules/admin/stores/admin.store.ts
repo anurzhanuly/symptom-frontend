@@ -130,13 +130,17 @@ export const useAdminStore = defineStore('admin', () => {
 
         if (diseaseId) {
             res = await getDiseaseRecommendations(diseaseId);
+            if (res) {
+                allRecommendations.value = res.data;
+            }
         } else {
             res = await getRecommendations();
+            if (res) {
+                allRecommendations.value = res.data.data;
+                console.log(allRecommendations.value);
+            }
         }
-
-        if (res) {
-            allRecommendations.value = res.data.data;
-        }
+        console.log(res);
     }
 
     async function getDiseasesData(): Promise<void> {

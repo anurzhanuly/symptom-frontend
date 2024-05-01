@@ -28,7 +28,7 @@ export const postAnswersDiseases = async (
 ): Promise<any> => {
     try {
         return await useSymptomApi.post(
-            `/diseases/${id}/recommendations`,
+            `/diseases/${id}/getRecommendation`,
             data
         );
     } catch (error) {

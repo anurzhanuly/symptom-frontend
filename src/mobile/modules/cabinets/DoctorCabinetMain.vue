@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { warn } from '@/utils/toast';
 import { useCabinetsStore } from '@mobile/modules/cabinets/store/cabinets.store';
+import { CABINET_RESULT_ID } from '@/utils/localStorageKeys';
 
 import InputText from 'primevue/inputtext';
 import PButton from 'primevue/button';
@@ -29,7 +30,7 @@ function checkResult(id: string) {
         warn('Не найдено', 'Результаты не найдены');
     }
 
-    localStorage.setItem('clientCabinetResultId', id);
+    localStorage.setItem(CABINET_RESULT_ID, id);
     router.push(`doctor-cabinet-result`);
 }
 </script>

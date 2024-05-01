@@ -36,7 +36,7 @@ export async function getDiseaseRecommendations(
 ): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.get<Recommendation[]>(
-            `/diseases/${id}/questionnaires/display-options`,
+            `admin/diseases/${id}/recommendations/`,
             {
                 headers: {
                     'auth-token': JSON.parse(

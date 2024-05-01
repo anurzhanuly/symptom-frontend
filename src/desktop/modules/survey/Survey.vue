@@ -130,7 +130,7 @@ async function onSurveyComplete(sender: {
         } else {
             surveyResult = await surveyStore.postAnswersData(surveyAnswers);
         }
-
+        console.log(surveyResult);
         localStorage.setItem(SURVEY_RESULT, JSON.stringify(surveyResult));
 
         router.push({

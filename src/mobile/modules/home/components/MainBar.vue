@@ -3,6 +3,11 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useHomeStore } from '../store/home.store';
+import {
+    CLIENT_TOKEN,
+    DATE_OF_TOKEN,
+    DOCTOR_TOKEN,
+} from '@/utils/localStorageKeys';
 
 import UiButton from '@/ui/UiButton.vue';
 
@@ -15,8 +20,8 @@ const clientToken = ref('');
 const doctorToken = ref('');
 
 function goToClientCabinet() {
-    clientToken.value = localStorage.getItem('clientToken') ?? '';
-    const tokenDate = Number(localStorage.getItem('tokenDate')) ?? '';
+    clientToken.value = localStorage.getItem(CLIENT_TOKEN) ?? '';
+    const tokenDate = Number(localStorage.getItem(DATE_OF_TOKEN)) ?? '';
     const prepareDate = 8 * 60 * 60 * 1000;
     const currentDate = Date.now();
     const timeDiff = currentDate - tokenDate;
@@ -32,7 +37,7 @@ function goToClientCabinet() {
 }
 
 function goToDoctorCabinet() {
-    doctorToken.value = localStorage.getItem('doctorToken') ?? '';
+    doctorToken.value = localStorage.getItem(DOCTOR_TOKEN) ?? '';
 
     if (doctorToken.value) {
         router.push('/doctor-cabinet');
