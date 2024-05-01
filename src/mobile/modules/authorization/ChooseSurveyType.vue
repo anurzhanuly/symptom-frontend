@@ -9,12 +9,13 @@ import Header from './components/Header.vue';
 import UiButton from '@/ui/UiButton.vue';
 import { warn } from '@/utils/toast';
 import Dropdown from 'primevue/dropdown';
+import { DISEASE_ID, SURVEY_FLOW } from '@/utils/localStorageKeys';
 
 const authorizationStore = useAuthorizationStore();
 const router = useRouter();
 
 onMounted(() => {
-    localStorage.removeItem('diseaseId');
+    localStorage.removeItem(DISEASE_ID);
 
     if (!authorizationStore.allDiseases.length) {
         authorizationStore.getDiseasesData();
@@ -25,7 +26,7 @@ const { allDiseases } = storeToRefs(authorizationStore);
 const diseaseId = ref('');
 
 function chooseSurveyFlow() {
-    const surveyType = localStorage.getItem('surveyFlow');
+    const surveyType = localStorage.getItem(SURVEY_FLOW);
 
     if (surveyType) {
         router.push({ name: 'client-test-auth' });
@@ -40,7 +41,7 @@ function goToSurvey() {
         return false;
     }
 
-    localStorage.setItem('diseaseId', diseaseId.value);
+    localStorage.setItem(DISEASE_ID, diseaseId.value);
     chooseSurveyFlow();
 }
 </script>

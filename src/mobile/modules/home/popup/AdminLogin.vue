@@ -5,7 +5,7 @@ import { validateLogin } from '@/utils/validation';
 
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
-import { postLogin } from '@mobile/modules/authorization/services/authorization.refbooks';
+import { postLogin } from '@/common/services/authorization/authorization';
 import PPassword from 'primevue/password';
 
 const router = useRouter();

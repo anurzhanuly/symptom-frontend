@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import router from '@/mobile/router';
 import UiButton from '@/ui/UiButton.vue';
+import { SURVEY_FLOW, DOCTOR_ID } from '@/utils/localStorageKeys';
 
-localStorage.removeItem('surveyFlow');
-localStorage.removeItem('doctorId');
+localStorage.removeItem(SURVEY_FLOW);
+localStorage.removeItem(DOCTOR_ID);
 
 function chooseDoctorFlow() {
-    localStorage.setItem('surveyFlow', 'doctor');
+    localStorage.setItem(SURVEY_FLOW, 'doctor');
     router.push({ name: 'choose-survey-type' });
 }
 </script>

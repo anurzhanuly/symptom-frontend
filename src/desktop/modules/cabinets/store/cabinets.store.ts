@@ -6,13 +6,13 @@ import {
     getResult,
     getDiseaseResult,
     getClientDiseasesConsultations,
-} from '../services/cabinets.refbooks';
+} from '@/common/services/cabinets/cabinets';
 import type {
     Consultation,
     ConsultationResult,
     PatientAnswers,
     DiseaseData,
-} from '../types/cabinets';
+} from '@/common/types/cabinets/cabinets';
 import type { DataTableFilterMeta } from 'primevue/datatable';
 import { defineStore } from 'pinia';
 import { error, warn } from '@/utils/toast';

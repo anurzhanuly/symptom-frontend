@@ -1,14 +1,12 @@
-import {
-    getClinicDoctors,
-    getDoctors,
-    postAnswersToChatGPT,
-} from '../services/webview.refbooks';
-import type { Doctors } from '../types/webview';
-import { getQuestionsJson } from '@desktop/modules/admin/services/admin.refbooks';
-import type { QuestionsContent } from '@desktop/modules/admin/types/questions';
-import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from 'axios';
+import { getDoctors } from '@/common/services/admin/clinics';
+import { postAnswers } from '@/common/services/survey/survey';
+import { getClinicDoctors } from '@/common/services/authorization/authorization';
+import type { Doctors } from '@/common/types/authorization/authorization';
+import { getQuestionsJson } from '@/common/services/admin/admin';
+import type { QuestionsContent } from '@/common/types/admin/questions';
+import { defineStore } from 'pinia';
 
 export const useWebviewStore = defineStore('webview', () => {
     const doctors = ref<{ id: string; name: string }[]>([]);
@@ -67,7 +65,7 @@ export const useWebviewStore = defineStore('webview', () => {
         isLoading.value = false;
     }
 
-    async function postAnswersDataChatGPT(data: {
+    async function postAnswersData(data: {
         answers: Record<string, string[]>;
         patientID: number;
         doctorID: number;
@@ -76,7 +74,7 @@ export const useWebviewStore = defineStore('webview', () => {
         resultAnswersChatGPT.value = data.answers;
 
         try {
-            const res = await postAnswersToChatGPT(data);
+            const res = await postAnswers(data);
 
             if (!axios.isAxiosError(res)) {
                 patientsCard.value = res.data.patientCard;
@@ -103,7 +101,7 @@ export const useWebviewStore = defineStore('webview', () => {
     return {
         getClinicDoctorsData,
         getDoctorsData,
-        postAnswersDataChatGPT,
+        postAnswersData,
         getQuestionsData,
         stringTitle,
         doctors,

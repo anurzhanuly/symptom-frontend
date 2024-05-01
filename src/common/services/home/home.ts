@@ -1,5 +1,5 @@
-import { useSymptomApi } from '@mobile/services/api';
 import type { AxiosResponse } from 'axios';
+import { useSymptomApi } from '@/common/services/api';
 
 export async function postNpsRequest(
     data: object

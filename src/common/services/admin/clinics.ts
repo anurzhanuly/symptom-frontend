@@ -1,6 +1,6 @@
-import type { NewClinic, NewDoctor } from '../types/clinics';
 import type { AxiosResponse } from 'axios';
-import { useSymptomApi } from '@desktop/services/api';
+import type { NewClinic, NewDoctor } from '@/common/types/admin/clinics';
+import { useSymptomApi } from '@/common/services/api';
 
 export async function getClinics(): Promise<AxiosResponse | null> {
     try {

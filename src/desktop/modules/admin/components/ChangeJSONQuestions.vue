@@ -2,9 +2,9 @@
 import type {
     QuestionsContent,
     ResQuestions,
-} from '@desktop/modules/admin/types/questions';
+} from '@/common/types/admin/questions';
 import type { AxiosError, AxiosResponse } from 'axios';
-import { useSymptomApi } from '@desktop/services/api';
+import { useSymptomApi } from '@/common/services/api';
 import { ref, onMounted } from 'vue';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 

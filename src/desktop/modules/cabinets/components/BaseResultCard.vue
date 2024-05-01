@@ -2,7 +2,7 @@
 import type { PropType } from 'vue';
 import Card from 'primevue/card';
 import Panel from 'primevue/panel';
-import type { Recommendation } from '../types/cabinets';
+import type { Recommendation } from '@/common/types/cabinets/cabinets';
 import UiButton from '@/ui/UiButton.vue';
 
 defineProps({
@@ -38,7 +38,7 @@ defineProps({
                 is-white
                 icon="pi pi-angle-left header__button"
                 class="result__button"
-                @click="$router.push({ name: routeName })"
+                @click="$router.back"
             >
                 Назад
             </ui-button>

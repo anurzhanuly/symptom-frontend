@@ -1,5 +1,5 @@
 import type { AxiosError } from 'axios';
-import { useSymptomApi } from '@desktop/services/api';
+import { useSymptomApi } from '@/common/services/api';
 
 export const postAnswers = async (data: {
     answers: Record<string, string[]>;
@@ -28,7 +28,7 @@ export const postAnswersDiseases = async (
 ): Promise<any> => {
     try {
         return await useSymptomApi.post(
-            `/diseases/${id}/recommendations`,
+            `/diseases/${id}/getRecommendation`,
             data
         );
     } catch (error) {

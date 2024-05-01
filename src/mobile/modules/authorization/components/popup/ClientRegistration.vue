@@ -5,6 +5,7 @@ import { success } from '@/utils/toast';
 import { validatePhone } from '@/utils/validation';
 import { useDialog } from 'primevue/usedialog';
 import { useAuthorizationStore } from '../../store/authorization.store';
+import { CLIENT_TOKEN, DATE_OF_TOKEN } from '@/utils/localStorageKeys';
 
 import SmsCode from './SmsCode.vue';
 import InlineMessage from 'primevue/inlinemessage';
@@ -101,8 +102,8 @@ async function clientRegistration() {
 
             if (token) {
                 const dateOfToken = Date.now().toString();
-                localStorage.setItem('clientToken', JSON.stringify(token));
-                localStorage.setItem('tokenDate', dateOfToken);
+                localStorage.setItem(CLIENT_TOKEN, JSON.stringify(token));
+                localStorage.setItem(DATE_OF_TOKEN, dateOfToken);
 
                 success(
                     'Аккаунт создан',

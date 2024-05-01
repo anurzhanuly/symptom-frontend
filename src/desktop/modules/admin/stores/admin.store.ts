@@ -1,11 +1,12 @@
+import { computed, ref } from 'vue';
+import { defineStore } from 'pinia';
+import { useDialog } from 'primevue/usedialog';
+import type { DataTableCellEditCompleteEvent } from 'primevue/datatable';
 import type {
     Condition,
     Recommendation,
-} from '@desktop/modules/admin/types/recommendations.js';
-import type { DataTableCellEditCompleteEvent } from 'primevue/datatable';
-import type { Questions } from '../types/questions';
-import { computed, ref } from 'vue';
-import { defineStore } from 'pinia';
+} from '@/common/types/admin/recommendations';
+import type { Questions } from '@/common/types/admin/questions';
 import {
     createRecommendation,
     createDiseaseRecommendation,
@@ -20,9 +21,8 @@ import {
     getDiseaseRecommendations,
     updateRecommendation,
     updateDiseaseRecommendation,
-} from '../services/admin.refbooks';
+} from '@/common/services/admin/admin';
 import { success } from '@/utils/toast.js';
-import { useDialog } from 'primevue/usedialog';
 
 import CreateConditions from '../components/popup/CreateConditions.vue';
 
@@ -130,13 +130,17 @@ export const useAdminStore = defineStore('admin', () => {
 
         if (diseaseId) {
             res = await getDiseaseRecommendations(diseaseId);
+            if (res) {
+                allRecommendations.value = res.data;
+            }
         } else {
             res = await getRecommendations();
+            if (res) {
+                allRecommendations.value = res.data.data;
+                console.log(allRecommendations.value);
+            }
         }
-
-        if (res) {
-            allRecommendations.value = res.data.data;
-        }
+        console.log(res);
     }
 
     async function getDiseasesData(): Promise<void> {

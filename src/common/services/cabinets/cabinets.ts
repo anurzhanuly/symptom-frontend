@@ -1,5 +1,5 @@
-import { useSymptomApi } from '@desktop/services/api';
 import type { AxiosResponse } from 'axios';
+import { useSymptomApi } from '@/common/services/api';
 import { CLIENT_TOKEN, DOCTOR_TOKEN } from '@/utils/localStorageKeys';
 
 export async function getDoctorConsultations(): Promise<AxiosResponse | null> {

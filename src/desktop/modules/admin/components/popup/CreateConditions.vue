@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Condition } from '@desktop/modules/admin/types/recommendations';
+import type { Condition } from '@/common/types/admin/recommendations';
 import { useAdminStore } from '@desktop/modules/admin/stores/admin.store';
 import { createPopupFields } from '@/utils/popUp';
 import { error, success } from '@/utils/toast';

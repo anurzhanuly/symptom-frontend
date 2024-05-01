@@ -77,7 +77,7 @@ async function onSurveyComplete(sender: {
     data: Record<string, string[]>;
 }): Promise<void> {
     const newData: Record<string, string[]> = {};
-    const doctorId = +(localStorage.getItem('doctorId') ?? 0);
+    const doctorId = +(localStorage.getItem(DOCTOR_ID) ?? 0);
 
     for (const key in sender.data) {
         if (Array.isArray(sender.data[key])) {
@@ -116,7 +116,7 @@ async function onSurveyComplete(sender: {
 
     const surveyAnswers = {
         answers: newData,
-        patientID: +(localStorage.getItem('patientId') ?? 0),
+        patientID: +(localStorage.getItem(PATIENT_ID) ?? 0),
         doctorID: doctorId,
     };
     try {

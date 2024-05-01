@@ -6,7 +6,7 @@ import { ADMIN_TOKEN } from '@/utils/localStorageKeys';
 
 import PButton from 'primevue/button';
 import InputText from 'primevue/inputtext';
-import { postLogin } from '@desktop/modules/authorization/services/authorization.refbooks';
+import { postLogin } from '@/common/services/authorization/authorization';
 import PPassword from 'primevue/password';
 
 const router = useRouter();

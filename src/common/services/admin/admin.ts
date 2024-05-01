@@ -1,7 +1,7 @@
 import type { UnwrapRef } from 'vue';
 import type { AxiosResponse } from 'axios';
-import type { Recommendation } from '../types/recommendations';
-import { useSymptomApi } from '@desktop/services/api';
+import type { Recommendation } from '@/common/types/admin/recommendations';
+import { useSymptomApi } from '@/common/services/api';
 import { ADMIN_TOKEN } from '@/utils/localStorageKeys';
 
 export async function getQuestionsJson(): Promise<AxiosResponse | null> {
@@ -36,7 +36,7 @@ export async function getDiseaseRecommendations(
 ): Promise<AxiosResponse | null> {
     try {
         return await useSymptomApi.get<Recommendation[]>(
-            `/diseases/${id}/questionnaires/display-options`,
+            `admin/diseases/${id}/recommendations/`,
             {
                 headers: {
                     'auth-token': JSON.parse(
