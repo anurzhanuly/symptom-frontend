@@ -18,17 +18,6 @@ import { DISEASE_ID, ADMIN_TOKEN } from '@/utils/localStorageKeys';
 
 const surveyStr = ref('');
 const adminPages = ref(tabRoutes);
-const adminStore = useAdminStore();
-
-onMounted(() => {
-    if (!adminStore.allRecommendations.length) {
-        adminStore.getRecommendationsData();
-    }
-
-    if (!adminStore.questions.length) {
-        adminStore.getQuestionsData();
-    }
-});
 
 async function changeSurveyQuestions(): Promise<void> {
     if (!surveyStr.value) {

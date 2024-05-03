@@ -96,11 +96,9 @@ export const useAdminStore = defineStore('admin', () => {
         }
 
         if (res) {
-            const data = diseaseId
-                ? res.data.data[res.data.data.length - 1]
-                : res.data;
+            const data = diseaseId ? res.data.data : res.data;
             const pages = diseaseId
-                ? data.attributes.name.content.pages
+                ? data.attributes.questionnaire.pages
                 : data.pages;
             const elements = [];
             const names = [];
@@ -131,7 +129,7 @@ export const useAdminStore = defineStore('admin', () => {
         if (diseaseId) {
             res = await getDiseaseRecommendations(diseaseId);
             if (res) {
-                allRecommendations.value = res.data;
+                allRecommendations.value = res.data.data;
             }
         } else {
             res = await getRecommendations();
@@ -140,7 +138,6 @@ export const useAdminStore = defineStore('admin', () => {
                 console.log(allRecommendations.value);
             }
         }
-        console.log(res);
     }
 
     async function getDiseasesData(): Promise<void> {
