@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useGtag } from 'vue-gtag-next';
 
@@ -17,6 +17,10 @@ import Dropdown from 'primevue/dropdown';
 import UiButton from '@/ui/UiButton.vue';
 
 const router = useRouter();
+const currentRoute = useRoute();
+
+const routeDoctorId = ref(currentRoute.params.doctorId || '');
+
 const { event: gEvent } = useGtag();
 
 const clinicStore = useClinicsStore();
@@ -43,12 +47,12 @@ onMounted(() => {
 
     authorizationStore.getDoctorsData();
 
-    const id = getParameterByKey('doc');
+    const id = getParameterByKey('doctorId');
 
-    if (!id) return;
-
-    doctorId.value = id;
-    doctorLink.value = true;
+    if (id) {
+        doctorId.value = id;
+        doctorLink.value = true;
+    }
 });
 
 const goToAgreement = (): void => {

@@ -6,5 +6,5 @@ export const useApi = axios.create({
 });
 
 export const useSymptomApi = axios.create({
-    baseURL: 'https://symptom.kz:8080',
+    baseURL: 'https://check.symptom.kz:8080',
 });

@@ -32,7 +32,7 @@ const router = createRouter({
                 ),
         },
         {
-            path: '/client-test-auth',
+            path: '/client-test-auth/:doctorId?',
             name: 'client-test-auth',
             component: (): Component =>
                 import(
