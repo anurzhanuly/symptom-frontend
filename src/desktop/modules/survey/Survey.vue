@@ -78,6 +78,11 @@ async function onSurveyComplete(sender: {
 }): Promise<void> {
     const newData: Record<string, string[]> = {};
     const doctorId = +(localStorage.getItem(DOCTOR_ID) ?? 0);
+    const mobilePatientID =
+        parseInt(
+            router.currentRoute.value.query.mobilePatientID as string,
+            10
+        ) || 0;
 
     for (const key in sender.data) {
         if (Array.isArray(sender.data[key])) {
@@ -118,6 +123,7 @@ async function onSurveyComplete(sender: {
         answers: newData,
         patientID: +(localStorage.getItem(PATIENT_ID) ?? 0),
         doctorID: doctorId,
+        mobilePatientID: mobilePatientID,
     };
     try {
         let surveyResult;
