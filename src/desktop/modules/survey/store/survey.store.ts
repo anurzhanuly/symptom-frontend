@@ -56,7 +56,7 @@ export const useSurveyStore = defineStore('survey', () => {
             answers: Record<string, string[]>;
             patientID: number;
             doctorID: number;
-            mobilePatientID: number;
+            mobilePatientID?: number;
         },
         diseaseId?: string
     ): Promise<any> {
