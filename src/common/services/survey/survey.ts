@@ -5,7 +5,7 @@ export const postAnswers = async (data: {
     answers: Record<string, string[]>;
     patientID: number;
     doctorID: number;
-    mobilePatientID?: number;
+    mobilePatientID?: string;
 }): Promise<any> => {
     try {
         return await useSymptomApi.post(
